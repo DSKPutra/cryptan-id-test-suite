@@ -1,0 +1,12 @@
+extends: ../product_profile.yaml
+algorithm:
+  id: AES-128
+  name: "AES-128 (FIPS 197) mode CTR"
+  primitive: block_cipher
+  structure: SPN
+  mode: CTR
+  parameters: {block_bits: 128, key_bits: 128, rounds: 10, sbox_bits: 8, output_bits_per_op: 128}
+  reference_values: {nonlinearity: 112, differential_uniformity: 4, algebraic_degree: 7, branch_number: 5}
+  implementation_notes:
+    table_based: true            # implementasi produk memakai lookup S-box/T-table (klaim vendor)
+    nonce_generation: "counter 64-bit + nonce acak 64-bit"

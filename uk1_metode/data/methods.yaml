@@ -1,0 +1,398 @@
+# Katalog metode pengujian (KUK 2.2 / 3.1 / 3.2).
+# layer : Kesesuaian | Kekuatan algoritma | Implementasi & sistem   (tiga lapis pengujian, slide 28)
+# level : Unit | Integrasi | Sistem
+# access: akses MINIMUM yang dibutuhkan penguji (black < grey < white)
+# addresses: tag kelemahan yang ditangani (ditautkan dari decompose.py / attacks.yaml)
+# cost  : model biaya untuk estimasi sumber daya (resources.py, KUK 2.3)
+#   op        : operasi yang di-benchmark (primary|encrypt|hash|public_op|private_op|sign|verify|point_add)
+#   ops_log2  : jumlah operasi (log2)            | bits: jumlah bit keluaran yang diperlukan
+#   effort_h  : upaya analis (jam-orang) untuk langkah manual/analitis
+#   tools     : alat yang WAJIB tersedia (dicocokkan dengan resources.tools_available)
+#   reduced   : varian tereduksi bila versi penuh tidak layak
+# requirement: baris traceability (K = kebutuhan keamanan, I = kebutuhan implementasi)
+
+methods:
+  - id: M-KAT
+    name: Known Answer Test (KAT) terhadap vektor resmi
+    layer: Kesesuaian
+    level: Unit
+    access: black
+    primitives: [block_cipher, stream_cipher, hash, pkc, dss]
+    addresses: [conformance]
+    mandatory: true
+    standards: [ISO-18367, ISO-24759]
+    cost: {op: primary, ops_log2: 7, effort_h: 2, tools: [python]}
+    requirement: {type: I, text: "Implementasi menghasilkan keluaran identik dengan vektor uji resmi", pass: "100% vektor cocok"}
+
+  - id: M-MCT
+    name: Monte Carlo Test (MCT) & Multi-block Message Test (MMT) gaya CAVP
+    layer: Kesesuaian
+    level: Unit
+    access: black
+    primitives: [block_cipher, hash]
+    addresses: [conformance]
+    mandatory: true
+    standards: [ISO-18367, ISO-24759]
+    cost: {op: primary, ops_log2: 16.61, effort_h: 2, tools: [python]}
+    requirement: {type: I, text: "Implementasi konsisten pada iterasi berantai & pesan multi-blok", pass: "100% checkpoint cocok dengan implementasi referensi"}
+
+  - id: M-SBOX
+    name: Analisis sifat S-box / fungsi nonlinear (NL, DDT, LAT, derajat, SAC)
+    layer: Kekuatan algoritma
+    level: Unit
+    access: grey
+    primitives: [block_cipher, hash]
+    addresses: [sbox, chi]
+    standards: [ISO-18033-3, FIPS-197, FIPS-202]
+    cost: {op: analysis, ops_log2: 20, effort_h: 4, tools: [python]}
+    requirement: {type: K, text: "Komponen nonlinear memenuhi batas acuan NL/DU/derajat", pass: "NL, DU, derajat = nilai acuan desain"}
+
+  - id: M-DIFFUSION
+    name: Analisis difusi (branch number/MDS, ronde menuju difusi penuh, avalanche per ronde)
+    layer: Kekuatan algoritma
+    level: Unit
+    access: grey
+    primitives: [block_cipher, stream_cipher, hash]
+    addresses: [diffusion, arx_nonlinear]
+    standards: [ISO-18033-3, ISO-18033-4, FIPS-202]
+    cost: {op: primary, ops_log2: 17, effort_h: 4, tools: [python]}
+    requirement: {type: K, text: "Lapisan difusi mencapai difusi penuh dengan margin ronde memadai", pass: "branch number optimal; avalanche ≈ 0,5 sebelum ≤ 1/2 jumlah ronde"}
+
+  - id: M-AVAL
+    name: Uji avalanche & Strict Avalanche Criterion (fungsi penuh)
+    layer: Kekuatan algoritma
+    level: Unit
+    access: black
+    primitives: [block_cipher, stream_cipher, hash]
+    addresses: [diffusion, key_schedule, arx_nonlinear, chi]
+    standards: [ISO-18367]
+    cost: {op: primary, ops_log2: 14.29, effort_h: 2, tools: [python]}
+    requirement: {type: K, text: "Perubahan 1 bit masukan/kunci mengubah ≈ 50% bit keluaran", pass: "rerata 0,5 ± 0,01; tiap bit 0,5 ± 0,05"}
+
+  - id: M-SP80022
+    name: Uji keacakan statistik NIST SP 800-22 (15 uji)
+    layer: Kekuatan algoritma
+    level: Unit
+    access: black
+    primitives: [block_cipher, stream_cipher, hash]
+    addresses: [keystream_stat, diffusion]
+    standards: [SP-800-22]
+    cost: {op: primary, bits: 100000000, effort_h: 6, tools: [python]}
+    requirement: {type: K, text: "Keluaran (keystream/CTR/digest berantai) tak terbedakan dari acak", pass: "proporsi lulus ≥ ambang SP 800-22 & P-value_T ≥ 0,0001 tiap uji"}
+
+  - id: M-DIFF
+    name: Kriptanalisis diferensial (pencarian trail / batas S-box aktif)
+    layer: Kekuatan algoritma
+    level: Unit
+    access: grey
+    primitives: [block_cipher, hash]
+    addresses: [sbox, diffusion, round_count, chi]
+    standards: [ISO-18033-3, ISO-15408]
+    cost: {op: primary, ops_log2: 150, effort_h: 16, tools: [python],
+           reduced: {desc: "Trail/distinguisher diferensial pada 2–3 ronde tereduksi", ops_log2: 18}}
+    requirement: {type: K, text: "Tidak ada karakteristik diferensial ronde penuh dengan probabilitas > 2^-k", pass: "batas bawah S-box aktif × DP_max ≤ 2^-128 (≥ 4 ronde)"}
+
+  - id: M-LIN
+    name: Kriptanalisis linear (LAT, batas korelasi trail)
+    layer: Kekuatan algoritma
+    level: Unit
+    access: grey
+    primitives: [block_cipher]
+    addresses: [sbox, diffusion, round_count]
+    standards: [ISO-18033-3, ISO-15408]
+    cost: {op: primary, ops_log2: 150, effort_h: 16, tools: [python],
+           reduced: {desc: "Aproksimasi linear 2–3 ronde tereduksi, verifikasi bias empiris", ops_log2: 20}}
+    requirement: {type: K, text: "Tidak ada aproksimasi linear ronde penuh dengan korelasi > 2^-64", pass: "korelasi trail ≤ 2^-64 (≥ 4 ronde)"}
+
+  - id: M-INT
+    name: Serangan integral / Square pada ronde tereduksi
+    layer: Kekuatan algoritma
+    level: Unit
+    access: grey
+    primitives: [block_cipher]
+    addresses: [round_count, diffusion]
+    standards: [ISO-15408]
+    cost: {op: primary, ops_log2: 128, effort_h: 8, tools: [python],
+           reduced: {desc: "Integral 3–4 ronde (2^8 CP per Λ-set) + margin keamanan", ops_log2: 16}}
+    requirement: {type: K, text: "Margin keamanan ronde memadai terhadap serangan struktural", pass: "serangan hanya berhasil pada ≤ 70% ronde"}
+
+  - id: M-ARX-PNB
+    name: Analisis diferensial/PNB & differential-linear ARX (ronde tereduksi)
+    layer: Kekuatan algoritma
+    level: Unit
+    access: grey
+    primitives: [stream_cipher]
+    addresses: [arx_nonlinear, round_count, diffusion]
+    standards: [ISO-18033-4, ISO-15408]
+    cost: {op: primary, ops_log2: 248, effort_h: 16, tools: [python],
+           reduced: {desc: "Bias diferensial 3–4 ronde (distinguisher empiris 2^20 sampel)", ops_log2: 21}}
+    requirement: {type: K, text: "Tidak ada distinguisher praktis pada ronde penuh; margin ronde memadai", pass: "bias empiris ronde penuh tak terdeteksi; serangan terbaik ≤ 7/20 ronde"}
+
+  - id: M-LC
+    name: Kompleksitas linear (Berlekamp–Massey) & periode keystream
+    layer: Kekuatan algoritma
+    level: Unit
+    access: black
+    primitives: [stream_cipher]
+    addresses: [keystream_stat, boolean_function]
+    standards: [ISO-18033-4, SP-800-22]
+    cost: {op: primary, ops_log2: 12, effort_h: 2, tools: [python]}
+    requirement: {type: K, text: "Kompleksitas linear keystream mendekati N/2", pass: "|L − N/2| ≤ 3 untuk N sampel"}
+
+  - id: M-BOOL
+    name: Analisis fungsi Boolean komponen nonlinear (NL, CI, derajat)
+    layer: Kekuatan algoritma
+    level: Unit
+    access: grey
+    primitives: [stream_cipher]
+    addresses: [boolean_function, arx_nonlinear]
+    standards: [ISO-18033-4]
+    cost: {op: analysis, ops_log2: 10, effort_h: 2, tools: [python]}
+    requirement: {type: K, text: "Fungsi nonlinear memiliki NL & derajat sesuai desain", pass: "nilai = acuan desain"}
+
+  - id: M-BRUTE
+    name: Pencarian kunci menyeluruh (exhaustive key search)
+    layer: Kekuatan algoritma
+    level: Sistem
+    access: black
+    primitives: [block_cipher, stream_cipher]
+    addresses: [key_size]
+    standards: [SP-800-57, SP-800-131A]
+    cost: {op: primary, ops_log2: 128, effort_h: 1, tools: [python],
+           reduced: {desc: "Pencarian kunci tereduksi (24 bit kunci tak diketahui) — validasi harness", ops_log2: 24}}
+    requirement: {type: K, text: "Ruang kunci ≥ 2^128", pass: "estimasi waktu brute force penuh > 10^20 tahun"}
+
+  - id: M-KEYSIZE
+    name: Evaluasi ukuran kunci & tingkat keamanan (SP 800-57 / 131A)
+    layer: Kekuatan algoritma
+    level: Sistem
+    access: black
+    primitives: [block_cipher, stream_cipher, hash, pkc, dss]
+    addresses: [key_size, generic_bound, hash_strength]
+    mandatory: true
+    standards: [SP-800-57, SP-800-131A]
+    cost: {op: analysis, ops_log2: 0, effort_h: 1, tools: []}
+    requirement: {type: K, text: "Tingkat keamanan ≥ 112 bit dan status 'acceptable' menurut SP 800-131A", pass: "security_bits ≥ 112"}
+
+  - id: M-GENERIC
+    name: Uji batas generik hash (collision/preimage pada keluaran terpotong)
+    layer: Kekuatan algoritma
+    level: Unit
+    access: black
+    primitives: [hash]
+    addresses: [generic_bound, sponge_capacity]
+    standards: [FIPS-202, SP-800-107]
+    cost: {op: hash, ops_log2: 128, effort_h: 2, tools: [python],
+           reduced: {desc: "Birthday collision pada digest terpotong 32 bit (≈ 2^16 hash) — validasi rumus 2^(n/2)", ops_log2: 17}}
+    requirement: {type: K, text: "Ketahanan collision ≥ 2^128 dan preimage ≥ 2^256", pass: "min(n/2, c/2) ≥ 128; kurva empiris terpotong sesuai 2^(t/2)"}
+
+  - id: M-PAD
+    name: Uji kesesuaian padding (pad10*1 / MD-strengthening) pada batas blok
+    layer: Kesesuaian
+    level: Unit
+    access: black
+    primitives: [hash]
+    addresses: [padding]
+    standards: [FIPS-202, ISO-10118-3]
+    cost: {op: hash, ops_log2: 10, effort_h: 1, tools: [python]}
+    requirement: {type: I, text: "Padding benar untuk panjang r−2, r−1, r, r+1 byte", pass: "digest = referensi untuk semua panjang batas"}
+
+  - id: M-PRIME
+    name: Uji primalitas & validasi pembangkitan kunci (ISO/IEC 18032, FIPS 186-5 App. A/B)
+    layer: Kesesuaian
+    level: Unit
+    access: grey
+    primitives: [pkc]
+    addresses: [prime_gen, private_exponent, small_e]
+    standards: [ISO-18032, FIPS-186-5]
+    cost: {op: private_op, ops_log2: 8, effort_h: 2, tools: [python]}
+    requirement: {type: K, text: "p, q prima kuat; |p−q| > 2^(nlen/2−100); d > 2^(nlen/2); e ∈ (2^16, 2^256)", pass: "semua kondisi FIPS 186-5 A.1.1/A.1.3 terpenuhi pada ≥ 20 sampel kunci"}
+
+  - id: M-PKV
+    name: Validasi kunci publik (positif & negatif)
+    layer: Kesesuaian
+    level: Unit
+    access: black
+    primitives: [pkc, dss]
+    addresses: [pubkey_validation, curve_params]
+    standards: [SP-800-56B, SP-800-186, ISO-18033-2]
+    cost: {op: verify, ops_log2: 8, effort_h: 2, tools: [python]}
+    requirement: {type: I, text: "Produk menolak kunci publik/titik tidak valid", pass: "100% kasus negatif ditolak, 100% kasus positif diterima"}
+
+  - id: M-RSAWEAK
+    name: Baterai kunci lemah RSA (Fermat, Pollard p−1, batch-GCD, Wiener)
+    layer: Kekuatan algoritma
+    level: Unit
+    access: black
+    primitives: [pkc]
+    addresses: [prime_gen, private_exponent, rng]
+    standards: [ISO-18032, FIPS-186-5]
+    cost: {op: public_op, ops_log2: 22, effort_h: 4, tools: [python]}
+    requirement: {type: K, text: "Kunci produk tidak rentan terhadap serangan kunci lemah", pass: "0 kunci terfaktorkan dari sampel ≥ 100 kunci"}
+
+  - id: M-FACT
+    name: Percobaan faktorisasi modulus (GNFS)
+    layer: Kekuatan algoritma
+    level: Sistem
+    access: black
+    primitives: [pkc]
+    addresses: [key_size]
+    standards: [SP-800-57]
+    cost: {op: public_op, ops_log2: 112, effort_h: 8, tools: [python, cado-nfs],
+           reduced: {desc: "Faktorisasi modulus mainan 64–96 bit (Pollard rho/ECM) — validasi estimasi", ops_log2: 26, tools: [python]}}
+    requirement: {type: K, text: "Modulus tidak terfaktorkan dengan sumber daya realistis", pass: "estimasi GNFS ≥ 2^112"}
+
+  - id: M-ORACLE
+    name: Uji oracle galat dekripsi OAEP (Manger) — keseragaman galat & timing
+    layer: Implementasi & sistem
+    level: Integrasi
+    access: grey
+    primitives: [pkc]
+    addresses: [oaep_oracle, constant_time]
+    standards: [SP-800-56B, RFC-8017, ISO-17825]
+    cost: {op: private_op, ops_log2: 13, effort_h: 6, tools: [python]}
+    requirement: {type: I, text: "Semua kegagalan dekripsi menghasilkan galat & waktu yang tak terbedakan", pass: "satu jenis galat; |t| Welch < 4,5 antar kelas galat"}
+
+  - id: M-ECDLP
+    name: Estimasi & uji Pollard rho ECDLP
+    layer: Kekuatan algoritma
+    level: Sistem
+    access: black
+    primitives: [dss]
+    addresses: [key_size, curve_params]
+    standards: [SP-800-186, SP-800-57]
+    cost: {op: point_add, ops_log2: 128, effort_h: 4, tools: [python],
+           reduced: {desc: "Pollard rho pada subgrup/kurva mainan 32–40 bit — validasi √(πn/4)", ops_log2: 21}}
+    requirement: {type: K, text: "ECDLP tidak terpecahkan (≥ 2^128 operasi)", pass: "√(πn/4) ≥ 2^127"}
+
+  - id: M-CURVE
+    name: Validasi parameter domain kurva (prima, orde, diskriminan, MOV/anomalous)
+    layer: Kesesuaian
+    level: Unit
+    access: black
+    primitives: [dss]
+    addresses: [curve_params]
+    standards: [SP-800-186, FIPS-186-5]
+    cost: {op: point_add, ops_log2: 10, effort_h: 1, tools: [python]}
+    requirement: {type: I, text: "Parameter domain identik dengan SP 800-186 & lolos uji validitas", pass: "semua pemeriksaan LULUS"}
+
+  - id: M-NONCE
+    name: Uji keunikan & bias nonce (statistik + kelayakan lattice HNP)
+    layer: Implementasi & sistem
+    level: Integrasi
+    access: grey
+    primitives: [dss, stream_cipher, block_cipher]
+    addresses: [nonce_bias, nonce_reuse, mode_nonce, counter_wrap, rng]
+    standards: [FIPS-186-5, RFC-6979, SP-800-90A, SP-800-38A, RFC-8439]
+    cost: {op: sign, ops_log2: 12, effort_h: 4, tools: [python]}
+    requirement: {type: K, text: "Nonce tidak pernah berulang dan tidak bias", pass: "0 duplikasi; χ² MSB p-value ≥ 0,01 (≥ 4096 sampel)"}
+
+  - id: M-SIGMAL
+    name: Uji penolakan (r,s) non-kanonik & malleability
+    layer: Kesesuaian
+    level: Unit
+    access: black
+    primitives: [dss]
+    addresses: [sig_malleability]
+    standards: [FIPS-186-5, ISO-14888-3]
+    cost: {op: verify, ops_log2: 6, effort_h: 1, tools: [python]}
+    requirement: {type: I, text: "Verifikasi menolak r,s ∉ [1, n−1]; kebijakan low-S terdokumentasi", pass: "100% kasus di luar rentang ditolak"}
+
+  - id: M-TIMING
+    name: Analisis timing leakage (dudect / Welch t-test, fixed-vs-random)
+    layer: Implementasi & sistem
+    level: Integrasi
+    access: grey
+    primitives: [block_cipher, stream_cipher, hash, pkc, dss]
+    addresses: [constant_time, bigint_timing, scalar_mult_timing, table_lookup]
+    standards: [ISO-17825, ISO-20085]
+    cost: {op: primary, ops_log2: 20, effort_h: 8, tools: [python]}
+    requirement: {type: I, text: "Waktu eksekusi tidak bergantung pada data rahasia", pass: "|t| < 4,5 pada ≥ 10^6 pengukuran"}
+
+  - id: M-CACHE
+    name: Analisis cache side-channel (Flush+Reload / Prime+Probe)
+    layer: Implementasi & sistem
+    level: Sistem
+    access: grey
+    primitives: [block_cipher, pkc, dss]
+    addresses: [table_lookup, bigint_timing, scalar_mult_timing, speculative]
+    standards: [ISO-17825]
+    cost: {op: primary, ops_log2: 22, effort_h: 24, tools: [python, mastik]}
+    requirement: {type: I, text: "Pola akses memori tidak bergantung pada data rahasia", pass: "tidak ada korelasi signifikan jejak cache ↔ kunci"}
+
+  - id: M-TVLA
+    name: Uji kebocoran daya/EM (TVLA, ISO/IEC 17825)
+    layer: Implementasi & sistem
+    level: Sistem
+    access: grey
+    primitives: [block_cipher, stream_cipher, hash, pkc, dss]
+    addresses: [power_em]
+    standards: [ISO-17825, ISO-20085]
+    cost: {op: primary, ops_log2: 17, effort_h: 40, tools: [oscilloscope, chipwhisperer]}
+    requirement: {type: I, text: "Tidak ada kebocoran daya/EM orde-1 yang terdeteksi", pass: "|t| < 4,5 (TVLA) pada N trace"}
+
+  - id: M-FAULT
+    name: Uji injeksi kesalahan (clock/voltage glitch, laser)
+    layer: Implementasi & sistem
+    level: Sistem
+    access: white
+    primitives: [block_cipher, pkc, dss]
+    addresses: [fault]
+    standards: [ISO-19790, ISO-24759]
+    cost: {op: primary, ops_log2: 16, effort_h: 40, tools: [glitcher]}
+    requirement: {type: I, text: "Modul mendeteksi/menahan keluaran saat terjadi fault", pass: "0 keluaran salah yang dilepas"}
+
+  - id: M-CODEREVIEW
+    name: Tinjauan kode sumber (constant-time, memory safety, zeroization)
+    layer: Implementasi & sistem
+    level: Unit
+    access: white
+    primitives: [block_cipher, stream_cipher, hash, pkc, dss]
+    addresses: [constant_time, memory_safety, key_zeroization, table_lookup, bigint_timing, scalar_mult_timing]
+    standards: [ISO-18045, ISO-15408]
+    cost: {op: analysis, ops_log2: 0, effort_h: 24, tools: []}
+    requirement: {type: I, text: "Kode bebas pola tidak aman (branch/lookup bergantung rahasia, overflow)", pass: "0 temuan kritikal/tinggi"}
+
+  - id: M-FUZZ
+    name: Uji negatif & fuzzing API (masukan malformed, panjang ekstrem)
+    layer: Implementasi & sistem
+    level: Integrasi
+    access: black
+    primitives: [block_cipher, stream_cipher, hash, pkc, dss]
+    addresses: [memory_safety, padding, pubkey_validation, counter_wrap]
+    standards: [ISO-29119, ISO-18045]
+    cost: {op: primary, ops_log2: 20, effort_h: 8, tools: [python]}
+    requirement: {type: I, text: "API menolak masukan tidak valid tanpa crash/kebocoran", pass: "0 crash; 100% masukan invalid ditolak dengan galat terdefinisi"}
+
+  - id: M-ZEROIZE
+    name: Uji zeroization material kunci (memory dump pasca-operasi)
+    layer: Implementasi & sistem
+    level: Sistem
+    access: grey
+    primitives: [block_cipher, stream_cipher, hash, pkc, dss]
+    addresses: [key_zeroization]
+    standards: [ISO-19790, ISO-24759]
+    cost: {op: analysis, ops_log2: 0, effort_h: 6, tools: [gdb]}
+    requirement: {type: I, text: "Kunci/CSP dihapus dari memori setelah dipakai", pass: "0 salinan kunci pada dump memori"}
+
+  - id: M-SELFTEST
+    name: Uji self-test & error state modul (ISO/IEC 19790 / 24759)
+    layer: Implementasi & sistem
+    level: Sistem
+    access: black
+    primitives: [block_cipher, stream_cipher, hash, pkc, dss]
+    addresses: [self_test, conformance]
+    standards: [ISO-19790, ISO-24759]
+    cost: {op: analysis, ops_log2: 0, effort_h: 4, tools: [python]}
+    requirement: {type: I, text: "Power-on self-test (KAT) & conditional test (pairwise) berjalan; error state memblokir layanan", pass: "semua self-test terpicu & error state tervalidasi"}
+
+  - id: M-RNG
+    name: Asesmen RBG / sumber entropi (SP 800-90A/B, ISO/IEC 18031)
+    layer: Implementasi & sistem
+    level: Integrasi
+    access: grey
+    primitives: [pkc, dss, stream_cipher, block_cipher]
+    addresses: [rng]
+    standards: [SP-800-90A, SP-800-90B, ISO-18031, SP-800-22]
+    cost: {op: primary, bits: 1000000, effort_h: 8, tools: [python]}
+    requirement: {type: K, text: "RBG yang dipakai disetujui (SP 800-90A) dengan entropi memadai", pass: "min-entropy ≥ nilai klaim (SP 800-90B); SP 800-22 lulus"}

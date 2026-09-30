@@ -1,0 +1,232 @@
+{
+  "app": "Cryptan.ID Test Suite",
+  "module": "UK-1",
+  "profile": "config/product_profile.yaml",
+  "algorithms": [
+    {
+      "id": "AES-128",
+      "slug": "aes_128",
+      "primitive": "block_cipher",
+      "primitive_label": "Block cipher",
+      "name": "AES-128 (FIPS 197) mode CTR",
+      "kat": "6/6 LULUS",
+      "weak": [
+        "C-IMPL-TBL"
+      ],
+      "attention": [
+        "C-MODE",
+        "C-API",
+        "C-MEM",
+        "C-PLAT"
+      ],
+      "selected": [
+        "M-FUZZ",
+        "M-NONCE",
+        "M-SP80022",
+        "M-TIMING",
+        "M-ZEROIZE",
+        "M-AVAL",
+        "M-DIFFUSION",
+        "M-RNG",
+        "M-SBOX",
+        "M-KEYSIZE",
+        "M-DIFF",
+        "M-INT",
+        "M-LIN",
+        "M-KAT",
+        "M-MCT",
+        "M-SELFTEST"
+      ],
+      "rejected": [
+        "M-BRUTE",
+        "M-CACHE",
+        "M-TVLA",
+        "M-FAULT",
+        "M-CODEREVIEW"
+      ],
+      "files": {
+        "json": "aes_128/uk1_penetapan_metode.json",
+        "md": "aes_128/UK1_Dokumen_Penetapan_Metode.md",
+        "docx": "aes_128/UK1_Dokumen_Penetapan_Metode.docx",
+        "csv_map": "aes_128/matriks_pemetaan.csv",
+        "csv_trace": "aes_128/matriks_keterlacakan.csv"
+      },
+      "generated_at": "2026-09-30T23:04:20+07:00"
+    },
+    {
+      "id": "ChaCha20",
+      "slug": "chacha20",
+      "primitive": "stream_cipher",
+      "primitive_label": "Stream cipher",
+      "name": "ChaCha20 (RFC 8439)",
+      "kat": "3/3 LULUS",
+      "weak": [],
+      "attention": [
+        "C-STATE",
+        "C-API",
+        "C-MEM",
+        "C-PLAT"
+      ],
+      "selected": [
+        "M-FUZZ",
+        "M-NONCE",
+        "M-TIMING",
+        "M-ZEROIZE",
+        "M-RNG",
+        "M-AVAL",
+        "M-BOOL",
+        "M-DIFFUSION",
+        "M-KEYSIZE",
+        "M-SP80022",
+        "M-KAT",
+        "M-LC",
+        "M-SELFTEST"
+      ],
+      "rejected": [
+        "M-ARX-PNB",
+        "M-BRUTE",
+        "M-TVLA",
+        "M-CODEREVIEW"
+      ],
+      "files": {
+        "json": "chacha20/uk1_penetapan_metode.json",
+        "md": "chacha20/UK1_Dokumen_Penetapan_Metode.md",
+        "docx": "chacha20/UK1_Dokumen_Penetapan_Metode.docx",
+        "csv_map": "chacha20/matriks_pemetaan.csv",
+        "csv_trace": "chacha20/matriks_keterlacakan.csv"
+      },
+      "generated_at": "2026-09-30T23:04:21+07:00"
+    },
+    {
+      "id": "SHA3-256",
+      "slug": "sha3_256",
+      "primitive": "hash",
+      "primitive_label": "Fungsi hash",
+      "name": "SHA3-256 (FIPS 202)",
+      "kat": "3/3 LULUS",
+      "weak": [],
+      "attention": [
+        "C-CHI",
+        "C-API",
+        "C-MEM",
+        "C-PLAT"
+      ],
+      "selected": [
+        "M-AVAL",
+        "M-FUZZ",
+        "M-SBOX",
+        "M-TIMING",
+        "M-ZEROIZE",
+        "M-DIFFUSION",
+        "M-PAD",
+        "M-SP80022",
+        "M-DIFF",
+        "M-KEYSIZE",
+        "M-KAT",
+        "M-MCT",
+        "M-SELFTEST"
+      ],
+      "rejected": [
+        "M-GENERIC",
+        "M-TVLA",
+        "M-CODEREVIEW"
+      ],
+      "files": {
+        "json": "sha3_256/uk1_penetapan_metode.json",
+        "md": "sha3_256/UK1_Dokumen_Penetapan_Metode.md",
+        "docx": "sha3_256/UK1_Dokumen_Penetapan_Metode.docx",
+        "csv_map": "sha3_256/matriks_pemetaan.csv",
+        "csv_trace": "sha3_256/matriks_keterlacakan.csv"
+      },
+      "generated_at": "2026-09-30T23:04:22+07:00"
+    },
+    {
+      "id": "RSA-OAEP-2048",
+      "slug": "rsa_oaep_2048",
+      "primitive": "pkc",
+      "primitive_label": "Kriptografi kunci publik (PKC)",
+      "name": "RSA-OAEP 2048-bit, SHA-256/MGF1-SHA-256 (RFC 8017, SP 800-56B)",
+      "kat": "12/12 LULUS",
+      "weak": [],
+      "attention": [
+        "C-MOD",
+        "C-MODEXP",
+        "C-API",
+        "C-MEM",
+        "C-PLAT"
+      ],
+      "selected": [
+        "M-FUZZ",
+        "M-ORACLE",
+        "M-PKV",
+        "M-TIMING",
+        "M-ZEROIZE",
+        "M-KEYSIZE",
+        "M-PRIME",
+        "M-RNG",
+        "M-RSAWEAK",
+        "M-FACT",
+        "M-KAT",
+        "M-SELFTEST"
+      ],
+      "rejected": [
+        "M-CACHE",
+        "M-TVLA",
+        "M-FAULT",
+        "M-CODEREVIEW"
+      ],
+      "files": {
+        "json": "rsa_oaep_2048/uk1_penetapan_metode.json",
+        "md": "rsa_oaep_2048/UK1_Dokumen_Penetapan_Metode.md",
+        "docx": "rsa_oaep_2048/UK1_Dokumen_Penetapan_Metode.docx",
+        "csv_map": "rsa_oaep_2048/matriks_pemetaan.csv",
+        "csv_trace": "rsa_oaep_2048/matriks_keterlacakan.csv"
+      },
+      "generated_at": "2026-09-30T23:04:33+07:00"
+    },
+    {
+      "id": "ECDSA-P256",
+      "slug": "ecdsa_p256",
+      "primitive": "dss",
+      "primitive_label": "Tanda tangan digital (DSS)",
+      "name": "ECDSA P-256 + SHA-256 (FIPS 186-5, SP 800-186)",
+      "kat": "4/4 LULUS",
+      "weak": [],
+      "attention": [
+        "C-SMUL",
+        "C-SIG",
+        "C-API",
+        "C-MEM",
+        "C-PLAT"
+      ],
+      "selected": [
+        "M-FUZZ",
+        "M-PKV",
+        "M-SIGMAL",
+        "M-TIMING",
+        "M-ZEROIZE",
+        "M-CURVE",
+        "M-NONCE",
+        "M-RNG",
+        "M-KEYSIZE",
+        "M-ECDLP",
+        "M-KAT",
+        "M-SELFTEST"
+      ],
+      "rejected": [
+        "M-CACHE",
+        "M-TVLA",
+        "M-FAULT",
+        "M-CODEREVIEW"
+      ],
+      "files": {
+        "json": "ecdsa_p256/uk1_penetapan_metode.json",
+        "md": "ecdsa_p256/UK1_Dokumen_Penetapan_Metode.md",
+        "docx": "ecdsa_p256/UK1_Dokumen_Penetapan_Metode.docx",
+        "csv_map": "ecdsa_p256/matriks_pemetaan.csv",
+        "csv_trace": "ecdsa_p256/matriks_keterlacakan.csv"
+      },
+      "generated_at": "2026-09-30T23:04:35+07:00"
+    }
+  ]
+}

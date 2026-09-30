@@ -1,0 +1,16 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -r requirements.txt
+      - name: Known Answer Test (core/)
+        run: python -m core.kat
+      - name: Unit test
+        run: python -m pytest
+      - name: UK-1 end-to-end (quick)
+        run: python -m uk1_metode --profile config/product_profile.yaml --quick --out /tmp/uk1

@@ -1,0 +1,96 @@
+# KUK 1.3 — Basis pengetahuan best practice metode pengujian (standar ISO/IEC & NIST)
+# Pemetaan kelas primitif → standar yang berlaku (mengacu tabel materi UK-1 slide 14–15).
+# Field `role`: spesifikasi | pengujian_kesesuaian | kekuatan | implementasi | manajemen_kunci | rbg | evaluasi | proses_uji
+
+catalog:
+  FIPS-197:      {org: NIST, title: "Advanced Encryption Standard (AES)", year: 2001, updated: "2023 (upd. 1)"}
+  FIPS-202:      {org: NIST, title: "SHA-3 Standard: Permutation-Based Hash and Extendable-Output Functions", year: 2015}
+  FIPS-180-4:    {org: NIST, title: "Secure Hash Standard (SHS)", year: 2015}
+  FIPS-186-5:    {org: NIST, title: "Digital Signature Standard (DSS)", year: 2023}
+  FIPS-203:      {org: NIST, title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)", year: 2024}
+  FIPS-204:      {org: NIST, title: "Module-Lattice-Based Digital Signature Standard (ML-DSA)", year: 2024}
+  FIPS-205:      {org: NIST, title: "Stateless Hash-Based Digital Signature Standard (SLH-DSA)", year: 2024}
+  SP-800-22:     {org: NIST, title: "A Statistical Test Suite for Random and Pseudorandom Number Generators (Rev. 1a)", year: 2010}
+  SP-800-38A:    {org: NIST, title: "Recommendation for Block Cipher Modes of Operation: Methods and Techniques", year: 2001}
+  SP-800-38D:    {org: NIST, title: "Recommendation for Block Cipher Modes of Operation: GCM and GMAC", year: 2007}
+  SP-800-56B:    {org: NIST, title: "Pair-Wise Key-Establishment Using Integer Factorization Cryptography (Rev. 2)", year: 2019}
+  SP-800-57:     {org: NIST, title: "Recommendation for Key Management, Part 1: General (Rev. 5)", year: 2020}
+  SP-800-90A:    {org: NIST, title: "Recommendation for Random Number Generation Using Deterministic RBGs (Rev. 1)", year: 2015}
+  SP-800-90B:    {org: NIST, title: "Recommendation for the Entropy Sources Used for Random Bit Generation", year: 2018}
+  SP-800-90C:    {org: NIST, title: "Recommendation for Random Bit Generator (RBG) Constructions", year: 2025, verify: PERLU_VERIFIKASI}
+  SP-800-107:    {org: NIST, title: "Recommendation for Applications Using Approved Hash Algorithms (Rev. 1)", year: 2012}
+  SP-800-131A:   {org: NIST, title: "Transitioning the Use of Cryptographic Algorithms and Key Lengths (Rev. 2)", year: 2019}
+  SP-800-186:    {org: NIST, title: "Recommendations for Discrete Logarithm-based Cryptography: Elliptic Curve Domain Parameters", year: 2023}
+  SP-800-208:    {org: NIST, title: "Recommendation for Stateful Hash-Based Signature Schemes", year: 2020}
+  SP-800-232:    {org: NIST, title: "Ascon-Based Lightweight Cryptography Standards for Constrained Devices", year: 2025, verify: PERLU_VERIFIKASI}
+  ISO-18033-2:   {org: ISO/IEC, title: "Encryption algorithms — Part 2: Asymmetric ciphers (RSAES/OAEP)", year: 2006}
+  ISO-18033-3:   {org: ISO/IEC, title: "Encryption algorithms — Part 3: Block ciphers (AES)", year: 2010}
+  ISO-18033-4:   {org: ISO/IEC, title: "Encryption algorithms — Part 4: Stream ciphers", year: 2011}
+  ISO-10118-3:   {org: ISO/IEC, title: "Hash-functions — Part 3: Dedicated hash-functions (termasuk SHA-3)", year: 2018}
+  ISO-14888-3:   {org: ISO/IEC, title: "Digital signatures with appendix — Part 3: Discrete logarithm based mechanisms (EC-DSA)", year: 2018}
+  ISO-18031:     {org: ISO/IEC, title: "Random bit generation", year: 2011}
+  ISO-18032:     {org: ISO/IEC, title: "Prime number generation", year: 2020}
+  ISO-18367:     {org: ISO/IEC, title: "Cryptographic algorithms and security mechanisms conformance testing", year: 2016}
+  ISO-19790:     {org: ISO/IEC, title: "Security requirements for cryptographic modules", year: 2012}
+  ISO-24759:     {org: ISO/IEC, title: "Test requirements for cryptographic modules", year: 2017}
+  ISO-17825:     {org: ISO/IEC, title: "Testing methods for the mitigation of non-invasive attack classes against cryptographic modules", year: 2024, verify: PERLU_VERIFIKASI}
+  ISO-20085:     {org: ISO/IEC, title: "Test tool requirements and test tool calibration methods for use in testing non-invasive attack mitigation techniques", year: 2019}
+  ISO-15408:     {org: ISO/IEC, title: "Evaluation criteria for IT security (Common Criteria)", year: 2022}
+  ISO-18045:     {org: ISO/IEC, title: "Methodology for IT security evaluation (CEM)", year: 2022}
+  ISO-29119:     {org: ISO/IEC/IEEE, title: "Software and systems engineering — Software testing", year: 2022}
+  RFC-8439:      {org: IETF, title: "ChaCha20 and Poly1305 for IETF Protocols", year: 2018, note: "Di luar daftar materi; spesifikasi algoritma ChaCha20"}
+  RFC-8017:      {org: IETF, title: "PKCS #1: RSA Cryptography Specifications Version 2.2", year: 2016, note: "Di luar daftar materi; spesifikasi OAEP"}
+  RFC-6979:      {org: IETF, title: "Deterministic Usage of DSA and ECDSA", year: 2013, note: "Di luar daftar materi; nonce deterministik & test vector"}
+
+# Standar umum untuk semua kelas primitif
+common:
+  - {id: ISO-18367, role: pengujian_kesesuaian}
+  - {id: ISO-19790, role: implementasi}
+  - {id: ISO-24759, role: implementasi}
+  - {id: ISO-17825, role: implementasi}
+  - {id: ISO-20085, role: implementasi}
+  - {id: ISO-15408, role: evaluasi}
+  - {id: ISO-18045, role: evaluasi}
+  - {id: ISO-29119, role: proses_uji}
+  - {id: SP-800-57, role: manajemen_kunci}
+  - {id: SP-800-131A, role: manajemen_kunci}
+
+by_primitive:
+  block_cipher:
+    - {id: FIPS-197, role: spesifikasi}
+    - {id: ISO-18033-3, role: spesifikasi}
+    - {id: SP-800-38A, role: spesifikasi}
+    - {id: SP-800-38D, role: spesifikasi}
+    - {id: SP-800-22, role: kekuatan}
+  stream_cipher:
+    - {id: ISO-18033-4, role: spesifikasi}
+    - {id: RFC-8439, role: spesifikasi}
+    - {id: SP-800-22, role: kekuatan}
+    - {id: SP-800-90A, role: rbg}
+  hash:
+    - {id: FIPS-202, role: spesifikasi}
+    - {id: FIPS-180-4, role: spesifikasi}
+    - {id: ISO-10118-3, role: spesifikasi}
+    - {id: SP-800-107, role: kekuatan}
+    - {id: SP-800-22, role: kekuatan}
+  pkc:
+    - {id: RFC-8017, role: spesifikasi}
+    - {id: ISO-18033-2, role: spesifikasi}
+    - {id: SP-800-56B, role: spesifikasi}
+    - {id: FIPS-186-5, role: spesifikasi}
+    - {id: ISO-18032, role: kekuatan}
+    - {id: SP-800-90A, role: rbg}
+    - {id: SP-800-90B, role: rbg}
+    - {id: ISO-18031, role: rbg}
+    - {id: FIPS-203, role: evaluasi}
+  dss:
+    - {id: FIPS-186-5, role: spesifikasi}
+    - {id: SP-800-186, role: spesifikasi}
+    - {id: ISO-14888-3, role: spesifikasi}
+    - {id: RFC-6979, role: spesifikasi}
+    - {id: FIPS-180-4, role: spesifikasi}
+    - {id: SP-800-107, role: kekuatan}
+    - {id: SP-800-90A, role: rbg}
+    - {id: ISO-18031, role: rbg}
+    - {id: FIPS-204, role: evaluasi}
+    - {id: FIPS-205, role: evaluasi}

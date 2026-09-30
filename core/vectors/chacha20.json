@@ -1,0 +1,15 @@
+{
+  "algorithm": "ChaCha20",
+  "cases": [
+    {"id": "RFC8439-2.3.2", "source": "RFC 8439 §2.3.2 (block function)", "type": "block",
+     "key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f", "nonce": "000000090000004a00000000", "counter": 1,
+     "out": "10f1e7e4d13b5915500fdd1fa32071c4c7d1f4c733c068030422aa9ac3d46c4ed2826446079faa0914c2d705d98b02a2b5129cd1de164eb9cbd083e8a2503c4e"},
+    {"id": "RFC8439-2.4.2", "source": "RFC 8439 §2.4.2 (encryption, 'sunscreen')", "type": "encrypt",
+     "key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f", "nonce": "000000000000004a00000000", "counter": 1,
+     "pt_ascii": "Ladies and Gentlemen of the class of '99: If I could offer you only one tip for the future, sunscreen would be it.",
+     "out": "6e2e359a2568f98041ba0728dd0d6981e97e7aec1d4360c20a27afccfd9fae0bf91b65c5524733ab8f593dabcd62b3571639d624e65152ab8f530c359f0861d807ca0dbf500d6a6156a38e088a22b65e52bc514d16ccf806818ce91ab77937365af90bbf74a35be6b40b8eedf2785e42874d"},
+    {"id": "RFC8439-A.1-1", "source": "RFC 8439 Appendix A.1 Test Vector #1", "type": "block",
+     "key": "0000000000000000000000000000000000000000000000000000000000000000", "nonce": "000000000000000000000000", "counter": 0,
+     "out": "76b8e0ada0f13d90405d6ae55386bd28bdd219b8a08ded1aa836efcc8b770dc7da41597c5157488d7724e03fb8d84a376a43b8f41518a11cc387b669b2ee6586"}
+  ]
+}

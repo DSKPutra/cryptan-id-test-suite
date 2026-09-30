@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cryptan.ID Test Suite</title>
+<meta name="description" content="Cryptan.ID Test Suite — UK-1: Penetapan Metode & Parameter Pengujian Produk Kriptografi (AES-128, ChaCha20, SHA3-256, RSA-OAEP-2048, ECDSA P-256).">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="#">
+      <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><path d="M10 14v-3a6 6 0 0 1 12 0v3" stroke="#fff" stroke-width="2.4" fill="none"/><rect x="8" y="14" width="16" height="11" rx="2.5" fill="#fff"/><circle cx="16" cy="19.5" r="1.8" fill="var(--accent)"/></svg>
+      <span>Cryptan.ID <b>Test Suite</b></span>
+    </a>
+    <nav class="modules" id="modules" aria-label="Modul unit kompetensi"></nav>
+    <button class="theme" id="theme" aria-label="Ganti tema">◐</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <p class="eyebrow">Modul UK-1 · J.61KRP00.012.1 · SKKNI 2023-004</p>
+    <h1>Menentukan Metode Pengujian Produk Kriptografi</h1>
+    <p class="lede">Profil produk → tren serangan & standar → telaah komponen → matriks metode → kelayakan sumber daya →
+      metode & parameter terpilih → matriks keterlacakan. Dihitung oleh kode (<span class="tag direct">HASIL UJI LANGSUNG</span>)
+      dan dikutip dari rujukan (<span class="tag lit">HASIL LITERATUR</span>).</p>
+  </section>
+
+  <section id="algos" class="algos" aria-label="Algoritma"></section>
+  <section id="detail"></section>
+  <p id="err" class="err" hidden></p>
+</main>
+
+<footer class="foot wrap">
+  <span>Cryptan.ID Test Suite · Pelatihan Sertifikasi Cryptographic Analyst Angkatan 1 — Politeknik Siber dan Sandi Negara</span>
+  <span>Data produk ilustratif · <a href="https://github.com/" id="repo-link">source code</a></span>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

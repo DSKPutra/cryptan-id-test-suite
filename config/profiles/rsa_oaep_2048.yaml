@@ -1,0 +1,11 @@
+extends: ../product_profile.yaml
+algorithm:
+  id: RSA-OAEP-2048
+  name: "RSA-OAEP 2048-bit, SHA-256/MGF1-SHA-256 (RFC 8017, SP 800-56B)"
+  primitive: pkc
+  structure: "Integer factorization (IFC)"
+  parameters: {modulus_bits: 2048, public_exponent: 65537, hash: sha256, mgf: MGF1-SHA256, crt: true}
+  reference_values: {security_bits_min: 112}
+  implementation_notes:
+    keygen: "prima probabilistik (FIPS 186-5 A.1.3), Miller–Rabin"
+    sample_keys: 3                  # jumlah kunci sampel yang dibangkitkan untuk telaah (KUK 2.1)

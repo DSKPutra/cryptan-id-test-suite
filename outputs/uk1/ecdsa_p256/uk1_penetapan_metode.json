@@ -1,0 +1,3308 @@
+{
+  "schema": "cryptan.uk1.penetapan_metode.v1",
+  "app": {
+    "name": "Cryptan.ID Test Suite",
+    "version": "1.0.0"
+  },
+  "unit": {
+    "code": "J.61KRP00.012.1",
+    "title": "Menentukan Metode Pengujian yang akan Dilakukan",
+    "module": "UK-1",
+    "skkni": "SKKNI 2023-004 (Cryptographic Analyst)"
+  },
+  "generated_at": "2026-09-30T23:04:35+07:00",
+  "mode": "full",
+  "profile": {
+    "product": {
+      "name": "Cryptan.ID SecureLib",
+      "version": "1.0.0 (hipotetis)",
+      "description": "Library kriptografi perangkat lunak (shared object) untuk Linux x86-64",
+      "vendor": "Vendor ilustratif",
+      "classification": "DATA ILUSTRATIF — bukan desain produk rahasia"
+    },
+    "algorithm": {
+      "id": "ECDSA-P256",
+      "name": "ECDSA P-256 + SHA-256 (FIPS 186-5, SP 800-186)",
+      "primitive": "dss",
+      "primitive_label": "Tanda tangan digital (DSS)",
+      "structure": "Elliptic curve discrete log (ECC)",
+      "mode": null,
+      "parameters": {
+        "curve": "P-256",
+        "field_bits": 256,
+        "order_bits": 256,
+        "hash": "sha256",
+        "nonce": "RFC 6979 deterministik"
+      },
+      "reference_values": {
+        "security_bits_min": 128
+      },
+      "implementation_notes": {
+        "nonce_generation": "rfc6979",
+        "low_s_enforced": false
+      }
+    },
+    "implementation": {
+      "platform": "linux-x86_64-library",
+      "platform_desc": "Shared library (.so) di Linux x86-64; CPU multi-core dengan cache L3 bersama",
+      "language": "C",
+      "bindings": [
+        "Python"
+      ],
+      "interfaces": [
+        "C API (libsecure.so)",
+        "Python binding (ctypes)"
+      ],
+      "rng": "getrandom(2) → HMAC_DRBG (SP 800-90A)",
+      "self_tests": true,
+      "hardware_acceleration": false
+    },
+    "tester": {
+      "access": "grey_box",
+      "access_desc": "Penguji memperoleh spesifikasi algoritma & dokumen desain tingkat tinggi, biner library + header API, dan lingkungan uji dengan kunci uji. Kode sumber TIDAK tersedia.",
+      "scope": [
+        "Kesesuaian implementasi algoritma terhadap standar (KAT/MCT)",
+        "Kekuatan algoritma (komponen, ronde tereduksi, keacakan keluaran)",
+        "Implementasi pada platform: timing/cache, validasi masukan, RNG, self-test"
+      ],
+      "out_of_scope": [
+        "Serangan invasif fisik (decapsulation, probing)",
+        "Keamanan sistem operasi host di luar library"
+      ]
+    },
+    "resources": {
+      "personnel": [
+        {
+          "role": "Cryptographic Analyst",
+          "count": 2,
+          "skills": [
+            "kriptanalisis",
+            "statistik",
+            "Python"
+          ]
+        },
+        {
+          "role": "Test engineer",
+          "count": 1,
+          "skills": [
+            "otomasi uji",
+            "fuzzing",
+            "Linux"
+          ]
+        }
+      ],
+      "schedule_days": 10,
+      "hours_per_day": 8,
+      "method_budget_hours": 24,
+      "compute": {
+        "machines": 1,
+        "cores": 8,
+        "ram_gb": 16
+      },
+      "speedup_factor": 1,
+      "tools_available": [
+        "python",
+        "pytest",
+        "gdb"
+      ]
+    },
+    "completeness": {
+      "status": "LENGKAP",
+      "missing": []
+    },
+    "source_file": "/Users/deasakakurniaputra/Cryptography Analyst_Dea Saka Kurnia Putra/cryptan-id-test-suite/config/profiles/ecdsa_p256.yaml"
+  },
+  "references": [
+    {
+      "id": "FIPS-180-4",
+      "org": "NIST",
+      "title": "Secure Hash Standard (SHS)",
+      "year": 2015,
+      "role": "spesifikasi",
+      "role_label": "Spesifikasi algoritma/skema",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "FIPS-186-5",
+      "org": "NIST",
+      "title": "Digital Signature Standard (DSS)",
+      "year": 2023,
+      "role": "spesifikasi",
+      "role_label": "Spesifikasi algoritma/skema",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "ISO-14888-3",
+      "org": "ISO/IEC",
+      "title": "Digital signatures with appendix — Part 3: Discrete logarithm based mechanisms (EC-DSA)",
+      "year": 2018,
+      "role": "spesifikasi",
+      "role_label": "Spesifikasi algoritma/skema",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "RFC-6979",
+      "org": "IETF",
+      "title": "Deterministic Usage of DSA and ECDSA",
+      "year": 2013,
+      "role": "spesifikasi",
+      "role_label": "Spesifikasi algoritma/skema",
+      "note": "Di luar daftar materi; nonce deterministik & test vector",
+      "verify": ""
+    },
+    {
+      "id": "SP-800-186",
+      "org": "NIST",
+      "title": "Recommendations for Discrete Logarithm-based Cryptography: Elliptic Curve Domain Parameters",
+      "year": 2023,
+      "role": "spesifikasi",
+      "role_label": "Spesifikasi algoritma/skema",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "ISO-18367",
+      "org": "ISO/IEC",
+      "title": "Cryptographic algorithms and security mechanisms conformance testing",
+      "year": 2016,
+      "role": "pengujian_kesesuaian",
+      "role_label": "Pengujian kesesuaian",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "SP-800-107",
+      "org": "NIST",
+      "title": "Recommendation for Applications Using Approved Hash Algorithms (Rev. 1)",
+      "year": 2012,
+      "role": "kekuatan",
+      "role_label": "Pengujian kekuatan / kriteria keamanan",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "ISO-17825",
+      "org": "ISO/IEC",
+      "title": "Testing methods for the mitigation of non-invasive attack classes against cryptographic modules",
+      "year": 2024,
+      "role": "implementasi",
+      "role_label": "Pengujian implementasi & modul",
+      "note": "",
+      "verify": "PERLU_VERIFIKASI"
+    },
+    {
+      "id": "ISO-19790",
+      "org": "ISO/IEC",
+      "title": "Security requirements for cryptographic modules",
+      "year": 2012,
+      "role": "implementasi",
+      "role_label": "Pengujian implementasi & modul",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "ISO-20085",
+      "org": "ISO/IEC",
+      "title": "Test tool requirements and test tool calibration methods for use in testing non-invasive attack mitigation techniques",
+      "year": 2019,
+      "role": "implementasi",
+      "role_label": "Pengujian implementasi & modul",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "ISO-24759",
+      "org": "ISO/IEC",
+      "title": "Test requirements for cryptographic modules",
+      "year": 2017,
+      "role": "implementasi",
+      "role_label": "Pengujian implementasi & modul",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "SP-800-131A",
+      "org": "NIST",
+      "title": "Transitioning the Use of Cryptographic Algorithms and Key Lengths (Rev. 2)",
+      "year": 2019,
+      "role": "manajemen_kunci",
+      "role_label": "Ukuran kunci & manajemen kunci",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "SP-800-57",
+      "org": "NIST",
+      "title": "Recommendation for Key Management, Part 1: General (Rev. 5)",
+      "year": 2020,
+      "role": "manajemen_kunci",
+      "role_label": "Ukuran kunci & manajemen kunci",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "ISO-18031",
+      "org": "ISO/IEC",
+      "title": "Random bit generation",
+      "year": 2011,
+      "role": "rbg",
+      "role_label": "Pembangkitan bilangan acak",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "SP-800-90A",
+      "org": "NIST",
+      "title": "Recommendation for Random Number Generation Using Deterministic RBGs (Rev. 1)",
+      "year": 2015,
+      "role": "rbg",
+      "role_label": "Pembangkitan bilangan acak",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "FIPS-204",
+      "org": "NIST",
+      "title": "Module-Lattice-Based Digital Signature Standard (ML-DSA)",
+      "year": 2024,
+      "role": "evaluasi",
+      "role_label": "Evaluasi keamanan / migrasi",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "FIPS-205",
+      "org": "NIST",
+      "title": "Stateless Hash-Based Digital Signature Standard (SLH-DSA)",
+      "year": 2024,
+      "role": "evaluasi",
+      "role_label": "Evaluasi keamanan / migrasi",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "ISO-15408",
+      "org": "ISO/IEC",
+      "title": "Evaluation criteria for IT security (Common Criteria)",
+      "year": 2022,
+      "role": "evaluasi",
+      "role_label": "Evaluasi keamanan / migrasi",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "ISO-18045",
+      "org": "ISO/IEC",
+      "title": "Methodology for IT security evaluation (CEM)",
+      "year": 2022,
+      "role": "evaluasi",
+      "role_label": "Evaluasi keamanan / migrasi",
+      "note": "",
+      "verify": ""
+    },
+    {
+      "id": "ISO-29119",
+      "org": "ISO/IEC/IEEE",
+      "title": "Software and systems engineering — Software testing",
+      "year": 2022,
+      "role": "proses_uji",
+      "role_label": "Proses & dokumentasi pengujian",
+      "note": "",
+      "verify": ""
+    }
+  ],
+  "attacks": {
+    "items": [
+      {
+        "id": "A-P-02",
+        "name": "Algoritma Shor (komputer kuantum)",
+        "category": "desain",
+        "primitives": [
+          "pkc",
+          "dss"
+        ],
+        "model": "n/a",
+        "complexity": {
+          "time_log2": null,
+          "data_log2": null,
+          "memory_log2": null
+        },
+        "rounds": "n/a",
+        "status": "teoretis (ancaman masa depan / harvest-now-decrypt-later)",
+        "refs": [
+          "Shor, FOCS 1994",
+          "FIPS 203/204/205 (migrasi PQC)"
+        ],
+        "targets": [
+          "key_size"
+        ],
+        "source": "HASIL LITERATUR",
+        "verify": "TERVERIFIKASI_REFERENSI"
+      },
+      {
+        "id": "A-D-01",
+        "name": "Pollard rho (ECDLP)",
+        "category": "desain",
+        "primitives": [
+          "dss"
+        ],
+        "model": "n/a",
+        "complexity": {
+          "time_log2": 128,
+          "data_log2": 0,
+          "memory_log2": 0
+        },
+        "rounds": "n/a",
+        "status": "teoretis",
+        "refs": [
+          "Pollard, Math. Comp. 1978; SP 800-57 Part 1 Rev.5 Tabel 2 (P-256 ≈ 128-bit)"
+        ],
+        "targets": [
+          "key_size",
+          "curve_params"
+        ],
+        "source": "HASIL LITERATUR",
+        "verify": "TERVERIFIKASI_REFERENSI"
+      },
+      {
+        "id": "A-D-02",
+        "name": "Nonce reuse → pemulihan kunci privat",
+        "category": "protokol",
+        "primitives": [
+          "dss"
+        ],
+        "model": "KMA (known message)",
+        "complexity": {
+          "time_log2": 0,
+          "data_log2": 1,
+          "memory_log2": 0
+        },
+        "rounds": "n/a",
+        "status": "praktis",
+        "refs": [
+          "fail0verflow — Console Hacking 2010 (PS3 ECDSA), 27C3"
+        ],
+        "targets": [
+          "nonce_bias",
+          "rng"
+        ],
+        "source": "HASIL LITERATUR",
+        "verify": "TERVERIFIKASI_REFERENSI"
+      },
+      {
+        "id": "A-D-04",
+        "name": "Invalid-curve / kunci publik tidak tervalidasi",
+        "category": "protokol",
+        "primitives": [
+          "dss",
+          "pkc"
+        ],
+        "model": "CCA",
+        "complexity": {
+          "time_log2": null,
+          "data_log2": null,
+          "memory_log2": null
+        },
+        "rounds": "n/a",
+        "status": "praktis (terutama ECDH)",
+        "refs": [
+          "Biehl, Meyer, Müller — Differential Fault Attacks on Elliptic Curve Cryptosystems, CRYPTO 2000",
+          "Jager, Schwenk, Somorovsky — Practical Invalid Curve Attacks on TLS-ECDH, ESORICS 2015"
+        ],
+        "targets": [
+          "pubkey_validation",
+          "curve_params"
+        ],
+        "source": "HASIL LITERATUR",
+        "verify": "TERVERIFIKASI_REFERENSI"
+      },
+      {
+        "id": "A-D-05",
+        "name": "Malleability tanda tangan (r, n−s)",
+        "category": "protokol",
+        "primitives": [
+          "dss"
+        ],
+        "model": "n/a",
+        "complexity": {
+          "time_log2": 0,
+          "data_log2": 0,
+          "memory_log2": 0
+        },
+        "rounds": "n/a",
+        "status": "praktis (dampak pada protokol yang memakai sig sebagai ID)",
+        "refs": [
+          "Bitcoin BIP-62 / BIP-146 (low-S)"
+        ],
+        "targets": [
+          "sig_malleability"
+        ],
+        "source": "HASIL LITERATUR",
+        "verify": "TERVERIFIKASI_REFERENSI"
+      },
+      {
+        "id": "A-L-01",
+        "name": "Perbandingan tidak constant-time (memcmp pada tag/MAC/padding)",
+        "category": "bahasa",
+        "primitives": "all",
+        "languages": "all",
+        "model": "side-channel",
+        "complexity": {
+          "time_log2": null,
+          "data_log2": null,
+          "memory_log2": null
+        },
+        "rounds": "n/a",
+        "status": "praktis",
+        "refs": [
+          "Lawson — Timing attack in Google Keyczar, 2009",
+          "ISO/IEC 17825"
+        ],
+        "verify": "PERLU_VERIFIKASI",
+        "targets": [
+          "constant_time"
+        ],
+        "source": "HASIL LITERATUR"
+      },
+      {
+        "id": "A-L-02",
+        "name": "Buffer over-read/overflow (memory safety)",
+        "category": "bahasa",
+        "primitives": "all",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "model": "n/a",
+        "complexity": {
+          "time_log2": 0,
+          "data_log2": 0,
+          "memory_log2": 0
+        },
+        "rounds": "n/a",
+        "status": "praktis",
+        "refs": [
+          "NVD CVE-2014-0160 (Heartbleed, OpenSSL)"
+        ],
+        "targets": [
+          "memory_safety"
+        ],
+        "source": "HASIL LITERATUR",
+        "verify": "TERVERIFIKASI_REFERENSI"
+      },
+      {
+        "id": "A-L-03",
+        "name": "Material kunci tidak di-zeroize (sisa di memori / cold boot)",
+        "category": "bahasa",
+        "primitives": "all",
+        "languages": "all",
+        "model": "n/a",
+        "complexity": {
+          "time_log2": null,
+          "data_log2": null,
+          "memory_log2": null
+        },
+        "rounds": "n/a",
+        "status": "praktis",
+        "refs": [
+          "Halderman et al. — Lest We Remember: Cold Boot Attacks, USENIX Security 2008",
+          "ISO/IEC 19790 §7.9 (zeroisation)"
+        ],
+        "targets": [
+          "key_zeroization"
+        ],
+        "source": "HASIL LITERATUR",
+        "verify": "TERVERIFIKASI_REFERENSI"
+      },
+      {
+        "id": "A-P-11",
+        "name": "RNG lemah saat pembangkitan kunci",
+        "category": "platform",
+        "primitives": [
+          "pkc",
+          "dss",
+          "stream_cipher",
+          "block_cipher"
+        ],
+        "model": "n/a",
+        "complexity": {
+          "time_log2": 15,
+          "data_log2": 0,
+          "memory_log2": null
+        },
+        "rounds": "n/a",
+        "status": "praktis",
+        "refs": [
+          "CVE-2008-0166 (Debian OpenSSL, ruang kunci 2^15)",
+          "Heninger et al., USENIX Security 2012"
+        ],
+        "targets": [
+          "rng"
+        ],
+        "source": "HASIL LITERATUR",
+        "verify": "TERVERIFIKASI_REFERENSI"
+      },
+      {
+        "id": "A-D-03",
+        "name": "Bias nonce parsial → lattice (Hidden Number Problem)",
+        "category": "platform",
+        "primitives": [
+          "dss"
+        ],
+        "model": "KMA + side-channel",
+        "complexity": {
+          "time_log2": 30,
+          "data_log2": 10,
+          "memory_log2": null
+        },
+        "rounds": "n/a",
+        "status": "praktis",
+        "refs": [
+          "Howgrave-Graham & Smart, DCC 2001",
+          "Jancar et al. — Minerva, TCHES 2020",
+          "Moghimi et al. — TPM-FAIL, USENIX Security 2020"
+        ],
+        "verify": "PERLU_VERIFIKASI",
+        "targets": [
+          "nonce_bias",
+          "scalar_mult_timing"
+        ],
+        "source": "HASIL LITERATUR"
+      },
+      {
+        "id": "A-D-07",
+        "name": "Timing/cache pada perkalian skalar",
+        "category": "platform",
+        "primitives": [
+          "dss"
+        ],
+        "platforms": [
+          "linux-x86_64-library"
+        ],
+        "model": "side-channel",
+        "complexity": {
+          "time_log2": null,
+          "data_log2": null,
+          "memory_log2": null
+        },
+        "rounds": "n/a",
+        "status": "praktis",
+        "refs": [
+          "Brumley & Tuveri — Remote Timing Attacks are Still Practical, ESORICS 2011",
+          "Yarom & Benger — Recovering OpenSSL ECDSA Nonces Using the FLUSH+RELOAD Cache Side-channel Attack, 2014"
+        ],
+        "targets": [
+          "scalar_mult_timing",
+          "constant_time"
+        ],
+        "source": "HASIL LITERATUR",
+        "verify": "TERVERIFIKASI_REFERENSI"
+      },
+      {
+        "id": "A-X-01",
+        "name": "Transient execution (Spectre)",
+        "category": "platform",
+        "primitives": "all",
+        "platforms": [
+          "linux-x86_64-library"
+        ],
+        "model": "side-channel",
+        "complexity": {
+          "time_log2": null,
+          "data_log2": null,
+          "memory_log2": null
+        },
+        "rounds": "n/a",
+        "status": "praktis",
+        "refs": [
+          "Kocher et al. — Spectre Attacks, IEEE S&P 2019"
+        ],
+        "targets": [
+          "speculative",
+          "constant_time"
+        ],
+        "source": "HASIL LITERATUR",
+        "verify": "TERVERIFIKASI_REFERENSI"
+      },
+      {
+        "id": "A-X-02",
+        "name": "Frequency-scaling side-channel (Hertzbleed)",
+        "category": "platform",
+        "primitives": "all",
+        "platforms": [
+          "linux-x86_64-library"
+        ],
+        "model": "side-channel",
+        "complexity": {
+          "time_log2": null,
+          "data_log2": null,
+          "memory_log2": null
+        },
+        "rounds": "n/a",
+        "status": "praktis (remote timing dari variasi daya)",
+        "refs": [
+          "Wang et al. — Hertzbleed, USENIX Security 2022"
+        ],
+        "targets": [
+          "constant_time"
+        ],
+        "source": "HASIL LITERATUR",
+        "verify": "TERVERIFIKASI_REFERENSI"
+      }
+    ],
+    "summary": {
+      "total": 13,
+      "by_category": {
+        "desain": [
+          "A-P-02",
+          "A-D-01"
+        ],
+        "protokol": [
+          "A-D-02",
+          "A-D-04",
+          "A-D-05"
+        ],
+        "bahasa": [
+          "A-L-01",
+          "A-L-02",
+          "A-L-03"
+        ],
+        "platform": [
+          "A-P-11",
+          "A-D-03",
+          "A-D-07",
+          "A-X-01",
+          "A-X-02"
+        ]
+      },
+      "practical": [
+        "A-D-02",
+        "A-D-04",
+        "A-D-05",
+        "A-L-01",
+        "A-L-02",
+        "A-L-03",
+        "A-P-11",
+        "A-D-03",
+        "A-D-07",
+        "A-X-01",
+        "A-X-02"
+      ],
+      "needs_verification": [
+        "A-L-01",
+        "A-D-03"
+      ]
+    }
+  },
+  "kat": {
+    "algorithm": "ECDSA-P256",
+    "total": 4,
+    "passed": 4,
+    "status": "LULUS",
+    "cases": [
+      {
+        "id": "RFC6979-A.2.5-pubkey",
+        "source": "RFC 6979 Appendix A.2.5 (ECDSA, 256 bits, prime field)",
+        "pass": true,
+        "got": "Q = d·G"
+      },
+      {
+        "id": "RFC6979-A.2.5-sample-SHA256",
+        "source": "RFC 6979 Appendix A.2.5 (ECDSA, 256 bits, prime field)",
+        "pass": true,
+        "got": "r=EFD48B2AACB6A8FD1140DD…"
+      },
+      {
+        "id": "RFC6979-A.2.5-test-SHA256",
+        "source": "RFC 6979 Appendix A.2.5 (ECDSA, 256 bits, prime field)",
+        "pass": true,
+        "got": "r=F1ABB023518351CD71D881…"
+      },
+      {
+        "id": "RFC6979-A.2.5-sample-SHA1",
+        "source": "RFC 6979 Appendix A.2.5 (ECDSA, 256 bits, prime field)",
+        "pass": true,
+        "got": "r=61340C88C3AAEBEB4F6D66…"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "C-CURVE",
+      "name": "Parameter domain kurva P-256",
+      "role": "Validitas p, n, a, b, G; MOV/anomalous.",
+      "tags": [
+        "curve_params",
+        "key_size"
+      ],
+      "layer": "algoritma",
+      "metrics": {
+        "rho_log2": 127.83
+      },
+      "findings": [
+        {
+          "check": "p prima & n prima",
+          "value": true,
+          "reference": "True",
+          "status": "OK",
+          "note": "",
+          "source": "HASIL UJI LANGSUNG"
+        },
+        {
+          "check": "Diskriminan 4a³+27b² ≠ 0",
+          "value": true,
+          "reference": "True",
+          "status": "OK",
+          "note": "",
+          "source": "HASIL UJI LANGSUNG"
+        },
+        {
+          "check": "G di kurva & n·G = O",
+          "value": true,
+          "reference": "True",
+          "status": "OK",
+          "note": "",
+          "source": "HASIL UJI LANGSUNG"
+        },
+        {
+          "check": "Kofaktor h",
+          "value": 1,
+          "reference": "1",
+          "status": "OK",
+          "note": "",
+          "source": "HASIL UJI LANGSUNG"
+        },
+        {
+          "check": "Bukan kurva anomalous (n ≠ p) & MOV: p^k ≠ 1 mod n (k ≤ 20)",
+          "value": true,
+          "reference": "True",
+          "status": "OK",
+          "note": "",
+          "source": "HASIL UJI LANGSUNG"
+        },
+        {
+          "check": "Biaya Pollard rho √(πn/4)",
+          "value": "2^127.8",
+          "reference": "≥ 2^127",
+          "status": "OK",
+          "note": "",
+          "source": "HASIL UJI LANGSUNG"
+        }
+      ],
+      "status": "OK",
+      "flag_weak": false
+    },
+    {
+      "id": "C-PKV",
+      "name": "Validasi kunci publik Q",
+      "role": "Titik di kurva, dalam rentang, orde n.",
+      "tags": [
+        "pubkey_validation"
+      ],
+      "layer": "algoritma",
+      "metrics": {
+        "negative_accepted": {
+          "titik di luar kurva": false,
+          "koordinat ≥ p": false,
+          "titik tak hingga": false
+        }
+      },
+      "findings": [
+        {
+          "check": "Kunci publik valid diterima",
+          "value": true,
+          "reference": "True",
+          "status": "OK",
+          "note": "",
+          "source": "HASIL UJI LANGSUNG"
+        },
+        {
+          "check": "Kunci publik tidak valid ditolak (3 kasus)",
+          "value": "3/3",
+          "reference": "3/3",
+          "status": "OK",
+          "note": "",
+          "source": "HASIL UJI LANGSUNG"
+        }
+      ],
+      "status": "OK",
+      "flag_weak": false
+    },
+    {
+      "id": "C-NONCE",
+      "name": "Nonce k",
+      "role": "Keunikan & ketidakbiasan k (RFC 6979 / RBG).",
+      "tags": [
+        "nonce_bias",
+        "rng"
+      ],
+      "layer": "algoritma",
+      "metrics": {
+        "samples": 512,
+        "unique_r": 512,
+        "msb4_chi2": {
+          "chi2": 29.8125,
+          "df": 15,
+          "p_value": 0.012615852836479556
+        },
+        "mode": "rfc6979"
+      },
+      "findings": [
+        {
+          "check": "Keunikan nonce (r unik)",
+          "value": "512/512",
+          "reference": "512/512",
+          "status": "OK",
+          "note": "",
+          "source": "HASIL UJI LANGSUNG"
+        },
+        {
+          "check": "Bias 4 bit teratas k (χ², df=15)",
+          "value": "p = 0.013",
+          "reference": "p ≥ 0,01",
+          "status": "OK",
+          "note": "",
+          "source": "HASIL UJI LANGSUNG"
+        }
+      ],
+      "status": "OK",
+      "flag_weak": false
+    },
+    {
+      "id": "C-SMUL",
+      "name": "Perkalian skalar",
+      "role": "Kebocoran timing/cache double-and-add.",
+      "tags": [
+        "scalar_mult_timing",
+        "constant_time"
+      ],
+      "layer": "algoritma",
+      "metrics": {
+        "welch_t_hw_low_vs_high": -354.02,
+        "samples": 20
+      },
+      "findings": [
+        {
+          "check": "Timing perkalian skalar referensi (HW rendah vs tinggi)",
+          "value": 354.02,
+          "reference": "|t| < 4,5",
+          "status": "PERHATIAN",
+          "note": "Double-and-add referensi tidak constant-time; produk wajib diuji M-TIMING (A-D-07)",
+          "source": "HASIL UJI LANGSUNG"
+        }
+      ],
+      "status": "PERHATIAN",
+      "flag_weak": false
+    },
+    {
+      "id": "C-SIG",
+      "name": "Encoding & verifikasi (r, s)",
+      "role": "Rentang r,s & malleability (r, n−s).",
+      "tags": [
+        "sig_malleability"
+      ],
+      "layer": "algoritma",
+      "metrics": {
+        "out_of_range_accepted": {
+          "r=0": false,
+          "s=0": false,
+          "r=n": false,
+          "s=n": false,
+          "(0,0)": false
+        },
+        "malleable_accepted": true
+      },
+      "findings": [
+        {
+          "check": "(r,s) di luar [1, n−1] ditolak (5 kasus)",
+          "value": "5/5",
+          "reference": "5/5",
+          "status": "OK",
+          "note": "",
+          "source": "HASIL UJI LANGSUNG"
+        },
+        {
+          "check": "Malleability (r, n−s) diterima",
+          "value": true,
+          "reference": "ditolak bila protokol butuh low-S",
+          "status": "PERHATIAN",
+          "note": "A-D-05; klaim profil low_s_enforced=False",
+          "source": "HASIL UJI LANGSUNG"
+        }
+      ],
+      "status": "PERHATIAN",
+      "flag_weak": false
+    },
+    {
+      "id": "C-HASH",
+      "name": "Fungsi hash pesan",
+      "role": "Kekuatan hash vs tingkat keamanan kurva.",
+      "tags": [
+        "hash_strength"
+      ],
+      "layer": "algoritma",
+      "metrics": {
+        "hash": "sha256",
+        "collision_bits": 128
+      },
+      "findings": [
+        {
+          "check": "Kekuatan hash vs kurva (SP 800-57)",
+          "value": "128 bit",
+          "reference": "≥ 128 bit",
+          "status": "OK",
+          "note": "",
+          "source": "HASIL UJI LANGSUNG"
+        }
+      ],
+      "status": "OK",
+      "flag_weak": false
+    },
+    {
+      "id": "C-API",
+      "name": "Antarmuka API & validasi masukan",
+      "role": "Penanganan masukan malformed / panjang ekstrem.",
+      "tags": [
+        "memory_safety",
+        "pubkey_validation"
+      ],
+      "layer": "implementasi",
+      "metrics": {
+        "language": "C"
+      },
+      "findings": [
+        {
+          "check": "Bahasa implementasi tanpa memory safety",
+          "value": "C",
+          "reference": "memory-safe atau fuzzing ekstensif",
+          "status": "PERHATIAN",
+          "note": "A-L-02 / A-H-07",
+          "source": "KLAIM PROFIL"
+        }
+      ],
+      "status": "PERHATIAN",
+      "flag_weak": false
+    },
+    {
+      "id": "C-MEM",
+      "name": "Pengelolaan material kunci di memori",
+      "role": "Zeroization CSP setelah dipakai.",
+      "tags": [
+        "key_zeroization"
+      ],
+      "layer": "implementasi",
+      "metrics": {},
+      "findings": [
+        {
+          "check": "Zeroization material kunci",
+          "value": "tidak dapat diverifikasi (grey box)",
+          "reference": "CSP dihapus pasca-pakai (ISO/IEC 19790)",
+          "status": "PERHATIAN",
+          "note": "A-L-03",
+          "source": "KLAIM PROFIL"
+        }
+      ],
+      "status": "PERHATIAN",
+      "flag_weak": false
+    },
+    {
+      "id": "C-SELFTEST",
+      "name": "Self-test & error state modul",
+      "role": "Power-on KAT, conditional test.",
+      "tags": [
+        "self_test",
+        "conformance"
+      ],
+      "layer": "implementasi",
+      "metrics": {
+        "self_tests": true
+      },
+      "findings": [
+        {
+          "check": "Self-test tersedia",
+          "value": true,
+          "reference": "True (POST KAT + conditional)",
+          "status": "OK",
+          "note": "Diverifikasi di M-SELFTEST",
+          "source": "KLAIM PROFIL"
+        }
+      ],
+      "status": "OK",
+      "flag_weak": false
+    },
+    {
+      "id": "C-RNG",
+      "name": "Sumber acak (RBG)",
+      "role": "RBG untuk kunci/nonce/seed.",
+      "tags": [
+        "rng"
+      ],
+      "layer": "implementasi",
+      "metrics": {
+        "rng": "getrandom(2) → HMAC_DRBG (SP 800-90A)"
+      },
+      "findings": [
+        {
+          "check": "RBG yang dipakai",
+          "value": "getrandom(2) → HMAC_DRBG (SP 800-90A)",
+          "reference": "DRBG SP 800-90A + sumber entropi SP 800-90B",
+          "status": "OK",
+          "note": "Diverifikasi di M-RNG",
+          "source": "KLAIM PROFIL"
+        }
+      ],
+      "status": "OK",
+      "flag_weak": false
+    },
+    {
+      "id": "C-PLAT",
+      "name": "Platform eksekusi (CPU x86-64 bercache, speculative execution)",
+      "role": "Side-channel mikroarsitektur.",
+      "tags": [
+        "speculative",
+        "constant_time"
+      ],
+      "layer": "implementasi",
+      "metrics": {
+        "platform": "linux-x86_64-library"
+      },
+      "findings": [
+        {
+          "check": "Platform ber-cache bersama & speculative execution",
+          "value": "Shared library (.so) di Linux x86-64; CPU multi-core dengan cache L3 bersama",
+          "reference": "operasi rahasia constant-time",
+          "status": "PERHATIAN",
+          "note": "A-X-01 / A-X-02",
+          "source": "HASIL LITERATUR"
+        }
+      ],
+      "status": "PERHATIAN",
+      "flag_weak": false
+    },
+    {
+      "id": "C-CONF",
+      "name": "Kesesuaian implementasi keseluruhan",
+      "role": "Keluaran identik dengan standar.",
+      "tags": [
+        "conformance"
+      ],
+      "layer": "implementasi",
+      "metrics": {
+        "kat": {
+          "algorithm": "ECDSA-P256",
+          "total": 4,
+          "passed": 4,
+          "status": "LULUS"
+        }
+      },
+      "findings": [
+        {
+          "check": "KAT implementasi referensi (core/)",
+          "value": "4/4 LULUS",
+          "reference": "100% cocok",
+          "status": "OK",
+          "note": "Vektor: RFC 6979 Appendix A.2.5",
+          "source": "HASIL UJI LANGSUNG"
+        }
+      ],
+      "status": "OK",
+      "flag_weak": false
+    }
+  ],
+  "component_summary": {
+    "total": 12,
+    "berpotensi_lemah": [],
+    "perhatian": [
+      "C-SMUL",
+      "C-SIG",
+      "C-API",
+      "C-MEM",
+      "C-PLAT"
+    ]
+  },
+  "matrix": [
+    {
+      "component_id": "C-API",
+      "component": "Antarmuka API & validasi masukan",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "pubkey_validation",
+      "weakness": "Kunci publik/titik tidak divalidasi",
+      "attacks": [
+        "A-D-04"
+      ],
+      "method_id": "M-PKV",
+      "method": "Validasi kunci publik (positif & negatif)",
+      "layer": "Kesesuaian",
+      "level": "Unit",
+      "standards": [
+        "SP-800-56B",
+        "SP-800-186",
+        "ISO-18033-2"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-CONF",
+      "component": "Kesesuaian implementasi keseluruhan",
+      "component_status": "OK",
+      "weakness_tag": "conformance",
+      "weakness": "Keluaran implementasi tidak sesuai standar",
+      "attacks": [],
+      "method_id": "M-KAT",
+      "method": "Known Answer Test (KAT) terhadap vektor resmi",
+      "layer": "Kesesuaian",
+      "level": "Unit",
+      "standards": [
+        "ISO-18367",
+        "ISO-24759"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-CURVE",
+      "component": "Parameter domain kurva P-256",
+      "component_status": "OK",
+      "weakness_tag": "curve_params",
+      "weakness": "Parameter domain kurva tidak valid",
+      "attacks": [
+        "A-D-01",
+        "A-D-04"
+      ],
+      "method_id": "M-CURVE",
+      "method": "Validasi parameter domain kurva (prima, orde, diskriminan, MOV/anomalous)",
+      "layer": "Kesesuaian",
+      "level": "Unit",
+      "standards": [
+        "SP-800-186",
+        "FIPS-186-5"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-CURVE",
+      "component": "Parameter domain kurva P-256",
+      "component_status": "OK",
+      "weakness_tag": "curve_params",
+      "weakness": "Parameter domain kurva tidak valid",
+      "attacks": [
+        "A-D-01",
+        "A-D-04"
+      ],
+      "method_id": "M-PKV",
+      "method": "Validasi kunci publik (positif & negatif)",
+      "layer": "Kesesuaian",
+      "level": "Unit",
+      "standards": [
+        "SP-800-56B",
+        "SP-800-186",
+        "ISO-18033-2"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-PKV",
+      "component": "Validasi kunci publik Q",
+      "component_status": "OK",
+      "weakness_tag": "pubkey_validation",
+      "weakness": "Kunci publik/titik tidak divalidasi",
+      "attacks": [
+        "A-D-04"
+      ],
+      "method_id": "M-PKV",
+      "method": "Validasi kunci publik (positif & negatif)",
+      "layer": "Kesesuaian",
+      "level": "Unit",
+      "standards": [
+        "SP-800-56B",
+        "SP-800-186",
+        "ISO-18033-2"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-SELFTEST",
+      "component": "Self-test & error state modul",
+      "component_status": "OK",
+      "weakness_tag": "conformance",
+      "weakness": "Keluaran implementasi tidak sesuai standar",
+      "attacks": [],
+      "method_id": "M-KAT",
+      "method": "Known Answer Test (KAT) terhadap vektor resmi",
+      "layer": "Kesesuaian",
+      "level": "Unit",
+      "standards": [
+        "ISO-18367",
+        "ISO-24759"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-SIG",
+      "component": "Encoding & verifikasi (r, s)",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "sig_malleability",
+      "weakness": "Tanda tangan non-kanonik/malleable diterima",
+      "attacks": [
+        "A-D-05"
+      ],
+      "method_id": "M-SIGMAL",
+      "method": "Uji penolakan (r,s) non-kanonik & malleability",
+      "layer": "Kesesuaian",
+      "level": "Unit",
+      "standards": [
+        "FIPS-186-5",
+        "ISO-14888-3"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-CURVE",
+      "component": "Parameter domain kurva P-256",
+      "component_status": "OK",
+      "weakness_tag": "curve_params",
+      "weakness": "Parameter domain kurva tidak valid",
+      "attacks": [
+        "A-D-01",
+        "A-D-04"
+      ],
+      "method_id": "M-ECDLP",
+      "method": "Estimasi & uji Pollard rho ECDLP",
+      "layer": "Kekuatan algoritma",
+      "level": "Sistem",
+      "standards": [
+        "SP-800-186",
+        "SP-800-57"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-CURVE",
+      "component": "Parameter domain kurva P-256",
+      "component_status": "OK",
+      "weakness_tag": "key_size",
+      "weakness": "Ruang kunci / tingkat keamanan tidak memadai",
+      "attacks": [
+        "A-P-02",
+        "A-D-01"
+      ],
+      "method_id": "M-ECDLP",
+      "method": "Estimasi & uji Pollard rho ECDLP",
+      "layer": "Kekuatan algoritma",
+      "level": "Sistem",
+      "standards": [
+        "SP-800-186",
+        "SP-800-57"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-CURVE",
+      "component": "Parameter domain kurva P-256",
+      "component_status": "OK",
+      "weakness_tag": "key_size",
+      "weakness": "Ruang kunci / tingkat keamanan tidak memadai",
+      "attacks": [
+        "A-P-02",
+        "A-D-01"
+      ],
+      "method_id": "M-KEYSIZE",
+      "method": "Evaluasi ukuran kunci & tingkat keamanan (SP 800-57 / 131A)",
+      "layer": "Kekuatan algoritma",
+      "level": "Sistem",
+      "standards": [
+        "SP-800-57",
+        "SP-800-131A"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-HASH",
+      "component": "Fungsi hash pesan",
+      "component_status": "OK",
+      "weakness_tag": "hash_strength",
+      "weakness": "Kekuatan hash di bawah tingkat keamanan skema",
+      "attacks": [],
+      "method_id": "M-KEYSIZE",
+      "method": "Evaluasi ukuran kunci & tingkat keamanan (SP 800-57 / 131A)",
+      "layer": "Kekuatan algoritma",
+      "level": "Sistem",
+      "standards": [
+        "SP-800-57",
+        "SP-800-131A"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-API",
+      "component": "Antarmuka API & validasi masukan",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "memory_safety",
+      "weakness": "Buffer overflow / masukan malformed",
+      "attacks": [
+        "A-L-02"
+      ],
+      "method_id": "M-CODEREVIEW",
+      "method": "Tinjauan kode sumber (constant-time, memory safety, zeroization)",
+      "layer": "Implementasi & sistem",
+      "level": "Unit",
+      "standards": [
+        "ISO-18045",
+        "ISO-15408"
+      ],
+      "access_required": "white",
+      "access_ok": false,
+      "access_note": "butuh akses white-box; penguji grey_box"
+    },
+    {
+      "component_id": "C-MEM",
+      "component": "Pengelolaan material kunci di memori",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "key_zeroization",
+      "weakness": "Material kunci tidak dihapus dari memori",
+      "attacks": [
+        "A-L-03"
+      ],
+      "method_id": "M-CODEREVIEW",
+      "method": "Tinjauan kode sumber (constant-time, memory safety, zeroization)",
+      "layer": "Implementasi & sistem",
+      "level": "Unit",
+      "standards": [
+        "ISO-18045",
+        "ISO-15408"
+      ],
+      "access_required": "white",
+      "access_ok": false,
+      "access_note": "butuh akses white-box; penguji grey_box"
+    },
+    {
+      "component_id": "C-PLAT",
+      "component": "Platform eksekusi (CPU x86-64 bercache, speculative execution)",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "constant_time",
+      "weakness": "Eksekusi tidak constant-time",
+      "attacks": [
+        "A-L-01",
+        "A-D-07",
+        "A-X-01",
+        "A-X-02"
+      ],
+      "method_id": "M-CODEREVIEW",
+      "method": "Tinjauan kode sumber (constant-time, memory safety, zeroization)",
+      "layer": "Implementasi & sistem",
+      "level": "Unit",
+      "standards": [
+        "ISO-18045",
+        "ISO-15408"
+      ],
+      "access_required": "white",
+      "access_ok": false,
+      "access_note": "butuh akses white-box; penguji grey_box"
+    },
+    {
+      "component_id": "C-SMUL",
+      "component": "Perkalian skalar",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "scalar_mult_timing",
+      "weakness": "Timing/cache pada perkalian skalar",
+      "attacks": [
+        "A-D-03",
+        "A-D-07"
+      ],
+      "method_id": "M-CODEREVIEW",
+      "method": "Tinjauan kode sumber (constant-time, memory safety, zeroization)",
+      "layer": "Implementasi & sistem",
+      "level": "Unit",
+      "standards": [
+        "ISO-18045",
+        "ISO-15408"
+      ],
+      "access_required": "white",
+      "access_ok": false,
+      "access_note": "butuh akses white-box; penguji grey_box"
+    },
+    {
+      "component_id": "C-SMUL",
+      "component": "Perkalian skalar",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "constant_time",
+      "weakness": "Eksekusi tidak constant-time",
+      "attacks": [
+        "A-L-01",
+        "A-D-07",
+        "A-X-01",
+        "A-X-02"
+      ],
+      "method_id": "M-CODEREVIEW",
+      "method": "Tinjauan kode sumber (constant-time, memory safety, zeroization)",
+      "layer": "Implementasi & sistem",
+      "level": "Unit",
+      "standards": [
+        "ISO-18045",
+        "ISO-15408"
+      ],
+      "access_required": "white",
+      "access_ok": false,
+      "access_note": "butuh akses white-box; penguji grey_box"
+    },
+    {
+      "component_id": "C-API",
+      "component": "Antarmuka API & validasi masukan",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "memory_safety",
+      "weakness": "Buffer overflow / masukan malformed",
+      "attacks": [
+        "A-L-02"
+      ],
+      "method_id": "M-FUZZ",
+      "method": "Uji negatif & fuzzing API (masukan malformed, panjang ekstrem)",
+      "layer": "Implementasi & sistem",
+      "level": "Integrasi",
+      "standards": [
+        "ISO-29119",
+        "ISO-18045"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-API",
+      "component": "Antarmuka API & validasi masukan",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "pubkey_validation",
+      "weakness": "Kunci publik/titik tidak divalidasi",
+      "attacks": [
+        "A-D-04"
+      ],
+      "method_id": "M-FUZZ",
+      "method": "Uji negatif & fuzzing API (masukan malformed, panjang ekstrem)",
+      "layer": "Implementasi & sistem",
+      "level": "Integrasi",
+      "standards": [
+        "ISO-29119",
+        "ISO-18045"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-NONCE",
+      "component": "Nonce k",
+      "component_status": "OK",
+      "weakness_tag": "nonce_bias",
+      "weakness": "Nonce tanda tangan berulang/bias",
+      "attacks": [
+        "A-D-02",
+        "A-D-03"
+      ],
+      "method_id": "M-NONCE",
+      "method": "Uji keunikan & bias nonce (statistik + kelayakan lattice HNP)",
+      "layer": "Implementasi & sistem",
+      "level": "Integrasi",
+      "standards": [
+        "FIPS-186-5",
+        "RFC-6979",
+        "SP-800-90A",
+        "SP-800-38A",
+        "RFC-8439"
+      ],
+      "access_required": "grey",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-NONCE",
+      "component": "Nonce k",
+      "component_status": "OK",
+      "weakness_tag": "rng",
+      "weakness": "RBG lemah / entropi rendah",
+      "attacks": [
+        "A-D-02",
+        "A-P-11"
+      ],
+      "method_id": "M-NONCE",
+      "method": "Uji keunikan & bias nonce (statistik + kelayakan lattice HNP)",
+      "layer": "Implementasi & sistem",
+      "level": "Integrasi",
+      "standards": [
+        "FIPS-186-5",
+        "RFC-6979",
+        "SP-800-90A",
+        "SP-800-38A",
+        "RFC-8439"
+      ],
+      "access_required": "grey",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-NONCE",
+      "component": "Nonce k",
+      "component_status": "OK",
+      "weakness_tag": "rng",
+      "weakness": "RBG lemah / entropi rendah",
+      "attacks": [
+        "A-D-02",
+        "A-P-11"
+      ],
+      "method_id": "M-RNG",
+      "method": "Asesmen RBG / sumber entropi (SP 800-90A/B, ISO/IEC 18031)",
+      "layer": "Implementasi & sistem",
+      "level": "Integrasi",
+      "standards": [
+        "SP-800-90A",
+        "SP-800-90B",
+        "ISO-18031",
+        "SP-800-22"
+      ],
+      "access_required": "grey",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-PKV",
+      "component": "Validasi kunci publik Q",
+      "component_status": "OK",
+      "weakness_tag": "pubkey_validation",
+      "weakness": "Kunci publik/titik tidak divalidasi",
+      "attacks": [
+        "A-D-04"
+      ],
+      "method_id": "M-FUZZ",
+      "method": "Uji negatif & fuzzing API (masukan malformed, panjang ekstrem)",
+      "layer": "Implementasi & sistem",
+      "level": "Integrasi",
+      "standards": [
+        "ISO-29119",
+        "ISO-18045"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-PLAT",
+      "component": "Platform eksekusi (CPU x86-64 bercache, speculative execution)",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "constant_time",
+      "weakness": "Eksekusi tidak constant-time",
+      "attacks": [
+        "A-L-01",
+        "A-D-07",
+        "A-X-01",
+        "A-X-02"
+      ],
+      "method_id": "M-TIMING",
+      "method": "Analisis timing leakage (dudect / Welch t-test, fixed-vs-random)",
+      "layer": "Implementasi & sistem",
+      "level": "Integrasi",
+      "standards": [
+        "ISO-17825",
+        "ISO-20085"
+      ],
+      "access_required": "grey",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-RNG",
+      "component": "Sumber acak (RBG)",
+      "component_status": "OK",
+      "weakness_tag": "rng",
+      "weakness": "RBG lemah / entropi rendah",
+      "attacks": [
+        "A-D-02",
+        "A-P-11"
+      ],
+      "method_id": "M-NONCE",
+      "method": "Uji keunikan & bias nonce (statistik + kelayakan lattice HNP)",
+      "layer": "Implementasi & sistem",
+      "level": "Integrasi",
+      "standards": [
+        "FIPS-186-5",
+        "RFC-6979",
+        "SP-800-90A",
+        "SP-800-38A",
+        "RFC-8439"
+      ],
+      "access_required": "grey",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-RNG",
+      "component": "Sumber acak (RBG)",
+      "component_status": "OK",
+      "weakness_tag": "rng",
+      "weakness": "RBG lemah / entropi rendah",
+      "attacks": [
+        "A-D-02",
+        "A-P-11"
+      ],
+      "method_id": "M-RNG",
+      "method": "Asesmen RBG / sumber entropi (SP 800-90A/B, ISO/IEC 18031)",
+      "layer": "Implementasi & sistem",
+      "level": "Integrasi",
+      "standards": [
+        "SP-800-90A",
+        "SP-800-90B",
+        "ISO-18031",
+        "SP-800-22"
+      ],
+      "access_required": "grey",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-SMUL",
+      "component": "Perkalian skalar",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "scalar_mult_timing",
+      "weakness": "Timing/cache pada perkalian skalar",
+      "attacks": [
+        "A-D-03",
+        "A-D-07"
+      ],
+      "method_id": "M-TIMING",
+      "method": "Analisis timing leakage (dudect / Welch t-test, fixed-vs-random)",
+      "layer": "Implementasi & sistem",
+      "level": "Integrasi",
+      "standards": [
+        "ISO-17825",
+        "ISO-20085"
+      ],
+      "access_required": "grey",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-SMUL",
+      "component": "Perkalian skalar",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "constant_time",
+      "weakness": "Eksekusi tidak constant-time",
+      "attacks": [
+        "A-L-01",
+        "A-D-07",
+        "A-X-01",
+        "A-X-02"
+      ],
+      "method_id": "M-TIMING",
+      "method": "Analisis timing leakage (dudect / Welch t-test, fixed-vs-random)",
+      "layer": "Implementasi & sistem",
+      "level": "Integrasi",
+      "standards": [
+        "ISO-17825",
+        "ISO-20085"
+      ],
+      "access_required": "grey",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-CONF",
+      "component": "Kesesuaian implementasi keseluruhan",
+      "component_status": "OK",
+      "weakness_tag": "conformance",
+      "weakness": "Keluaran implementasi tidak sesuai standar",
+      "attacks": [],
+      "method_id": "M-SELFTEST",
+      "method": "Uji self-test & error state modul (ISO/IEC 19790 / 24759)",
+      "layer": "Implementasi & sistem",
+      "level": "Sistem",
+      "standards": [
+        "ISO-19790",
+        "ISO-24759"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-MEM",
+      "component": "Pengelolaan material kunci di memori",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "key_zeroization",
+      "weakness": "Material kunci tidak dihapus dari memori",
+      "attacks": [
+        "A-L-03"
+      ],
+      "method_id": "M-ZEROIZE",
+      "method": "Uji zeroization material kunci (memory dump pasca-operasi)",
+      "layer": "Implementasi & sistem",
+      "level": "Sistem",
+      "standards": [
+        "ISO-19790",
+        "ISO-24759"
+      ],
+      "access_required": "grey",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-PLAT",
+      "component": "Platform eksekusi (CPU x86-64 bercache, speculative execution)",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "speculative",
+      "weakness": "Kebocoran eksekusi spekulatif",
+      "attacks": [
+        "A-X-01"
+      ],
+      "method_id": "M-CACHE",
+      "method": "Analisis cache side-channel (Flush+Reload / Prime+Probe)",
+      "layer": "Implementasi & sistem",
+      "level": "Sistem",
+      "standards": [
+        "ISO-17825"
+      ],
+      "access_required": "grey",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-SELFTEST",
+      "component": "Self-test & error state modul",
+      "component_status": "OK",
+      "weakness_tag": "self_test",
+      "weakness": "Self-test / error state tidak berfungsi",
+      "attacks": [],
+      "method_id": "M-SELFTEST",
+      "method": "Uji self-test & error state modul (ISO/IEC 19790 / 24759)",
+      "layer": "Implementasi & sistem",
+      "level": "Sistem",
+      "standards": [
+        "ISO-19790",
+        "ISO-24759"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-SELFTEST",
+      "component": "Self-test & error state modul",
+      "component_status": "OK",
+      "weakness_tag": "conformance",
+      "weakness": "Keluaran implementasi tidak sesuai standar",
+      "attacks": [],
+      "method_id": "M-SELFTEST",
+      "method": "Uji self-test & error state modul (ISO/IEC 19790 / 24759)",
+      "layer": "Implementasi & sistem",
+      "level": "Sistem",
+      "standards": [
+        "ISO-19790",
+        "ISO-24759"
+      ],
+      "access_required": "black",
+      "access_ok": true,
+      "access_note": ""
+    },
+    {
+      "component_id": "C-SMUL",
+      "component": "Perkalian skalar",
+      "component_status": "PERHATIAN",
+      "weakness_tag": "scalar_mult_timing",
+      "weakness": "Timing/cache pada perkalian skalar",
+      "attacks": [
+        "A-D-03",
+        "A-D-07"
+      ],
+      "method_id": "M-CACHE",
+      "method": "Analisis cache side-channel (Flush+Reload / Prime+Probe)",
+      "layer": "Implementasi & sistem",
+      "level": "Sistem",
+      "standards": [
+        "ISO-17825"
+      ],
+      "access_required": "grey",
+      "access_ok": true,
+      "access_note": ""
+    }
+  ],
+  "layer_summary": {
+    "Kesesuaian": {
+      "Unit": [
+        "M-CURVE",
+        "M-KAT",
+        "M-PKV",
+        "M-SIGMAL"
+      ],
+      "Integrasi": [],
+      "Sistem": []
+    },
+    "Kekuatan algoritma": {
+      "Unit": [],
+      "Integrasi": [],
+      "Sistem": [
+        "M-ECDLP",
+        "M-KEYSIZE"
+      ]
+    },
+    "Implementasi & sistem": {
+      "Unit": [
+        "M-CODEREVIEW"
+      ],
+      "Integrasi": [
+        "M-FUZZ",
+        "M-NONCE",
+        "M-RNG",
+        "M-TIMING"
+      ],
+      "Sistem": [
+        "M-CACHE",
+        "M-SELFTEST",
+        "M-ZEROIZE"
+      ]
+    }
+  },
+  "resources": {
+    "benchmark": {
+      "source": "HASIL UJI LANGSUNG",
+      "implementation": "referensi pure Python (core/) — batas bawah konservatif",
+      "machine": {
+        "python": "3.11.1",
+        "system": "Darwin arm64",
+        "processor": "arm",
+        "logical_cpus": 8
+      },
+      "ops_per_sec": {
+        "sign": 581.27,
+        "verify": 292.83,
+        "point_add": 59833.88,
+        "primary": 581.27
+      }
+    },
+    "capacity": {
+      "personnel": [
+        {
+          "role": "Cryptographic Analyst",
+          "count": 2,
+          "skills": [
+            "kriptanalisis",
+            "statistik",
+            "Python"
+          ]
+        },
+        {
+          "role": "Test engineer",
+          "count": 1,
+          "skills": [
+            "otomasi uji",
+            "fuzzing",
+            "Linux"
+          ]
+        }
+      ],
+      "people": 3,
+      "schedule_days": 10,
+      "hours_per_day": 8,
+      "person_hours": 240,
+      "compute": {
+        "machines": 1,
+        "cores": 8,
+        "ram_gb": 16
+      },
+      "tools_available": [
+        "python",
+        "pytest",
+        "gdb"
+      ],
+      "method_budget_hours": 24,
+      "speedup_factor": 1
+    },
+    "estimates": [
+      {
+        "method_id": "M-KAT",
+        "op": "primary",
+        "ops_per_sec": 581.27,
+        "ops_log2": 7.0,
+        "seconds": 0.02752593459149793,
+        "time_human": "0.03 detik",
+        "log2_seconds": -5.2,
+        "data": "2^7.0 operasi/sampel",
+        "memory": "≤ 2^10 B",
+        "effort_h": 2,
+        "missing_tools": [],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "LAYAK",
+        "reason": "Estimasi 0.03 detik ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-KEYSIZE",
+        "op": "analysis",
+        "ops_per_sec": 581.27,
+        "ops_log2": 0.0,
+        "seconds": 0.0,
+        "time_human": "0 detik (analitis)",
+        "log2_seconds": null,
+        "data": "—",
+        "memory": "—",
+        "effort_h": 1,
+        "missing_tools": [],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "LAYAK",
+        "reason": "Estimasi 0 detik (analitis) ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-PKV",
+        "op": "verify",
+        "ops_per_sec": 292.83,
+        "ops_log2": 8.0,
+        "seconds": 0.1092784209268176,
+        "time_human": "0.11 detik",
+        "log2_seconds": -3.2,
+        "data": "2^8.0 operasi/sampel",
+        "memory": "≤ 2^10 B",
+        "effort_h": 2,
+        "missing_tools": [],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "LAYAK",
+        "reason": "Estimasi 0.11 detik ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-ECDLP",
+        "op": "point_add",
+        "ops_per_sec": 59833.88,
+        "ops_log2": 128.0,
+        "seconds": 7.10889814685546e+32,
+        "time_human": "2^84.2 tahun",
+        "log2_seconds": 109.1,
+        "data": "2^128.0 operasi/sampel",
+        "memory": "≤ 2^40 B",
+        "effort_h": 4,
+        "missing_tools": [],
+        "budget_seconds": 86400,
+        "reduced": {
+          "desc": "Pollard rho pada subgrup/kurva mainan 32–40 bit — validasi √(πn/4)",
+          "ops_log2": 21,
+          "seconds": 4.3811967400409255,
+          "time_human": "4.38 detik"
+        },
+        "status": "LAYAK VERSI TEREDUKSI",
+        "reason": "Versi penuh 2^84.2 tahun > anggaran; versi tereduksi 4.38 detik"
+      },
+      {
+        "method_id": "M-CURVE",
+        "op": "point_add",
+        "ops_per_sec": 59833.88,
+        "ops_log2": 10.0,
+        "seconds": 0.002139256220723108,
+        "time_human": "0.00 detik",
+        "log2_seconds": -8.9,
+        "data": "2^10.0 operasi/sampel",
+        "memory": "≤ 2^11 B",
+        "effort_h": 1,
+        "missing_tools": [],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "LAYAK",
+        "reason": "Estimasi 0.00 detik ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-NONCE",
+        "op": "sign",
+        "ops_per_sec": 581.27,
+        "ops_log2": 12.0,
+        "seconds": 0.8808299069279337,
+        "time_human": "0.88 detik",
+        "log2_seconds": -0.2,
+        "data": "2^12.0 operasi/sampel",
+        "memory": "≤ 2^12 B",
+        "effort_h": 4,
+        "missing_tools": [],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "LAYAK",
+        "reason": "Estimasi 0.88 detik ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-SIGMAL",
+        "op": "verify",
+        "ops_per_sec": 292.83,
+        "ops_log2": 6.0,
+        "seconds": 0.0273196052317044,
+        "time_human": "0.03 detik",
+        "log2_seconds": -5.2,
+        "data": "2^6.0 operasi/sampel",
+        "memory": "≤ 2^10 B",
+        "effort_h": 1,
+        "missing_tools": [],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "LAYAK",
+        "reason": "Estimasi 0.03 detik ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-TIMING",
+        "op": "primary",
+        "ops_per_sec": 581.27,
+        "ops_log2": 20.0,
+        "seconds": 225.49245617355103,
+        "time_human": "3.8 menit",
+        "log2_seconds": 7.8,
+        "data": "2^20.0 operasi/sampel",
+        "memory": "≤ 2^16 B",
+        "effort_h": 8,
+        "missing_tools": [],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "LAYAK",
+        "reason": "Estimasi 3.8 menit ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-CACHE",
+        "op": "primary",
+        "ops_per_sec": 581.27,
+        "ops_log2": 22.0,
+        "seconds": 901.9698246942041,
+        "time_human": "15.0 menit",
+        "log2_seconds": 9.8,
+        "data": "2^22.0 operasi/sampel",
+        "memory": "≤ 2^17 B",
+        "effort_h": 24,
+        "missing_tools": [
+          "mastik"
+        ],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "TIDAK LAYAK",
+        "reason": "Alat tidak tersedia: mastik"
+      },
+      {
+        "method_id": "M-TVLA",
+        "op": "primary",
+        "ops_per_sec": 581.27,
+        "ops_log2": 17.0,
+        "seconds": 28.18655702169388,
+        "time_human": "28.19 detik",
+        "log2_seconds": 4.8,
+        "data": "2^17.0 operasi/sampel",
+        "memory": "≤ 2^14 B",
+        "effort_h": 40,
+        "missing_tools": [
+          "oscilloscope",
+          "chipwhisperer"
+        ],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "TIDAK LAYAK",
+        "reason": "Alat tidak tersedia: oscilloscope, chipwhisperer"
+      },
+      {
+        "method_id": "M-FAULT",
+        "op": "primary",
+        "ops_per_sec": 581.27,
+        "ops_log2": 16.0,
+        "seconds": 14.09327851084694,
+        "time_human": "14.09 detik",
+        "log2_seconds": 3.8,
+        "data": "2^16.0 operasi/sampel",
+        "memory": "≤ 2^14 B",
+        "effort_h": 40,
+        "missing_tools": [
+          "glitcher"
+        ],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "TIDAK LAYAK",
+        "reason": "Alat tidak tersedia: glitcher"
+      },
+      {
+        "method_id": "M-CODEREVIEW",
+        "op": "analysis",
+        "ops_per_sec": 581.27,
+        "ops_log2": 0.0,
+        "seconds": 0.0,
+        "time_human": "0 detik (analitis)",
+        "log2_seconds": null,
+        "data": "—",
+        "memory": "—",
+        "effort_h": 24,
+        "missing_tools": [],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "LAYAK",
+        "reason": "Estimasi 0 detik (analitis) ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-FUZZ",
+        "op": "primary",
+        "ops_per_sec": 581.27,
+        "ops_log2": 20.0,
+        "seconds": 225.49245617355103,
+        "time_human": "3.8 menit",
+        "log2_seconds": 7.8,
+        "data": "2^20.0 operasi/sampel",
+        "memory": "≤ 2^16 B",
+        "effort_h": 8,
+        "missing_tools": [],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "LAYAK",
+        "reason": "Estimasi 3.8 menit ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-ZEROIZE",
+        "op": "analysis",
+        "ops_per_sec": 581.27,
+        "ops_log2": 0.0,
+        "seconds": 0.0,
+        "time_human": "0 detik (analitis)",
+        "log2_seconds": null,
+        "data": "—",
+        "memory": "—",
+        "effort_h": 6,
+        "missing_tools": [],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "LAYAK",
+        "reason": "Estimasi 0 detik (analitis) ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-SELFTEST",
+        "op": "analysis",
+        "ops_per_sec": 581.27,
+        "ops_log2": 0.0,
+        "seconds": 0.0,
+        "time_human": "0 detik (analitis)",
+        "log2_seconds": null,
+        "data": "—",
+        "memory": "—",
+        "effort_h": 4,
+        "missing_tools": [],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "LAYAK",
+        "reason": "Estimasi 0 detik (analitis) ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-RNG",
+        "op": "primary",
+        "ops_per_sec": 581.27,
+        "ops_log2": 11.93,
+        "seconds": 0.840024859359678,
+        "time_human": "0.84 detik",
+        "log2_seconds": -0.3,
+        "data": "2^11.9 operasi/sampel",
+        "memory": "≈ 0.1 MB",
+        "effort_h": 8,
+        "missing_tools": [],
+        "budget_seconds": 86400,
+        "reduced": null,
+        "status": "LAYAK",
+        "reason": "Estimasi 0.84 detik ≤ anggaran 24 jam"
+      }
+    ]
+  },
+  "selection": {
+    "selected": [
+      {
+        "method_id": "M-FUZZ",
+        "name": "Uji negatif & fuzzing API (masukan malformed, panjang ekstrem)",
+        "layer": "Implementasi & sistem",
+        "level": "Integrasi",
+        "standards": [
+          "ISO-29119",
+          "ISO-18045"
+        ],
+        "feasibility": 1.0,
+        "relevance": 3.0,
+        "severity": 2,
+        "attack_bonus": 1.0,
+        "access": 1.0,
+        "score": 3.0,
+        "targets": [
+          "C-API",
+          "C-PKV"
+        ],
+        "weak_targets": [
+          "C-API"
+        ],
+        "variant": "penuh",
+        "reason": "Skor 3.0 ≥ 1.0: relevan terhadap C-API. Estimasi 3.8 menit ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-PKV",
+        "name": "Validasi kunci publik (positif & negatif)",
+        "layer": "Kesesuaian",
+        "level": "Unit",
+        "standards": [
+          "SP-800-56B",
+          "SP-800-186",
+          "ISO-18033-2"
+        ],
+        "feasibility": 1.0,
+        "relevance": 3.0,
+        "severity": 2,
+        "attack_bonus": 1.0,
+        "access": 1.0,
+        "score": 3.0,
+        "targets": [
+          "C-API",
+          "C-CURVE",
+          "C-PKV"
+        ],
+        "weak_targets": [
+          "C-API"
+        ],
+        "variant": "penuh",
+        "reason": "Skor 3.0 ≥ 1.0: relevan terhadap C-API. Estimasi 0.11 detik ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-SIGMAL",
+        "name": "Uji penolakan (r,s) non-kanonik & malleability",
+        "layer": "Kesesuaian",
+        "level": "Unit",
+        "standards": [
+          "FIPS-186-5",
+          "ISO-14888-3"
+        ],
+        "feasibility": 1.0,
+        "relevance": 3.0,
+        "severity": 2,
+        "attack_bonus": 1.0,
+        "access": 1.0,
+        "score": 3.0,
+        "targets": [
+          "C-SIG"
+        ],
+        "weak_targets": [
+          "C-SIG"
+        ],
+        "variant": "penuh",
+        "reason": "Skor 3.0 ≥ 1.0: relevan terhadap C-SIG. Estimasi 0.03 detik ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-TIMING",
+        "name": "Analisis timing leakage (dudect / Welch t-test, fixed-vs-random)",
+        "layer": "Implementasi & sistem",
+        "level": "Integrasi",
+        "standards": [
+          "ISO-17825",
+          "ISO-20085"
+        ],
+        "feasibility": 1.0,
+        "relevance": 3.0,
+        "severity": 2,
+        "attack_bonus": 1.0,
+        "access": 1.0,
+        "score": 3.0,
+        "targets": [
+          "C-PLAT",
+          "C-SMUL"
+        ],
+        "weak_targets": [
+          "C-PLAT",
+          "C-SMUL"
+        ],
+        "variant": "penuh",
+        "reason": "Skor 3.0 ≥ 1.0: relevan terhadap C-PLAT, C-SMUL. Estimasi 3.8 menit ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-ZEROIZE",
+        "name": "Uji zeroization material kunci (memory dump pasca-operasi)",
+        "layer": "Implementasi & sistem",
+        "level": "Sistem",
+        "standards": [
+          "ISO-19790",
+          "ISO-24759"
+        ],
+        "feasibility": 1.0,
+        "relevance": 3.0,
+        "severity": 2,
+        "attack_bonus": 1.0,
+        "access": 1.0,
+        "score": 3.0,
+        "targets": [
+          "C-MEM"
+        ],
+        "weak_targets": [
+          "C-MEM"
+        ],
+        "variant": "penuh",
+        "reason": "Skor 3.0 ≥ 1.0: relevan terhadap C-MEM. Estimasi 0 detik (analitis) ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-CURVE",
+        "name": "Validasi parameter domain kurva (prima, orde, diskriminan, MOV/anomalous)",
+        "layer": "Kesesuaian",
+        "level": "Unit",
+        "standards": [
+          "SP-800-186",
+          "FIPS-186-5"
+        ],
+        "feasibility": 1.0,
+        "relevance": 2.0,
+        "severity": 1,
+        "attack_bonus": 1.0,
+        "access": 1.0,
+        "score": 2.0,
+        "targets": [
+          "C-CURVE"
+        ],
+        "weak_targets": [],
+        "variant": "penuh",
+        "reason": "Skor 2.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 0.00 detik ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-NONCE",
+        "name": "Uji keunikan & bias nonce (statistik + kelayakan lattice HNP)",
+        "layer": "Implementasi & sistem",
+        "level": "Integrasi",
+        "standards": [
+          "FIPS-186-5",
+          "RFC-6979",
+          "SP-800-90A",
+          "SP-800-38A",
+          "RFC-8439"
+        ],
+        "feasibility": 1.0,
+        "relevance": 2.0,
+        "severity": 1,
+        "attack_bonus": 1.0,
+        "access": 1.0,
+        "score": 2.0,
+        "targets": [
+          "C-NONCE",
+          "C-RNG"
+        ],
+        "weak_targets": [],
+        "variant": "penuh",
+        "reason": "Skor 2.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 0.88 detik ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-RNG",
+        "name": "Asesmen RBG / sumber entropi (SP 800-90A/B, ISO/IEC 18031)",
+        "layer": "Implementasi & sistem",
+        "level": "Integrasi",
+        "standards": [
+          "SP-800-90A",
+          "SP-800-90B",
+          "ISO-18031",
+          "SP-800-22"
+        ],
+        "feasibility": 1.0,
+        "relevance": 2.0,
+        "severity": 1,
+        "attack_bonus": 1.0,
+        "access": 1.0,
+        "score": 2.0,
+        "targets": [
+          "C-NONCE",
+          "C-RNG"
+        ],
+        "weak_targets": [],
+        "variant": "penuh",
+        "reason": "Skor 2.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 0.84 detik ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-KEYSIZE",
+        "name": "Evaluasi ukuran kunci & tingkat keamanan (SP 800-57 / 131A)",
+        "layer": "Kekuatan algoritma",
+        "level": "Sistem",
+        "standards": [
+          "SP-800-57",
+          "SP-800-131A"
+        ],
+        "feasibility": 1.0,
+        "relevance": 1.5,
+        "severity": 1,
+        "attack_bonus": 0.5,
+        "access": 1.0,
+        "score": 1.5,
+        "targets": [
+          "C-CURVE",
+          "C-HASH"
+        ],
+        "weak_targets": [],
+        "variant": "penuh",
+        "reason": "Wajib (kesesuaian standar / baseline keamanan). Estimasi 0 detik (analitis) ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-ECDLP",
+        "name": "Estimasi & uji Pollard rho ECDLP",
+        "layer": "Kekuatan algoritma",
+        "level": "Sistem",
+        "standards": [
+          "SP-800-186",
+          "SP-800-57"
+        ],
+        "feasibility": 0.6,
+        "relevance": 2.0,
+        "severity": 1,
+        "attack_bonus": 1.0,
+        "access": 1.0,
+        "score": 1.2,
+        "targets": [
+          "C-CURVE"
+        ],
+        "weak_targets": [],
+        "variant": "tereduksi",
+        "reason": "Skor 1.2 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Versi penuh 2^84.2 tahun > anggaran; versi tereduksi 4.38 detik"
+      },
+      {
+        "method_id": "M-KAT",
+        "name": "Known Answer Test (KAT) terhadap vektor resmi",
+        "layer": "Kesesuaian",
+        "level": "Unit",
+        "standards": [
+          "ISO-18367",
+          "ISO-24759"
+        ],
+        "feasibility": 1.0,
+        "relevance": 1.0,
+        "severity": 1,
+        "attack_bonus": 0.0,
+        "access": 1.0,
+        "score": 1.0,
+        "targets": [
+          "C-CONF",
+          "C-SELFTEST"
+        ],
+        "weak_targets": [],
+        "variant": "penuh",
+        "reason": "Wajib (kesesuaian standar / baseline keamanan). Estimasi 0.03 detik ≤ anggaran 24 jam"
+      },
+      {
+        "method_id": "M-SELFTEST",
+        "name": "Uji self-test & error state modul (ISO/IEC 19790 / 24759)",
+        "layer": "Implementasi & sistem",
+        "level": "Sistem",
+        "standards": [
+          "ISO-19790",
+          "ISO-24759"
+        ],
+        "feasibility": 1.0,
+        "relevance": 1.0,
+        "severity": 1,
+        "attack_bonus": 0.0,
+        "access": 1.0,
+        "score": 1.0,
+        "targets": [
+          "C-CONF",
+          "C-SELFTEST"
+        ],
+        "weak_targets": [],
+        "variant": "penuh",
+        "reason": "Skor 1.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 0 detik (analitis) ≤ anggaran 24 jam"
+      }
+    ],
+    "rejected": [
+      {
+        "method_id": "M-CACHE",
+        "name": "Analisis cache side-channel (Flush+Reload / Prime+Probe)",
+        "layer": "Implementasi & sistem",
+        "level": "Sistem",
+        "standards": [
+          "ISO-17825"
+        ],
+        "feasibility": 0.0,
+        "relevance": 3.0,
+        "severity": 2,
+        "attack_bonus": 1.0,
+        "access": 1.0,
+        "score": 0.0,
+        "targets": [
+          "C-PLAT",
+          "C-SMUL"
+        ],
+        "weak_targets": [
+          "C-PLAT",
+          "C-SMUL"
+        ],
+        "variant": "penuh",
+        "reason": "Ditolak: Alat tidak tersedia: mastik"
+      },
+      {
+        "method_id": "M-TVLA",
+        "name": "Uji kebocoran daya/EM (TVLA, ISO/IEC 17825)",
+        "layer": "Implementasi & sistem",
+        "level": "Sistem",
+        "standards": [
+          "ISO-17825",
+          "ISO-20085"
+        ],
+        "feasibility": 0.0,
+        "relevance": 0.0,
+        "severity": 0,
+        "attack_bonus": 0.0,
+        "access": 1.0,
+        "score": 0.0,
+        "targets": [],
+        "weak_targets": [],
+        "variant": "penuh",
+        "reason": "Ditolak: Alat tidak tersedia: oscilloscope, chipwhisperer"
+      },
+      {
+        "method_id": "M-FAULT",
+        "name": "Uji injeksi kesalahan (clock/voltage glitch, laser)",
+        "layer": "Implementasi & sistem",
+        "level": "Sistem",
+        "standards": [
+          "ISO-19790",
+          "ISO-24759"
+        ],
+        "feasibility": 0.0,
+        "relevance": 0.0,
+        "severity": 0,
+        "attack_bonus": 0.0,
+        "access": 0.0,
+        "score": 0.0,
+        "targets": [],
+        "weak_targets": [],
+        "variant": "penuh",
+        "reason": "Ditolak: memerlukan akses white-box (di luar akses penguji)"
+      },
+      {
+        "method_id": "M-CODEREVIEW",
+        "name": "Tinjauan kode sumber (constant-time, memory safety, zeroization)",
+        "layer": "Implementasi & sistem",
+        "level": "Unit",
+        "standards": [
+          "ISO-18045",
+          "ISO-15408"
+        ],
+        "feasibility": 1.0,
+        "relevance": 3.0,
+        "severity": 2,
+        "attack_bonus": 1.0,
+        "access": 0.0,
+        "score": 0.0,
+        "targets": [
+          "C-API",
+          "C-MEM",
+          "C-PLAT",
+          "C-SMUL"
+        ],
+        "weak_targets": [
+          "C-API",
+          "C-MEM",
+          "C-PLAT",
+          "C-SMUL"
+        ],
+        "variant": "penuh",
+        "reason": "Ditolak: memerlukan akses white-box (di luar akses penguji)"
+      }
+    ],
+    "threshold": 1.0,
+    "formula": "skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teoretis), maks 3] × kelayakan(1 | 0,6 | 0) × akses(1 | 0)",
+    "effort_hours_total": 49,
+    "person_hours_available": 240,
+    "effort_fit": "SESUAI"
+  },
+  "parameters": {
+    "M-FUZZ": {
+      "engine": "fuzzing berbasis properti (Hypothesis/AFL++ via harness C)",
+      "executions": 1000000,
+      "inputs": [
+        "panjang 0",
+        "panjang maks+1",
+        "buffer tidak selaras",
+        "NULL pointer",
+        "kunci/nonce panjang salah"
+      ],
+      "pass_criterion": "0 crash, 0 sanitizer error, galat terdefinisi",
+      "variant": "penuh",
+      "estimated_time": "3.8 menit"
+    },
+    "M-PKV": {
+      "positive_cases": 10,
+      "negative_cases": [
+        "titik di luar kurva",
+        "koordinat ≥ p",
+        "titik tak hingga",
+        "orde ≠ n"
+      ],
+      "pass_criterion": "100% negatif ditolak, 100% positif diterima",
+      "variant": "penuh",
+      "estimated_time": "0.11 detik"
+    },
+    "M-SIGMAL": {
+      "cases": [
+        "r = 0",
+        "s = 0",
+        "r = n",
+        "s = n",
+        "(0,0)",
+        "(r, n−s)",
+        "encoding DER non-minimal"
+      ],
+      "pass_criterion": "semua kasus di luar rentang ditolak; kebijakan low-S terdokumentasi",
+      "variant": "penuh",
+      "estimated_time": "0.03 detik"
+    },
+    "M-TIMING": {
+      "method": "dudect fixed-vs-random (Welch t)",
+      "measurements": 1000000,
+      "threshold_abs_t": 4.5,
+      "classes": "nonce/kunci HW rendah vs acak",
+      "timer": "rdtsc / perf_counter_ns, core diisolasi (taskset), turbo dimatikan",
+      "variant": "penuh",
+      "estimated_time": "3.8 menit"
+    },
+    "M-ZEROIZE": {
+      "procedure": "core dump / gdb setelah free & pemanggilan API destroy",
+      "search": "pola kunci uji (known key)",
+      "pass_criterion": "0 kemunculan",
+      "variant": "penuh",
+      "estimated_time": "0 detik (analitis)"
+    },
+    "M-CURVE": {
+      "checks": [
+        "p, n prima",
+        "4a³+27b² ≠ 0",
+        "G ∈ E",
+        "n·G = O",
+        "h = 1",
+        "n ≠ p",
+        "MOV k ≤ 20"
+      ],
+      "reference": "SP 800-186 §3.2.1 (P-256)",
+      "variant": "penuh",
+      "estimated_time": "0.00 detik"
+    },
+    "M-NONCE": {
+      "signatures": 4096,
+      "messages": null,
+      "checks": [
+        "duplikasi nonce/r = 0",
+        "χ² 8 bit teratas k (df = 255)",
+        "HNP lattice: bias ≥ 2 bit → 100 sampel"
+      ],
+      "alpha": 0.01,
+      "variant": "penuh",
+      "estimated_time": "0.88 detik"
+    },
+    "M-RNG": {
+      "entropy_samples_bits": 1000000,
+      "sp800_90b": "IID & non-IID track, restart test 1000×1000",
+      "sp800_22": "subset sesuai M-SP80022",
+      "drbg": "CAVP DRBG KAT (HMAC_DRBG)",
+      "variant": "penuh",
+      "estimated_time": "0.84 detik"
+    },
+    "M-KEYSIZE": {
+      "key_parameters": {
+        "curve": "P-256",
+        "field_bits": 256,
+        "order_bits": 256
+      },
+      "security_bits": 128,
+      "min_security_bits": 112,
+      "horizon": "2030 (≥128 bit untuk perlindungan setelah 2030)",
+      "reference": "SP 800-57 Part 1 Rev.5 Tabel 2 & 4; SP 800-131A Rev.2",
+      "variant": "penuh",
+      "estimated_time": "0 detik (analitis)"
+    },
+    "M-ECDLP": {
+      "full_log2": 127.83,
+      "reduced_curve_bits": [
+        32,
+        36,
+        40
+      ],
+      "reduced_ops_log2": 21,
+      "pass_criterion": "iterasi empiris ≈ √(πn/4) ± 25%",
+      "variant": "tereduksi",
+      "estimated_time": "4.38 detik"
+    },
+    "M-KAT": {
+      "vector_sources": [
+        "RFC 6979 Appendix A.2.5 (ECDSA, 256 bits, prime field)"
+      ],
+      "vector_count": 4,
+      "additional_sources": "NIST CAVP/ACVP response files untuk implementasi produk",
+      "pass_criterion": "100% vektor cocok (0 selisih bit)",
+      "reference_result": "4/4 (LULUS) pada core/",
+      "variant": "penuh",
+      "estimated_time": "0.03 detik"
+    },
+    "M-SELFTEST": {
+      "tests": [
+        "POST KAT tiap algoritma",
+        "pairwise consistency (pkc/dss)",
+        "continuous RNG test",
+        "error state injection"
+      ],
+      "variant": "penuh",
+      "estimated_time": "0 detik (analitis)"
+    }
+  },
+  "traceability": [
+    {
+      "id": "K-01",
+      "type": "Kebutuhan keamanan",
+      "requirement": "ECDLP tidak terpecahkan (≥ 2^128 operasi)",
+      "object": "C-CURVE Parameter domain kurva P-256",
+      "method_id": "M-ECDLP",
+      "method": "Estimasi & uji Pollard rho ECDLP",
+      "variant": "tereduksi",
+      "reference": "SP 800-186, SP 800-57",
+      "pass_criteria": "√(πn/4) ≥ 2^127"
+    },
+    {
+      "id": "K-02",
+      "type": "Kebutuhan keamanan",
+      "requirement": "Tingkat keamanan ≥ 112 bit dan status 'acceptable' menurut SP 800-131A",
+      "object": "C-CURVE Parameter domain kurva P-256; C-HASH Fungsi hash pesan",
+      "method_id": "M-KEYSIZE",
+      "method": "Evaluasi ukuran kunci & tingkat keamanan (SP 800-57 / 131A)",
+      "variant": "penuh",
+      "reference": "SP 800-57, SP 800-131A",
+      "pass_criteria": "security_bits ≥ 112"
+    },
+    {
+      "id": "K-03",
+      "type": "Kebutuhan keamanan",
+      "requirement": "Nonce tidak pernah berulang dan tidak bias",
+      "object": "C-NONCE Nonce k; C-RNG Sumber acak (RBG)",
+      "method_id": "M-NONCE",
+      "method": "Uji keunikan & bias nonce (statistik + kelayakan lattice HNP)",
+      "variant": "penuh",
+      "reference": "FIPS 186-5, RFC 6979, SP 800-90A, SP 800-38A, RFC 8439",
+      "pass_criteria": "0 duplikasi; χ² MSB p-value ≥ 0,01 (≥ 4096 sampel)"
+    },
+    {
+      "id": "K-04",
+      "type": "Kebutuhan keamanan",
+      "requirement": "RBG yang dipakai disetujui (SP 800-90A) dengan entropi memadai",
+      "object": "C-NONCE Nonce k; C-RNG Sumber acak (RBG)",
+      "method_id": "M-RNG",
+      "method": "Asesmen RBG / sumber entropi (SP 800-90A/B, ISO/IEC 18031)",
+      "variant": "penuh",
+      "reference": "SP 800-90A, SP 800-90B, ISO 18031, SP 800-22",
+      "pass_criteria": "min-entropy ≥ nilai klaim (SP 800-90B); SP 800-22 lulus"
+    },
+    {
+      "id": "I-01",
+      "type": "Kebutuhan implementasi",
+      "requirement": "Parameter domain identik dengan SP 800-186 & lolos uji validitas",
+      "object": "C-CURVE Parameter domain kurva P-256",
+      "method_id": "M-CURVE",
+      "method": "Validasi parameter domain kurva (prima, orde, diskriminan, MOV/anomalous)",
+      "variant": "penuh",
+      "reference": "SP 800-186, FIPS 186-5",
+      "pass_criteria": "semua pemeriksaan LULUS"
+    },
+    {
+      "id": "I-02",
+      "type": "Kebutuhan implementasi",
+      "requirement": "API menolak masukan tidak valid tanpa crash/kebocoran",
+      "object": "C-API Antarmuka API & validasi masukan",
+      "method_id": "M-FUZZ",
+      "method": "Uji negatif & fuzzing API (masukan malformed, panjang ekstrem)",
+      "variant": "penuh",
+      "reference": "ISO 29119, ISO 18045",
+      "pass_criteria": "0 crash; 100% masukan invalid ditolak dengan galat terdefinisi"
+    },
+    {
+      "id": "I-03",
+      "type": "Kebutuhan implementasi",
+      "requirement": "Implementasi menghasilkan keluaran identik dengan vektor uji resmi",
+      "object": "C-CONF Kesesuaian implementasi keseluruhan; C-SELFTEST Self-test & error state modul",
+      "method_id": "M-KAT",
+      "method": "Known Answer Test (KAT) terhadap vektor resmi",
+      "variant": "penuh",
+      "reference": "ISO 18367, ISO 24759",
+      "pass_criteria": "100% vektor cocok"
+    },
+    {
+      "id": "I-04",
+      "type": "Kebutuhan implementasi",
+      "requirement": "Produk menolak kunci publik/titik tidak valid",
+      "object": "C-API Antarmuka API & validasi masukan",
+      "method_id": "M-PKV",
+      "method": "Validasi kunci publik (positif & negatif)",
+      "variant": "penuh",
+      "reference": "SP 800-56B, SP 800-186, ISO 18033-2",
+      "pass_criteria": "100% kasus negatif ditolak, 100% kasus positif diterima"
+    },
+    {
+      "id": "I-05",
+      "type": "Kebutuhan implementasi",
+      "requirement": "Power-on self-test (KAT) & conditional test (pairwise) berjalan; error state memblokir layanan",
+      "object": "C-CONF Kesesuaian implementasi keseluruhan; C-SELFTEST Self-test & error state modul",
+      "method_id": "M-SELFTEST",
+      "method": "Uji self-test & error state modul (ISO/IEC 19790 / 24759)",
+      "variant": "penuh",
+      "reference": "ISO 19790, ISO 24759",
+      "pass_criteria": "semua self-test terpicu & error state tervalidasi"
+    },
+    {
+      "id": "I-06",
+      "type": "Kebutuhan implementasi",
+      "requirement": "Verifikasi menolak r,s ∉ [1, n−1]; kebijakan low-S terdokumentasi",
+      "object": "C-SIG Encoding & verifikasi (r, s)",
+      "method_id": "M-SIGMAL",
+      "method": "Uji penolakan (r,s) non-kanonik & malleability",
+      "variant": "penuh",
+      "reference": "FIPS 186-5, ISO 14888-3",
+      "pass_criteria": "100% kasus di luar rentang ditolak"
+    },
+    {
+      "id": "I-07",
+      "type": "Kebutuhan implementasi",
+      "requirement": "Waktu eksekusi tidak bergantung pada data rahasia",
+      "object": "C-PLAT Platform eksekusi (CPU x86-64 bercache, speculative execution); C-SMUL Perkalian skalar",
+      "method_id": "M-TIMING",
+      "method": "Analisis timing leakage (dudect / Welch t-test, fixed-vs-random)",
+      "variant": "penuh",
+      "reference": "ISO 17825, ISO 20085",
+      "pass_criteria": "|t| < 4,5 pada ≥ 10^6 pengukuran"
+    },
+    {
+      "id": "I-08",
+      "type": "Kebutuhan implementasi",
+      "requirement": "Kunci/CSP dihapus dari memori setelah dipakai",
+      "object": "C-MEM Pengelolaan material kunci di memori",
+      "method_id": "M-ZEROIZE",
+      "method": "Uji zeroization material kunci (memory dump pasca-operasi)",
+      "variant": "penuh",
+      "reference": "ISO 19790, ISO 24759",
+      "pass_criteria": "0 salinan kunci pada dump memori"
+    }
+  ],
+  "kuk_map": [
+    {
+      "kuk": "1.1",
+      "desc": "Informasi desain & teknik implementasi",
+      "section": "Bab 1",
+      "files": [
+        "uk1_metode/profile.py",
+        "config/product_profile.yaml"
+      ],
+      "tests": [
+        "tests/test_uk1_ek1.py::test_kuk_1_1_*"
+      ]
+    },
+    {
+      "kuk": "1.2",
+      "desc": "Tren serangan terhadap platform",
+      "section": "Bab 2.2",
+      "files": [
+        "uk1_metode/attack_kb.py",
+        "uk1_metode/data/attacks.yaml"
+      ],
+      "tests": [
+        "tests/test_uk1_ek1.py::test_kuk_1_2_*"
+      ]
+    },
+    {
+      "kuk": "1.3",
+      "desc": "Best practice metode pengujian",
+      "section": "Bab 2.1",
+      "files": [
+        "uk1_metode/standards_kb.py",
+        "uk1_metode/data/standards.yaml"
+      ],
+      "tests": [
+        "tests/test_uk1_ek1.py::test_kuk_1_3_*"
+      ]
+    },
+    {
+      "kuk": "2.1",
+      "desc": "Komponen berpotensi lemah",
+      "section": "Bab 3",
+      "files": [
+        "uk1_metode/decompose.py",
+        "uk1_metode/component_analysis.py",
+        "core/boolean.py"
+      ],
+      "tests": [
+        "tests/test_core_components.py",
+        "tests/test_uk1_ek2.py::test_kuk_2_1_*"
+      ]
+    },
+    {
+      "kuk": "2.2",
+      "desc": "Analisis best practice vs potensi kelemahan",
+      "section": "Bab 4",
+      "files": [
+        "uk1_metode/mapping.py",
+        "uk1_metode/data/methods.yaml"
+      ],
+      "tests": [
+        "tests/test_uk1_ek2.py::test_kuk_2_2_*"
+      ]
+    },
+    {
+      "kuk": "2.3",
+      "desc": "Kesesuaian sumber daya internal",
+      "section": "Bab 5",
+      "files": [
+        "uk1_metode/resources.py"
+      ],
+      "tests": [
+        "tests/test_uk1_ek2.py::test_kuk_2_3_*"
+      ]
+    },
+    {
+      "kuk": "3.1",
+      "desc": "Penetapan metode",
+      "section": "Bab 6.1",
+      "files": [
+        "uk1_metode/selector.py"
+      ],
+      "tests": [
+        "tests/test_uk1_ek3.py::test_kuk_3_1_*"
+      ]
+    },
+    {
+      "kuk": "3.2",
+      "desc": "Penetapan parameter",
+      "section": "Bab 6.2",
+      "files": [
+        "uk1_metode/parameters.py"
+      ],
+      "tests": [
+        "tests/test_uk1_ek3.py::test_kuk_3_2_*"
+      ]
+    },
+    {
+      "kuk": "—",
+      "desc": "Matriks keterlacakan",
+      "section": "Bab 7",
+      "files": [
+        "uk1_metode/traceability.py"
+      ],
+      "tests": [
+        "tests/test_uk1_ek3.py::test_traceability_*"
+      ]
+    }
+  ],
+  "handoff_uk2": {
+    "note": "Masukan untuk UK-2 (Menyusun Skenario Pengujian)",
+    "algorithm": "ECDSA-P256",
+    "primitive": "dss",
+    "access": "grey_box",
+    "methods": [
+      {
+        "method_id": "M-FUZZ",
+        "name": "Uji negatif & fuzzing API (masukan malformed, panjang ekstrem)",
+        "layer": "Implementasi & sistem",
+        "level": "Integrasi",
+        "variant": "penuh",
+        "targets": [
+          "C-API"
+        ],
+        "parameters": {
+          "engine": "fuzzing berbasis properti (Hypothesis/AFL++ via harness C)",
+          "executions": 1000000,
+          "inputs": [
+            "panjang 0",
+            "panjang maks+1",
+            "buffer tidak selaras",
+            "NULL pointer",
+            "kunci/nonce panjang salah"
+          ],
+          "pass_criterion": "0 crash, 0 sanitizer error, galat terdefinisi",
+          "variant": "penuh",
+          "estimated_time": "3.8 menit"
+        },
+        "requirements": [
+          "I-02"
+        ]
+      },
+      {
+        "method_id": "M-PKV",
+        "name": "Validasi kunci publik (positif & negatif)",
+        "layer": "Kesesuaian",
+        "level": "Unit",
+        "variant": "penuh",
+        "targets": [
+          "C-API"
+        ],
+        "parameters": {
+          "positive_cases": 10,
+          "negative_cases": [
+            "titik di luar kurva",
+            "koordinat ≥ p",
+            "titik tak hingga",
+            "orde ≠ n"
+          ],
+          "pass_criterion": "100% negatif ditolak, 100% positif diterima",
+          "variant": "penuh",
+          "estimated_time": "0.11 detik"
+        },
+        "requirements": [
+          "I-04"
+        ]
+      },
+      {
+        "method_id": "M-SIGMAL",
+        "name": "Uji penolakan (r,s) non-kanonik & malleability",
+        "layer": "Kesesuaian",
+        "level": "Unit",
+        "variant": "penuh",
+        "targets": [
+          "C-SIG"
+        ],
+        "parameters": {
+          "cases": [
+            "r = 0",
+            "s = 0",
+            "r = n",
+            "s = n",
+            "(0,0)",
+            "(r, n−s)",
+            "encoding DER non-minimal"
+          ],
+          "pass_criterion": "semua kasus di luar rentang ditolak; kebijakan low-S terdokumentasi",
+          "variant": "penuh",
+          "estimated_time": "0.03 detik"
+        },
+        "requirements": [
+          "I-06"
+        ]
+      },
+      {
+        "method_id": "M-TIMING",
+        "name": "Analisis timing leakage (dudect / Welch t-test, fixed-vs-random)",
+        "layer": "Implementasi & sistem",
+        "level": "Integrasi",
+        "variant": "penuh",
+        "targets": [
+          "C-PLAT",
+          "C-SMUL"
+        ],
+        "parameters": {
+          "method": "dudect fixed-vs-random (Welch t)",
+          "measurements": 1000000,
+          "threshold_abs_t": 4.5,
+          "classes": "nonce/kunci HW rendah vs acak",
+          "timer": "rdtsc / perf_counter_ns, core diisolasi (taskset), turbo dimatikan",
+          "variant": "penuh",
+          "estimated_time": "3.8 menit"
+        },
+        "requirements": [
+          "I-07"
+        ]
+      },
+      {
+        "method_id": "M-ZEROIZE",
+        "name": "Uji zeroization material kunci (memory dump pasca-operasi)",
+        "layer": "Implementasi & sistem",
+        "level": "Sistem",
+        "variant": "penuh",
+        "targets": [
+          "C-MEM"
+        ],
+        "parameters": {
+          "procedure": "core dump / gdb setelah free & pemanggilan API destroy",
+          "search": "pola kunci uji (known key)",
+          "pass_criterion": "0 kemunculan",
+          "variant": "penuh",
+          "estimated_time": "0 detik (analitis)"
+        },
+        "requirements": [
+          "I-08"
+        ]
+      },
+      {
+        "method_id": "M-CURVE",
+        "name": "Validasi parameter domain kurva (prima, orde, diskriminan, MOV/anomalous)",
+        "layer": "Kesesuaian",
+        "level": "Unit",
+        "variant": "penuh",
+        "targets": [
+          "C-CURVE"
+        ],
+        "parameters": {
+          "checks": [
+            "p, n prima",
+            "4a³+27b² ≠ 0",
+            "G ∈ E",
+            "n·G = O",
+            "h = 1",
+            "n ≠ p",
+            "MOV k ≤ 20"
+          ],
+          "reference": "SP 800-186 §3.2.1 (P-256)",
+          "variant": "penuh",
+          "estimated_time": "0.00 detik"
+        },
+        "requirements": [
+          "I-01"
+        ]
+      },
+      {
+        "method_id": "M-NONCE",
+        "name": "Uji keunikan & bias nonce (statistik + kelayakan lattice HNP)",
+        "layer": "Implementasi & sistem",
+        "level": "Integrasi",
+        "variant": "penuh",
+        "targets": [
+          "C-NONCE",
+          "C-RNG"
+        ],
+        "parameters": {
+          "signatures": 4096,
+          "messages": null,
+          "checks": [
+            "duplikasi nonce/r = 0",
+            "χ² 8 bit teratas k (df = 255)",
+            "HNP lattice: bias ≥ 2 bit → 100 sampel"
+          ],
+          "alpha": 0.01,
+          "variant": "penuh",
+          "estimated_time": "0.88 detik"
+        },
+        "requirements": [
+          "K-03"
+        ]
+      },
+      {
+        "method_id": "M-RNG",
+        "name": "Asesmen RBG / sumber entropi (SP 800-90A/B, ISO/IEC 18031)",
+        "layer": "Implementasi & sistem",
+        "level": "Integrasi",
+        "variant": "penuh",
+        "targets": [
+          "C-NONCE",
+          "C-RNG"
+        ],
+        "parameters": {
+          "entropy_samples_bits": 1000000,
+          "sp800_90b": "IID & non-IID track, restart test 1000×1000",
+          "sp800_22": "subset sesuai M-SP80022",
+          "drbg": "CAVP DRBG KAT (HMAC_DRBG)",
+          "variant": "penuh",
+          "estimated_time": "0.84 detik"
+        },
+        "requirements": [
+          "K-04"
+        ]
+      },
+      {
+        "method_id": "M-KEYSIZE",
+        "name": "Evaluasi ukuran kunci & tingkat keamanan (SP 800-57 / 131A)",
+        "layer": "Kekuatan algoritma",
+        "level": "Sistem",
+        "variant": "penuh",
+        "targets": [
+          "C-CURVE",
+          "C-HASH"
+        ],
+        "parameters": {
+          "key_parameters": {
+            "curve": "P-256",
+            "field_bits": 256,
+            "order_bits": 256
+          },
+          "security_bits": 128,
+          "min_security_bits": 112,
+          "horizon": "2030 (≥128 bit untuk perlindungan setelah 2030)",
+          "reference": "SP 800-57 Part 1 Rev.5 Tabel 2 & 4; SP 800-131A Rev.2",
+          "variant": "penuh",
+          "estimated_time": "0 detik (analitis)"
+        },
+        "requirements": [
+          "K-02"
+        ]
+      },
+      {
+        "method_id": "M-ECDLP",
+        "name": "Estimasi & uji Pollard rho ECDLP",
+        "layer": "Kekuatan algoritma",
+        "level": "Sistem",
+        "variant": "tereduksi",
+        "targets": [
+          "C-CURVE"
+        ],
+        "parameters": {
+          "full_log2": 127.83,
+          "reduced_curve_bits": [
+            32,
+            36,
+            40
+          ],
+          "reduced_ops_log2": 21,
+          "pass_criterion": "iterasi empiris ≈ √(πn/4) ± 25%",
+          "variant": "tereduksi",
+          "estimated_time": "4.38 detik"
+        },
+        "requirements": [
+          "K-01"
+        ]
+      },
+      {
+        "method_id": "M-KAT",
+        "name": "Known Answer Test (KAT) terhadap vektor resmi",
+        "layer": "Kesesuaian",
+        "level": "Unit",
+        "variant": "penuh",
+        "targets": [
+          "C-CONF",
+          "C-SELFTEST"
+        ],
+        "parameters": {
+          "vector_sources": [
+            "RFC 6979 Appendix A.2.5 (ECDSA, 256 bits, prime field)"
+          ],
+          "vector_count": 4,
+          "additional_sources": "NIST CAVP/ACVP response files untuk implementasi produk",
+          "pass_criterion": "100% vektor cocok (0 selisih bit)",
+          "reference_result": "4/4 (LULUS) pada core/",
+          "variant": "penuh",
+          "estimated_time": "0.03 detik"
+        },
+        "requirements": [
+          "I-03"
+        ]
+      },
+      {
+        "method_id": "M-SELFTEST",
+        "name": "Uji self-test & error state modul (ISO/IEC 19790 / 24759)",
+        "layer": "Implementasi & sistem",
+        "level": "Sistem",
+        "variant": "penuh",
+        "targets": [
+          "C-CONF",
+          "C-SELFTEST"
+        ],
+        "parameters": {
+          "tests": [
+            "POST KAT tiap algoritma",
+            "pairwise consistency (pkc/dss)",
+            "continuous RNG test",
+            "error state injection"
+          ],
+          "variant": "penuh",
+          "estimated_time": "0 detik (analitis)"
+        },
+        "requirements": [
+          "I-05"
+        ]
+      }
+    ]
+  }
+}

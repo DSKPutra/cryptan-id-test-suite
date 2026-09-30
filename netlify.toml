@@ -1,0 +1,8 @@
+[build]
+  command = "python3 scripts/build_site.py"
+  publish = "site"
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300"

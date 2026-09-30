@@ -1,0 +1,54 @@
+# ============================================================================
+# Cryptan.ID Test Suite — Profil Produk (input bersama UK-1 s.d. UK-8)
+# KUK 1.1: informasi desain & teknik implementasi produk kriptografi.
+# SELURUH DATA DI SINI ILUSTRATIF (bukan desain produk rahasia) — sikap kerja.
+# ============================================================================
+product:
+  name: "Cryptan.ID SecureLib"
+  version: "1.0.0 (hipotetis)"
+  description: "Library kriptografi perangkat lunak (shared object) untuk Linux x86-64"
+  vendor: "Vendor ilustratif"
+  classification: "DATA ILUSTRATIF — bukan desain produk rahasia"
+
+implementation:
+  platform: linux-x86_64-library
+  platform_desc: "Shared library (.so) di Linux x86-64; CPU multi-core dengan cache L3 bersama"
+  language: C
+  bindings: [Python]
+  interfaces: ["C API (libsecure.so)", "Python binding (ctypes)"]
+  rng: "getrandom(2) → HMAC_DRBG (SP 800-90A)"
+  self_tests: true
+  hardware_acceleration: false
+
+tester:
+  access: grey_box          # white_box | grey_box | black_box
+  access_desc: >-
+    Penguji memperoleh spesifikasi algoritma & dokumen desain tingkat tinggi,
+    biner library + header API, dan lingkungan uji dengan kunci uji.
+    Kode sumber TIDAK tersedia.
+  scope:
+    - "Kesesuaian implementasi algoritma terhadap standar (KAT/MCT)"
+    - "Kekuatan algoritma (komponen, ronde tereduksi, keacakan keluaran)"
+    - "Implementasi pada platform: timing/cache, validasi masukan, RNG, self-test"
+  out_of_scope:
+    - "Serangan invasif fisik (decapsulation, probing)"
+    - "Keamanan sistem operasi host di luar library"
+
+resources:
+  personnel:
+    - {role: "Cryptographic Analyst", count: 2, skills: ["kriptanalisis", "statistik", "Python"]}
+    - {role: "Test engineer", count: 1, skills: ["otomasi uji", "fuzzing", "Linux"]}
+  schedule_days: 10
+  hours_per_day: 8
+  method_budget_hours: 24        # batas waktu komputasi maksimum per metode
+  compute: {machines: 1, cores: 8, ram_gb: 16}
+  speedup_factor: 1              # faktor implementasi optimasi vs referensi Python (1 = konservatif)
+  tools_available: [python, pytest, gdb]
+
+# Profil algoritma objek praktikum (satu per kelas primitif) — "All"
+algorithms:
+  - profiles/aes128.yaml
+  - profiles/chacha20.yaml
+  - profiles/sha3_256.yaml
+  - profiles/rsa_oaep_2048.yaml
+  - profiles/ecdsa_p256.yaml

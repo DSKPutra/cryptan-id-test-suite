@@ -1,0 +1,11 @@
+extends: ../product_profile.yaml
+algorithm:
+  id: ChaCha20
+  name: "ChaCha20 (RFC 8439)"
+  primitive: stream_cipher
+  structure: ARX
+  parameters: {key_bits: 256, nonce_bits: 96, counter_bits: 32, rounds: 20, state_words: 16, output_bits_per_op: 512}
+  reference_values: {carry_degree: 2, rounds_full_diffusion_max: 4}
+  implementation_notes:
+    nonce_generation: "acak 96-bit per pesan"
+    max_message_bytes: 274877906944   # 2^38 byte (batas counter 32-bit)

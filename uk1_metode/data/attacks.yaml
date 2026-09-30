@@ -1,0 +1,538 @@
+# KUK 1.2 — Basis pengetahuan tren serangan (HASIL LITERATUR, bukan hasil uji).
+# Kategori: desain | protokol | bahasa | platform
+# Kompleksitas dalam log2 (time/data/memory); null = tidak berlaku / tidak dikutip.
+# verify: PERLU_VERIFIKASI → angka/klaim harus dicek ulang ke sumber primer sebelum dikutip resmi.
+# targets: tag kelemahan komponen (dipakai mapping.py, KUK 2.2).
+# Filter: primitives / structures / platforms / languages ("all" = semua).
+
+attacks:
+  # ------------------------------------------------------------------ BLOCK CIPHER
+  - id: A-BC-01
+    name: Exhaustive key search (brute force)
+    category: desain
+    primitives: [block_cipher]
+    model: KPA
+    complexity: {time_log2: 128, data_log2: 0, memory_log2: 0}
+    rounds: full
+    status: teoretis
+    refs: ["Batas generik |K| = 2^128; SP 800-57 Part 1 Rev.5 Tabel 2"]
+    targets: [key_size]
+  - id: A-BC-02
+    name: Biclique cryptanalysis (full AES-128)
+    category: desain
+    primitives: [block_cipher]
+    algorithms: [AES-128]
+    model: CPA
+    complexity: {time_log2: 126.1, data_log2: 88, memory_log2: 8}
+    rounds: "10/10"
+    status: teoretis
+    refs: ["Bogdanov, Khovratovich, Rechberger — Biclique Cryptanalysis of the Full AES, ASIACRYPT 2011"]
+    targets: [key_schedule, round_count, key_size]
+  - id: A-BC-03
+    name: Differential cryptanalysis (batas wide-trail)
+    category: desain
+    primitives: [block_cipher, hash]
+    structures: [SPN, Sponge]
+    model: CPA
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: "karakteristik 4 ronde ≥ 25 S-box aktif ⇒ p ≤ 2^-150"
+    status: teoretis
+    refs: ["Biham & Shamir, CRYPTO 1990 / J. Cryptology 1991", "Daemen & Rijmen — The Design of Rijndael, Springer 2002 (wide trail strategy)"]
+    targets: [sbox, diffusion, round_count]
+  - id: A-BC-04
+    name: Linear cryptanalysis (batas wide-trail)
+    category: desain
+    primitives: [block_cipher]
+    structures: [SPN, Feistel]
+    model: KPA
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: "korelasi trail 4 ronde ≤ 2^-75"
+    status: teoretis
+    refs: ["Matsui, EUROCRYPT 1993", "Daemen & Rijmen — The Design of Rijndael, 2002"]
+    targets: [sbox, diffusion, round_count]
+  - id: A-BC-05
+    name: Integral / Square attack (ronde tereduksi)
+    category: desain
+    primitives: [block_cipher]
+    structures: [SPN]
+    model: CPA
+    complexity: {time_log2: 9, data_log2: 9, memory_log2: 4}
+    rounds: "4/10 (6/10 dengan partial sums: data ≈ 6·2^32, waktu ≈ 2^44)"
+    status: praktis (ronde tereduksi)
+    refs: ["Daemen, Knudsen, Rijmen — The Block Cipher Square, FSE 1997", "Ferguson et al. — Improved Cryptanalysis of Rijndael, FSE 2000"]
+    verify: PERLU_VERIFIKASI
+    targets: [diffusion, round_count, sbox]
+  - id: A-BC-06
+    name: Impossible differential / meet-in-the-middle (7 ronde AES-128)
+    category: desain
+    primitives: [block_cipher]
+    algorithms: [AES-128]
+    model: CPA
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: "7/10"
+    status: teoretis
+    refs: ["Lu, Dunkelman, Keller, Kim — New impossible differential attacks on AES, INDOCRYPT 2008", "Derbez, Fouque, Jean — MITM attacks on AES, EUROCRYPT 2013"]
+    verify: PERLU_VERIFIKASI
+    targets: [round_count, key_schedule]
+  - id: A-BC-07
+    name: Nonce/counter reuse pada mode CTR/GCM
+    category: protokol
+    primitives: [block_cipher]
+    model: KPA
+    complexity: {time_log2: 0, data_log2: 1, memory_log2: 0}
+    rounds: n/a
+    status: praktis
+    refs: ["SP 800-38A App. B (keunikan counter block)", "Joux — Authentication failures in NIST version of GCM (forbidden attack), 2006"]
+    targets: [mode_nonce, nonce_reuse]
+  - id: A-BC-08
+    name: Padding oracle (mode CBC)
+    category: protokol
+    primitives: [block_cipher]
+    modes: [CBC]
+    model: CCA
+    complexity: {time_log2: 12, data_log2: 12, memory_log2: 0}
+    rounds: n/a
+    status: praktis
+    refs: ["Vaudenay — Security Flaws Induced by CBC Padding, EUROCRYPT 2002"]
+    targets: [mode_nonce]
+  - id: A-BC-09
+    name: Cache-timing pada implementasi berbasis tabel (T-table / S-box lookup)
+    category: platform
+    primitives: [block_cipher]
+    platforms: [linux-x86_64-library, hsm-network]
+    model: side-channel
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: n/a
+    status: praktis
+    refs: ["Bernstein — Cache-timing attacks on AES, 2005", "Osvik, Shamir, Tromer — Cache Attacks and Countermeasures: the Case of AES, CT-RSA 2006"]
+    targets: [table_lookup, constant_time]
+  - id: A-BC-10
+    name: Correlation Power/EM Analysis (CPA)
+    category: platform
+    primitives: [block_cipher, stream_cipher, hash, pkc, dss]
+    platforms: [firmware-arm-cortex-m, hsm-network]
+    model: side-channel
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: n/a
+    status: praktis
+    refs: ["Brier, Clavier, Olivier — Correlation Power Analysis with a Leakage Model, CHES 2004", "ISO/IEC 17825 (TVLA)"]
+    targets: [power_em]
+  - id: A-BC-11
+    name: Differential Fault Analysis (DFA)
+    category: platform
+    primitives: [block_cipher]
+    platforms: [firmware-arm-cortex-m, hsm-network]
+    model: fault
+    complexity: {time_log2: 32, data_log2: 1, memory_log2: 0}
+    rounds: n/a
+    status: praktis
+    refs: ["Piret & Quisquater — A DFA Technique on SPN Structures, CHES 2003"]
+    verify: PERLU_VERIFIKASI
+    targets: [fault]
+
+  # ------------------------------------------------------------------ STREAM CIPHER
+  - id: A-SC-01
+    name: Exhaustive key search (256-bit)
+    category: desain
+    primitives: [stream_cipher]
+    model: KPA
+    complexity: {time_log2: 256, data_log2: 0, memory_log2: 0}
+    rounds: full
+    status: teoretis
+    refs: ["Batas generik |K| = 2^256"]
+    targets: [key_size]
+  - id: A-SC-02
+    name: Probabilistic Neutral Bits (PNB) / differential — ChaCha ronde tereduksi
+    category: desain
+    primitives: [stream_cipher]
+    structures: [ARX]
+    model: CPA (chosen IV)
+    complexity: {time_log2: 248, data_log2: 27, memory_log2: null}
+    rounds: "7/20 (ChaCha6: waktu 2^139)"
+    status: teoretis
+    refs: ["Aumasson, Fischer, Khazaei, Meier, Rechberger — New Features of Latin Dances, FSE 2008"]
+    note: "Perbaikan berikutnya menurunkan ChaCha7 ke kisaran 2^2xx"
+    verify: PERLU_VERIFIKASI
+    targets: [arx_nonlinear, diffusion, round_count]
+  - id: A-SC-03
+    name: Differential-linear distinguisher (ChaCha ronde tereduksi)
+    category: desain
+    primitives: [stream_cipher]
+    structures: [ARX]
+    model: CPA (chosen IV)
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: "≤ 7/20"
+    status: teoretis
+    refs: ["Beierle, Leander, Todo — Improved Differential-Linear Attacks with Applications to ARX Ciphers, CRYPTO 2020"]
+    verify: PERLU_VERIFIKASI
+    targets: [arx_nonlinear, diffusion, round_count]
+  - id: A-SC-04
+    name: Correlation attack (fungsi kombinasi LFSR)
+    category: desain
+    primitives: [stream_cipher]
+    structures: [LFSR, NLFSR]
+    model: KPA
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: n/a
+    status: praktis (bila CI rendah)
+    refs: ["Siegenthaler — Decrypting a Class of Stream Ciphers Using Ciphertext Only, IEEE TC 1985", "Meier & Staffelbach — Fast correlation attacks, J. Cryptology 1989"]
+    targets: [boolean_function, keystream_stat]
+  - id: A-SC-05
+    name: Algebraic attack
+    category: desain
+    primitives: [stream_cipher]
+    structures: [LFSR, NLFSR]
+    model: KPA
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: n/a
+    status: teoretis
+    refs: ["Courtois & Meier — Algebraic Attacks on Stream Ciphers with Linear Feedback, EUROCRYPT 2003"]
+    targets: [boolean_function]
+  - id: A-SC-06
+    name: Nonce reuse (two-time pad)
+    category: protokol
+    primitives: [stream_cipher]
+    model: KPA / COA
+    complexity: {time_log2: 0, data_log2: 1, memory_log2: 0}
+    rounds: n/a
+    status: praktis
+    refs: ["RFC 8439 §4 (nonce MUST NOT repeat for the same key)"]
+    targets: [nonce_reuse]
+  - id: A-SC-07
+    name: Counter overflow / wrap-around (keystream berulang)
+    category: bahasa
+    primitives: [stream_cipher, block_cipher]
+    model: KPA
+    complexity: {time_log2: 0, data_log2: 38, memory_log2: 0}
+    rounds: n/a
+    status: praktis (bila > 256 GiB per nonce pada ChaCha20 RFC 8439)
+    refs: ["RFC 8439 §2.4 (counter 32-bit ⇒ maks 2^32 blok × 64 byte)"]
+    targets: [counter_wrap]
+
+  # ------------------------------------------------------------------ HASH
+  - id: A-H-01
+    name: Generic collision (birthday)
+    category: desain
+    primitives: [hash]
+    model: n/a
+    complexity: {time_log2: 128, data_log2: null, memory_log2: 128}
+    rounds: full
+    status: teoretis
+    refs: ["FIPS 202 Tabel 4; SP 800-107 Rev.1 §4 (kekuatan collision = n/2)"]
+    targets: [generic_bound, sponge_capacity]
+  - id: A-H-02
+    name: Generic (second-)preimage
+    category: desain
+    primitives: [hash]
+    model: n/a
+    complexity: {time_log2: 256, data_log2: null, memory_log2: 0}
+    rounds: full
+    status: teoretis
+    refs: ["FIPS 202 Tabel 4 (min(n, c/2))"]
+    targets: [generic_bound, sponge_capacity]
+  - id: A-H-03
+    name: Practical collision — Keccak/SHA3 ronde tereduksi
+    category: desain
+    primitives: [hash]
+    structures: [Sponge]
+    model: n/a
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: "5/24 (tabrakan aktual)"
+    status: praktis (ronde tereduksi)
+    refs: ["Guo, Liao, Liu, Liu, Qiao, Song — Practical Collision Attacks against Round-Reduced SHA-3, J. Cryptology 2020"]
+    targets: [chi, diffusion, round_count]
+  - id: A-H-04
+    name: Preimage dengan linear structures (Keccak ronde tereduksi)
+    category: desain
+    primitives: [hash]
+    structures: [Sponge]
+    model: n/a
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: "≤ 4/24"
+    status: teoretis
+    refs: ["Guo, Liu, Song — Linear Structures: Applications to Cryptanalysis of Round-Reduced Keccak, ASIACRYPT 2016"]
+    verify: PERLU_VERIFIKASI
+    targets: [chi, round_count]
+  - id: A-H-05
+    name: Zero-sum distinguisher Keccak-f[1600] (24 ronde)
+    category: desain
+    primitives: [hash]
+    structures: [Sponge]
+    model: n/a
+    complexity: {time_log2: 1575, data_log2: null, memory_log2: null}
+    rounds: "24/24 (permutasi, bukan serangan hash)"
+    status: teoretis
+    refs: ["Boura, Canteaut, De Cannière — Higher-order differential properties of Keccak and Luffa, FSE 2011"]
+    verify: PERLU_VERIFIKASI
+    targets: [chi]
+  - id: A-H-06
+    name: Length-extension (konstruksi Merkle–Damgård)
+    category: protokol
+    primitives: [hash]
+    structures: [Merkle-Damgard]
+    model: n/a
+    complexity: {time_log2: 0, data_log2: 0, memory_log2: 0}
+    rounds: n/a
+    status: praktis (tidak berlaku untuk sponge SHA-3)
+    refs: ["SP 800-107 Rev.1; Kelsey & Schneier 2005"]
+    targets: [padding]
+  - id: A-H-07
+    name: Buffer overflow pada implementasi Keccak (CVE-2022-37454, XKCP)
+    category: bahasa
+    primitives: [hash]
+    languages: [C, C++]
+    model: n/a
+    complexity: {time_log2: 0, data_log2: 32, memory_log2: 32}
+    rounds: n/a
+    status: praktis
+    refs: ["NVD CVE-2022-37454 (integer overflow & buffer overflow di XKCP sponge; ditemukan N. Mouha)"]
+    targets: [memory_safety, padding]
+
+  # ------------------------------------------------------------------ PKC (RSA)
+  - id: A-P-01
+    name: Faktorisasi GNFS
+    category: desain
+    primitives: [pkc]
+    model: n/a
+    complexity: {time_log2: 112, data_log2: 0, memory_log2: null}
+    rounds: n/a
+    status: teoretis (2048-bit); rekor RSA-250 (829-bit) 2020
+    refs: ["SP 800-57 Part 1 Rev.5 Tabel 2 (RSA-2048 ≈ 112-bit)", "Boudot et al. — Comparing the difficulty of factorization and discrete logarithm: a 240-digit experiment, CRYPTO 2020"]
+    targets: [key_size]
+  - id: A-P-02
+    name: Algoritma Shor (komputer kuantum)
+    category: desain
+    primitives: [pkc, dss]
+    model: n/a
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: n/a
+    status: teoretis (ancaman masa depan / harvest-now-decrypt-later)
+    refs: ["Shor, FOCS 1994", "FIPS 203/204/205 (migrasi PQC)"]
+    targets: [key_size]
+  - id: A-P-03
+    name: Kunci lemah — prima berdekatan (Fermat), p−1 smooth (Pollard), faktor bersama (batch-GCD), ROCA
+    category: desain
+    primitives: [pkc]
+    model: n/a
+    complexity: {time_log2: 20, data_log2: 0, memory_log2: null}
+    rounds: n/a
+    status: praktis (bila keygen cacat)
+    refs: ["Heninger, Durumeric, Wustrow, Halderman — Mining Your Ps and Qs, USENIX Security 2012", "Nemec et al. — The Return of Coppersmith's Attack (ROCA), CCS 2017"]
+    targets: [prime_gen, rng]
+  - id: A-P-04
+    name: Eksponen privat kecil (Wiener / Boneh–Durfee)
+    category: desain
+    primitives: [pkc]
+    model: n/a
+    complexity: {time_log2: 20, data_log2: 0, memory_log2: null}
+    rounds: "d < N^0.25/3 (Wiener); d < N^0.292 (Boneh–Durfee)"
+    status: praktis (bila kondisi terpenuhi)
+    refs: ["Wiener — Cryptanalysis of Short RSA Secret Exponents, IEEE TIT 1990", "Boneh & Durfee, EUROCRYPT 1999"]
+    targets: [private_exponent]
+  - id: A-P-05
+    name: Eksponen publik kecil tanpa padding (Håstad / Coppersmith)
+    category: protokol
+    primitives: [pkc]
+    model: CPA
+    complexity: {time_log2: 10, data_log2: 2, memory_log2: null}
+    rounds: n/a
+    status: praktis pada textbook RSA; dimitigasi OAEP
+    refs: ["Håstad, SIAM J. Comput. 1988", "Coppersmith, J. Cryptology 1997"]
+    targets: [small_e]
+  - id: A-P-06
+    name: Manger's attack (oracle galat dekripsi OAEP)
+    category: protokol
+    primitives: [pkc]
+    model: CCA
+    complexity: {time_log2: 11, data_log2: 11, memory_log2: 0}
+    rounds: "≈ log2(n) query"
+    status: praktis (bila galat/timing dapat dibedakan)
+    refs: ["Manger — A Chosen Ciphertext Attack on RSA OAEP as Standardized in PKCS #1 v2.0, CRYPTO 2001"]
+    verify: PERLU_VERIFIKASI
+    targets: [oaep_oracle]
+  - id: A-P-07
+    name: Bleichenbacher / ROBOT (fallback PKCS#1 v1.5)
+    category: protokol
+    primitives: [pkc]
+    model: CCA
+    complexity: {time_log2: 20, data_log2: 20, memory_log2: 0}
+    rounds: n/a
+    status: praktis (bila masih mendukung v1.5)
+    refs: ["Bleichenbacher, CRYPTO 1998", "Böck, Somorovsky, Young — ROBOT, USENIX Security 2018"]
+    verify: PERLU_VERIFIKASI
+    targets: [oaep_oracle]
+  - id: A-P-08
+    name: Timing attack pada modular exponentiation
+    category: platform
+    primitives: [pkc]
+    model: side-channel
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: n/a
+    status: praktis
+    refs: ["Kocher, CRYPTO 1996", "Brumley & Boneh — Remote Timing Attacks are Practical, USENIX Security 2003"]
+    targets: [bigint_timing, constant_time]
+  - id: A-P-09
+    name: Cache side-channel (Flush+Reload) pada RSA
+    category: platform
+    primitives: [pkc]
+    platforms: [linux-x86_64-library]
+    model: side-channel
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: n/a
+    status: praktis
+    refs: ["Yarom & Falkner — FLUSH+RELOAD, USENIX Security 2014"]
+    targets: [bigint_timing, constant_time]
+  - id: A-P-10
+    name: Fault attack RSA-CRT (Bellcore)
+    category: platform
+    primitives: [pkc]
+    platforms: [firmware-arm-cortex-m, hsm-network]
+    model: fault
+    complexity: {time_log2: 0, data_log2: 0, memory_log2: 0}
+    rounds: n/a
+    status: praktis
+    refs: ["Boneh, DeMillo, Lipton — On the Importance of Checking Cryptographic Protocols for Faults, EUROCRYPT 1997"]
+    targets: [fault]
+  - id: A-P-11
+    name: RNG lemah saat pembangkitan kunci
+    category: platform
+    primitives: [pkc, dss, stream_cipher, block_cipher]
+    model: n/a
+    complexity: {time_log2: 15, data_log2: 0, memory_log2: null}
+    rounds: n/a
+    status: praktis
+    refs: ["CVE-2008-0166 (Debian OpenSSL, ruang kunci 2^15)", "Heninger et al., USENIX Security 2012"]
+    targets: [rng]
+
+  # ------------------------------------------------------------------ DSS (ECDSA)
+  - id: A-D-01
+    name: Pollard rho (ECDLP)
+    category: desain
+    primitives: [dss]
+    model: n/a
+    complexity: {time_log2: 128, data_log2: 0, memory_log2: 0}
+    rounds: n/a
+    status: teoretis
+    refs: ["Pollard, Math. Comp. 1978; SP 800-57 Part 1 Rev.5 Tabel 2 (P-256 ≈ 128-bit)"]
+    targets: [key_size, curve_params]
+  - id: A-D-02
+    name: Nonce reuse → pemulihan kunci privat
+    category: protokol
+    primitives: [dss]
+    model: KMA (known message)
+    complexity: {time_log2: 0, data_log2: 1, memory_log2: 0}
+    rounds: n/a
+    status: praktis
+    refs: ["fail0verflow — Console Hacking 2010 (PS3 ECDSA), 27C3"]
+    targets: [nonce_bias, rng]
+  - id: A-D-03
+    name: Bias nonce parsial → lattice (Hidden Number Problem)
+    category: platform
+    primitives: [dss]
+    model: KMA + side-channel
+    complexity: {time_log2: 30, data_log2: 10, memory_log2: null}
+    rounds: n/a
+    status: praktis
+    refs: ["Howgrave-Graham & Smart, DCC 2001", "Jancar et al. — Minerva, TCHES 2020", "Moghimi et al. — TPM-FAIL, USENIX Security 2020"]
+    verify: PERLU_VERIFIKASI
+    targets: [nonce_bias, scalar_mult_timing]
+  - id: A-D-04
+    name: Invalid-curve / kunci publik tidak tervalidasi
+    category: protokol
+    primitives: [dss, pkc]
+    model: CCA
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: n/a
+    status: praktis (terutama ECDH)
+    refs: ["Biehl, Meyer, Müller — Differential Fault Attacks on Elliptic Curve Cryptosystems, CRYPTO 2000", "Jager, Schwenk, Somorovsky — Practical Invalid Curve Attacks on TLS-ECDH, ESORICS 2015"]
+    targets: [pubkey_validation, curve_params]
+  - id: A-D-05
+    name: Malleability tanda tangan (r, n−s)
+    category: protokol
+    primitives: [dss]
+    model: n/a
+    complexity: {time_log2: 0, data_log2: 0, memory_log2: 0}
+    rounds: n/a
+    status: praktis (dampak pada protokol yang memakai sig sebagai ID)
+    refs: ["Bitcoin BIP-62 / BIP-146 (low-S)"]
+    targets: [sig_malleability]
+  - id: A-D-06
+    name: Penerimaan (r,s) = (0,0) — CVE-2022-21449 "Psychic Signatures"
+    category: bahasa
+    primitives: [dss]
+    languages: [Java]
+    model: n/a
+    complexity: {time_log2: 0, data_log2: 0, memory_log2: 0}
+    rounds: n/a
+    status: praktis
+    refs: ["NVD CVE-2022-21449 (Java SE 15–18 ECDSA verify)"]
+    targets: [sig_malleability]
+  - id: A-D-07
+    name: Timing/cache pada perkalian skalar
+    category: platform
+    primitives: [dss]
+    platforms: [linux-x86_64-library]
+    model: side-channel
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: n/a
+    status: praktis
+    refs: ["Brumley & Tuveri — Remote Timing Attacks are Still Practical, ESORICS 2011", "Yarom & Benger — Recovering OpenSSL ECDSA Nonces Using the FLUSH+RELOAD Cache Side-channel Attack, 2014"]
+    targets: [scalar_mult_timing, constant_time]
+
+  # ------------------------------------------------------------------ BAHASA & PLATFORM (lintas primitif)
+  - id: A-L-01
+    name: Perbandingan tidak constant-time (memcmp pada tag/MAC/padding)
+    category: bahasa
+    primitives: all
+    languages: all
+    model: side-channel
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: n/a
+    status: praktis
+    refs: ["Lawson — Timing attack in Google Keyczar, 2009", "ISO/IEC 17825"]
+    verify: PERLU_VERIFIKASI
+    targets: [constant_time]
+  - id: A-L-02
+    name: Buffer over-read/overflow (memory safety)
+    category: bahasa
+    primitives: all
+    languages: [C, C++]
+    model: n/a
+    complexity: {time_log2: 0, data_log2: 0, memory_log2: 0}
+    rounds: n/a
+    status: praktis
+    refs: ["NVD CVE-2014-0160 (Heartbleed, OpenSSL)"]
+    targets: [memory_safety]
+  - id: A-L-03
+    name: Material kunci tidak di-zeroize (sisa di memori / cold boot)
+    category: bahasa
+    primitives: all
+    languages: all
+    model: n/a
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: n/a
+    status: praktis
+    refs: ["Halderman et al. — Lest We Remember: Cold Boot Attacks, USENIX Security 2008", "ISO/IEC 19790 §7.9 (zeroisation)"]
+    targets: [key_zeroization]
+  - id: A-X-01
+    name: Transient execution (Spectre)
+    category: platform
+    primitives: all
+    platforms: [linux-x86_64-library]
+    model: side-channel
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: n/a
+    status: praktis
+    refs: ["Kocher et al. — Spectre Attacks, IEEE S&P 2019"]
+    targets: [speculative, constant_time]
+  - id: A-X-02
+    name: Frequency-scaling side-channel (Hertzbleed)
+    category: platform
+    primitives: all
+    platforms: [linux-x86_64-library]
+    model: side-channel
+    complexity: {time_log2: null, data_log2: null, memory_log2: null}
+    rounds: n/a
+    status: praktis (remote timing dari variasi daya)
+    refs: ["Wang et al. — Hertzbleed, USENIX Security 2022"]
+    targets: [constant_time]

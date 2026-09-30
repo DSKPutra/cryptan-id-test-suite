@@ -1,0 +1,11 @@
+extends: ../product_profile.yaml
+algorithm:
+  id: ECDSA-P256
+  name: "ECDSA P-256 + SHA-256 (FIPS 186-5, SP 800-186)"
+  primitive: dss
+  structure: "Elliptic curve discrete log (ECC)"
+  parameters: {curve: P-256, field_bits: 256, order_bits: 256, hash: sha256, nonce: "RFC 6979 deterministik"}
+  reference_values: {security_bits_min: 128}
+  implementation_notes:
+    nonce_generation: rfc6979
+    low_s_enforced: false
