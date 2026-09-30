@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--repo", default="https://github.com/")
+    ap.add_argument("--repo", default="https://github.com/DSKPutra/cryptan-id-test-suite")
     a = ap.parse_args()
     site = ROOT / "site"
     shutil.rmtree(site, ignore_errors=True)

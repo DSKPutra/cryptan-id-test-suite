@@ -1,6 +1,6 @@
 PY ?= .venv/bin/python
 PROFILE ?= config/product_profile.yaml
-REPO ?= https://github.com/
+REPO ?= https://github.com/DSKPutra/cryptan-id-test-suite
 
 .PHONY: install kat run quick test site serve clean
 
