@@ -100,6 +100,24 @@ def _targets(ctx, r) -> list:
     return [o["id"] for o in objs]
 
 
+def _param_values(r: dict, pspace: dict) -> list:
+    """Nilai parameter untuk skenario: positif → hanya nilai sesuai spesifikasi;
+    negatif → nilai di luar spesifikasi dengan harapan DITOLAK (aturan verifier b)."""
+    negative = r.get("expected", {}).get("kind") == "negative"
+    out = []
+    cats = [r["category"]] if r["category"] in pspace["categories"] else list(pspace["categories"])
+    for pid in r.get("params", []):
+        for c in cats:
+            for p in pspace["categories"][c]["params"]:
+                if p["id"] == pid or p["id"].startswith(pid + "-"):
+                    for v in p["values"]:
+                        if v["in_spec"] or negative:
+                            out.append({"param": p["id"], "name": p["name"], "class": p["class"], "value": v["value"],
+                                        "technique": v["technique"], "in_spec": v["in_spec"],
+                                        "expect": "diterima/diproses" if v["in_spec"] else "DITOLAK"})
+    return out
+
+
 def design(ctx, review: dict, pspace: dict) -> dict:
     recipes = resolve(ctx)
     cats = ctx.categories()
@@ -120,7 +138,7 @@ def design(ctx, review: dict, pspace: dict) -> dict:
         if not tg:
             excluded.append({"id": r["id"], "reason": "tidak ada objek uji yang sesuai (applies)", "category": c})
             continue
-        r = {**r, "targets": tg}
+        r = {**r, "targets": tg, "param_values": _param_values(r, pspace)}
         chosen.append(r)
     tiers = ctx.tiers
     # skenario = sel matriks lapis × tingkat per kategori (+ modul, lintas-algoritma)

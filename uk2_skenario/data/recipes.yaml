@@ -217,7 +217,7 @@ categories:
        requires: [key_import_export], expected: {kind: deterministic, gen: interop}, runner: interop}
     - {id: PK-S-01, level: Komponen, layer: S, title: "Estimasi bit security & kualitas bilangan prima",
        steps: ["Hitung strength (SP 800-57) per target", "Periksa |p−q|, d, kehalusan p−1 (UK-1)"], pass: "Strength ≥ 112 bit; prima kuat",
-       methods: [M-KEYSIZE, M-PRIME], standards: [SP-800-57, ISO-18032], claims: [bit_security, ind_cca2], expected: {kind: cryptanalytic, gen: strength}, runner: config_audit}
+       methods: [M-KEYSIZE, M-PRIME, M-FACT], standards: [SP-800-57, ISO-18032], claims: [bit_security, ind_cca2], expected: {kind: cryptanalytic, gen: strength}, runner: config_audit}
     - {id: PK-S-02, level: Integrasi, layer: S, title: "Oracle padding/galat dekripsi (Manger/Bleichenbacher)",
        steps: ["Kirim kelas ciphertext invalid (y≠0, lHash salah, tanpa 0x01, c ≥ n)", "Catat pesan galat & waktu (10^5 per kelas)", "Uji Welch t antar kelas"],
        pass: "Satu jenis galat; |t| < 4,5", methods: [M-ORACLE], standards: [SP-800-56B, ISO-17825], applies: {family: [RSA]}, claims: [ind_cca2, oracle],
@@ -295,7 +295,11 @@ categories:
        methods: [M-KAT], standards: [FIPS-186-5, FIPS-204, FIPS-205], applies: {family: [EdDSA, ML-DSA, SLH-DSA, RSA]}, expected: {kind: deterministic, gen: kat}, runner: kat_vectors}
     - {id: DS-S-07, level: Sistem, layer: S, title: "Tingkat keamanan skema & kesiapan PQC",
        steps: ["Hitung strength tiap skema (SP 800-57/FIPS 204)", "Tandai skema rentan kuantum (IR 8547)"], pass: "Strength ≥ 112 bit; rencana migrasi PQC",
-       methods: [M-KEYSIZE], standards: [SP-800-57, FIPS-204], claims: [bit_security, euf_cma], expected: {kind: cryptanalytic, gen: strength}, runner: config_audit}
+       methods: [M-KEYSIZE, M-ECDLP], standards: [SP-800-57, FIPS-204, SP-800-186], claims: [bit_security, euf_cma], expected: {kind: cryptanalytic, gen: strength}, runner: config_audit}
+    - {id: DS-S-09, level: Sistem, layer: S, title: "Upaya ekstraksi kunci privat (API, perintah vendor, alur backup)",
+       steps: ["Inventarisasi seluruh perintah/atribut yang dapat mengeluarkan kunci (mis. CKA_EXTRACTABLE, CKA_SENSITIVE)", "Coba ekspor d melalui API, perintah vendor & backup", "Periksa audit log setiap upaya"],
+       pass: "Kunci privat tidak pernah keluar dalam bentuk plaintext; seluruh upaya tercatat", methods: [M-ZEROIZE], standards: [ISO-19790],
+       requires: [key_non_exportable], claims: [key_non_exportable], expected: {kind: negative, gen: reject_params}, runner: manual, priority: Tinggi}
     - {id: DS-S-08, level: Integrasi, layer: S, title: "Malleability & penolakan (r,s) di luar rentang",
        steps: ["Kirim (r, n−s), r/s = 0, ≥ n, DER non-kanonik", "Catat terima/tolak"], pass: "Di luar rentang ditolak; kebijakan low-s didokumentasikan",
        methods: [M-SIGMAL], standards: [FIPS-186-5], applies: {family: [ECDSA]}, claims: [euf_cma], expected: {kind: negative, gen: sigver}, runner: sigver_vectors, params: [DS-ENC]}
@@ -361,7 +365,7 @@ module:
     I-K-04: {methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: negative, gen: selftest}, runner: manual, requires: [self_tests]}
     I-S-01: {methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: negative, gen: selftest}, runner: manual, priority: Tinggi}
     I-S-02: {methods: [M-ZEROIZE], standards: [ISO-19790, SP-800-38F], expected: {kind: negative, gen: reject_params}, runner: api_negative, requires: [key_wrap], claims: [ssp_protection], priority: Tinggi}
-    I-S-03: {methods: [M-FUZZ], standards: [ISO-19790], expected: {kind: negative, gen: reject_params}, runner: manual, requires: [roles_identity_auth], claims: [identity_auth]}
+    I-S-03: {methods: [M-FUZZ], standards: [ISO-19790], expected: {kind: negative, gen: reject_params}, runner: manual, requires: [roles_identity_auth], claims: [identity_auth, iso19790_sl3]}
     I-S-04: {methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: negative, gen: reject_params}, runner: manual, requires: [firmware_update], claims: [firmware_integrity], priority: Tinggi}
     I-I-01: {methods: [M-CODEREVIEW], standards: [ISO-19790], expected: {kind: deterministic, gen: reproducible_build}, runner: manual, requires: [reproducible_build]}
     I-I-02: {methods: [M-TVLA], standards: [ISO-17825], expected: {kind: implementation, gen: tvla}, runner: manual, requires: [side_channel_lab]}
@@ -371,8 +375,8 @@ module:
     S-K-02: {methods: [M-SELFTEST], standards: [ISO-24759], expected: {kind: deterministic, gen: inspection}, runner: manual}
     S-K-03: {methods: [M-SELFTEST], standards: [ISO-24759], expected: {kind: deterministic, gen: inspection}, runner: manual}
     S-K-04: {methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: deterministic, gen: selftest}, runner: manual, requires: [self_tests]}
-    S-S-01: {methods: [M-FAULT], standards: [ISO-19790], expected: {kind: negative, gen: tamper}, runner: manual, requires: [tamper_response, physical_access], claims: [tamper], priority: Tinggi}
-    S-S-02: {methods: [M-FAULT], standards: [ISO-19790], expected: {kind: negative, gen: tamper}, runner: manual, requires: [environmental_failure_protection], claims: [tamper]}
+    S-S-01: {methods: [M-FAULT], standards: [ISO-19790], expected: {kind: negative, gen: tamper}, runner: manual, requires: [tamper_response, physical_access], claims: [tamper, iso19790_sl3], priority: Tinggi}
+    S-S-02: {methods: [M-FAULT], standards: [ISO-19790], expected: {kind: negative, gen: tamper}, runner: manual, requires: [environmental_failure_protection], claims: [tamper, iso19790_sl3]}
     S-S-03: {methods: [M-ZEROIZE], standards: [ISO-19790], expected: {kind: negative, gen: reject_params}, runner: manual, requires: [split_knowledge], claims: [ssp_protection], priority: Tinggi}
     S-S-04: {methods: [M-FAULT], standards: [ISO-19790], expected: {kind: cryptanalytic, gen: claims_eval}, runner: manual}
     S-I-01: {methods: [M-TVLA], standards: [ISO-17825, ISO-20085], expected: {kind: implementation, gen: tvla}, runner: manual, requires: [side_channel_lab]}
@@ -405,6 +409,10 @@ cross:
      steps: ["Jalankan siklus lengkap untuk satu kunci tiap kelas primitif", "Verifikasi kebijakan rotasi & batas penggunaan", "Pastikan pemusnahan (zeroize) di akhir"],
      pass: "Setiap transisi sesuai kebijakan; kunci termusnahkan", methods: [M-ZEROIZE, M-KEYSIZE], standards: [SP-800-57, ISO-19790], claims: [bit_security],
      expected: {kind: deterministic, gen: ssp_lifecycle}, runner: chain_e2e}
+  - {id: XA-S-04, level: Sistem, layer: S, title: "Simulasi serangan timing end-to-end terhadap operasi kunci rahasia",
+     steps: ["Pilih operasi dengan data rahasia (dekripsi RSA-OAEP, signing ECDSA, verifikasi tag AEAD)", "Kumpulkan ≥ 10^6 pengukuran waktu dari sisi pemanggil API (remote-timing)", "Coba pulihkan bit kunci/nonce dengan analisis statistik (gaya Brumley–Boneh)"],
+     pass: "Tidak ada informasi kunci yang dapat dipulihkan; |t| < 4,5 pada seluruh operasi", methods: [M-TIMING, M-CACHE], standards: [ISO-17825, ISO-20085],
+     claims: [constant_time], requires: [timing_measurement], expected: {kind: implementation, gen: tvla}, runner: timing_tvla, priority: Tinggi}
   - {id: XA-I-01, level: Sistem, layer: I, title: "Kondisi operasional: gangguan daya/restart, beban tinggi, kegagalan jaringan",
      steps: ["Hentikan proses saat operasi kunci", "Restart & jalankan ulang self-test", "Uji di bawah beban tinggi"], pass: "Sifat keamanan tidak menurun; tidak ada keluaran parsial",
      methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: implementation, gen: error_handling}, runner: manual, params: [ENV]}
