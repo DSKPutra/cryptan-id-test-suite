@@ -150,12 +150,12 @@ categories:
   hash:
     - {id: HF-K-01, level: Komponen, layer: K, title: "Verifikasi permutasi/fungsi kompresi, konstanta & padding",
        steps: ["Bandingkan konstanta ronde & offset rotasi dengan standar", "Jalankan permutasi pada state uji (core/)", "Periksa padding pad10*1 / MD-strengthening pada batas b"],
-       pass: "Identik 100%", methods: [M-KAT, M-PAD], standards: [FIPS-202, FIPS-180-4, ISO-10118-3], expected: {kind: deterministic, gen: hash_boundaries}, runner: kat_vectors, priority: Tinggi}
+       pass: "Identik 100%", methods: [M-KAT, M-PAD], standards: [FIPS-202, FIPS-180-4, ISO-10118-3], applies: {primitive: [hash]}, expected: {kind: deterministic, gen: hash_boundaries}, runner: kat_vectors, priority: Tinggi}
     - {id: HF-K-02, level: Integrasi, layer: K, title: "Short/Long Message Test pada nilai batas panjang pesan",
        steps: ["Hash pesan pada setiap nilai batas (0, 1, b−L−1, b−L, b−1, b, b+1, 1 MiB)", "Bandingkan dengan expected value (dua implementasi independen + vektor resmi)"],
-       pass: "Digest identik 100%", methods: [M-KAT, M-PAD], standards: [FIPS-202, FIPS-180-4], expected: {kind: deterministic, gen: hash_boundaries}, runner: kat_vectors, priority: Tinggi, params: [HF-LEN, HF-PAT]}
+       pass: "Digest identik 100%", methods: [M-KAT, M-PAD], standards: [FIPS-202, FIPS-180-4], applies: {primitive: [hash]}, expected: {kind: deterministic, gen: hash_boundaries}, runner: kat_vectors, priority: Tinggi, params: [HF-LEN, HF-PAT]}
     - {id: HF-K-03, level: Integrasi, layer: K, title: "Monte Carlo Test hash", steps: ["MCT 100 × 1000 iterasi (gaya CAVP)", "Bandingkan checkpoint"], pass: "100% checkpoint identik",
-       methods: [M-MCT], standards: [ISO-18367], expected: {kind: deterministic, gen: mct}, runner: mct}
+       methods: [M-MCT], standards: [ISO-18367], applies: {primitive: [hash]}, expected: {kind: deterministic, gen: mct}, runner: mct}
     - {id: HF-K-04, level: Integrasi, layer: K, title: "Konsistensi chunking (one-shot vs update bertahap) & XOF",
        steps: ["Hash pesan 1 MiB sekaligus dan bertahap acak (1…b+7 byte)", "Untuk XOF: minta 256 & 512 bit"], pass: "Digest identik; prefiks XOF konsisten",
        methods: [M-KAT], standards: [FIPS-202], requires: [streaming_api], expected: {kind: deterministic, gen: hash_boundaries}, runner: roundtrip, params: [HF-CHUNK, HF-DIG]}
@@ -185,7 +185,7 @@ categories:
        methods: [M-KEYSIZE], standards: [SP-800-57, SP-800-107], claims: [bit_security, preimage], expected: {kind: cryptanalytic, gen: strength}, runner: config_audit}
     - {id: HF-I-01, level: Komponen, layer: I, title: "Counter panjang pesan (overflow > 2^32 byte) & endianness",
        steps: ["Hash pesan 2^32 + 1 byte (streaming)", "Bandingkan dengan referensi"], pass: "Digest benar; tanpa overflow", methods: [M-FUZZ], standards: [FIPS-180-4],
-       requires: [streaming_api], expected: {kind: deterministic, gen: hash_boundaries}, runner: kat_vectors}
+       requires: [streaming_api], applies: {primitive: [hash]}, expected: {kind: deterministic, gen: hash_boundaries}, runner: kat_vectors}
     - {id: HF-I-02, level: Integrasi, layer: I, title: "Pembandingan digest/HMAC constant-time", steps: ["Tag benar vs salah per posisi byte (10^5)", "Welch t"], pass: "|t| < 4,5",
        methods: [M-TIMING], standards: [ISO-17825], claims: [constant_time], requires: [timing_measurement], expected: {kind: implementation, gen: tvla}, runner: oracle_uniformity}
     - {id: HF-I-03, level: Integrasi, layer: I, title: "API streaming yang aman (fuzzing update/final)", steps: ["Urutan update/final menyimpang 10^6 kali"], pass: "Tanpa crash; galat terdefinisi",
