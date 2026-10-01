@@ -11,7 +11,7 @@ UNIT = {"code": "J.61KRP00.012.1", "title": "Menentukan Metode Pengujian yang ak
         "module": "UK-1", "skkni": "SKKNI 2023-004 (Cryptographic Analyst)"}
 
 KUK_MAP = [
-    {"kuk": "1.1", "desc": "Informasi desain & teknik implementasi", "section": "Bab 1", "files": ["uk1_metode/profile.py", "config/product_profile.yaml"], "tests": ["tests/test_uk1_ek1.py::test_kuk_1_1_*"]},
+    {"kuk": "1.1", "desc": "Informasi desain & teknik implementasi", "section": "Bab 1", "files": ["uk1_metode/profile.py", "config/product_profile.yaml", "algo_catalog/ (Daftar Algoritma yang Diuji)"], "tests": ["tests/test_uk1_ek1.py::test_kuk_1_1_*", "tests/test_algo_catalog.py"]},
     {"kuk": "1.2", "desc": "Tren serangan terhadap platform", "section": "Bab 2.2", "files": ["uk1_metode/attack_kb.py", "uk1_metode/data/attacks.yaml"], "tests": ["tests/test_uk1_ek1.py::test_kuk_1_2_*"]},
     {"kuk": "1.3", "desc": "Best practice metode pengujian", "section": "Bab 2.1", "files": ["uk1_metode/standards_kb.py", "uk1_metode/data/standards.yaml"], "tests": ["tests/test_uk1_ek1.py::test_kuk_1_3_*"]},
     {"kuk": "2.1", "desc": "Komponen berpotensi lemah", "section": "Bab 3", "files": ["uk1_metode/decompose.py", "uk1_metode/component_analysis.py", "core/boolean.py"], "tests": ["tests/test_core_components.py", "tests/test_uk1_ek2.py::test_kuk_2_1_*"]},

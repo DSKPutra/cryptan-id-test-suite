@@ -45,6 +45,8 @@ resources:
   speedup_factor: 1              # faktor implementasi optimasi vs referensi Python (1 = konservatif)
   tools_available: [python, pytest, gdb]
 
+algorithms_under_test: /private/var/folders/_m/xvjrg2b12yn5bgh7p7ppzxz00000gn/T/pytest-of-deasakakurniaputra/pytest-6/test_outputs_and_profile_link0/out/algorithms_under_test.yaml   # dihasilkan algo_catalog (KUK 1.1)
+
 # Profil algoritma objek praktikum (satu per kelas primitif) — "All"
 algorithms:
   - profiles/aes128.yaml

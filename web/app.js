@@ -31,7 +31,7 @@
     try { localStorage.setItem("cryptan-theme", root.dataset.theme); } catch (e) {}
   };
 
-  $("#modules").innerHTML = MODULES.map((m) => m.ready
+  $("#modules").innerHTML = `<a href="katalog.html" class="alt" title="Daftar algoritma yang diuji">Katalog</a>` + MODULES.map((m) => m.ready
     ? `<a href="#" title="${esc(m.title)}">${m.id}</a>`
     : `<span title="${esc(m.title || "segera")} — segera">${m.id}</span>`).join("");
 

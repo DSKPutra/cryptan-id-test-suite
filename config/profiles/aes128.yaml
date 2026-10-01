@@ -1,5 +1,6 @@
 extends: ../product_profile.yaml
 algorithm:
+  catalog_id: AES-128-CTR            # ID kanonik algo_catalog
   id: AES-128
   name: "AES-128 (FIPS 197) mode CTR"
   primitive: block_cipher

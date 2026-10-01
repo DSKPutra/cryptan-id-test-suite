@@ -1,5 +1,6 @@
 extends: ../product_profile.yaml
 algorithm:
+  catalog_id: RSA-OAEP-2048            # ID kanonik algo_catalog
   id: RSA-OAEP-2048
   name: "RSA-OAEP 2048-bit, SHA-256/MGF1-SHA-256 (RFC 8017, SP 800-56B)"
   primitive: pkc

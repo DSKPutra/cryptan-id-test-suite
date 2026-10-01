@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Katalog Algoritma Uji</title>
+<meta name="description" content="Cryptan.ID Test Suite — menyusun daftar algoritma kriptografi yang diuji (varian & panjang kunci) dari dropdown katalog, file, atau link.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katalog.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><path d="M10 14v-3a6 6 0 0 1 12 0v3" stroke="#fff" stroke-width="2.4" fill="none"/><rect x="8" y="14" width="16" height="11" rx="2.5" fill="#fff"/><circle cx="16" cy="19.5" r="1.8" fill="var(--accent)"/></svg>
+      <span>Cryptan.ID <b>Test Suite</b></span>
+    </a>
+    <nav class="modules" aria-label="Modul">
+      <a href="katalog.html" class="cur">Katalog</a><a href="index.html" class="alt">UK-1</a>
+      <span>UK-2</span><span>UK-3</span><span>UK-4</span><span>UK-5</span><span>UK-6</span><span>UK-7</span><span>UK-8</span>
+    </nav>
+    <button class="theme" id="theme" aria-label="Ganti tema">◐</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <p class="eyebrow">Modul algo_catalog · melengkapi UK-1 KUK 1.1</p>
+    <h1>Daftar Algoritma yang Diuji</h1>
+    <p class="lede">Susun algoritma beserta seluruh varian (mode, kurva, parameter set, digest) dan panjang kuncinya.
+      Gabungkan tiga cara input — <b>Dropdown</b> katalog, <b>File / teks</b>, dan <b>Link</b> — lalu hasilnya
+      dinormalisasi ke ID kanonik, dideduplikasi, dan diberi peringatan otomatis (SP 800-131A, SP 800-57, NIST IR 8547).</p>
+    <p class="note" id="catinfo">Memuat katalog…</p>
+  </section>
+
+  <div class="kgrid">
+    <section>
+      <div class="tabs" role="tablist">
+        <button role="tab" data-t="drop" aria-selected="true">🗂️ Dropdown</button>
+        <button role="tab" data-t="file" aria-selected="false">📄 File / teks</button>
+        <button role="tab" data-t="link" aria-selected="false">🔗 Link</button>
+        <button role="tab" data-t="product" aria-selected="false">📦 Daftar produk</button>
+      </div>
+
+      <div class="pane" id="p-drop">
+        <label class="fld">Cari <input id="q" type="search" placeholder="mis. GCM, P-384, ML-KEM, SHA3"></label>
+        <div class="row3">
+          <label class="fld">Primitif <select id="prim"></select></label>
+          <label class="fld">Algoritma <select id="fam"></select></label>
+        </div>
+        <div class="fld"><div class="lbl">Varian / mode / kurva / parameter set
+          <button class="link" id="allv">pilih semua varian</button></div>
+          <div id="variants" class="checks"></div></div>
+        <div class="fld"><div class="lbl">Panjang kunci / kombinasi <button class="link" id="allk">pilih semua</button></div>
+          <div id="combos" class="checks"></div></div>
+        <button class="btn" id="addpick">Tambahkan ke daftar</button>
+      </div>
+
+      <div class="pane" id="p-file" hidden>
+        <p class="note">Deteksi berjalan di browser (Pyodide) memakai kode Python yang sama dengan CLI. Berkas teks/kode:
+          .txt .md .csv .json .yaml .html .c .h .py .java .go .rs .js .ts. Untuk PDF/DOCX/XLSX gunakan CLI atau GUI Streamlit.</p>
+        <input type="file" id="files" multiple accept=".txt,.md,.csv,.json,.yaml,.yml,.html,.htm,.c,.h,.cc,.cpp,.hpp,.py,.java,.kt,.go,.rs,.js,.ts,.cs">
+        <label class="fld">atau tempel teks / source code
+          <textarea id="paste" rows="7" placeholder='Cipher.getInstance("AES/GCM/NoPadding"); kg.init(256);'></textarea></label>
+        <div class="row3"><label class="fld">Panjang kunci default (opsional) <input id="kb" type="number" min="0" step="64" placeholder="mis. 256"></label>
+          <label class="fld">Ambang keyakinan <input id="minc" type="number" min="0" max="1" step="0.05" value="0.6"></label></div>
+        <button class="btn" id="detect">Deteksi</button> <span class="note" id="pystat"></span>
+      </div>
+
+      <div class="pane" id="p-link" hidden>
+        <p class="note">Browser hanya dapat membaca halaman yang mengizinkan CORS. Untuk halaman lain (mis. CSRC NIST, PDF
+          sertifikat CMVP) gunakan CLI: <code>python -m algo_catalog select --url &lt;URL&gt;</code> — CLI menghormati robots.txt.</p>
+        <label class="fld">URL <input id="url" type="url" placeholder="https://…"></label>
+        <button class="btn" id="fetch">Unduh & deteksi</button> <span class="note" id="linkstat"></span>
+      </div>
+
+      <div class="pane" id="p-product" hidden>
+        <p class="note">Daftar algoritma uji produk saat ini (<code>outputs/algo_catalog/algorithms_under_test.yaml</code>, tertaut ke
+          <code>config/product_profile.yaml</code> sebagai masukan UK-1).</p>
+        <div id="product"></div>
+        <button class="btn ghost" id="loadprod">Muat ke daftar terpilih</button>
+      </div>
+
+      <div id="cands" hidden>
+        <h3>Konfirmasi hasil deteksi</h3>
+        <p class="note">Centang kombinasi yang benar. Skor keyakinan & potongan bukti ditampilkan.</p>
+        <div class="card"><div class="tbl"><table id="candtbl"></table></div></div>
+        <div class="acts"><button class="btn" id="confirm">✔ Konfirmasi pilihan</button><button class="btn ghost" id="discard">Buang</button></div>
+      </div>
+    </section>
+
+    <aside>
+      <div class="sticky">
+        <h3>Daftar terpilih <span class="b muted" id="count">0</span></h3>
+        <div class="card"><div class="tbl"><table id="seltbl"></table></div></div>
+        <div id="summary" class="note"></div>
+        <div id="warns"></div>
+        <div class="dl">
+          <a href="#" id="dlcsv">⬇ CSV</a><a href="#" id="dljson">⬇ JSON</a><a href="#" id="dlyaml">⬇ YAML</a>
+          <a href="#" id="clear" class="danger">Kosongkan</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="foot wrap">
+  <span>Cryptan.ID Test Suite · Pelatihan Sertifikasi Cryptographic Analyst Angkatan 1 — Politeknik Siber dan Sandi Negara</span>
+  <span>Status & strength: SP 800-131A Rev.2, SP 800-57 Pt.1, FIPS 203–205 · <a href="https://github.com/DSKPutra/cryptan-id-test-suite">source code</a></span>
+</footer>
+<script src="katalog.js"></script>
+</body>
+</html>

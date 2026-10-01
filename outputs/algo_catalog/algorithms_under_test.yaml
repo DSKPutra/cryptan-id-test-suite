@@ -1,0 +1,1178 @@
+# Dihasilkan oleh: python -m algo_catalog select …  (jangan disunting manual)
+schema: cryptan.algo_catalog.algorithms_under_test.v1
+generated_at: '2026-10-01T09:16:53+07:00'
+product: Cryptan.ID SecureLib
+kuk: UK-1 KUK 1.1 — informasi desain produk (daftar algoritma yang diuji)
+summary:
+  total_combinations: 33
+  by_primitive:
+    block_cipher: 6
+    stream_cipher: 2
+    hash: 7
+    mac: 4
+    pkc_kem: 7
+    signature: 6
+    drbg: 1
+  families:
+  - AES
+  - Ascon
+  - BLAKE2
+  - ChaCha
+  - DRBG
+  - ECDH
+  - ECDSA
+  - EdDSA
+  - FFDH
+  - HMAC
+  - ML-DSA
+  - ML-KEM
+  - PRESENT
+  - RSA
+  - SHA-1
+  - SHA-2
+  - SHA-3
+  - SLH-DSA
+  - TDEA
+  - XECDH
+  by_input:
+    link: 0
+    file: 32
+    dropdown: 6
+    edit: 0
+uk1_coverage:
+  with_profile:
+  - config/profiles/aes128.yaml
+  - config/profiles/chacha20.yaml
+  - config/profiles/ecdsa_p256.yaml
+  - config/profiles/rsa_oaep_2048.yaml
+  - config/profiles/sha3_256.yaml
+  without_profile:
+  - AES-256-GCM
+  - AES-256-KW
+  - XTS-AES-256
+  - PRESENT-80
+  - TDEA-3KEY
+  - CHACHA20-POLY1305
+  - BLAKE2B-512
+  - SHA-1
+  - SHA-256
+  - SHA-384
+  - SHA-512/256
+  - SHAKE256
+  - CMAC-AES-128
+  - ASCON-AEAD128
+  - HMAC-SHA-256-K128
+  - HMAC-SHA-256-K256
+  - ECDH-P384
+  - FFDHE3072
+  - ML-KEM-768
+  - RSA-OAEP-3072
+  - RSAES-PKCS1-V1_5-1024
+  - X25519
+  - ECDSA-P384
+  - ED25519
+  - ML-DSA-65
+  - RSA-PSS-3072
+  - SLH-DSA-SHA2-128S
+  - CTR-DRBG-AES-256
+  note: Kombinasi tanpa profil UK-1 dapat dibuat dengan menyalin profil primitif yang sama di config/profiles/
+warnings:
+- level: TINGGI
+  code: STRENGTH_LT_112
+  message: 'PRESENT-80: security strength 80 bit < 112 bit (SP 800-57 Pt.1)'
+- level: TINGGI
+  code: STATUS_DISALLOWED
+  message: 'TDEA-3KEY: status NIST disallowed (SP 800-131A Rev.2)'
+- level: TINGGI
+  code: STATUS_DISALLOWED
+  message: 'SHA-1: status NIST disallowed (SP 800-131A Rev.2)'
+- level: TINGGI
+  code: STRENGTH_LT_112
+  message: 'SHA-1: security strength <80 bit < 112 bit (SP 800-57 Pt.1)'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'ECDH-P384: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated setelah
+    2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'FFDHE3072: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated setelah
+    2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'RSA-OAEP-2048: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated
+    setelah 2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'RSA-OAEP-3072: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated
+    setelah 2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: TINGGI
+  code: STATUS_DISALLOWED
+  message: 'RSAES-PKCS1-V1_5-1024: status NIST disallowed (SP 800-131A Rev.2)'
+- level: TINGGI
+  code: STRENGTH_LT_112
+  message: 'RSAES-PKCS1-V1_5-1024: security strength 80 bit < 112 bit (SP 800-57 Pt.1)'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'RSAES-PKCS1-V1_5-1024: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated
+    setelah 2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'X25519: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated setelah
+    2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'X25519: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'ECDSA-P256: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated setelah
+    2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'ECDSA-P384: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated setelah
+    2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'ED25519: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated setelah
+    2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'RSA-PSS-3072: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated
+    setelah 2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+pending_unconfirmed:
+- id: ECDH-P256
+  confidence: 0.5
+  evidence: '[securelib_crypto.c:25] i tanda tangan ECDSA */     return EC_KEY_new_by_curve_name(NID_X9_62_prime256v1); }'
+- id: HMAC-SHA-384-K192
+  confidence: 0.4
+  evidence: '[CryptoService.java:27] te[] m) throws Exception {         Mac h = Mac.getInstance("HmacSHA384");         h.init(k);         return
+    h.doFinal(m);     } }'
+- id: HMAC-SHA-384-K384
+  confidence: 0.4
+  evidence: '[CryptoService.java:27] te[] m) throws Exception {         Mac h = Mac.getInstance("HmacSHA384");         h.init(k);         return
+    h.doFinal(m);     } }'
+items:
+- id: AES-128-CTR
+  entry_id: AES-CTR
+  primitive: block_cipher
+  family: AES
+  variant: CTR
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38A
+  - ISO/IEC 18033-3
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: config/profiles/aes128.yaml
+  confidence: 1.0
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: 'F) Security Policy excerpt - Approved algorithms Symmetric: AES-128-CTR, AES-256-GCM (SP 800-38D), XTS-AES-256
+      for storage, AES-256'
+    match: AES-128-CTR
+    line: 3
+    key_from: alias
+  - type: dropdown
+    ref: AES:CTR:128
+    confidence: 1.0
+    evidence: 'dipilih: AES:CTR:128'
+  warnings: []
+- id: AES-256-GCM
+  entry_id: AES-GCM
+  primitive: block_cipher
+  family: AES
+  variant: GCM
+  key_bits: 256
+  block_or_output_bits: 128
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38D
+  - ISO/IEC 18033-3
+  - ISO/IEC 19772
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: 'olicy excerpt - Approved algorithms Symmetric: AES-128-CTR, AES-256-GCM (SP 800-38D), XTS-AES-256 for storage,
+      AES-256-KW Message a'
+    match: AES-256-GCM
+    line: 3
+    key_from: alias
+  - type: file
+    ref: securelib_crypto.c
+    confidence: 0.95
+    evidence: TX *ctx = EVP_CIPHER_CTX_new();     EVP_EncryptInit_ex(ctx, EVP_aes_256_gcm(), NULL, key, iv);       /* AEAD
+      utama */     /* ... */
+    match: EVP_aes_256_gcm
+    line: 7
+    key_from: alias
+  - type: file
+    ref: CryptoService.java
+    confidence: 0.75
+    evidence: ) throws Exception {         Cipher c = Cipher.getInstance("AES/GCM/NoPadding");         c.init(Cipher.ENCRYPT_MODE,
+      k);
+    match: AES/GCM
+    line: 12
+    key_from: konteks
+  warnings: []
+- id: AES-256-KW
+  entry_id: AES-KW
+  primitive: block_cipher
+  family: AES
+  variant: KW
+  key_bits: 256
+  block_or_output_bits: 128
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38F
+  - RFC 3394
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: '128-CTR, AES-256-GCM (SP 800-38D), XTS-AES-256 for storage, AES-256-KW Message authentication: HMAC-SHA-256
+      with 256-bit keys, CMA'
+    match: AES-256-KW
+    line: 3
+    key_from: alias
+  warnings: []
+- id: XTS-AES-256
+  entry_id: XTS-AES
+  primitive: block_cipher
+  family: AES
+  variant: XTS
+  key_bits: 256
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38E
+  - IEEE 1619
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: 'lgorithms Symmetric: AES-128-CTR, AES-256-GCM (SP 800-38D), XTS-AES-256 for storage, AES-256-KW Message authentication:
+      HMAC-SHA-25'
+    match: XTS-AES-256
+    line: 3
+    key_from: alias
+  - type: file
+    ref: vendor_page.html
+    confidence: 0.95
+    evidence: ulk encryption ChaCha20-Poly1305 (RFC 8439) Disk encryption XTS-AES-256 Hash SHA-512/256, BLAKE2b Signatures
+      ECDSA P-384, SLH-DSA-S
+    match: XTS-AES-256
+    line: 8
+    key_from: alias
+  warnings: []
+- id: PRESENT-80
+  entry_id: PRESENT
+  primitive: block_cipher
+  family: PRESENT
+  variant: ECB
+  key_bits: 80
+  block_or_output_bits: 64
+  security_strength_bits: 80
+  security_category: null
+  status_nist: not_nist
+  standards:
+  - ISO/IEC 29192-2
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: vendor_page.html
+    confidence: 0.95
+    evidence: greement X25519, ffdhe3072 Lightweight (IoT) Ascon-AEAD128, PRESENT-80
+    match: PRESENT-80
+    line: 16
+    key_from: alias
+  warnings:
+  - STRENGTH_LT_112
+- id: TDEA-3KEY
+  entry_id: TDEA-3KEY
+  primitive: block_cipher
+  family: TDEA
+  variant: 3-key
+  key_bits: 168
+  block_or_output_bits: 64
+  security_strength_bits: 112
+  security_category: null
+  status_nist: disallowed
+  standards:
+  - SP 800-67 Rev.2
+  - SP 800-131A Rev.2
+  - ISO/IEC 18033-3
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: '(SP 800-90A) Legacy (non-approved, interoperability only): TDEA, SHA-1, RSA-1024 PKCS#1 v1.5 RSAES-PKCS1-v1_5'
+    match: TDEA
+    line: 9
+    key_from: alias
+  - type: file
+    ref: securelib_crypto.c
+    confidence: 0.95
+    evidence: TX *ctx = EVP_CIPHER_CTX_new();     EVP_DecryptInit_ex(ctx, EVP_des_ede3_cbc(), NULL, key, iv);       /* hanya
+      dekripsi data lama */
+    match: EVP_des_ede3_cbc
+    line: 15
+    key_from: alias
+  warnings:
+  - STATUS_DISALLOWED
+- id: CHACHA20-256
+  entry_id: CHACHA20
+  primitive: stream_cipher
+  family: ChaCha
+  variant: ChaCha20
+  key_bits: 256
+  block_or_output_bits: 512
+  security_strength_bits: 256
+  security_category: null
+  status_nist: not_nist
+  standards:
+  - RFC 8439
+  quantum_vulnerable: false
+  uk1_primitive: stream_cipher
+  uk1_profile: config/profiles/chacha20.yaml
+  confidence: 1.0
+  inputs:
+  - type: dropdown
+    ref: CHACHA:ChaCha20
+    confidence: 1.0
+    evidence: 'dipilih: CHACHA:ChaCha20'
+  warnings: []
+- id: CHACHA20-POLY1305
+  entry_id: CHACHA20-POLY1305
+  primitive: stream_cipher
+  family: ChaCha
+  variant: ChaCha20-Poly1305
+  key_bits: 256
+  block_or_output_bits: 512
+  security_strength_bits: 256
+  security_category: null
+  status_nist: not_nist
+  standards:
+  - RFC 8439
+  quantum_vulnerable: false
+  uk1_primitive: stream_cipher
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: vendor_page.html
+    confidence: 0.95
+    evidence: ryptographic Capabilities Service Algorithm Bulk encryption ChaCha20-Poly1305 (RFC 8439) Disk encryption XTS-AES-256
+      Hash SHA-512/256, BL
+    match: ChaCha20-Poly1305
+    line: 6
+    key_from: alias
+  warnings: []
+- id: BLAKE2B-512
+  entry_id: BLAKE2B
+  primitive: hash
+  family: BLAKE2
+  variant: BLAKE2b-512
+  key_bits: null
+  block_or_output_bits: 512
+  security_strength_bits: 256
+  security_category: null
+  status_nist: not_nist
+  standards:
+  - RFC 7693
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: vendor_page.html
+    confidence: 0.95
+    evidence: 05 (RFC 8439) Disk encryption XTS-AES-256 Hash SHA-512/256, BLAKE2b Signatures ECDSA P-384, SLH-DSA-SHA2-128s
+      Key agreement X25
+    match: BLAKE2b
+    line: 10
+    key_from: alias
+  warnings: []
+- id: SHA-1
+  entry_id: SHA-1
+  primitive: hash
+  family: SHA-1
+  variant: SHA-1
+  key_bits: null
+  block_or_output_bits: 160
+  security_strength_bits: <80
+  security_category: null
+  status_nist: disallowed
+  standards:
+  - FIPS 180-4
+  - SP 800-131A Rev.2
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: '00-90A) Legacy (non-approved, interoperability only): TDEA, SHA-1, RSA-1024 PKCS#1 v1.5 RSAES-PKCS1-v1_5'
+    match: SHA-1
+    line: 9
+    key_from: alias
+  - type: file
+    ref: app_crypto.py
+    confidence: 0.95
+    evidence: 'gest()  def legacy_checksum(data: bytes) -> str:     return hashlib.sha1(data).hexdigest()          # hanya
+      kompatibilitas  def sign'
+    match: hashlib.sha1
+    line: 10
+    key_from: alias
+  warnings:
+  - STATUS_DISALLOWED
+  - STRENGTH_LT_112
+- id: SHA-256
+  entry_id: SHA-256
+  primitive: hash
+  family: SHA-2
+  variant: SHA-256
+  key_bits: null
+  block_or_output_bits: 256
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 180-4
+  - ISO/IEC 10118-3
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: 'tion: HMAC-SHA-256 with 256-bit keys, CMAC-AES-128 Hashing: SHA-256, SHA-384, SHA3-256, SHAKE256 Key establishment:
+      ECDH P-384,'
+    match: SHA-256
+    line: 5
+    key_from: alias
+  warnings: []
+- id: SHA-384
+  entry_id: SHA-384
+  primitive: hash
+  family: SHA-2
+  variant: SHA-384
+  key_bits: null
+  block_or_output_bits: 384
+  security_strength_bits: 192
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 180-4
+  - ISO/IEC 10118-3
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: 'C-SHA-256 with 256-bit keys, CMAC-AES-128 Hashing: SHA-256, SHA-384, SHA3-256, SHAKE256 Key establishment:
+      ECDH P-384, ML-KEM-7'
+    match: SHA-384
+    line: 5
+    key_from: alias
+  - type: file
+    ref: app_crypto.py
+    confidence: 0.95
+    evidence: 'kunci tanda tangan ECDSA     return key.sign(data, ec.ECDSA(hashes.SHA384()))  def sign_ed25519(data: bytes):     return
+      ed25519.Ed25'
+    match: hashes.SHA384
+    line: 14
+    key_from: alias
+  warnings: []
+- id: SHA-512/256
+  entry_id: SHA-512/256
+  primitive: hash
+  family: SHA-2
+  variant: SHA-512/256
+  key_bits: null
+  block_or_output_bits: 256
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 180-4
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: vendor_page.html
+    confidence: 0.95
+    evidence: aCha20-Poly1305 (RFC 8439) Disk encryption XTS-AES-256 Hash SHA-512/256, BLAKE2b Signatures ECDSA P-384, SLH-DSA-SHA2-128s
+      Key agre
+    match: SHA-512/256
+    line: 10
+    key_from: alias
+  warnings: []
+- id: SHA3-256
+  entry_id: SHA3-256
+  primitive: hash
+  family: SHA-3
+  variant: SHA3-256
+  key_bits: null
+  block_or_output_bits: 256
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 202
+  - ISO/IEC 10118-3
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: config/profiles/sha3_256.yaml
+  confidence: 1.0
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: 'with 256-bit keys, CMAC-AES-128 Hashing: SHA-256, SHA-384, SHA3-256, SHAKE256 Key establishment: ECDH P-384,
+      ML-KEM-768 (FIPS 2'
+    match: SHA3-256
+    line: 5
+    key_from: alias
+  - type: file
+    ref: securelib_crypto.c
+    confidence: 0.95
+    evidence: _t n, unsigned char *out) {     EVP_Digest(m, n, out, NULL, EVP_sha3_256(), NULL); }  EC_KEY *make_signing_key(void)
+      {     /* kunci
+    match: EVP_sha3_256
+    line: 20
+    key_from: alias
+  - type: file
+    ref: app_crypto.py
+    confidence: 0.95
+    evidence: '9, padding  def fingerprint(data: bytes) -> str:     return hashlib.sha3_256(data).hexdigest()  def legacy_checksum(data:
+      bytes) -> str:'
+    match: hashlib.sha3_256
+    line: 7
+    key_from: alias
+  - type: dropdown
+    ref: SHA-3:SHA3-256
+    confidence: 1.0
+    evidence: 'dipilih: SHA-3:SHA3-256'
+  warnings: []
+- id: SHAKE256
+  entry_id: SHAKE256
+  primitive: hash
+  family: SHA-3
+  variant: SHAKE256
+  key_bits: null
+  block_or_output_bits: 512
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 202
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: 'bit keys, CMAC-AES-128 Hashing: SHA-256, SHA-384, SHA3-256, SHAKE256 Key establishment: ECDH P-384, ML-KEM-768
+      (FIPS 203), RSA-O'
+    match: SHAKE256
+    line: 5
+    key_from: alias
+  warnings: []
+- id: CMAC-AES-128
+  entry_id: AES-CMAC
+  primitive: mac
+  family: AES
+  variant: CMAC
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38B
+  - ISO/IEC 9797-1
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: '-KW Message authentication: HMAC-SHA-256 with 256-bit keys, CMAC-AES-128 Hashing: SHA-256, SHA-384, SHA3-256,
+      SHAKE256 Key establish'
+    match: CMAC-AES-128
+    line: 4
+    key_from: alias
+  warnings: []
+- id: ASCON-AEAD128
+  entry_id: ASCON-AEAD128
+  primitive: mac
+  family: Ascon
+  variant: Ascon-AEAD128
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-232
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: vendor_page.html
+    confidence: 0.95
+    evidence: SHA2-128s Key agreement X25519, ffdhe3072 Lightweight (IoT) Ascon-AEAD128, PRESENT-80
+    match: Ascon-AEAD128
+    line: 16
+    key_from: alias
+  warnings: []
+- id: HMAC-SHA-256-K128
+  entry_id: HMAC-SHA-256
+  primitive: mac
+  family: HMAC
+  variant: SHA-256
+  key_bits: 128
+  block_or_output_bits: 256
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 198-1
+  - SP 800-107 Rev.1
+  - ISO/IEC 9797-2
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.75
+    evidence: 'XTS-AES-256 for storage, AES-256-KW Message authentication: HMAC-SHA-256 with 256-bit keys, CMAC-AES-128 Hashing:
+      SHA-256, SHA-384,'
+    match: HMAC-SHA-256
+    line: 4
+    key_from: konteks
+  warnings: []
+- id: HMAC-SHA-256-K256
+  entry_id: HMAC-SHA-256
+  primitive: mac
+  family: HMAC
+  variant: SHA-256
+  key_bits: 256
+  block_or_output_bits: 256
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 198-1
+  - SP 800-107 Rev.1
+  - ISO/IEC 9797-2
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.75
+    evidence: 'XTS-AES-256 for storage, AES-256-KW Message authentication: HMAC-SHA-256 with 256-bit keys, CMAC-AES-128 Hashing:
+      SHA-256, SHA-384,'
+    match: HMAC-SHA-256
+    line: 4
+    key_from: konteks
+  warnings: []
+- id: ECDH-P384
+  entry_id: ECDH-P384
+  primitive: pkc_kem
+  family: ECDH
+  variant: P-384
+  key_bits: 384
+  block_or_output_bits: null
+  security_strength_bits: 192
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-56A Rev.3
+  - SP 800-186
+  quantum_vulnerable: true
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: 'ng: SHA-256, SHA-384, SHA3-256, SHAKE256 Key establishment: ECDH P-384, ML-KEM-768 (FIPS 203), RSA-OAEP 2048-bit
+      and 3072-bit Digi'
+    match: ECDH P-384
+    line: 6
+    key_from: alias
+  - type: file
+    ref: app_crypto.py
+    confidence: 0.5
+    evidence: 'gn_ecdsa(data: bytes):     key = ec.generate_private_key(ec.SECP384R1())   # kunci tanda tangan ECDSA     return
+      key.sign(data, e'
+    match: SECP384R1
+    line: 13
+    key_from: alias ambigu
+  warnings:
+  - QUANTUM_VULNERABLE
+- id: FFDHE3072
+  entry_id: FFDH-FFDHE
+  primitive: pkc_kem
+  family: FFDH
+  variant: ffdhe
+  key_bits: 3072
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-56A Rev.3
+  - RFC 7919
+  quantum_vulnerable: true
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: vendor_page.html
+    confidence: 0.95
+    evidence: atures ECDSA P-384, SLH-DSA-SHA2-128s Key agreement X25519, ffdhe3072 Lightweight (IoT) Ascon-AEAD128, PRESENT-80
+    match: ffdhe3072
+    line: 14
+    key_from: alias
+  warnings:
+  - QUANTUM_VULNERABLE
+- id: ML-KEM-768
+  entry_id: ML-KEM-768
+  primitive: pkc_kem
+  family: ML-KEM
+  variant: ML-KEM-768
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: 192
+  security_category: 3
+  status_nist: acceptable
+  standards:
+  - FIPS 203
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 1.0
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: 'SHA-384, SHA3-256, SHAKE256 Key establishment: ECDH P-384, ML-KEM-768 (FIPS 203), RSA-OAEP 2048-bit and 3072-bit
+      Digital signatur'
+    match: ML-KEM-768
+    line: 6
+    key_from: alias
+  - type: dropdown
+    ref: ML-KEM:768
+    confidence: 1.0
+    evidence: 'dipilih: ML-KEM:768'
+  warnings: []
+- id: RSA-OAEP-2048
+  entry_id: RSA-OAEP
+  primitive: pkc_kem
+  family: RSA
+  variant: OAEP
+  key_bits: 2048
+  block_or_output_bits: null
+  security_strength_bits: 112
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-56B Rev.2
+  - RFC 8017
+  - ISO/IEC 18033-2
+  quantum_vulnerable: true
+  uk1_primitive: pkc
+  uk1_profile: config/profiles/rsa_oaep_2048.yaml
+  confidence: 1.0
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: 'KE256 Key establishment: ECDH P-384, ML-KEM-768 (FIPS 203), RSA-OAEP 2048-bit and 3072-bit Digital signatures:
+      ECDSA P-256, RSA-PSS 3'
+    match: RSA-OAEP 2048
+    line: 6
+    key_from: alias
+  - type: dropdown
+    ref: RSA:OAEP:2048
+    confidence: 1.0
+    evidence: 'dipilih: RSA:OAEP:2048'
+  warnings:
+  - QUANTUM_VULNERABLE
+- id: RSA-OAEP-3072
+  entry_id: RSA-OAEP
+  primitive: pkc_kem
+  family: RSA
+  variant: OAEP
+  key_bits: 3072
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-56B Rev.2
+  - RFC 8017
+  - ISO/IEC 18033-2
+  quantum_vulnerable: true
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.75
+    evidence: 'KE256 Key establishment: ECDH P-384, ML-KEM-768 (FIPS 203), RSA-OAEP 2048-bit and 3072-bit Digital signatures:
+      ECDSA P-256, RSA-'
+    match: RSA-OAEP
+    line: 6
+    key_from: konteks
+  - type: file
+    ref: CryptoService.java
+    confidence: 0.75
+    evidence: ) throws Exception {         Cipher c = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding");         c.init(Cipher.ENCRYPT_M
+    match: RSA/ECB/OAEP
+    line: 22
+    key_from: konteks
+  warnings:
+  - QUANTUM_VULNERABLE
+- id: RSAES-PKCS1-V1_5-1024
+  entry_id: RSAES-PKCS1-V1_5
+  primitive: pkc_kem
+  family: RSA
+  variant: PKCS1-v1_5-ENC
+  key_bits: 1024
+  block_or_output_bits: null
+  security_strength_bits: 80
+  security_category: null
+  status_nist: disallowed
+  standards:
+  - RFC 8017
+  - SP 800-131A Rev.2
+  quantum_vulnerable: true
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.75
+    evidence: ', interoperability only): TDEA, SHA-1, RSA-1024 PKCS#1 v1.5 RSAES-PKCS1-v1_5'
+    match: RSAES-PKCS1-v1_5
+    line: 9
+    key_from: konteks
+  warnings:
+  - STATUS_DISALLOWED
+  - STRENGTH_LT_112
+  - QUANTUM_VULNERABLE
+- id: X25519
+  entry_id: X25519
+  primitive: pkc_kem
+  family: XECDH
+  variant: X25519
+  key_bits: 255
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - RFC 7748
+  - SP 800-186
+  quantum_vulnerable: true
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: vendor_page.html
+    confidence: 0.95
+    evidence: E2b Signatures ECDSA P-384, SLH-DSA-SHA2-128s Key agreement X25519, ffdhe3072 Lightweight (IoT) Ascon-AEAD128,
+      PRESENT-80
+    match: X25519
+    line: 14
+    key_from: alias
+  warnings:
+  - QUANTUM_VULNERABLE
+  - PERLU_VERIFIKASI
+- id: ECDSA-P256
+  entry_id: ECDSA-P256
+  primitive: signature
+  family: ECDSA
+  variant: P-256
+  key_bits: 256
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 186-5
+  - SP 800-186
+  - ISO/IEC 14888-3
+  quantum_vulnerable: true
+  uk1_primitive: dss
+  uk1_profile: config/profiles/ecdsa_p256.yaml
+  confidence: 1.0
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: 'PS 203), RSA-OAEP 2048-bit and 3072-bit Digital signatures: ECDSA P-256, RSA-PSS 3072, Ed25519, ML-DSA-65 Random
+      bit generation: CT'
+    match: ECDSA P-256
+    line: 7
+    key_from: alias
+  - type: file
+    ref: securelib_crypto.c
+    confidence: 0.75
+    evidence: i tanda tangan ECDSA */     return EC_KEY_new_by_curve_name(NID_X9_62_prime256v1); }
+    match: NID_X9_62_prime256v1
+    line: 25
+    key_from: alias ambigu + petunjuk konteks
+  - type: dropdown
+    ref: ECDSA:P-256
+    confidence: 1.0
+    evidence: 'dipilih: ECDSA:P-256'
+  warnings:
+  - QUANTUM_VULNERABLE
+- id: ECDSA-P384
+  entry_id: ECDSA-P384
+  primitive: signature
+  family: ECDSA
+  variant: P-384
+  key_bits: 384
+  block_or_output_bits: null
+  security_strength_bits: 192
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 186-5
+  - SP 800-186
+  - ISO/IEC 14888-3
+  quantum_vulnerable: true
+  uk1_primitive: dss
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: vendor_page.html
+    confidence: 0.95
+    evidence: encryption XTS-AES-256 Hash SHA-512/256, BLAKE2b Signatures ECDSA P-384, SLH-DSA-SHA2-128s Key agreement X25519,
+      ffdhe3072 Lightwei
+    match: ECDSA P-384
+    line: 12
+    key_from: alias
+  - type: file
+    ref: app_crypto.py
+    confidence: 0.75
+    evidence: 'gn_ecdsa(data: bytes):     key = ec.generate_private_key(ec.SECP384R1())   # kunci tanda tangan ECDSA     return
+      key.sign(data, e'
+    match: SECP384R1
+    line: 13
+    key_from: alias ambigu + petunjuk konteks
+  warnings:
+  - QUANTUM_VULNERABLE
+- id: ED25519
+  entry_id: ED25519
+  primitive: signature
+  family: EdDSA
+  variant: Ed25519
+  key_bits: 255
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 186-5
+  - RFC 8032
+  - SP 800-186
+  quantum_vulnerable: true
+  uk1_primitive: dss
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: 'and 3072-bit Digital signatures: ECDSA P-256, RSA-PSS 3072, Ed25519, ML-DSA-65 Random bit generation: CTR_DRBG-AES-256
+      (SP 800-'
+    match: Ed25519
+    line: 7
+    key_from: alias
+  - type: file
+    ref: app_crypto.py
+    confidence: 0.95
+    evidence: 's from cryptography.hazmat.primitives.asymmetric import ec, ed25519, padding  def fingerprint(data: bytes)
+      -> str:     return h'
+    match: ed25519
+    line: 4
+    key_from: alias
+  warnings:
+  - QUANTUM_VULNERABLE
+- id: ML-DSA-65
+  entry_id: ML-DSA-65
+  primitive: signature
+  family: ML-DSA
+  variant: ML-DSA-65
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: 192
+  security_category: 3
+  status_nist: acceptable
+  standards:
+  - FIPS 204
+  quantum_vulnerable: false
+  uk1_primitive: dss
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: 'bit Digital signatures: ECDSA P-256, RSA-PSS 3072, Ed25519, ML-DSA-65 Random bit generation: CTR_DRBG-AES-256
+      (SP 800-90A) Legacy'
+    match: ML-DSA-65
+    line: 7
+    key_from: alias
+  warnings: []
+- id: RSA-PSS-3072
+  entry_id: RSA-PSS
+  primitive: signature
+  family: RSA
+  variant: PSS
+  key_bits: 3072
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 186-5
+  - RFC 8017
+  - ISO/IEC 14888-2
+  quantum_vulnerable: true
+  uk1_primitive: dss
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: 'OAEP 2048-bit and 3072-bit Digital signatures: ECDSA P-256, RSA-PSS 3072, Ed25519, ML-DSA-65 Random bit generation:
+      CTR_DRBG-AES-256'
+    match: RSA-PSS 3072
+    line: 7
+    key_from: alias
+  warnings:
+  - QUANTUM_VULNERABLE
+- id: SLH-DSA-SHA2-128S
+  entry_id: SLH-DSA-SHA2-128S
+  primitive: signature
+  family: SLH-DSA
+  variant: SHA2-128s
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: 1
+  status_nist: acceptable
+  standards:
+  - FIPS 205
+  quantum_vulnerable: false
+  uk1_primitive: dss
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: vendor_page.html
+    confidence: 0.95
+    evidence: S-AES-256 Hash SHA-512/256, BLAKE2b Signatures ECDSA P-384, SLH-DSA-SHA2-128s Key agreement X25519, ffdhe3072
+      Lightweight (IoT) Ascon-AEA
+    match: SLH-DSA-SHA2-128s
+    line: 12
+    key_from: alias
+  warnings: []
+- id: CTR-DRBG-AES-256
+  entry_id: CTR-DRBG
+  primitive: drbg
+  family: DRBG
+  variant: CTR_DRBG
+  key_bits: 256
+  block_or_output_bits: null
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-90A Rev.1
+  - ISO/IEC 18031
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: file
+    ref: datasheet_securelib.pdf
+    confidence: 0.95
+    evidence: '56, RSA-PSS 3072, Ed25519, ML-DSA-65 Random bit generation: CTR_DRBG-AES-256 (SP 800-90A) Legacy (non-approved,
+      interoperability only):'
+    match: CTR_DRBG-AES-256
+    line: 8
+    key_from: alias
+  warnings: []

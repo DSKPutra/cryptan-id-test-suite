@@ -2,7 +2,7 @@
 
 **Cryptan.ID Test Suite** v1.0.0 · Modul **UK-1** · Unit J.61KRP00.012.1 — *Menentukan Metode Pengujian yang akan Dilakukan* · SKKNI 2023-004 (Cryptographic Analyst)
 
-Dibangkitkan: 2026-09-30T23:04:22+07:00 · mode: full · objek: **Cryptan.ID SecureLib** (1.0.0 (hipotetis))
+Dibangkitkan: 2026-10-01T09:16:57+07:00 · mode: full · objek: **Cryptan.ID SecureLib** (1.0.0 (hipotetis))
 
 > Seluruh data produk bersifat ILUSTRATIF. Nilai bertanda HASIL UJI LANGSUNG dihitung oleh kode; HASIL LITERATUR dikutip dari rujukan; PERLU_VERIFIKASI wajib dicek ke sumber primer.
 
@@ -32,6 +32,7 @@ Dibangkitkan: 2026-09-30T23:04:22+07:00 · mode: full · objek: **Cryptan.ID Sec
 | Catatan implementasi | streaming_api=True |
 | Tingkat akses | grey_box — Penguji memperoleh spesifikasi algoritma & dokumen desain tingkat tinggi, biner library + header API, dan lingkungan uji dengan kunci uji. Kode sumber TIDAK tersedia. |
 | Kelengkapan profil | LENGKAP |
+| Daftar algoritma diuji (algo_catalog) | 33 kombinasi (block_cipher=6; stream_cipher=2; hash=7; mac=4; pkc_kem=7; signature=6; drbg=1); 6 peringatan tinggi; SHA3-256 termasuk daftar (strength 128, status acceptable) — `algorithms_under_test.yaml` |
 
 **Ruang lingkup:**
 
@@ -234,8 +235,8 @@ Tiga lapis pengujian × level uji (metode yang dipetakan):
 
 | Operasi | ops/detik |
 |---|---|
-| hash | 2,833.7 |
-| primary | 2,833.7 |
+| hash | 2,617.8 |
+| primary | 2,617.8 |
 
 Mesin: Darwin arm64, arm, 8 CPU logis, Python 3.11.1. Implementasi: referensi pure Python (core/) — batas bawah konservatif.
 
@@ -257,19 +258,19 @@ Waktu = 2^k ÷ (ops/detik × core × speedup).
 | Metode | Operasi | k (log2) | Estimasi penuh | Data | Memori | Varian tereduksi | Status | Alasan |
 |---|---|---|---|---|---|---|---|---|
 | M-KAT | primary | 7 | 0.01 detik | 2^7.0 operasi/sampel | ≤ 2^10 B | — | LAYAK | Estimasi 0.01 detik ≤ anggaran 24 jam |
-| M-MCT | primary | 16.61 | 4.41 detik | 2^16.6 operasi/sampel | ≤ 2^14 B | — | LAYAK | Estimasi 4.41 detik ≤ anggaran 24 jam |
+| M-MCT | primary | 16.61 | 4.78 detik | 2^16.6 operasi/sampel | ≤ 2^14 B | — | LAYAK | Estimasi 4.78 detik ≤ anggaran 24 jam |
 | M-SBOX | analysis | 20 | 0 detik (analitis) | — | — | — | LAYAK | Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
-| M-DIFFUSION | primary | 17 | 5.78 detik | 2^17.0 operasi/sampel | ≤ 2^14 B | — | LAYAK | Estimasi 5.78 detik ≤ anggaran 24 jam |
-| M-AVAL | primary | 14.29 | 0.88 detik | 2^14.3 operasi/sampel | ≤ 2^13 B | — | LAYAK | Estimasi 0.88 detik ≤ anggaran 24 jam |
-| M-SP80022 | primary | 18.58 | 17.23 detik | 2^18.6 operasi/sampel | ≈ 12.5 MB | — | LAYAK | Estimasi 17.23 detik ≤ anggaran 24 jam |
-| M-DIFF | primary | 150 | 2^110.6 tahun | 2^150.0 operasi/sampel | ≤ 2^40 B | Trail/distinguisher diferensial pada 2–3 ronde tereduksi — 11.56 detik | LAYAK VERSI TEREDUKSI | Versi penuh 2^110.6 tahun > anggaran; versi tereduksi 11.56 detik |
+| M-DIFFUSION | primary | 17 | 6.26 detik | 2^17.0 operasi/sampel | ≤ 2^14 B | — | LAYAK | Estimasi 6.26 detik ≤ anggaran 24 jam |
+| M-AVAL | primary | 14.29 | 0.96 detik | 2^14.3 operasi/sampel | ≤ 2^13 B | — | LAYAK | Estimasi 0.96 detik ≤ anggaran 24 jam |
+| M-SP80022 | primary | 18.58 | 18.65 detik | 2^18.6 operasi/sampel | ≈ 12.5 MB | — | LAYAK | Estimasi 18.65 detik ≤ anggaran 24 jam |
+| M-DIFF | primary | 150 | 2^110.7 tahun | 2^150.0 operasi/sampel | ≤ 2^40 B | Trail/distinguisher diferensial pada 2–3 ronde tereduksi — 12.52 detik | LAYAK VERSI TEREDUKSI | Versi penuh 2^110.7 tahun > anggaran; versi tereduksi 12.52 detik |
 | M-KEYSIZE | analysis | 0 | 0 detik (analitis) | — | — | — | LAYAK | Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
-| M-GENERIC | hash | 128 | 2^88.6 tahun | 2^128.0 operasi/sampel | ≤ 2^40 B | Birthday collision pada digest terpotong 32 bit (≈ 2^16 hash) — validasi rumus 2^(n/2) — 5.78 detik | LAYAK VERSI TEREDUKSI | Versi penuh 2^88.6 tahun > anggaran; versi tereduksi 5.78 detik |
+| M-GENERIC | hash | 128 | 2^88.7 tahun | 2^128.0 operasi/sampel | ≤ 2^40 B | Birthday collision pada digest terpotong 32 bit (≈ 2^16 hash) — validasi rumus 2^(n/2) — 6.26 detik | LAYAK VERSI TEREDUKSI | Versi penuh 2^88.7 tahun > anggaran; versi tereduksi 6.26 detik |
 | M-PAD | hash | 10 | 0.05 detik | 2^10.0 operasi/sampel | ≤ 2^11 B | — | LAYAK | Estimasi 0.05 detik ≤ anggaran 24 jam |
-| M-TIMING | primary | 20 | 46.26 detik | 2^20.0 operasi/sampel | ≤ 2^16 B | — | LAYAK | Estimasi 46.26 detik ≤ anggaran 24 jam |
-| M-TVLA | primary | 17 | 5.78 detik | 2^17.0 operasi/sampel | ≤ 2^14 B | — | TIDAK LAYAK | Alat tidak tersedia: oscilloscope, chipwhisperer |
+| M-TIMING | primary | 20 | 50.07 detik | 2^20.0 operasi/sampel | ≤ 2^16 B | — | LAYAK | Estimasi 50.07 detik ≤ anggaran 24 jam |
+| M-TVLA | primary | 17 | 6.26 detik | 2^17.0 operasi/sampel | ≤ 2^14 B | — | TIDAK LAYAK | Alat tidak tersedia: oscilloscope, chipwhisperer |
 | M-CODEREVIEW | analysis | 0 | 0 detik (analitis) | — | — | — | LAYAK | Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
-| M-FUZZ | primary | 20 | 46.26 detik | 2^20.0 operasi/sampel | ≤ 2^16 B | — | LAYAK | Estimasi 46.26 detik ≤ anggaran 24 jam |
+| M-FUZZ | primary | 20 | 50.07 detik | 2^20.0 operasi/sampel | ≤ 2^16 B | — | LAYAK | Estimasi 50.07 detik ≤ anggaran 24 jam |
 | M-ZEROIZE | analysis | 0 | 0 detik (analitis) | — | — | — | LAYAK | Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
 | M-SELFTEST | analysis | 0 | 0 detik (analitis) | — | — | — | LAYAK | Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
 
@@ -281,18 +282,18 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 
 | Metode | Lapis | Level | Varian | Skor | Target | Alasan |
 |---|---|---|---|---|---|---|
-| M-AVAL Uji avalanche & Strict Avalanche Criterion (fungsi penuh) | Kekuatan algoritma | Unit | penuh | 3 | C-CHI | Skor 3.0 ≥ 1.0: relevan terhadap C-CHI. Estimasi 0.88 detik ≤ anggaran 24 jam |
-| M-FUZZ Uji negatif & fuzzing API (masukan malformed, panjang ekstrem) | Implementasi & sistem | Integrasi | penuh | 3 | C-API | Skor 3.0 ≥ 1.0: relevan terhadap C-API. Estimasi 46.26 detik ≤ anggaran 24 jam |
+| M-AVAL Uji avalanche & Strict Avalanche Criterion (fungsi penuh) | Kekuatan algoritma | Unit | penuh | 3 | C-CHI | Skor 3.0 ≥ 1.0: relevan terhadap C-CHI. Estimasi 0.96 detik ≤ anggaran 24 jam |
+| M-FUZZ Uji negatif & fuzzing API (masukan malformed, panjang ekstrem) | Implementasi & sistem | Integrasi | penuh | 3 | C-API | Skor 3.0 ≥ 1.0: relevan terhadap C-API. Estimasi 50.07 detik ≤ anggaran 24 jam |
 | M-SBOX Analisis sifat S-box / fungsi nonlinear (NL, DDT, LAT, derajat, SAC) | Kekuatan algoritma | Unit | penuh | 3 | C-CHI | Skor 3.0 ≥ 1.0: relevan terhadap C-CHI. Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
-| M-TIMING Analisis timing leakage (dudect / Welch t-test, fixed-vs-random) | Implementasi & sistem | Integrasi | penuh | 3 | C-PLAT | Skor 3.0 ≥ 1.0: relevan terhadap C-PLAT. Estimasi 46.26 detik ≤ anggaran 24 jam |
+| M-TIMING Analisis timing leakage (dudect / Welch t-test, fixed-vs-random) | Implementasi & sistem | Integrasi | penuh | 3 | C-PLAT | Skor 3.0 ≥ 1.0: relevan terhadap C-PLAT. Estimasi 50.07 detik ≤ anggaran 24 jam |
 | M-ZEROIZE Uji zeroization material kunci (memory dump pasca-operasi) | Implementasi & sistem | Sistem | penuh | 3 | C-MEM | Skor 3.0 ≥ 1.0: relevan terhadap C-MEM. Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
-| M-DIFFUSION Analisis difusi (branch number/MDS, ronde menuju difusi penuh, avalanche per ronde) | Kekuatan algoritma | Unit | penuh | 2 | C-DIFF | Skor 2.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 5.78 detik ≤ anggaran 24 jam |
+| M-DIFFUSION Analisis difusi (branch number/MDS, ronde menuju difusi penuh, avalanche per ronde) | Kekuatan algoritma | Unit | penuh | 2 | C-DIFF | Skor 2.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 6.26 detik ≤ anggaran 24 jam |
 | M-PAD Uji kesesuaian padding (pad10*1 / MD-strengthening) pada batas blok | Kesesuaian | Unit | penuh | 2 | C-PAD | Skor 2.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 0.05 detik ≤ anggaran 24 jam |
-| M-SP80022 Uji keacakan statistik NIST SP 800-22 (15 uji) | Kekuatan algoritma | Unit | penuh | 2 | C-DIFF | Skor 2.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 17.23 detik ≤ anggaran 24 jam |
-| M-DIFF Kriptanalisis diferensial (pencarian trail / batas S-box aktif) | Kekuatan algoritma | Unit | tereduksi | 1.8 | C-CHI | Skor 1.8 ≥ 1.0: relevan terhadap C-CHI. Versi penuh 2^110.6 tahun > anggaran; versi tereduksi 11.56 detik |
+| M-SP80022 Uji keacakan statistik NIST SP 800-22 (15 uji) | Kekuatan algoritma | Unit | penuh | 2 | C-DIFF | Skor 2.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 18.65 detik ≤ anggaran 24 jam |
+| M-DIFF Kriptanalisis diferensial (pencarian trail / batas S-box aktif) | Kekuatan algoritma | Unit | tereduksi | 1.8 | C-CHI | Skor 1.8 ≥ 1.0: relevan terhadap C-CHI. Versi penuh 2^110.7 tahun > anggaran; versi tereduksi 12.52 detik |
 | M-KEYSIZE Evaluasi ukuran kunci & tingkat keamanan (SP 800-57 / 131A) | Kekuatan algoritma | Sistem | penuh | 1.5 | C-SPONGE | Wajib (kesesuaian standar / baseline keamanan). Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
 | M-KAT Known Answer Test (KAT) terhadap vektor resmi | Kesesuaian | Unit | penuh | 1 | C-CONF, C-SELFTEST | Wajib (kesesuaian standar / baseline keamanan). Estimasi 0.01 detik ≤ anggaran 24 jam |
-| M-MCT Monte Carlo Test (MCT) & Multi-block Message Test (MMT) gaya CAVP | Kesesuaian | Unit | penuh | 1 | C-CONF, C-SELFTEST | Wajib (kesesuaian standar / baseline keamanan). Estimasi 4.41 detik ≤ anggaran 24 jam |
+| M-MCT Monte Carlo Test (MCT) & Multi-block Message Test (MMT) gaya CAVP | Kesesuaian | Unit | penuh | 1 | C-CONF, C-SELFTEST | Wajib (kesesuaian standar / baseline keamanan). Estimasi 4.78 detik ≤ anggaran 24 jam |
 | M-SELFTEST Uji self-test & error state modul (ISO/IEC 19790 / 24759) | Implementasi & sistem | Sistem | penuh | 1 | C-CONF, C-SELFTEST | Skor 1.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
 
 **Metode yang ditolak:**
@@ -316,7 +317,7 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 | per_bit_tolerance | 0.05 |
 | sac_matrix | n_in × n_out probabilitas perubahan |
 | variant | penuh |
-| estimated_time | 0.88 detik |
+| estimated_time | 0.96 detik |
 
 **M-FUZZ**
 
@@ -327,7 +328,7 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 | inputs | panjang 0, panjang maks+1, buffer tidak selaras, NULL pointer, kunci/nonce panjang salah |
 | pass_criterion | 0 crash, 0 sanitizer error, galat terdefinisi |
 | variant | penuh |
-| estimated_time | 46.26 detik |
+| estimated_time | 50.07 detik |
 
 **M-SBOX**
 
@@ -350,7 +351,7 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 | classes | pesan tetap vs acak |
 | timer | rdtsc / perf_counter_ns, core diisolasi (taskset), turbo dimatikan |
 | variant | penuh |
-| estimated_time | 46.26 detik |
+| estimated_time | 50.07 detik |
 
 **M-ZEROIZE**
 
@@ -372,7 +373,7 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 | full_diffusion_criterion | \|mean − 0,5\| ≤ 0,01 dan min > 0,3 |
 | branch_number_target | n/a |
 | variant | penuh |
-| estimated_time | 5.78 detik |
+| estimated_time | 6.26 detik |
 
 **M-PAD**
 
@@ -403,7 +404,7 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 | source | SP 800-22 Rev.1a §2 & §4.2 (parameter default yang direkomendasikan) |
 | generation | digest berantai H_i = H(H_{i-1} ∥ i) |
 | variant | penuh |
-| estimated_time | 17.23 detik |
+| estimated_time | 18.65 detik |
 
 **M-DIFF**
 
@@ -415,7 +416,7 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 | samples_log2 | 18 |
 | reduced_desc | Trail/distinguisher diferensial pada 2–3 ronde tereduksi |
 | pass_criterion | serangan ronde tereduksi berhasil sesuai prediksi & tidak dapat diperluas ≥ 70% ronde |
-| estimated_time | 11.56 detik |
+| estimated_time | 12.52 detik |
 
 **M-KEYSIZE**
 
@@ -451,7 +452,7 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 | checkpoints | setiap iterasi luar (100 checkpoint) |
 | pass_criterion | 100% checkpoint = implementasi referensi core/ |
 | variant | penuh |
-| estimated_time | 4.41 detik |
+| estimated_time | 4.78 detik |
 
 **M-SELFTEST**
 
@@ -483,7 +484,7 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 
 | KUK | Deskripsi | Bagian | File kode | Unit test |
 |---|---|---|---|---|
-| 1.1 | Informasi desain & teknik implementasi | Bab 1 | uk1_metode/profile.py, config/product_profile.yaml | tests/test_uk1_ek1.py::test_kuk_1_1_* |
+| 1.1 | Informasi desain & teknik implementasi | Bab 1 | uk1_metode/profile.py, config/product_profile.yaml, algo_catalog/ (Daftar Algoritma yang Diuji) | tests/test_uk1_ek1.py::test_kuk_1_1_*, tests/test_algo_catalog.py |
 | 1.2 | Tren serangan terhadap platform | Bab 2.2 | uk1_metode/attack_kb.py, uk1_metode/data/attacks.yaml | tests/test_uk1_ek1.py::test_kuk_1_2_* |
 | 1.3 | Best practice metode pengujian | Bab 2.1 | uk1_metode/standards_kb.py, uk1_metode/data/standards.yaml | tests/test_uk1_ek1.py::test_kuk_1_3_* |
 | 2.1 | Komponen berpotensi lemah | Bab 3 | uk1_metode/decompose.py, uk1_metode/component_analysis.py, core/boolean.py | tests/test_core_components.py, tests/test_uk1_ek2.py::test_kuk_2_1_* |

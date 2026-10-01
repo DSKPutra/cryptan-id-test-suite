@@ -33,6 +33,7 @@ code, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size:
 .modules { display: flex; gap: 4px; overflow-x: auto; flex: 1; scrollbar-width: none; }
 .modules a, .modules span { padding: 5px 10px; border-radius: 999px; font-size: 13px; font-weight: 600; text-decoration: none; white-space: nowrap; }
 .modules a { background: var(--accent); color: #fff; }
+.modules a.alt { background: var(--surface); color: var(--accent); border: 1px solid var(--border); }
 .modules span { color: var(--muted); border: 1px dashed var(--border); }
 .theme { background: var(--surface); border: 1px solid var(--border); color: var(--text); border-radius: 8px; width: 36px; height: 36px; cursor: pointer; }
 

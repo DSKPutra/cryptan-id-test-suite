@@ -2,7 +2,7 @@
 
 **Cryptan.ID Test Suite** v1.0.0 · Modul **UK-1** · Unit J.61KRP00.012.1 — *Menentukan Metode Pengujian yang akan Dilakukan* · SKKNI 2023-004 (Cryptographic Analyst)
 
-Dibangkitkan: 2026-09-30T23:04:33+07:00 · mode: full · objek: **Cryptan.ID SecureLib** (1.0.0 (hipotetis))
+Dibangkitkan: 2026-10-01T09:17:08+07:00 · mode: full · objek: **Cryptan.ID SecureLib** (1.0.0 (hipotetis))
 
 > Seluruh data produk bersifat ILUSTRATIF. Nilai bertanda HASIL UJI LANGSUNG dihitung oleh kode; HASIL LITERATUR dikutip dari rujukan; PERLU_VERIFIKASI wajib dicek ke sumber primer.
 
@@ -32,6 +32,7 @@ Dibangkitkan: 2026-09-30T23:04:33+07:00 · mode: full · objek: **Cryptan.ID Sec
 | Catatan implementasi | keygen=prima probabilistik (FIPS 186-5 A.1.3), Miller–Rabin; sample_keys=3 |
 | Tingkat akses | grey_box — Penguji memperoleh spesifikasi algoritma & dokumen desain tingkat tinggi, biner library + header API, dan lingkungan uji dengan kunci uji. Kode sumber TIDAK tersedia. |
 | Kelengkapan profil | LENGKAP |
+| Daftar algoritma diuji (algo_catalog) | 33 kombinasi (block_cipher=6; stream_cipher=2; hash=7; mac=4; pkc_kem=7; signature=6; drbg=1); 6 peringatan tinggi; RSA-OAEP-2048 termasuk daftar (strength 112, status acceptable) — `algorithms_under_test.yaml` |
 
 **Ruang lingkup:**
 
@@ -156,7 +157,7 @@ Keseragaman galat dekripsi (Manger).
 | Pemeriksaan | Nilai | Acuan | Status | Sumber | Catatan |
 |---|---|---|---|---|---|
 | Keseragaman pesan galat antar kelas kegagalan | seragam | satu jenis galat | OK | HASIL UJI LANGSUNG | Mitigasi Manger (A-P-06) — implementasi referensi |
-| Beda waktu antar kelas galat (Welch \|t\| maks) | 2.69 | < 4,5 (indikatif, n kecil) | OK | HASIL UJI LANGSUNG | Pengukuran pada implementasi referensi; produk diuji di M-ORACLE |
+| Beda waktu antar kelas galat (Welch \|t\| maks) | 1.31 | < 4,5 (indikatif, n kecil) | OK | HASIL UJI LANGSUNG | Pengukuran pada implementasi referensi; produk diuji di M-ORACLE |
 
 ### C-HASH — Hash & MGF1 [OK]
 
@@ -287,9 +288,9 @@ Tiga lapis pengujian × level uji (metode yang dipetakan):
 
 | Operasi | ops/detik |
 |---|---|
-| public_op | 4,136.6 |
-| private_op | 31.4 |
-| primary | 4,136.6 |
+| public_op | 4,102.1 |
+| private_op | 30.9 |
+| primary | 4,102.1 |
 
 Mesin: Darwin arm64, arm, 8 CPU logis, Python 3.11.1. Implementasi: referensi pure Python (core/) — batas bawah konservatif.
 
@@ -312,17 +313,17 @@ Waktu = 2^k ÷ (ops/detik × core × speedup).
 |---|---|---|---|---|---|---|---|---|
 | M-KAT | primary | 7 | 0.00 detik | 2^7.0 operasi/sampel | ≤ 2^10 B | — | LAYAK | Estimasi 0.00 detik ≤ anggaran 24 jam |
 | M-KEYSIZE | analysis | 0 | 0 detik (analitis) | — | — | — | LAYAK | Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
-| M-PRIME | private_op | 8 | 1.02 detik | 2^8.0 operasi/sampel | ≤ 2^10 B | — | LAYAK | Estimasi 1.02 detik ≤ anggaran 24 jam |
+| M-PRIME | private_op | 8 | 1.04 detik | 2^8.0 operasi/sampel | ≤ 2^10 B | — | LAYAK | Estimasi 1.04 detik ≤ anggaran 24 jam |
 | M-PKV | primary | 8 | 0.01 detik | 2^8.0 operasi/sampel | ≤ 2^10 B | — | LAYAK | Estimasi 0.01 detik ≤ anggaran 24 jam |
 | M-RSAWEAK | public_op | 22 | 2.1 menit | 2^22.0 operasi/sampel | ≤ 2^17 B | — | LAYAK | Estimasi 2.1 menit ≤ anggaran 24 jam |
-| M-FACT | public_op | 112 | 2^72.1 tahun | 2^112.0 operasi/sampel | ≤ 2^40 B | Faktorisasi modulus mainan 64–96 bit (Pollard rho/ECM) — validasi estimasi — 33.8 menit | LAYAK VERSI TEREDUKSI | Alat versi penuh tidak tersedia (cado-nfs); versi tereduksi 33.8 menit |
-| M-ORACLE | private_op | 13 | 32.64 detik | 2^13.0 operasi/sampel | ≤ 2^12 B | — | LAYAK | Estimasi 32.64 detik ≤ anggaran 24 jam |
-| M-TIMING | primary | 20 | 31.69 detik | 2^20.0 operasi/sampel | ≤ 2^16 B | — | LAYAK | Estimasi 31.69 detik ≤ anggaran 24 jam |
+| M-FACT | public_op | 112 | 2^72.1 tahun | 2^112.0 operasi/sampel | ≤ 2^40 B | Faktorisasi modulus mainan 64–96 bit (Pollard rho/ECM) — validasi estimasi — 34.1 menit | LAYAK VERSI TEREDUKSI | Alat versi penuh tidak tersedia (cado-nfs); versi tereduksi 34.1 menit |
+| M-ORACLE | private_op | 13 | 33.16 detik | 2^13.0 operasi/sampel | ≤ 2^12 B | — | LAYAK | Estimasi 33.16 detik ≤ anggaran 24 jam |
+| M-TIMING | primary | 20 | 31.95 detik | 2^20.0 operasi/sampel | ≤ 2^16 B | — | LAYAK | Estimasi 31.95 detik ≤ anggaran 24 jam |
 | M-CACHE | primary | 22 | 2.1 menit | 2^22.0 operasi/sampel | ≤ 2^17 B | — | TIDAK LAYAK | Alat tidak tersedia: mastik |
-| M-TVLA | primary | 17 | 3.96 detik | 2^17.0 operasi/sampel | ≤ 2^14 B | — | TIDAK LAYAK | Alat tidak tersedia: oscilloscope, chipwhisperer |
-| M-FAULT | primary | 16 | 1.98 detik | 2^16.0 operasi/sampel | ≤ 2^14 B | — | TIDAK LAYAK | Alat tidak tersedia: glitcher |
+| M-TVLA | primary | 17 | 3.99 detik | 2^17.0 operasi/sampel | ≤ 2^14 B | — | TIDAK LAYAK | Alat tidak tersedia: oscilloscope, chipwhisperer |
+| M-FAULT | primary | 16 | 2.00 detik | 2^16.0 operasi/sampel | ≤ 2^14 B | — | TIDAK LAYAK | Alat tidak tersedia: glitcher |
 | M-CODEREVIEW | analysis | 0 | 0 detik (analitis) | — | — | — | LAYAK | Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
-| M-FUZZ | primary | 20 | 31.69 detik | 2^20.0 operasi/sampel | ≤ 2^16 B | — | LAYAK | Estimasi 31.69 detik ≤ anggaran 24 jam |
+| M-FUZZ | primary | 20 | 31.95 detik | 2^20.0 operasi/sampel | ≤ 2^16 B | — | LAYAK | Estimasi 31.95 detik ≤ anggaran 24 jam |
 | M-ZEROIZE | analysis | 0 | 0 detik (analitis) | — | — | — | LAYAK | Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
 | M-SELFTEST | analysis | 0 | 0 detik (analitis) | — | — | — | LAYAK | Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
 | M-RNG | primary | 11.93 | 0.12 detik | 2^11.9 operasi/sampel | ≈ 0.1 MB | — | LAYAK | Estimasi 0.12 detik ≤ anggaran 24 jam |
@@ -335,16 +336,16 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 
 | Metode | Lapis | Level | Varian | Skor | Target | Alasan |
 |---|---|---|---|---|---|---|
-| M-FUZZ Uji negatif & fuzzing API (masukan malformed, panjang ekstrem) | Implementasi & sistem | Integrasi | penuh | 3 | C-API | Skor 3.0 ≥ 1.0: relevan terhadap C-API. Estimasi 31.69 detik ≤ anggaran 24 jam |
-| M-ORACLE Uji oracle galat dekripsi OAEP (Manger) — keseragaman galat & timing | Implementasi & sistem | Integrasi | penuh | 3 | C-MODEXP, C-PLAT | Skor 3.0 ≥ 1.0: relevan terhadap C-MODEXP, C-PLAT. Estimasi 32.64 detik ≤ anggaran 24 jam |
+| M-FUZZ Uji negatif & fuzzing API (masukan malformed, panjang ekstrem) | Implementasi & sistem | Integrasi | penuh | 3 | C-API | Skor 3.0 ≥ 1.0: relevan terhadap C-API. Estimasi 31.95 detik ≤ anggaran 24 jam |
+| M-ORACLE Uji oracle galat dekripsi OAEP (Manger) — keseragaman galat & timing | Implementasi & sistem | Integrasi | penuh | 3 | C-MODEXP, C-PLAT | Skor 3.0 ≥ 1.0: relevan terhadap C-MODEXP, C-PLAT. Estimasi 33.16 detik ≤ anggaran 24 jam |
 | M-PKV Validasi kunci publik (positif & negatif) | Kesesuaian | Unit | penuh | 3 | C-API | Skor 3.0 ≥ 1.0: relevan terhadap C-API. Estimasi 0.01 detik ≤ anggaran 24 jam |
-| M-TIMING Analisis timing leakage (dudect / Welch t-test, fixed-vs-random) | Implementasi & sistem | Integrasi | penuh | 3 | C-MODEXP, C-PLAT | Skor 3.0 ≥ 1.0: relevan terhadap C-MODEXP, C-PLAT. Estimasi 31.69 detik ≤ anggaran 24 jam |
+| M-TIMING Analisis timing leakage (dudect / Welch t-test, fixed-vs-random) | Implementasi & sistem | Integrasi | penuh | 3 | C-MODEXP, C-PLAT | Skor 3.0 ≥ 1.0: relevan terhadap C-MODEXP, C-PLAT. Estimasi 31.95 detik ≤ anggaran 24 jam |
 | M-ZEROIZE Uji zeroization material kunci (memory dump pasca-operasi) | Implementasi & sistem | Sistem | penuh | 3 | C-MEM | Skor 3.0 ≥ 1.0: relevan terhadap C-MEM. Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
 | M-KEYSIZE Evaluasi ukuran kunci & tingkat keamanan (SP 800-57 / 131A) | Kekuatan algoritma | Sistem | penuh | 2.5 | C-MOD | Wajib (kesesuaian standar / baseline keamanan). Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
-| M-PRIME Uji primalitas & validasi pembangkitan kunci (ISO/IEC 18032, FIPS 186-5 App. A/B) | Kesesuaian | Unit | penuh | 2 | C-EXP-D, C-EXP-E, C-PRIME | Skor 2.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 1.02 detik ≤ anggaran 24 jam |
+| M-PRIME Uji primalitas & validasi pembangkitan kunci (ISO/IEC 18032, FIPS 186-5 App. A/B) | Kesesuaian | Unit | penuh | 2 | C-EXP-D, C-EXP-E, C-PRIME | Skor 2.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 1.04 detik ≤ anggaran 24 jam |
 | M-RNG Asesmen RBG / sumber entropi (SP 800-90A/B, ISO/IEC 18031) | Implementasi & sistem | Integrasi | penuh | 2 | C-PRIME, C-RNG | Skor 2.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 0.12 detik ≤ anggaran 24 jam |
 | M-RSAWEAK Baterai kunci lemah RSA (Fermat, Pollard p−1, batch-GCD, Wiener) | Kekuatan algoritma | Unit | penuh | 2 | C-EXP-D, C-PRIME, C-RNG | Skor 2.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 2.1 menit ≤ anggaran 24 jam |
-| M-FACT Percobaan faktorisasi modulus (GNFS) | Kekuatan algoritma | Sistem | tereduksi | 1.5 | C-MOD | Skor 1.5 ≥ 1.0: relevan terhadap C-MOD. Alat versi penuh tidak tersedia (cado-nfs); versi tereduksi 33.8 menit |
+| M-FACT Percobaan faktorisasi modulus (GNFS) | Kekuatan algoritma | Sistem | tereduksi | 1.5 | C-MOD | Skor 1.5 ≥ 1.0: relevan terhadap C-MOD. Alat versi penuh tidak tersedia (cado-nfs); versi tereduksi 34.1 menit |
 | M-KAT Known Answer Test (KAT) terhadap vektor resmi | Kesesuaian | Unit | penuh | 1 | C-CONF, C-SELFTEST | Wajib (kesesuaian standar / baseline keamanan). Estimasi 0.00 detik ≤ anggaran 24 jam |
 | M-SELFTEST Uji self-test & error state modul (ISO/IEC 19790 / 24759) | Implementasi & sistem | Sistem | penuh | 1 | C-CONF, C-SELFTEST | Skor 1.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 0 detik (analitis) ≤ anggaran 24 jam |
 
@@ -368,7 +369,7 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 | inputs | panjang 0, panjang maks+1, buffer tidak selaras, NULL pointer, kunci/nonce panjang salah |
 | pass_criterion | 0 crash, 0 sanitizer error, galat terdefinisi |
 | variant | penuh |
-| estimated_time | 31.69 detik |
+| estimated_time | 31.95 detik |
 
 **M-ORACLE**
 
@@ -380,7 +381,7 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 | threshold_abs_t | 4.5 |
 | pass_criterion | satu pesan/kode galat & \|t\| < 4,5 |
 | variant | penuh |
-| estimated_time | 32.64 detik |
+| estimated_time | 33.16 detik |
 
 **M-PKV**
 
@@ -402,7 +403,7 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 | classes | ciphertext tetap vs acak (RSADP) |
 | timer | rdtsc / perf_counter_ns, core diisolasi (taskset), turbo dimatikan |
 | variant | penuh |
-| estimated_time | 31.69 detik |
+| estimated_time | 31.95 detik |
 
 **M-ZEROIZE**
 
@@ -435,7 +436,7 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 | checks | p,q prima, \|p−q\| > 2^924, d > 2^1024, e ∈ (2^16, 2^256) ganjil, gcd(e, λ(n)) = 1, p,q ≥ √2·2^(n/2−1) |
 | reference | FIPS 186-5 A.1.1/A.1.3, B.3; ISO/IEC 18032 |
 | variant | penuh |
-| estimated_time | 1.02 detik |
+| estimated_time | 1.04 detik |
 
 **M-RNG**
 
@@ -467,7 +468,7 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 | reduced_ops_log2 | 26 |
 | method | Pollard rho / ECM (validasi skala) |
 | variant | tereduksi |
-| estimated_time | 33.8 menit |
+| estimated_time | 34.1 menit |
 
 **M-KAT**
 
@@ -510,7 +511,7 @@ Rumus: skor = relevansi[keparahan 1–3 + tren serangan (+1 praktis | +0,5 teore
 
 | KUK | Deskripsi | Bagian | File kode | Unit test |
 |---|---|---|---|---|
-| 1.1 | Informasi desain & teknik implementasi | Bab 1 | uk1_metode/profile.py, config/product_profile.yaml | tests/test_uk1_ek1.py::test_kuk_1_1_* |
+| 1.1 | Informasi desain & teknik implementasi | Bab 1 | uk1_metode/profile.py, config/product_profile.yaml, algo_catalog/ (Daftar Algoritma yang Diuji) | tests/test_uk1_ek1.py::test_kuk_1_1_*, tests/test_algo_catalog.py |
 | 1.2 | Tren serangan terhadap platform | Bab 2.2 | uk1_metode/attack_kb.py, uk1_metode/data/attacks.yaml | tests/test_uk1_ek1.py::test_kuk_1_2_* |
 | 1.3 | Best practice metode pengujian | Bab 2.1 | uk1_metode/standards_kb.py, uk1_metode/data/standards.yaml | tests/test_uk1_ek1.py::test_kuk_1_3_* |
 | 2.1 | Komponen berpotensi lemah | Bab 3 | uk1_metode/decompose.py, uk1_metode/component_analysis.py, core/boolean.py | tests/test_core_components.py, tests/test_uk1_ek2.py::test_kuk_2_1_* |

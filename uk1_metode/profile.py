@@ -15,6 +15,7 @@ PRIMITIVES = {
     "pkc": "Kriptografi kunci publik (PKC)",
     "dss": "Tanda tangan digital (DSS)",
 }
+ROOT = Path(__file__).resolve().parents[1]
 ACCESS_LEVELS = {"black_box": 0, "grey_box": 1, "white_box": 2}
 ACCESS_SHORT = {"black": 0, "grey": 1, "white": 2}
 
@@ -44,6 +45,8 @@ def _deep_merge(base: dict, over: dict) -> dict:
 
 def _read(path: Path) -> dict:
     data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    if data.get("algorithms_under_test"):        # tautan algo_catalog, relatif terhadap berkas ini
+        data["algorithms_under_test"] = str((path.parent / data["algorithms_under_test"]).resolve())
     if "extends" in data:
         parent = _read((path.parent / data.pop("extends")).resolve())
         parent.pop("algorithms", None)
@@ -81,8 +84,32 @@ def load_profiles(path) -> list:
     return [raw]
 
 
+def rel(path) -> str:
+    """Path relatif terhadap root repo (hindari membocorkan path lokal pada keluaran)."""
+    try:
+        return Path(path).resolve().relative_to(ROOT).as_posix()
+    except ValueError:
+        return Path(path).name
+
+
 def access_level(p: dict) -> int:
     return ACCESS_LEVELS[p["tester"]["access"]]
+
+
+def algorithms_under_test(p: dict) -> dict:
+    """KUK 1.1 — ringkasan Daftar Algoritma yang Diuji (keluaran modul algo_catalog)."""
+    path = p.get("algorithms_under_test")
+    if not path or not Path(path).exists():
+        return {"linked": False, "note": "Jalankan `python -m algo_catalog select …` untuk menyusun daftar algoritma uji"}
+    d = yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
+    cid = (p.get("algorithm") or {}).get("catalog_id", "")
+    item = next((i for i in d.get("items", []) if i["id"].upper() == cid.upper()), None)
+    return {"linked": True, "file": rel(path), "generated_at": d.get("generated_at"),
+            "total_combinations": d.get("summary", {}).get("total_combinations", 0),
+            "by_primitive": d.get("summary", {}).get("by_primitive", {}),
+            "warnings_high": sum(1 for w in d.get("warnings", []) if w.get("level") == "TINGGI"),
+            "catalog_id": cid, "in_list": item is not None,
+            "item": {k: item[k] for k in ("security_strength_bits", "status_nist", "standards")} if item else None}
 
 
 def summarize(p: dict) -> dict:
@@ -102,5 +129,6 @@ def summarize(p: dict) -> dict:
                    "scope": t["scope"], "out_of_scope": t.get("out_of_scope", [])},
         "resources": p["resources"],
         "completeness": {"status": "LENGKAP", "missing": []},
-        "source_file": p.get("_source"),
+        "algorithms_under_test": algorithms_under_test(p),
+        "source_file": rel(p["_source"]) if p.get("_source") else None,
     }

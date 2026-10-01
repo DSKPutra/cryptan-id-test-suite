@@ -30,6 +30,16 @@ def _fmt(v):
     return "" if v is None else str(v)
 
 
+def _aut(a: dict) -> str:
+    if not a or not a.get("linked"):
+        return (a or {}).get("note", "—")
+    item = a["item"]
+    pos = (f"{a['catalog_id']} termasuk daftar (strength {item['security_strength_bits']}, status {item['status_nist']})"
+           if a["in_list"] else f"{a['catalog_id']} TIDAK ada dalam daftar")
+    return (f"{a['total_combinations']} kombinasi ({_fmt(a['by_primitive'])}); {a['warnings_high']} peringatan tinggi; {pos} — "
+            f"`{Path(a['file']).name}`")
+
+
 def build_document(r: dict) -> list:
     pf, alg = r["profile"], r["profile"]["algorithm"]
     sel = r["selection"]
@@ -64,7 +74,8 @@ def build_document(r: dict) -> list:
               ["RBG", pf["implementation"]["rng"]],
               ["Catatan implementasi", _fmt(alg.get("implementation_notes", {})) or "—"],
               ["Tingkat akses", f"{pf['tester']['access']} — {pf['tester']['access_desc']}"],
-              ["Kelengkapan profil", pf["completeness"]["status"]]]),
+              ["Kelengkapan profil", pf["completeness"]["status"]],
+              ["Daftar algoritma diuji (algo_catalog)", _aut(pf.get("algorithms_under_test", {}))]]),
           P("**Ruang lingkup:**"), L(pf["tester"]["scope"]),
           P("**Di luar ruang lingkup:**"), L(pf["tester"]["out_of_scope"] or ["—"])]
 

@@ -1,6 +1,10 @@
 # Cryptan.ID Test Suite — dependensi runtime
 PyYAML>=6.0
-python-docx>=1.1        # opsional: keluaran .docx (dilewati otomatis bila tidak terpasang)
+python-docx>=1.1        # keluaran .docx & ekstraksi .docx (algo_catalog)
+pypdf>=4.0              # algo_catalog: ekstraksi teks PDF (opsi Link/File)
+openpyxl>=3.1           # algo_catalog: baca/tulis .xlsx
+certifi                 # bundel CA untuk unduhan HTTPS (opsi Link & scraper)
+streamlit>=1.40         # algo_catalog: GUI (streamlit run algo_catalog/app.py)
 # pengembangan / pengujian
 pytest>=8.0
 cryptography>=42.0      # opsional: uji silang interoperabilitas (OpenSSL); dilewati bila tidak ada

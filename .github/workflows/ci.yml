@@ -12,5 +12,7 @@ jobs:
         run: python -m core.kat
       - name: Unit test
         run: python -m pytest
+      - name: algo_catalog (offline, seed + cache)
+        run: python -m algo_catalog select --pick "AES:GCM:128,256" "ECDSA:P-384" --out /tmp/aut --no-link-profile
       - name: UK-1 end-to-end (quick)
         run: python -m uk1_metode --profile config/product_profile.yaml --quick --out /tmp/uk1

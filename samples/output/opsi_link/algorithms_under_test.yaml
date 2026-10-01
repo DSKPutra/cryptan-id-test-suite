@@ -1,0 +1,4304 @@
+# Dihasilkan oleh: python -m algo_catalog select …  (jangan disunting manual)
+schema: cryptan.algo_catalog.algorithms_under_test.v1
+generated_at: '2026-10-01T09:06:14+07:00'
+product: Cryptan.ID SecureLib
+kuk: UK-1 KUK 1.1 — informasi desain produk (daftar algoritma yang diuji)
+summary:
+  total_combinations: 137
+  by_primitive:
+    block_cipher: 15
+    hash: 22
+    mac: 17
+    pkc_kem: 62
+    signature: 3
+    drbg: 5
+    kdf: 13
+  families:
+  - AES
+  - Ascon
+  - ConditioningComponent
+  - DRBG
+  - HMAC
+  - KAS
+  - KDA
+  - KDF
+  - KMAC
+  - ParallelHash
+  - RSA
+  - SHA-1
+  - SHA-2
+  - SHA-3
+  - SPDM
+  - SafePrimes
+  - TDEA
+  - TupleHash
+  - XECDH
+  by_input:
+    link: 137
+    file: 0
+    dropdown: 0
+    edit: 0
+uk1_coverage:
+  with_profile:
+  - config/profiles/aes128.yaml
+  - config/profiles/sha3_256.yaml
+  without_profile:
+  - ACVP-AES-XPN
+  - AES-128-CBC
+  - AES-256-CCM
+  - AES-128-CFB1
+  - AES-128-CFB8
+  - AES-128-ECB
+  - AES-128-FF1
+  - AES-128-FF3-1
+  - AES-128-GCM
+  - AES-128-GCM-SIV
+  - AES-128-KW
+  - AES-128-KWP
+  - AES-128-OFB
+  - TDEA-3KEY
+  - ASCON-CXOF128
+  - ASCON-HASH256
+  - ASCON-XOF128
+  - ACVP-PARALLELHASH-128
+  - ACVP-PARALLELHASH-256
+  - SHA-1
+  - SHA-224
+  - SHA-256
+  - SHA-384
+  - SHA-512
+  - SHA-512/224
+  - SHA-512/256
+  - SHA3-224
+  - SHA3-384
+  - SHA3-512
+  - SHAKE128
+  - SHAKE256
+  - cSHAKE128
+  - cSHAKE256
+  - ACVP-TUPLEHASH-128
+  - ACVP-TUPLEHASH-256
+  - CMAC-AES-256
+  - GMAC-AES-256
+  - ASCON-AEAD128
+  - HMAC-SHA-1-K128
+  - HMAC-SHA-224-K224
+  - HMAC-SHA-256-K256
+  - HMAC-SHA-384-K384
+  - HMAC-SHA-512-K512
+  - HMAC-SHA-512/224-K224
+  - HMAC-SHA-512/256-K256
+  - HMAC-SHA3-224-K224
+  - HMAC-SHA3-256-K256
+  - HMAC-SHA3-384-K192
+  - HMAC-SHA3-384-K384
+  - HMAC-SHA3-512-K256
+  - KMAC128
+  - KMAC256
+  - ACVP-KAS-ECC-CDH-COMPONENT
+  - ACVP-KAS-ECC-CDH-COMPONENT-SP800-56AR3
+  - ACVP-KAS-ECC-ONEPASSUNIFIED
+  - ACVP-KAS-ECC-ONEPASSUNIFIED-SP800-56AR3
+  - ACVP-KAS-ECC-SSC-ONEPASSUNIFIED-SP800-56AR3
+  - ACVP-KAS-ECC-SSC-EPHEMERALUNIFIED-SP800-56AR3
+  - ACVP-KAS-ECC-SSC-FULLMQV-SP800-56AR3
+  - ACVP-KAS-ECC-SSC-FULLUNIFIED-SP800-56AR3
+  - ACVP-KAS-ECC-SSC-ONEPASSDH-SP800-56AR3
+  - ACVP-KAS-ECC-SSC-ONEPASSMQV-SP800-56AR3
+  - ACVP-KAS-ECC-SSC-STATICUNIFIED-SP800-56AR3
+  - ACVP-KAS-ECC-EPHEMERALUNIFIED
+  - ACVP-KAS-ECC-EPHEMERALUNIFIED-SP800-56AR3
+  - ACVP-KAS-ECC-FULLMQV
+  - ACVP-KAS-ECC-FULLMQV-SP800-56AR3
+  - ACVP-KAS-ECC-FULLUNIFIED
+  - ACVP-KAS-ECC-FULLUNIFIED-SP800-56AR3
+  - ACVP-KAS-ECC-ONEPASSDH
+  - ACVP-KAS-ECC-ONEPASSDH-SP800-56AR3
+  - ACVP-KAS-ECC-ONEPASSMQV
+  - ACVP-KAS-ECC-ONEPASSMQV-SP800-56AR3
+  - ACVP-KAS-ECC-STATICUNIFIED
+  - ACVP-KAS-ECC-STATICUNIFIED-SP800-56AR3
+  - ACVP-KAS-FFC-SSC-DHEPHEM-SP800-56AR3
+  - ACVP-KAS-FFC-SSC-DHHYBRID1-SP800-56AR3
+  - ACVP-KAS-FFC-SSC-DHHYBRIDONEFLOW-SP800-56AR3
+  - ACVP-KAS-FFC-SSC-DHONEFLOW-SP800-56AR3
+  - ACVP-KAS-FFC-SSC-DHSTATIC-SP800-56AR3
+  - ACVP-KAS-FFC-SSC-MQV1-SP800-56AR3
+  - ACVP-KAS-FFC-SSC-MQV2-SP800-56AR3
+  - ACVP-KAS-FFC-DHEPHEM
+  - ACVP-KAS-FFC-DHEPHEM-SP800-56AR3
+  - ACVP-KAS-FFC-DHHYBRID1
+  - ACVP-KAS-FFC-DHHYBRID1-SP800-56AR3
+  - ACVP-KAS-FFC-DHHYBRIDONEFLOW
+  - ACVP-KAS-FFC-DHHYBRIDONEFLOW-SP800-56AR3
+  - ACVP-KAS-FFC-DHONEFLOW
+  - ACVP-KAS-FFC-DHONEFLOW-SP800-56AR3
+  - ACVP-KAS-FFC-DHSTATIC
+  - ACVP-KAS-FFC-DHSTATIC-SP800-56AR3
+  - ACVP-KAS-FFC-MQV1
+  - ACVP-KAS-FFC-MQV1-SP800-56AR3
+  - ACVP-KAS-FFC-MQV2
+  - ACVP-KAS-FFC-MQV2-SP800-56AR3
+  - ACVP-KAS-IFC-KAS1-PARTY-V-CONFIRMATION
+  - ACVP-KAS-IFC-KAS1-BASIC
+  - ACVP-KAS-IFC-KAS2-PARTY-U-CONFIRMATION
+  - ACVP-KAS-IFC-KAS2-PARTY-V-CONFIRMATION
+  - ACVP-KAS-IFC-KAS2-BASIC
+  - ACVP-KAS-IFC-KAS2-BILATERAL-CONFIRMATION
+  - ACVP-KAS-IFC-SSC-KAS1-SP800-56BR2
+  - ACVP-KAS-IFC-SSC-KAS2-SP800-56BR2
+  - RSAES-PKCS1-V1_5-1024
+  - RSAES-PKCS1-V1_5-2048
+  - RSAES-PKCS1-V1_5-3072
+  - RSAES-PKCS1-V1_5-4096
+  - RSAES-PKCS1-V1_5-7680
+  - RSAES-PKCS1-V1_5-15360
+  - ACVP-SAFEPRIMES-KEYGEN
+  - ACVP-SAFEPRIMES-KEYVER
+  - X25519
+  - X448
+  - RSASSA-PKCS1-V1_5-2048
+  - RSASSA-PKCS1-V1_5-3072
+  - RSASSA-PKCS1-V1_5-4096
+  - CTR-DRBG-AES-128
+  - CTR-DRBG-AES-192
+  - CTR-DRBG-AES-256
+  - HMAC-DRBG-S256
+  - HASH-DRBG-S256
+  - ACVP-CONDITIONINGCOMPONENT-BLOCKCIPHER-DF
+  - ACVP-CONDITIONINGCOMPONENT-HASH-DF
+  - ACVP-KDA-ONESTEP-SP800-56CR1
+  - ACVP-KDA-ONESTEP-SP800-56CR2
+  - ACVP-KDA-ONESTEPNOCOUNTER-SP800-56CR2
+  - ACVP-KDA-TWOSTEP-SP800-56CR1
+  - ACVP-KDA-TWOSTEP-SP800-56CR2
+  - HKDF
+  - PBKDF2
+  - KDF108-COUNTER
+  - KDF108-DOUBLE-PIPELINE
+  - KDF108-FEEDBACK
+  - ACVP-SPDM
+  note: Kombinasi tanpa profil UK-1 dapat dibuat dengan menyalin profil primitif yang sama di config/profiles/
+warnings:
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-AES-XPN: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'AES-128-FF3-1: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'AES-128-GCM-SIV: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: TINGGI
+  code: STATUS_DISALLOWED
+  message: 'TDEA-3KEY: status NIST disallowed (SP 800-131A Rev.2)'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-PARALLELHASH-128: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-PARALLELHASH-256: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: TINGGI
+  code: STATUS_DISALLOWED
+  message: 'SHA-1: status NIST disallowed (SP 800-131A Rev.2)'
+- level: TINGGI
+  code: STRENGTH_LT_112
+  message: 'SHA-1: security strength <80 bit < 112 bit (SP 800-57 Pt.1)'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-TUPLEHASH-128: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-TUPLEHASH-256: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-CDH-COMPONENT: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-CDH-COMPONENT-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-ONEPASSUNIFIED: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-ONEPASSUNIFIED-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-SSC-ONEPASSUNIFIED-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-SSC-EPHEMERALUNIFIED-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-SSC-FULLMQV-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-SSC-FULLUNIFIED-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-SSC-ONEPASSDH-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-SSC-ONEPASSMQV-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-SSC-STATICUNIFIED-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-EPHEMERALUNIFIED: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-EPHEMERALUNIFIED-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-FULLMQV: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-FULLMQV-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-FULLUNIFIED: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-FULLUNIFIED-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-ONEPASSDH: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-ONEPASSDH-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-ONEPASSMQV: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-ONEPASSMQV-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-STATICUNIFIED: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-ECC-STATICUNIFIED-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-SSC-DHEPHEM-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-SSC-DHHYBRID1-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-SSC-DHHYBRIDONEFLOW-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-SSC-DHONEFLOW-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-SSC-DHSTATIC-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-SSC-MQV1-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-SSC-MQV2-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-DHEPHEM: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-DHEPHEM-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-DHHYBRID1: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-DHHYBRID1-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-DHHYBRIDONEFLOW: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-DHHYBRIDONEFLOW-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-DHONEFLOW: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-DHONEFLOW-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-DHSTATIC: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-DHSTATIC-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-MQV1: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-MQV1-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-MQV2: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-FFC-MQV2-SP800-56AR3: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-IFC-KAS1-PARTY-V-CONFIRMATION: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-IFC-KAS1-BASIC: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-IFC-KAS2-PARTY-U-CONFIRMATION: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-IFC-KAS2-PARTY-V-CONFIRMATION: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-IFC-KAS2-BASIC: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-IFC-KAS2-BILATERAL-CONFIRMATION: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-IFC-SSC-KAS1-SP800-56BR2: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KAS-IFC-SSC-KAS2-SP800-56BR2: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: TINGGI
+  code: STATUS_DISALLOWED
+  message: 'RSAES-PKCS1-V1_5-1024: status NIST disallowed (SP 800-131A Rev.2)'
+- level: TINGGI
+  code: STRENGTH_LT_112
+  message: 'RSAES-PKCS1-V1_5-1024: security strength 80 bit < 112 bit (SP 800-57 Pt.1)'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'RSAES-PKCS1-V1_5-1024: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated
+    setelah 2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: TINGGI
+  code: STATUS_DISALLOWED
+  message: 'RSAES-PKCS1-V1_5-2048: status NIST disallowed (SP 800-131A Rev.2)'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'RSAES-PKCS1-V1_5-2048: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated
+    setelah 2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: TINGGI
+  code: STATUS_DISALLOWED
+  message: 'RSAES-PKCS1-V1_5-3072: status NIST disallowed (SP 800-131A Rev.2)'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'RSAES-PKCS1-V1_5-3072: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated
+    setelah 2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: TINGGI
+  code: STATUS_DISALLOWED
+  message: 'RSAES-PKCS1-V1_5-4096: status NIST disallowed (SP 800-131A Rev.2)'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'RSAES-PKCS1-V1_5-4096: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated
+    setelah 2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: TINGGI
+  code: STATUS_DISALLOWED
+  message: 'RSAES-PKCS1-V1_5-7680: status NIST disallowed (SP 800-131A Rev.2)'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'RSAES-PKCS1-V1_5-7680: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated
+    setelah 2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: TINGGI
+  code: STATUS_DISALLOWED
+  message: 'RSAES-PKCS1-V1_5-15360: status NIST disallowed (SP 800-131A Rev.2)'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'RSAES-PKCS1-V1_5-15360: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit
+    deprecated setelah 2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-SAFEPRIMES-KEYGEN: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-SAFEPRIMES-KEYVER: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'X25519: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated setelah
+    2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'X25519: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'X448: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit deprecated setelah
+    2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'X448: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'RSASSA-PKCS1-V1_5-2048: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit
+    deprecated setelah 2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'RSASSA-PKCS1-V1_5-3072: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit
+    deprecated setelah 2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: SEDANG
+  code: QUANTUM_VULNERABLE
+  message: 'RSASSA-PKCS1-V1_5-4096: rentan kuantum — NIST IR 8547 (ipd): algoritma kuantum-rentan (RSA, ECC, FFC) 112-bit
+    deprecated setelah 2030 dan seluruhnya disallowed setelah 2035; migrasi ke FIPS 203/204/205'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-CONDITIONINGCOMPONENT-BLOCKCIPHER-DF: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-CONDITIONINGCOMPONENT-HASH-DF: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KDA-ONESTEP-SP800-56CR1: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KDA-ONESTEP-SP800-56CR2: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KDA-ONESTEPNOCOUNTER-SP800-56CR2: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KDA-TWOSTEP-SP800-56CR1: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-KDA-TWOSTEP-SP800-56CR2: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'HKDF: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'PBKDF2: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'KDF108-COUNTER: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'KDF108-DOUBLE-PIPELINE: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'KDF108-FEEDBACK: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+- level: INFO
+  code: PERLU_VERIFIKASI
+  message: 'ACVP-SPDM: status/strength bertanda PERLU_VERIFIKASI — cek sumber primer'
+pending_unconfirmed:
+- id: AES-128-CFB128
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:70] Cipher Modes AES-CBC - HTML AES-CFB1 - HTML AES-CFB8 - HTML AES-CFB128 - HTML
+    AES-CTR - HTML AES-ECB - HTML AES-GCM - HTML AES'
+- id: AES-192-CBC
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:298] KeyVer - HTML Conditioning Components ConditioningComponent AES-CBC-MAC -
+    HTML ConditioningComponent BlockCipher_DF - HTML Co'
+- id: AES-192-CFB128
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:70] Cipher Modes AES-CBC - HTML AES-CFB1 - HTML AES-CFB8 - HTML AES-CFB128 - HTML
+    AES-CTR - HTML AES-ECB - HTML AES-GCM - HTML AES'
+- id: AES-256-CBC
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:298] KeyVer - HTML Conditioning Components ConditioningComponent AES-CBC-MAC -
+    HTML ConditioningComponent BlockCipher_DF - HTML Co'
+- id: AES-256-CFB128
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:70] Cipher Modes AES-CBC - HTML AES-CFB1 - HTML AES-CFB8 - HTML AES-CFB128 - HTML
+    AES-CTR - HTML AES-ECB - HTML AES-GCM - HTML AES'
+- id: GMAC-AES-128
+  confidence: 0.4
+  evidence: '[https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program:87] CBC, CFB and OFB modes. Block
+    Cipher Modes CCM, CMAC, GCM / GMAC / XPN, Key Wrap,'
+- id: GMAC-AES-192
+  confidence: 0.4
+  evidence: '[https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program:87] CBC, CFB and OFB modes. Block
+    Cipher Modes CCM, CMAC, GCM / GMAC / XPN, Key Wrap,'
+- id: HMAC-SHA-1-K160
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:143] .0 - HTML HMAC-SHA3-384 1.0 - HTML HMAC-SHA3-512 1.0 - HTML HMAC-SHA-1 2.0
+    - HTML HMAC-SHA2-224 2.0 - HTML HMAC-SHA2-256 2.0 '
+- id: LMS-HSS-N192
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:302] ningComponent Hash_DF - HTML Stateful Hash-Based Signatures LMS keyGen - HTML
+    LMS sigGen - HTML LMS sigVer - HTML Stateless'
+- id: LMS-HSS-N256
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:302] ningComponent Hash_DF - HTML Stateful Hash-Based Signatures LMS keyGen - HTML
+    LMS sigGen - HTML LMS sigVer - HTML Stateless'
+- id: RSA-OAEP-1024
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:225] ion - HTML KAS IFC KAS2-Party_V-confirmation - HTML KTS IFC KTS-OAEP-basic
+    - HTML KTS IFC KTS-OAEP-Party_V-confirmation - HTM'
+- id: RSA-OAEP-15360
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:225] ion - HTML KAS IFC KAS2-Party_V-confirmation - HTML KTS IFC KTS-OAEP-basic
+    - HTML KTS IFC KTS-OAEP-Party_V-confirmation - HTM'
+- id: RSA-OAEP-2048
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:225] ion - HTML KAS IFC KAS2-Party_V-confirmation - HTML KTS IFC KTS-OAEP-basic
+    - HTML KTS IFC KTS-OAEP-Party_V-confirmation - HTM'
+- id: RSA-OAEP-3072
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:225] ion - HTML KAS IFC KAS2-Party_V-confirmation - HTML KTS IFC KTS-OAEP-basic
+    - HTML KTS IFC KTS-OAEP-Party_V-confirmation - HTM'
+- id: RSA-OAEP-4096
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:225] ion - HTML KAS IFC KAS2-Party_V-confirmation - HTML KTS IFC KTS-OAEP-basic
+    - HTML KTS IFC KTS-OAEP-Party_V-confirmation - HTM'
+- id: RSA-OAEP-7680
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:225] ion - HTML KAS IFC KAS2-Party_V-confirmation - HTML KTS IFC KTS-OAEP-basic
+    - HTML KTS IFC KTS-OAEP-Party_V-confirmation - HTM'
+- id: XTS-AES-256
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:79] AES-KW - HTML AES-KWP - HTML AES-OFB - HTML AES-XPN - HTML AES-XTS 1.0 - HTML
+    - no longer supported by ACVTS AES-XTS 2.0 - HTM'
+- id: XTS-AES-512
+  confidence: 0.4
+  evidence: '[https://pages.nist.gov/ACVP/:79] AES-KW - HTML AES-KWP - HTML AES-OFB - HTML AES-XPN - HTML AES-XTS 1.0 - HTML
+    - no longer supported by ACVTS AES-XTS 2.0 - HTM'
+items:
+- id: ACVP-AES-XPN
+  entry_id: ACVP-AES-XPN
+  primitive: block_cipher
+  family: AES
+  variant: AES-XPN
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: TML - DEMO only AES-KW - HTML AES-KWP - HTML AES-OFB - HTML AES-XPN - HTML AES-XTS 1.0 - HTML - no longer supported
+      by ACVTS AE
+    match: AES-XPN
+    line: 78
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: AES-128-CBC
+  entry_id: AES-CBC
+  primitive: block_cipher
+  family: AES
+  variant: CBC
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38A
+  - ISO/IEC 18033-3
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: endpoints defined. Supported Algorithms Block Cipher Modes AES-CBC - HTML AES-CFB1 - HTML AES-CFB8 - HTML AES-CFB128
+      - HTML AE
+    match: AES-CBC
+    line: 67
+    key_from: konteks
+  warnings: []
+- id: AES-256-CCM
+  entry_id: AES-CCM
+  primitive: block_cipher
+  family: AES
+  variant: CCM
+  key_bits: 256
+  block_or_output_bits: 128
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38C
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: Hash-128 - HTML TupleHash-256 - HTML Message Authentication AES-CCM - HTML AES-GMAC - HTML CMAC-AES - HTML CMAC-TDES
+      - HTML HMA
+    match: AES-CCM
+    line: 128
+    key_from: konteks
+  warnings: []
+- id: AES-128-CFB1
+  entry_id: AES-CFB1
+  primitive: block_cipher
+  family: AES
+  variant: CFB1
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38A
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: ned. Supported Algorithms Block Cipher Modes AES-CBC - HTML AES-CFB1 - HTML AES-CFB8 - HTML AES-CFB128 - HTML
+      AES-CTR - HTML AES
+    match: AES-CFB1
+    line: 68
+    key_from: konteks
+  warnings: []
+- id: AES-128-CFB8
+  entry_id: AES-CFB8
+  primitive: block_cipher
+  family: AES
+  variant: CFB8
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38A
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: lgorithms Block Cipher Modes AES-CBC - HTML AES-CFB1 - HTML AES-CFB8 - HTML AES-CFB128 - HTML AES-CTR - HTML
+      AES-ECB - HTML AES-
+    match: AES-CFB8
+    line: 69
+    key_from: konteks
+  warnings: []
+- id: AES-128-CTR
+  entry_id: AES-CTR
+  primitive: block_cipher
+  family: AES
+  variant: CTR
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38A
+  - ISO/IEC 18033-3
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: config/profiles/aes128.yaml
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: BC - HTML AES-CFB1 - HTML AES-CFB8 - HTML AES-CFB128 - HTML AES-CTR - HTML AES-ECB - HTML AES-GCM - HTML AES-GCM-SIV
+      - HTML - D
+    match: AES-CTR
+    line: 71
+    key_from: konteks
+  warnings: []
+- id: AES-128-ECB
+  entry_id: AES-ECB
+  primitive: block_cipher
+  family: AES
+  variant: ECB
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38A
+  - ISO/IEC 18033-3
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: FB1 - HTML AES-CFB8 - HTML AES-CFB128 - HTML AES-CTR - HTML AES-ECB - HTML AES-GCM - HTML AES-GCM-SIV - HTML
+      - DEMO only AES-KW
+    match: AES-ECB
+    line: 72
+    key_from: konteks
+  warnings: []
+- id: AES-128-FF1
+  entry_id: AES-FF1
+  primitive: block_cipher
+  family: AES
+  variant: FF1
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38G
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: .0 - HTML - no longer supported by ACVTS AES-XTS 2.0 - HTML AES-FF1 - HTML AES-FF3-1 - HTML - DEMO only Ascon-AEAD128
+      - HTML TD
+    match: AES-FF1
+    line: 81
+    key_from: konteks
+  warnings: []
+- id: AES-128-FF3-1
+  entry_id: AES-FF3-1
+  primitive: block_cipher
+  family: AES
+  variant: FF3-1
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - FIPS 197
+  - SP 800-38G Rev.1
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: longer supported by ACVTS AES-XTS 2.0 - HTML AES-FF1 - HTML AES-FF3-1 - HTML - DEMO only Ascon-AEAD128 - HTML
+      TDES-CBC - HTML TDE
+    match: AES-FF3-1
+    line: 82
+    key_from: konteks
+  warnings:
+  - PERLU_VERIFIKASI
+- id: AES-128-GCM
+  entry_id: AES-GCM
+  primitive: block_cipher
+  family: AES
+  variant: GCM
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38D
+  - ISO/IEC 18033-3
+  - ISO/IEC 19772
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: CFB8 - HTML AES-CFB128 - HTML AES-CTR - HTML AES-ECB - HTML AES-GCM - HTML AES-GCM-SIV - HTML - DEMO only AES-KW
+      - HTML AES-KWP
+    match: AES-GCM
+    line: 73
+    key_from: konteks
+  warnings: []
+- id: AES-128-GCM-SIV
+  entry_id: AES-GCM-SIV
+  primitive: block_cipher
+  family: AES
+  variant: GCM-SIV
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - RFC 8452
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: -CFB128 - HTML AES-CTR - HTML AES-ECB - HTML AES-GCM - HTML AES-GCM-SIV - HTML - DEMO only AES-KW - HTML AES-KWP
+      - HTML AES-OFB - H
+    match: AES-GCM-SIV
+    line: 74
+    key_from: konteks
+  warnings:
+  - PERLU_VERIFIKASI
+- id: AES-128-KW
+  entry_id: AES-KW
+  primitive: block_cipher
+  family: AES
+  variant: KW
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38F
+  - RFC 3394
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: ES-ECB - HTML AES-GCM - HTML AES-GCM-SIV - HTML - DEMO only AES-KW - HTML AES-KWP - HTML AES-OFB - HTML AES-XPN
+      - HTML AES-XTS
+    match: AES-KW
+    line: 75
+    key_from: konteks
+  warnings: []
+- id: AES-128-KWP
+  entry_id: AES-KWP
+  primitive: block_cipher
+  family: AES
+  variant: KWP
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38F
+  - RFC 5649
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: AES-GCM - HTML AES-GCM-SIV - HTML - DEMO only AES-KW - HTML AES-KWP - HTML AES-OFB - HTML AES-XPN - HTML AES-XTS
+      1.0 - HTML - n
+    match: AES-KWP
+    line: 76
+    key_from: konteks
+  warnings: []
+- id: AES-128-OFB
+  entry_id: AES-OFB
+  primitive: block_cipher
+  family: AES
+  variant: OFB
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38A
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: AES-GCM-SIV - HTML - DEMO only AES-KW - HTML AES-KWP - HTML AES-OFB - HTML AES-XPN - HTML AES-XTS 1.0 - HTML
+      - no longer suppor
+    match: AES-OFB
+    line: 77
+    key_from: konteks
+  warnings: []
+- id: TDEA-3KEY
+  entry_id: TDEA-3KEY
+  primitive: block_cipher
+  family: TDEA
+  variant: 3-key
+  key_bits: 168
+  block_or_output_bits: 64
+  security_strength_bits: 112
+  security_category: null
+  status_nist: disallowed
+  standards:
+  - SP 800-67 Rev.2
+  - SP 800-131A Rev.2
+  - ISO/IEC 18033-3
+  quantum_vulnerable: false
+  uk1_primitive: block_cipher
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: F1 - HTML AES-FF3-1 - HTML - DEMO only Ascon-AEAD128 - HTML TDES-CBC - HTML TDES-CBCI - HTML TDES-CFB1 - HTML
+      TDES-CFB8 - HT
+    match: TDES
+    line: 84
+    key_from: alias
+  - type: link
+    ref: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program
+    confidence: 0.95
+    evidence: ents, validation lists and test vectors. Block Ciphers AES, Triple DES, Skipjack (decryption only) Tests for
+      ECB, CBC, CFB and OFB
+    match: Triple DES
+    line: 84
+    key_from: alias
+  warnings:
+  - STATUS_DISALLOWED
+- id: ASCON-CXOF128
+  entry_id: ASCON-CXOF128
+  primitive: hash
+  family: Ascon
+  variant: Ascon-CXOF128
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-232
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: 384 2.0 - HTML SHA3-512 2.0 - HTML XOFs Ascon-XOF128 - HTML Ascon-CXOF128 - HTML SHAKE-128 - HTML SHAKE-256
+      - HTML cSHAKE-128 - HTML
+    match: Ascon-CXOF128
+    line: 116
+    key_from: alias
+  warnings: []
+- id: ASCON-HASH256
+  entry_id: ASCON-HASH256
+  primitive: hash
+  family: Ascon
+  variant: Ascon-Hash256
+  key_bits: null
+  block_or_output_bits: 256
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-232
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: TDES-KW - HTML TDES-OFB - HTML TDES-OFBI - HTML Secure Hash Ascon-Hash256 - HTML SHA-1 - HTML SHA-224 - HTML
+      SHA-256 - HTML SHA-384 -
+    match: Ascon-Hash256
+    line: 98
+    key_from: alias
+  warnings: []
+- id: ASCON-XOF128
+  entry_id: ASCON-XOF128
+  primitive: hash
+  family: Ascon
+  variant: Ascon-XOF128
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-232
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: 256 2.0 - HTML SHA3-384 2.0 - HTML SHA3-512 2.0 - HTML XOFs Ascon-XOF128 - HTML Ascon-CXOF128 - HTML SHAKE-128
+      - HTML SHAKE-256 - HT
+    match: Ascon-XOF128
+    line: 115
+    key_from: alias
+  warnings: []
+- id: ACVP-PARALLELHASH-128
+  entry_id: ACVP-PARALLELHASH-128
+  primitive: hash
+  family: ParallelHash
+  variant: ParallelHash-128
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: 28 - HTML cSHAKE-256 - HTML KMAC-128 - HTML KMAC-256 - HTML ParallelHash-128 - HTML ParallelHash-256 - HTML
+      TupleHash-128 - HTML TupleHa
+    match: ParallelHash-128
+    line: 123
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-PARALLELHASH-256
+  entry_id: ACVP-PARALLELHASH-256
+  primitive: hash
+  family: ParallelHash
+  variant: ParallelHash-256
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: TML KMAC-128 - HTML KMAC-256 - HTML ParallelHash-128 - HTML ParallelHash-256 - HTML TupleHash-128 - HTML TupleHash-256
+      - HTML Message Au
+    match: ParallelHash-256
+    line: 124
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: SHA-1
+  entry_id: SHA-1
+  primitive: hash
+  family: SHA-1
+  variant: SHA-1
+  key_bits: null
+  block_or_output_bits: 160
+  security_strength_bits: <80
+  security_category: null
+  status_nist: disallowed
+  standards:
+  - FIPS 180-4
+  - SP 800-131A Rev.2
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: FB - HTML TDES-OFBI - HTML Secure Hash Ascon-Hash256 - HTML SHA-1 - HTML SHA-224 - HTML SHA-256 - HTML SHA-384
+      - HTML SHA-512
+    match: SHA-1
+    line: 99
+    key_from: alias
+  - type: link
+    ref: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program
+    confidence: 0.95
+    evidence: 198-1) Random Number Generation DRBG Secure Hashing SHA-2, SHA-1 SHA-3 Component Testing ECC-CDH (SP 800-56A),
+      ECDSA Signatu
+    match: SHA-1
+    line: 100
+    key_from: alias
+  warnings:
+  - STATUS_DISALLOWED
+  - STRENGTH_LT_112
+- id: SHA-224
+  entry_id: SHA-224
+  primitive: hash
+  family: SHA-2
+  variant: SHA-224
+  key_bits: null
+  block_or_output_bits: 224
+  security_strength_bits: 112
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 180-4
+  - ISO/IEC 10118-3
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: S-OFBI - HTML Secure Hash Ascon-Hash256 - HTML SHA-1 - HTML SHA-224 - HTML SHA-256 - HTML SHA-384 - HTML SHA-512
+      - HTML SHA-512
+    match: SHA-224
+    line: 100
+    key_from: alias
+  warnings: []
+- id: SHA-256
+  entry_id: SHA-256
+  primitive: hash
+  family: SHA-2
+  variant: SHA-256
+  key_bits: null
+  block_or_output_bits: 256
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 180-4
+  - ISO/IEC 10118-3
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: ecure Hash Ascon-Hash256 - HTML SHA-1 - HTML SHA-224 - HTML SHA-256 - HTML SHA-384 - HTML SHA-512 - HTML SHA-512/224
+      - HTML SHA
+    match: SHA-256
+    line: 101
+    key_from: alias
+  warnings: []
+- id: SHA-384
+  entry_id: SHA-384
+  primitive: hash
+  family: SHA-2
+  variant: SHA-384
+  key_bits: null
+  block_or_output_bits: 384
+  security_strength_bits: 192
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 180-4
+  - ISO/IEC 10118-3
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: n-Hash256 - HTML SHA-1 - HTML SHA-224 - HTML SHA-256 - HTML SHA-384 - HTML SHA-512 - HTML SHA-512/224 - HTML
+      SHA-512/256 - HTML
+    match: SHA-384
+    line: 102
+    key_from: alias
+  warnings: []
+- id: SHA-512
+  entry_id: SHA-512
+  primitive: hash
+  family: SHA-2
+  variant: SHA-512
+  key_bits: null
+  block_or_output_bits: 512
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 180-4
+  - ISO/IEC 10118-3
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: L SHA-1 - HTML SHA-224 - HTML SHA-256 - HTML SHA-384 - HTML SHA-512 - HTML SHA-512/224 - HTML SHA-512/256 -
+      HTML SHA3-224 1.0 -
+    match: SHA-512
+    line: 103
+    key_from: alias
+  warnings: []
+- id: SHA-512/224
+  entry_id: SHA-512/224
+  primitive: hash
+  family: SHA-2
+  variant: SHA-512/224
+  key_bits: null
+  block_or_output_bits: 224
+  security_strength_bits: 112
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 180-4
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: SHA-224 - HTML SHA-256 - HTML SHA-384 - HTML SHA-512 - HTML SHA-512/224 - HTML SHA-512/256 - HTML SHA3-224 1.0
+      - HTML - no longer s
+    match: SHA-512/224
+    line: 104
+    key_from: alias
+  warnings: []
+- id: SHA-512/256
+  entry_id: SHA-512/256
+  primitive: hash
+  family: SHA-2
+  variant: SHA-512/256
+  key_bits: null
+  block_or_output_bits: 256
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 180-4
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: 256 - HTML SHA-384 - HTML SHA-512 - HTML SHA-512/224 - HTML SHA-512/256 - HTML SHA3-224 1.0 - HTML - no longer
+      supported by ACVTS S
+    match: SHA-512/256
+    line: 105
+    key_from: alias
+  warnings: []
+- id: SHA3-224
+  entry_id: SHA3-224
+  primitive: hash
+  family: SHA-3
+  variant: SHA3-224
+  key_bits: null
+  block_or_output_bits: 224
+  security_strength_bits: 112
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 202
+  - ISO/IEC 10118-3
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: '- HTML SHA-512 - HTML SHA-512/224 - HTML SHA-512/256 - HTML SHA3-224 1.0 - HTML - no longer supported by ACVTS
+      SHA3-256 1.0 - HT'
+    match: SHA3-224
+    line: 106
+    key_from: alias
+  warnings: []
+- id: SHA3-256
+  entry_id: SHA3-256
+  primitive: hash
+  family: SHA-3
+  variant: SHA3-256
+  key_bits: null
+  block_or_output_bits: 256
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 202
+  - ISO/IEC 10118-3
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: config/profiles/sha3_256.yaml
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: 6 - HTML SHA3-224 1.0 - HTML - no longer supported by ACVTS SHA3-256 1.0 - HTML - no longer supported by ACVTS
+      SHA3-384 1.0 - HT
+    match: SHA3-256
+    line: 107
+    key_from: alias
+  warnings: []
+- id: SHA3-384
+  entry_id: SHA3-384
+  primitive: hash
+  family: SHA-3
+  variant: SHA3-384
+  key_bits: null
+  block_or_output_bits: 384
+  security_strength_bits: 192
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 202
+  - ISO/IEC 10118-3
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: by ACVTS SHA3-256 1.0 - HTML - no longer supported by ACVTS SHA3-384 1.0 - HTML - no longer supported by ACVTS
+      SHA3-512 1.0 - HT
+    match: SHA3-384
+    line: 108
+    key_from: alias
+  warnings: []
+- id: SHA3-512
+  entry_id: SHA3-512
+  primitive: hash
+  family: SHA-3
+  variant: SHA3-512
+  key_bits: null
+  block_or_output_bits: 512
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 202
+  - ISO/IEC 10118-3
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: by ACVTS SHA3-384 1.0 - HTML - no longer supported by ACVTS SHA3-512 1.0 - HTML - no longer supported by ACVTS
+      SHA3-224 2.0 - HT
+    match: SHA3-512
+    line: 109
+    key_from: alias
+  warnings: []
+- id: SHAKE128
+  entry_id: SHAKE128
+  primitive: hash
+  family: SHA-3
+  variant: SHAKE128
+  key_bits: null
+  block_or_output_bits: 256
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 202
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: 12 2.0 - HTML XOFs Ascon-XOF128 - HTML Ascon-CXOF128 - HTML SHAKE-128 - HTML SHAKE-256 - HTML cSHAKE-128 - HTML
+      cSHAKE-256 - HTML
+    match: SHAKE-128
+    line: 117
+    key_from: alias
+  warnings: []
+- id: SHAKE256
+  entry_id: SHAKE256
+  primitive: hash
+  family: SHA-3
+  variant: SHAKE256
+  key_bits: null
+  block_or_output_bits: 512
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 202
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: s Ascon-XOF128 - HTML Ascon-CXOF128 - HTML SHAKE-128 - HTML SHAKE-256 - HTML cSHAKE-128 - HTML cSHAKE-256 -
+      HTML KMAC-128 - HTML
+    match: SHAKE-256
+    line: 118
+    key_from: alias
+  warnings: []
+- id: cSHAKE128
+  entry_id: CSHAKE
+  primitive: hash
+  family: SHA-3
+  variant: cSHAKE
+  key_bits: 128
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-185
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: HTML Ascon-CXOF128 - HTML SHAKE-128 - HTML SHAKE-256 - HTML cSHAKE-128 - HTML cSHAKE-256 - HTML KMAC-128 - HTML
+      KMAC-256 - HTML Pa
+    match: cSHAKE-128
+    line: 119
+    key_from: alias
+  warnings: []
+- id: cSHAKE256
+  entry_id: CSHAKE
+  primitive: hash
+  family: SHA-3
+  variant: cSHAKE
+  key_bits: 256
+  block_or_output_bits: null
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-185
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: '- HTML SHAKE-128 - HTML SHAKE-256 - HTML cSHAKE-128 - HTML cSHAKE-256 - HTML KMAC-128 - HTML KMAC-256 - HTML
+      ParallelHash-128 - H'
+    match: cSHAKE-256
+    line: 120
+    key_from: alias
+  warnings: []
+- id: ACVP-TUPLEHASH-128
+  entry_id: ACVP-TUPLEHASH-128
+  primitive: hash
+  family: TupleHash
+  variant: TupleHash-128
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: -256 - HTML ParallelHash-128 - HTML ParallelHash-256 - HTML TupleHash-128 - HTML TupleHash-256 - HTML Message
+      Authentication AES-CCM
+    match: TupleHash-128
+    line: 125
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-TUPLEHASH-256
+  entry_id: ACVP-TUPLEHASH-256
+  primitive: hash
+  family: TupleHash
+  variant: TupleHash-256
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: ash-128 - HTML ParallelHash-256 - HTML TupleHash-128 - HTML TupleHash-256 - HTML Message Authentication AES-CCM
+      - HTML AES-GMAC - HTM
+    match: TupleHash-256
+    line: 126
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: CMAC-AES-256
+  entry_id: AES-CMAC
+  primitive: mac
+  family: AES
+  variant: CMAC
+  key_bits: 256
+  block_or_output_bits: 128
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38B
+  - ISO/IEC 9797-1
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: HTML Message Authentication AES-CCM - HTML AES-GMAC - HTML CMAC-AES - HTML CMAC-TDES - HTML HMAC-SHA-1 1.0 -
+      HTML HMAC-SHA2-224
+    match: CMAC-AES
+    line: 130
+    key_from: konteks
+  warnings: []
+- id: GMAC-AES-256
+  entry_id: AES-GMAC
+  primitive: mac
+  family: AES
+  variant: GMAC
+  key_bits: 256
+  block_or_output_bits: 128
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 197
+  - SP 800-38D
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: TupleHash-256 - HTML Message Authentication AES-CCM - HTML AES-GMAC - HTML CMAC-AES - HTML CMAC-TDES - HTML
+      HMAC-SHA-1 1.0 - HT
+    match: AES-GMAC
+    line: 129
+    key_from: konteks
+  - type: link
+    ref: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program
+    confidence: 0.4
+    evidence: 'CBC, CFB and OFB modes. Block Cipher Modes CCM, CMAC, GCM / GMAC / XPN, Key Wrap, XTS Digital Signatures FIPS
+      186-4: DSA, EC'
+    match: GMAC
+    line: 87
+    key_from: tidak terdeteksi
+  warnings: []
+- id: ASCON-AEAD128
+  entry_id: ASCON-AEAD128
+  primitive: mac
+  family: Ascon
+  variant: Ascon-AEAD128
+  key_bits: 128
+  block_or_output_bits: 128
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-232
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: -XTS 2.0 - HTML AES-FF1 - HTML AES-FF3-1 - HTML - DEMO only Ascon-AEAD128 - HTML TDES-CBC - HTML TDES-CBCI -
+      HTML TDES-CFB1 - HTML TD
+    match: Ascon-AEAD128
+    line: 83
+    key_from: alias
+  warnings: []
+- id: HMAC-SHA-1-K128
+  entry_id: HMAC-SHA-1
+  primitive: mac
+  family: HMAC
+  variant: SHA-1
+  key_bits: 128
+  block_or_output_bits: 160
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 198-1
+  - SP 800-107 Rev.1
+  - ISO/IEC 9797-2
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: CCM - HTML AES-GMAC - HTML CMAC-AES - HTML CMAC-TDES - HTML HMAC-SHA-1 1.0 - HTML HMAC-SHA2-224 1.0 - HTML HMAC-SHA2-256
+      1.0 - HTM
+    match: HMAC-SHA-1
+    line: 132
+    key_from: konteks
+  warnings: []
+- id: HMAC-SHA-224-K224
+  entry_id: HMAC-SHA-224
+  primitive: mac
+  family: HMAC
+  variant: SHA-224
+  key_bits: 224
+  block_or_output_bits: 224
+  security_strength_bits: 224
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 198-1
+  - SP 800-107 Rev.1
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: HTML CMAC-AES - HTML CMAC-TDES - HTML HMAC-SHA-1 1.0 - HTML HMAC-SHA2-224 1.0 - HTML HMAC-SHA2-256 1.0 - HTML
+      HMAC-SHA2-384 1.0 - HTM
+    match: HMAC-SHA2-224
+    line: 133
+    key_from: konteks
+  warnings: []
+- id: HMAC-SHA-256-K256
+  entry_id: HMAC-SHA-256
+  primitive: mac
+  family: HMAC
+  variant: SHA-256
+  key_bits: 256
+  block_or_output_bits: 256
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 198-1
+  - SP 800-107 Rev.1
+  - ISO/IEC 9797-2
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: -TDES - HTML HMAC-SHA-1 1.0 - HTML HMAC-SHA2-224 1.0 - HTML HMAC-SHA2-256 1.0 - HTML HMAC-SHA2-384 1.0 - HTML
+      HMAC-SHA2-512 1.0 - HTM
+    match: HMAC-SHA2-256
+    line: 134
+    key_from: konteks
+  warnings: []
+- id: HMAC-SHA-384-K384
+  entry_id: HMAC-SHA-384
+  primitive: mac
+  family: HMAC
+  variant: SHA-384
+  key_bits: 384
+  block_or_output_bits: 384
+  security_strength_bits: 384
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 198-1
+  - SP 800-107 Rev.1
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: .0 - HTML HMAC-SHA2-224 1.0 - HTML HMAC-SHA2-256 1.0 - HTML HMAC-SHA2-384 1.0 - HTML HMAC-SHA2-512 1.0 - HTML
+      HMAC-SHA2-512/224 1.0 -
+    match: HMAC-SHA2-384
+    line: 135
+    key_from: konteks
+  warnings: []
+- id: HMAC-SHA-512-K512
+  entry_id: HMAC-SHA-512
+  primitive: mac
+  family: HMAC
+  variant: SHA-512
+  key_bits: 512
+  block_or_output_bits: 512
+  security_strength_bits: 512
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 198-1
+  - SP 800-107 Rev.1
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: .0 - HTML HMAC-SHA2-256 1.0 - HTML HMAC-SHA2-384 1.0 - HTML HMAC-SHA2-512 1.0 - HTML HMAC-SHA2-512/224 1.0 -
+      HTML HMAC-SHA2-512/256 1
+    match: HMAC-SHA2-512
+    line: 136
+    key_from: konteks
+  warnings: []
+- id: HMAC-SHA-512/224-K224
+  entry_id: HMAC-SHA-512/224
+  primitive: mac
+  family: HMAC
+  variant: SHA-512/224
+  key_bits: 224
+  block_or_output_bits: 224
+  security_strength_bits: 224
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 198-1
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: .0 - HTML HMAC-SHA2-384 1.0 - HTML HMAC-SHA2-512 1.0 - HTML HMAC-SHA2-512/224 1.0 - HTML HMAC-SHA2-512/256 1.0
+      - HTML HMAC-SHA3-224 1.0 -
+    match: HMAC-SHA2-512/224
+    line: 137
+    key_from: konteks
+  warnings: []
+- id: HMAC-SHA-512/256-K256
+  entry_id: HMAC-SHA-512/256
+  primitive: mac
+  family: HMAC
+  variant: SHA-512/256
+  key_bits: 256
+  block_or_output_bits: 256
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 198-1
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: HTML HMAC-SHA2-512 1.0 - HTML HMAC-SHA2-512/224 1.0 - HTML HMAC-SHA2-512/256 1.0 - HTML HMAC-SHA3-224 1.0 -
+      HTML HMAC-SHA3-256 1.0 - HTM
+    match: HMAC-SHA2-512/256
+    line: 138
+    key_from: konteks
+  warnings: []
+- id: HMAC-SHA3-224-K224
+  entry_id: HMAC-SHA3-224
+  primitive: mac
+  family: HMAC
+  variant: SHA3-224
+  key_bits: 224
+  block_or_output_bits: 224
+  security_strength_bits: 224
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 198-1
+  - FIPS 202
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: L HMAC-SHA2-512/224 1.0 - HTML HMAC-SHA2-512/256 1.0 - HTML HMAC-SHA3-224 1.0 - HTML HMAC-SHA3-256 1.0 - HTML
+      HMAC-SHA3-384 1.0 - HTM
+    match: HMAC-SHA3-224
+    line: 139
+    key_from: konteks
+  warnings: []
+- id: HMAC-SHA3-256-K256
+  entry_id: HMAC-SHA3-256
+  primitive: mac
+  family: HMAC
+  variant: SHA3-256
+  key_bits: 256
+  block_or_output_bits: 256
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 198-1
+  - FIPS 202
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: HTML HMAC-SHA2-512/256 1.0 - HTML HMAC-SHA3-224 1.0 - HTML HMAC-SHA3-256 1.0 - HTML HMAC-SHA3-384 1.0 - HTML
+      HMAC-SHA3-512 1.0 - HTM
+    match: HMAC-SHA3-256
+    line: 140
+    key_from: konteks
+  warnings: []
+- id: HMAC-SHA3-384-K192
+  entry_id: HMAC-SHA3-384
+  primitive: mac
+  family: HMAC
+  variant: SHA3-384
+  key_bits: 192
+  block_or_output_bits: 384
+  security_strength_bits: 192
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 198-1
+  - FIPS 202
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: .0 - HTML HMAC-SHA3-224 2.0 - HTML HMAC-SHA3-256 2.0 - HTML HMAC-SHA3-384 2.0 - HTML HMAC-SHA3-512 2.0 - HTML
+      KMAC-128 - HTML KMAC-25
+    match: HMAC-SHA3-384
+    line: 152
+    key_from: konteks
+  warnings: []
+- id: HMAC-SHA3-384-K384
+  entry_id: HMAC-SHA3-384
+  primitive: mac
+  family: HMAC
+  variant: SHA3-384
+  key_bits: 384
+  block_or_output_bits: 384
+  security_strength_bits: 384
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 198-1
+  - FIPS 202
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: .0 - HTML HMAC-SHA3-224 1.0 - HTML HMAC-SHA3-256 1.0 - HTML HMAC-SHA3-384 1.0 - HTML HMAC-SHA3-512 1.0 - HTML
+      HMAC-SHA-1 2.0 - HTML H
+    match: HMAC-SHA3-384
+    line: 141
+    key_from: konteks
+  warnings: []
+- id: HMAC-SHA3-512-K256
+  entry_id: HMAC-SHA3-512
+  primitive: mac
+  family: HMAC
+  variant: SHA3-512
+  key_bits: 256
+  block_or_output_bits: 512
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 198-1
+  - FIPS 202
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: .0 - HTML HMAC-SHA3-256 1.0 - HTML HMAC-SHA3-384 1.0 - HTML HMAC-SHA3-512 1.0 - HTML HMAC-SHA-1 2.0 - HTML HMAC-SHA2-224
+      2.0 - HTML H
+    match: HMAC-SHA3-512
+    line: 142
+    key_from: konteks
+  warnings: []
+- id: KMAC128
+  entry_id: KMAC
+  primitive: mac
+  family: KMAC
+  variant: KMAC
+  key_bits: 128
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-185
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: '- HTML SHAKE-256 - HTML cSHAKE-128 - HTML cSHAKE-256 - HTML KMAC-128 - HTML KMAC-256 - HTML ParallelHash-128
+      - HTML ParallelHash'
+    match: KMAC-128
+    line: 121
+    key_from: alias
+  warnings: []
+- id: KMAC256
+  entry_id: KMAC
+  primitive: mac
+  family: KMAC
+  variant: KMAC
+  key_bits: 256
+  block_or_output_bits: null
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-185
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: '- HTML cSHAKE-128 - HTML cSHAKE-256 - HTML KMAC-128 - HTML KMAC-256 - HTML ParallelHash-128 - HTML ParallelHash-256
+      - HTML Tupl'
+    match: KMAC-256
+    line: 122
+    key_from: alias
+  warnings: []
+- id: ACVP-KAS-ECC-CDH-COMPONENT
+  entry_id: ACVP-KAS-ECC-CDH-COMPONENT
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC CDH-Component
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: KAS ECC OnePassUnified - HTML KAS ECC staticUnified - HTML KAS ECC CDH-Component - HTML KAS FFC dhHybrid1 -
+      HTML KAS FFC mqv2 - HTML KAS FFC
+    match: KAS ECC CDH-Component
+    line: 236
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-CDH-COMPONENT-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-CDH-COMPONENT-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC CDH-Component Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: Sp800-56Ar3 - HTML KAS ECC staticUnified Sp800-56Ar3 - HTML KAS ECC CDH-Component Sp800-56Ar3 - HTML KAS FFC
+      dhHybrid1 Sp800-56Ar3 - HTML KAS FFC mqv2 Sp
+    match: KAS ECC CDH-Component Sp800-56Ar3
+    line: 211
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-ONEPASSUNIFIED
+  entry_id: ACVP-KAS-ECC-ONEPASSUNIFIED
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC OnePassUnified
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: d - HTML KAS ECC onePassDh - HTML KAS ECC onePassMqv - HTML KAS ECC OnePassUnified - HTML KAS ECC staticUnified
+      - HTML KAS FFC dhHybrid1 - HTM
+    match: KAS ECC OnePassUnified
+    line: 195
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-ONEPASSUNIFIED-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-ONEPASSUNIFIED-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC OnePassUnified Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: Dh Sp800-56Ar3 - HTML KAS ECC onePassMqv Sp800-56Ar3 - HTML KAS ECC OnePassUnified Sp800-56Ar3 - HTML KAS ECC
+      staticUnified Sp800-56Ar3 - HTML KAS ECC CDH
+    match: KAS ECC OnePassUnified Sp800-56Ar3
+    line: 209
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-SSC-ONEPASSUNIFIED-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-SSC-ONEPASSUNIFIED-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC SSC OnePassUnified Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: p800-56Ar3 - HTML KAS ECC SSC onePassMqv Sp800-56Ar3 - HTML KAS ECC SSC OnePassUnified Sp800-56Ar3 - HTML KAS
+      ECC SSC staticUnified Sp800-56Ar3 - HTML KAS FFC
+    match: KAS ECC SSC OnePassUnified Sp800-56Ar3
+    line: 249
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-SSC-EPHEMERALUNIFIED-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-SSC-EPHEMERALUNIFIED-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC SSC ephemeralUnified Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: qv1 - HTML KAS FFC dhOneFlow - HTML KAS FFC dhStatic - HTML KAS ECC SSC ephemeralUnified Sp800-56Ar3 - HTML
+      KAS ECC SSC fullMqv Sp800-56Ar3 - HTML KAS ECC SSC f
+    match: KAS ECC SSC ephemeralUnified Sp800-56Ar3
+    line: 244
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-SSC-FULLMQV-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-SSC-FULLMQV-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC SSC fullMqv Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: atic - HTML KAS ECC SSC ephemeralUnified Sp800-56Ar3 - HTML KAS ECC SSC fullMqv Sp800-56Ar3 - HTML KAS ECC SSC
+      fullUnified Sp800-56Ar3 - HTML KAS ECC S
+    match: KAS ECC SSC fullMqv Sp800-56Ar3
+    line: 245
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-SSC-FULLUNIFIED-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-SSC-FULLUNIFIED-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC SSC fullUnified Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: d Sp800-56Ar3 - HTML KAS ECC SSC fullMqv Sp800-56Ar3 - HTML KAS ECC SSC fullUnified Sp800-56Ar3 - HTML KAS ECC
+      SSC onePassDh Sp800-56Ar3 - HTML KAS ECC SSC
+    match: KAS ECC SSC fullUnified Sp800-56Ar3
+    line: 246
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-SSC-ONEPASSDH-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-SSC-ONEPASSDH-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC SSC onePassDh Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: 800-56Ar3 - HTML KAS ECC SSC fullUnified Sp800-56Ar3 - HTML KAS ECC SSC onePassDh Sp800-56Ar3 - HTML KAS ECC
+      SSC onePassMqv Sp800-56Ar3 - HTML KAS ECC SS
+    match: KAS ECC SSC onePassDh Sp800-56Ar3
+    line: 247
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-SSC-ONEPASSMQV-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-SSC-ONEPASSMQV-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC SSC onePassMqv Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: Sp800-56Ar3 - HTML KAS ECC SSC onePassDh Sp800-56Ar3 - HTML KAS ECC SSC onePassMqv Sp800-56Ar3 - HTML KAS ECC
+      SSC OnePassUnified Sp800-56Ar3 - HTML KAS EC
+    match: KAS ECC SSC onePassMqv Sp800-56Ar3
+    line: 248
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-SSC-STATICUNIFIED-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-SSC-STATICUNIFIED-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC SSC staticUnified Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: -56Ar3 - HTML KAS ECC SSC OnePassUnified Sp800-56Ar3 - HTML KAS ECC SSC staticUnified Sp800-56Ar3 - HTML KAS
+      FFC SSC dhHybrid1 Sp800-56Ar3 - HTML KAS FFC SSC
+    match: KAS ECC SSC staticUnified Sp800-56Ar3
+    line: 250
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-EPHEMERALUNIFIED
+  entry_id: ACVP-KAS-ECC-EPHEMERALUNIFIED
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC ephemeralUnified
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: 0 component based tests) are considered "full KAS" testing. KAS ECC ephemeralUnified - HTML KAS ECC fullMqv
+      - HTML KAS ECC fullUnified - HTML KA
+    match: KAS ECC ephemeralUnified
+    line: 190
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-EPHEMERALUNIFIED-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-EPHEMERALUNIFIED-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC ephemeralUnified Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: qv1 - HTML KAS FFC dhOneFlow - HTML KAS FFC dhStatic - HTML KAS ECC ephemeralUnified Sp800-56Ar3 - HTML KAS
+      ECC fullMqv Sp800-56Ar3 - HTML KAS ECC fullUnifi
+    match: KAS ECC ephemeralUnified Sp800-56Ar3
+    line: 204
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-FULLMQV
+  entry_id: ACVP-KAS-ECC-FULLMQV
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC fullMqv
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: sidered "full KAS" testing. KAS ECC ephemeralUnified - HTML KAS ECC fullMqv - HTML KAS ECC fullUnified - HTML
+      KAS ECC onePassDh - HTML
+    match: KAS ECC fullMqv
+    line: 191
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-FULLMQV-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-FULLMQV-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC fullMqv Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: dhStatic - HTML KAS ECC ephemeralUnified Sp800-56Ar3 - HTML KAS ECC fullMqv Sp800-56Ar3 - HTML KAS ECC fullUnified
+      Sp800-56Ar3 - HTML KAS ECC onePa
+    match: KAS ECC fullMqv Sp800-56Ar3
+    line: 205
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-FULLUNIFIED
+  entry_id: ACVP-KAS-ECC-FULLUNIFIED
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC fullUnified
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: ing. KAS ECC ephemeralUnified - HTML KAS ECC fullMqv - HTML KAS ECC fullUnified - HTML KAS ECC onePassDh - HTML
+      KAS ECC onePassMqv - HTML K
+    match: KAS ECC fullUnified
+    line: 192
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-FULLUNIFIED-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-FULLUNIFIED-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC fullUnified Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: ified Sp800-56Ar3 - HTML KAS ECC fullMqv Sp800-56Ar3 - HTML KAS ECC fullUnified Sp800-56Ar3 - HTML KAS ECC onePassDh
+      Sp800-56Ar3 - HTML KAS ECC onePass
+    match: KAS ECC fullUnified Sp800-56Ar3
+    line: 206
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-ONEPASSDH
+  entry_id: ACVP-KAS-ECC-ONEPASSDH
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC onePassDh
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: ed - HTML KAS ECC fullMqv - HTML KAS ECC fullUnified - HTML KAS ECC onePassDh - HTML KAS ECC onePassMqv - HTML
+      KAS ECC OnePassUnified - H
+    match: KAS ECC onePassDh
+    line: 193
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-ONEPASSDH-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-ONEPASSDH-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC onePassDh Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: v Sp800-56Ar3 - HTML KAS ECC fullUnified Sp800-56Ar3 - HTML KAS ECC onePassDh Sp800-56Ar3 - HTML KAS ECC onePassMqv
+      Sp800-56Ar3 - HTML KAS ECC OnePas
+    match: KAS ECC onePassDh Sp800-56Ar3
+    line: 207
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-ONEPASSMQV
+  entry_id: ACVP-KAS-ECC-ONEPASSMQV
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC onePassMqv
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: '- HTML KAS ECC fullUnified - HTML KAS ECC onePassDh - HTML KAS ECC onePassMqv - HTML KAS ECC OnePassUnified
+      - HTML KAS ECC staticUnified'
+    match: KAS ECC onePassMqv
+    line: 194
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-ONEPASSMQV-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-ONEPASSMQV-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC onePassMqv Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: ied Sp800-56Ar3 - HTML KAS ECC onePassDh Sp800-56Ar3 - HTML KAS ECC onePassMqv Sp800-56Ar3 - HTML KAS ECC OnePassUnified
+      Sp800-56Ar3 - HTML KAS ECC st
+    match: KAS ECC onePassMqv Sp800-56Ar3
+    line: 208
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-STATICUNIFIED
+  entry_id: ACVP-KAS-ECC-STATICUNIFIED
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC staticUnified
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: TML KAS ECC onePassMqv - HTML KAS ECC OnePassUnified - HTML KAS ECC staticUnified - HTML KAS FFC dhHybrid1 -
+      HTML KAS FFC mqv2 - HTML KAS FFC
+    match: KAS ECC staticUnified
+    line: 196
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-ECC-STATICUNIFIED-SP800-56AR3
+  entry_id: ACVP-KAS-ECC-STATICUNIFIED-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS ECC staticUnified Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: p800-56Ar3 - HTML KAS ECC OnePassUnified Sp800-56Ar3 - HTML KAS ECC staticUnified Sp800-56Ar3 - HTML KAS ECC
+      CDH-Component Sp800-56Ar3 - HTML KAS FFC dhH
+    match: KAS ECC staticUnified Sp800-56Ar3
+    line: 210
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-SSC-DHEPHEM-SP800-56AR3
+  entry_id: ACVP-KAS-FFC-SSC-DHEPHEM-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC SSC dhEphem Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: rid1 Sp800-56Ar3 - HTML KAS FFC SSC mqv2 Sp800-56Ar3 - HTML KAS FFC SSC dhEphem Sp800-56Ar3 - HTML KAS FFC SSC
+      dhHybridOneFlow Sp800-56Ar3 - HTML KAS F
+    match: KAS FFC SSC dhEphem Sp800-56Ar3
+    line: 253
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-SSC-DHHYBRID1-SP800-56AR3
+  entry_id: ACVP-KAS-FFC-SSC-DHHYBRID1-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC SSC dhHybrid1 Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: 0-56Ar3 - HTML KAS ECC SSC staticUnified Sp800-56Ar3 - HTML KAS FFC SSC dhHybrid1 Sp800-56Ar3 - HTML KAS FFC
+      SSC mqv2 Sp800-56Ar3 - HTML KAS FFC SSC dhEp
+    match: KAS FFC SSC dhHybrid1 Sp800-56Ar3
+    line: 251
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-SSC-DHHYBRIDONEFLOW-SP800-56AR3
+  entry_id: ACVP-KAS-FFC-SSC-DHHYBRIDONEFLOW-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC SSC dhHybridOneFlow Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: 2 Sp800-56Ar3 - HTML KAS FFC SSC dhEphem Sp800-56Ar3 - HTML KAS FFC SSC dhHybridOneFlow Sp800-56Ar3 - HTML KAS
+      FFC SSC mqv1 Sp800-56Ar3 - HTML KAS FFC SSC dhOn
+    match: KAS FFC SSC dhHybridOneFlow Sp800-56Ar3
+    line: 254
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-SSC-DHONEFLOW-SP800-56AR3
+  entry_id: ACVP-KAS-FFC-SSC-DHONEFLOW-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC SSC dhOneFlow Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: Flow Sp800-56Ar3 - HTML KAS FFC SSC mqv1 Sp800-56Ar3 - HTML KAS FFC SSC dhOneFlow Sp800-56Ar3 - HTML KAS FFC
+      SSC dhStatic Sp800-56Ar3 - HTML KAS IFC SSC
+    match: KAS FFC SSC dhOneFlow Sp800-56Ar3
+    line: 256
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-SSC-DHSTATIC-SP800-56AR3
+  entry_id: ACVP-KAS-FFC-SSC-DHSTATIC-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC SSC dhStatic Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: Sp800-56Ar3 - HTML KAS FFC SSC dhOneFlow Sp800-56Ar3 - HTML KAS FFC SSC dhStatic Sp800-56Ar3 - HTML KAS IFC
+      SSC KAS1 Sp800-56Br2 - HTML KAS IFC SSC KAS2
+    match: KAS FFC SSC dhStatic Sp800-56Ar3
+    line: 257
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-SSC-MQV1-SP800-56AR3
+  entry_id: ACVP-KAS-FFC-SSC-MQV1-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC SSC mqv1 Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: 56Ar3 - HTML KAS FFC SSC dhHybridOneFlow Sp800-56Ar3 - HTML KAS FFC SSC mqv1 Sp800-56Ar3 - HTML KAS FFC SSC
+      dhOneFlow Sp800-56Ar3 - HTML KAS FFC SSC
+    match: KAS FFC SSC mqv1 Sp800-56Ar3
+    line: 255
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-SSC-MQV2-SP800-56AR3
+  entry_id: ACVP-KAS-FFC-SSC-MQV2-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC SSC mqv2 Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: Sp800-56Ar3 - HTML KAS FFC SSC dhHybrid1 Sp800-56Ar3 - HTML KAS FFC SSC mqv2 Sp800-56Ar3 - HTML KAS FFC SSC
+      dhEphem Sp800-56Ar3 - HTML KAS FFC SSC d
+    match: KAS FFC SSC mqv2 Sp800-56Ar3
+    line: 252
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-DHEPHEM
+  entry_id: ACVP-KAS-FFC-DHEPHEM
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC dhEphem
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: Unified - HTML KAS FFC dhHybrid1 - HTML KAS FFC mqv2 - HTML KAS FFC dhEphem - HTML KAS FFC dhHybridOneFlow -
+      HTML KAS FFC mqv1 - HTML K
+    match: KAS FFC dhEphem
+    line: 199
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-DHEPHEM-SP800-56AR3
+  entry_id: ACVP-KAS-FFC-DHEPHEM-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC dhEphem Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: hHybrid1 Sp800-56Ar3 - HTML KAS FFC mqv2 Sp800-56Ar3 - HTML KAS FFC dhEphem Sp800-56Ar3 - HTML KAS FFC dhHybridOneFlow
+      Sp800-56Ar3 - HTML KAS FFC m
+    match: KAS FFC dhEphem Sp800-56Ar3
+    line: 214
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-DHHYBRID1
+  entry_id: ACVP-KAS-FFC-DHHYBRID1
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC dhHybrid1
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: KAS ECC OnePassUnified - HTML KAS ECC staticUnified - HTML KAS FFC dhHybrid1 - HTML KAS FFC mqv2 - HTML KAS
+      FFC dhEphem - HTML KAS FFC d
+    match: KAS FFC dhHybrid1
+    line: 197
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-DHHYBRID1-SP800-56AR3
+  entry_id: ACVP-KAS-FFC-DHHYBRID1-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC dhHybrid1 Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: Sp800-56Ar3 - HTML KAS ECC CDH-Component Sp800-56Ar3 - HTML KAS FFC dhHybrid1 Sp800-56Ar3 - HTML KAS FFC mqv2
+      Sp800-56Ar3 - HTML KAS FFC dhEphem Sp80
+    match: KAS FFC dhHybrid1 Sp800-56Ar3
+    line: 212
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-DHHYBRIDONEFLOW
+  entry_id: ACVP-KAS-FFC-DHHYBRIDONEFLOW
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC dhHybridOneFlow
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: dhHybrid1 - HTML KAS FFC mqv2 - HTML KAS FFC dhEphem - HTML KAS FFC dhHybridOneFlow - HTML KAS FFC mqv1 - HTML
+      KAS FFC dhOneFlow - HTML KAS FFC
+    match: KAS FFC dhHybridOneFlow
+    line: 200
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-DHHYBRIDONEFLOW-SP800-56AR3
+  entry_id: ACVP-KAS-FFC-DHHYBRIDONEFLOW-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC dhHybridOneFlow Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: mqv2 Sp800-56Ar3 - HTML KAS FFC dhEphem Sp800-56Ar3 - HTML KAS FFC dhHybridOneFlow Sp800-56Ar3 - HTML KAS FFC
+      mqv1 Sp800-56Ar3 - HTML KAS FFC dhOneFlow Sp
+    match: KAS FFC dhHybridOneFlow Sp800-56Ar3
+    line: 215
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-DHONEFLOW
+  entry_id: ACVP-KAS-FFC-DHONEFLOW
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC dhOneFlow
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: m - HTML KAS FFC dhHybridOneFlow - HTML KAS FFC mqv1 - HTML KAS FFC dhOneFlow - HTML KAS FFC dhStatic - HTML
+      KAS ECC ephemeralUnified Sp8
+    match: KAS FFC dhOneFlow
+    line: 202
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-DHONEFLOW-SP800-56AR3
+  entry_id: ACVP-KAS-FFC-DHONEFLOW-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC dhOneFlow Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: dOneFlow Sp800-56Ar3 - HTML KAS FFC mqv1 Sp800-56Ar3 - HTML KAS FFC dhOneFlow Sp800-56Ar3 - HTML KAS FFC dhStatic
+      Sp800-56Ar3 - HTML KAS IFC KAS1-bas
+    match: KAS FFC dhOneFlow Sp800-56Ar3
+    line: 217
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-DHSTATIC
+  entry_id: ACVP-KAS-FFC-DHSTATIC
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC dhStatic
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: OneFlow - HTML KAS FFC mqv1 - HTML KAS FFC dhOneFlow - HTML KAS FFC dhStatic - HTML KAS ECC ephemeralUnified
+      Sp800-56Ar3 - HTML KAS ECC
+    match: KAS FFC dhStatic
+    line: 203
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-DHSTATIC-SP800-56AR3
+  entry_id: ACVP-KAS-FFC-DHSTATIC-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC dhStatic Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: qv1 Sp800-56Ar3 - HTML KAS FFC dhOneFlow Sp800-56Ar3 - HTML KAS FFC dhStatic Sp800-56Ar3 - HTML KAS IFC KAS1-basic
+      - HTML KAS IFC KAS1-Party_V-confi
+    match: KAS FFC dhStatic Sp800-56Ar3
+    line: 218
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-MQV1
+  entry_id: ACVP-KAS-FFC-MQV1
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC mqv1
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: HTML KAS FFC dhEphem - HTML KAS FFC dhHybridOneFlow - HTML KAS FFC mqv1 - HTML KAS FFC dhOneFlow - HTML KAS
+      FFC dhStatic - HTML KAS
+    match: KAS FFC mqv1
+    line: 201
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-MQV1-SP800-56AR3
+  entry_id: ACVP-KAS-FFC-MQV1-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC mqv1 Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: 800-56Ar3 - HTML KAS FFC dhHybridOneFlow Sp800-56Ar3 - HTML KAS FFC mqv1 Sp800-56Ar3 - HTML KAS FFC dhOneFlow
+      Sp800-56Ar3 - HTML KAS FFC dhStati
+    match: KAS FFC mqv1 Sp800-56Ar3
+    line: 216
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-MQV2
+  entry_id: ACVP-KAS-FFC-MQV2
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC mqv2
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: HTML KAS ECC staticUnified - HTML KAS FFC dhHybrid1 - HTML KAS FFC mqv2 - HTML KAS FFC dhEphem - HTML KAS FFC
+      dhHybridOneFlow - HTM
+    match: KAS FFC mqv2
+    line: 198
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-FFC-MQV2-SP800-56AR3
+  entry_id: ACVP-KAS-FFC-MQV2-SP800-56AR3
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS FFC mqv2 Sp800-56Ar3
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: ent Sp800-56Ar3 - HTML KAS FFC dhHybrid1 Sp800-56Ar3 - HTML KAS FFC mqv2 Sp800-56Ar3 - HTML KAS FFC dhEphem
+      Sp800-56Ar3 - HTML KAS FFC dhHybridO
+    match: KAS FFC mqv2 Sp800-56Ar3
+    line: 213
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-IFC-KAS1-PARTY-V-CONFIRMATION
+  entry_id: ACVP-KAS-IFC-KAS1-PARTY-V-CONFIRMATION
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS IFC KAS1-Party_V-confirmation
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: S FFC dhStatic Sp800-56Ar3 - HTML KAS IFC KAS1-basic - HTML KAS IFC KAS1-Party_V-confirmation - HTML KAS IFC
+      KAS2-basic - HTML KAS IFC KAS2-bilateral-con
+    match: KAS IFC KAS1-Party_V-confirmation
+    line: 220
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-IFC-KAS1-BASIC
+  entry_id: ACVP-KAS-IFC-KAS1-BASIC
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS IFC KAS1-basic
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: Flow Sp800-56Ar3 - HTML KAS FFC dhStatic Sp800-56Ar3 - HTML KAS IFC KAS1-basic - HTML KAS IFC KAS1-Party_V-confirmation
+      - HTML KAS IFC KAS
+    match: KAS IFC KAS1-basic
+    line: 219
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-IFC-KAS2-PARTY-U-CONFIRMATION
+  entry_id: ACVP-KAS-IFC-KAS2-PARTY-U-CONFIRMATION
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS IFC KAS2-Party_U-confirmation
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: AS2-basic - HTML KAS IFC KAS2-bilateral-confirmation - HTML KAS IFC KAS2-Party_U-confirmation - HTML KAS IFC
+      KAS2-Party_V-confirmation - HTML KTS IFC KTS
+    match: KAS IFC KAS2-Party_U-confirmation
+    line: 223
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-IFC-KAS2-PARTY-V-CONFIRMATION
+  entry_id: ACVP-KAS-IFC-KAS2-PARTY-V-CONFIRMATION
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS IFC KAS2-Party_V-confirmation
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: onfirmation - HTML KAS IFC KAS2-Party_U-confirmation - HTML KAS IFC KAS2-Party_V-confirmation - HTML KTS IFC
+      KTS-OAEP-basic - HTML KTS IFC KTS-OAEP-Party
+    match: KAS IFC KAS2-Party_V-confirmation
+    line: 224
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-IFC-KAS2-BASIC
+  entry_id: ACVP-KAS-IFC-KAS2-BASIC
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS IFC KAS2-basic
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: KAS1-basic - HTML KAS IFC KAS1-Party_V-confirmation - HTML KAS IFC KAS2-basic - HTML KAS IFC KAS2-bilateral-confirmation
+      - HTML KAS IFC K
+    match: KAS IFC KAS2-basic
+    line: 221
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-IFC-KAS2-BILATERAL-CONFIRMATION
+  entry_id: ACVP-KAS-IFC-KAS2-BILATERAL-CONFIRMATION
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS IFC KAS2-bilateral-confirmation
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: KAS1-Party_V-confirmation - HTML KAS IFC KAS2-basic - HTML KAS IFC KAS2-bilateral-confirmation - HTML KAS IFC
+      KAS2-Party_U-confirmation - HTML KAS IFC KAS
+    match: KAS IFC KAS2-bilateral-confirmation
+    line: 222
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-IFC-SSC-KAS1-SP800-56BR2
+  entry_id: ACVP-KAS-IFC-SSC-KAS1-SP800-56BR2
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS IFC SSC KAS1 Sp800-56Br2
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: Sp800-56Ar3 - HTML KAS FFC SSC dhStatic Sp800-56Ar3 - HTML KAS IFC SSC KAS1 Sp800-56Br2 - HTML KAS IFC SSC KAS2
+      Sp800-56Br2 - HTML KDA Testing SP80
+    match: KAS IFC SSC KAS1 Sp800-56Br2
+    line: 258
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KAS-IFC-SSC-KAS2-SP800-56BR2
+  entry_id: ACVP-KAS-IFC-SSC-KAS2-SP800-56BR2
+  primitive: pkc_kem
+  family: KAS
+  variant: KAS IFC SSC KAS2 Sp800-56Br2
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: atic Sp800-56Ar3 - HTML KAS IFC SSC KAS1 Sp800-56Br2 - HTML KAS IFC SSC KAS2 Sp800-56Br2 - HTML KDA Testing
+      SP800-56Cr1/r2 Standalone KDA testing fr
+    match: KAS IFC SSC KAS2 Sp800-56Br2
+    line: 259
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: RSAES-PKCS1-V1_5-1024
+  entry_id: RSAES-PKCS1-V1_5
+  primitive: pkc_kem
+  family: RSA
+  variant: PKCS1-v1_5-ENC
+  key_bits: 1024
+  block_or_output_bits: null
+  security_strength_bits: 80
+  security_category: null
+  status_nist: disallowed
+  standards:
+  - RFC 8017
+  - SP 800-131A Rev.2
+  quantum_vulnerable: true
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program
+    confidence: 0.75
+    evidence: 0-56A), ECDSA Signature (FIPS 186-4), KDF (SP 800-135), RSA PKCS1-v1.5 RSASP1 (FIPS 186-4), RSA PKCS1-vPSS RSASP1
+      (FIPS 186-4), RS
+    match: PKCS1-v1.5
+    line: 106
+    key_from: alias ambigu + petunjuk konteks
+  warnings:
+  - STATUS_DISALLOWED
+  - STRENGTH_LT_112
+  - QUANTUM_VULNERABLE
+- id: RSAES-PKCS1-V1_5-2048
+  entry_id: RSAES-PKCS1-V1_5
+  primitive: pkc_kem
+  family: RSA
+  variant: PKCS1-v1_5-ENC
+  key_bits: 2048
+  block_or_output_bits: null
+  security_strength_bits: 112
+  security_category: null
+  status_nist: disallowed
+  standards:
+  - RFC 8017
+  - SP 800-131A Rev.2
+  quantum_vulnerable: true
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program
+    confidence: 0.75
+    evidence: 0-56A), ECDSA Signature (FIPS 186-4), KDF (SP 800-135), RSA PKCS1-v1.5 RSASP1 (FIPS 186-4), RSA PKCS1-vPSS RSASP1
+      (FIPS 186-4), RS
+    match: PKCS1-v1.5
+    line: 106
+    key_from: alias ambigu + petunjuk konteks
+  warnings:
+  - STATUS_DISALLOWED
+  - QUANTUM_VULNERABLE
+- id: RSAES-PKCS1-V1_5-3072
+  entry_id: RSAES-PKCS1-V1_5
+  primitive: pkc_kem
+  family: RSA
+  variant: PKCS1-v1_5-ENC
+  key_bits: 3072
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: null
+  status_nist: disallowed
+  standards:
+  - RFC 8017
+  - SP 800-131A Rev.2
+  quantum_vulnerable: true
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program
+    confidence: 0.75
+    evidence: 0-56A), ECDSA Signature (FIPS 186-4), KDF (SP 800-135), RSA PKCS1-v1.5 RSASP1 (FIPS 186-4), RSA PKCS1-vPSS RSASP1
+      (FIPS 186-4), RS
+    match: PKCS1-v1.5
+    line: 106
+    key_from: alias ambigu + petunjuk konteks
+  warnings:
+  - STATUS_DISALLOWED
+  - QUANTUM_VULNERABLE
+- id: RSAES-PKCS1-V1_5-4096
+  entry_id: RSAES-PKCS1-V1_5
+  primitive: pkc_kem
+  family: RSA
+  variant: PKCS1-v1_5-ENC
+  key_bits: 4096
+  block_or_output_bits: null
+  security_strength_bits: 152
+  security_category: null
+  status_nist: disallowed
+  standards:
+  - RFC 8017
+  - SP 800-131A Rev.2
+  quantum_vulnerable: true
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program
+    confidence: 0.75
+    evidence: 0-56A), ECDSA Signature (FIPS 186-4), KDF (SP 800-135), RSA PKCS1-v1.5 RSASP1 (FIPS 186-4), RSA PKCS1-vPSS RSASP1
+      (FIPS 186-4), RS
+    match: PKCS1-v1.5
+    line: 106
+    key_from: alias ambigu + petunjuk konteks
+  warnings:
+  - STATUS_DISALLOWED
+  - QUANTUM_VULNERABLE
+- id: RSAES-PKCS1-V1_5-7680
+  entry_id: RSAES-PKCS1-V1_5
+  primitive: pkc_kem
+  family: RSA
+  variant: PKCS1-v1_5-ENC
+  key_bits: 7680
+  block_or_output_bits: null
+  security_strength_bits: 192
+  security_category: null
+  status_nist: disallowed
+  standards:
+  - RFC 8017
+  - SP 800-131A Rev.2
+  quantum_vulnerable: true
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program
+    confidence: 0.75
+    evidence: 0-56A), ECDSA Signature (FIPS 186-4), KDF (SP 800-135), RSA PKCS1-v1.5 RSASP1 (FIPS 186-4), RSA PKCS1-vPSS RSASP1
+      (FIPS 186-4), RS
+    match: PKCS1-v1.5
+    line: 106
+    key_from: alias ambigu + petunjuk konteks
+  warnings:
+  - STATUS_DISALLOWED
+  - QUANTUM_VULNERABLE
+- id: RSAES-PKCS1-V1_5-15360
+  entry_id: RSAES-PKCS1-V1_5
+  primitive: pkc_kem
+  family: RSA
+  variant: PKCS1-v1_5-ENC
+  key_bits: 15360
+  block_or_output_bits: null
+  security_strength_bits: 256
+  security_category: null
+  status_nist: disallowed
+  standards:
+  - RFC 8017
+  - SP 800-131A Rev.2
+  quantum_vulnerable: true
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program
+    confidence: 0.75
+    evidence: 0-56A), ECDSA Signature (FIPS 186-4), KDF (SP 800-135), RSA PKCS1-v1.5 RSASP1 (FIPS 186-4), RSA PKCS1-vPSS RSASP1
+      (FIPS 186-4), RS
+    match: PKCS1-v1.5
+    line: 106
+    key_from: alias ambigu + petunjuk konteks
+  warnings:
+  - STATUS_DISALLOWED
+  - QUANTUM_VULNERABLE
+- id: ACVP-SAFEPRIMES-KEYGEN
+  entry_id: ACVP-SAFEPRIMES-KEYGEN
+  primitive: pkc_kem
+  family: SafePrimes
+  variant: SafePrimes KeyGen
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: .42 (Component) - HTML PBKDF - HTML SPDM - HTML Safe Primes SafePrimes KeyGen - HTML SafePrimes KeyVer - HTML
+      Conditioning Components Con
+    match: SafePrimes KeyGen
+    line: 295
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-SAFEPRIMES-KEYVER
+  entry_id: ACVP-SAFEPRIMES-KEYVER
+  primitive: pkc_kem
+  family: SafePrimes
+  variant: SafePrimes KeyVer
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: KDF - HTML SPDM - HTML Safe Primes SafePrimes KeyGen - HTML SafePrimes KeyVer - HTML Conditioning Components
+      ConditioningComponent AES-CB
+    match: SafePrimes KeyVer
+    line: 296
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: X25519
+  entry_id: X25519
+  primitive: pkc_kem
+  family: XECDH
+  variant: X25519
+  key_bits: 255
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - RFC 7748
+  - SP 800-186
+  quantum_vulnerable: true
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: RBGs Digital Signature SP 800-56 Series Algorithms RFC 7748 curve25519 and curve448 KDFs Safe Primes Conditioning
+      Components State
+    match: curve25519
+    line: 24
+    key_from: alias
+  warnings:
+  - QUANTUM_VULNERABLE
+  - PERLU_VERIFIKASI
+- id: X448
+  entry_id: X448
+  primitive: pkc_kem
+  family: XECDH
+  variant: X448
+  key_bits: 448
+  block_or_output_bits: null
+  security_strength_bits: 224
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - RFC 7748
+  - SP 800-186
+  quantum_vulnerable: true
+  uk1_primitive: pkc
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: gnature SP 800-56 Series Algorithms RFC 7748 curve25519 and curve448 KDFs Safe Primes Conditioning Components
+      Stateful Hash-Base
+    match: curve448
+    line: 24
+    key_from: alias
+  warnings:
+  - QUANTUM_VULNERABLE
+  - PERLU_VERIFIKASI
+- id: RSASSA-PKCS1-V1_5-2048
+  entry_id: RSASSA-PKCS1-V1_5
+  primitive: signature
+  family: RSA
+  variant: PKCS1-v1_5-SIG
+  key_bits: 2048
+  block_or_output_bits: null
+  security_strength_bits: 112
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 186-5
+  - RFC 8017
+  quantum_vulnerable: true
+  uk1_primitive: dss
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program
+    confidence: 0.75
+    evidence: 0-56A), ECDSA Signature (FIPS 186-4), KDF (SP 800-135), RSA PKCS1-v1.5 RSASP1 (FIPS 186-4), RSA PKCS1-vPSS RSASP1
+      (FIPS 186-4), RS
+    match: PKCS1-v1.5
+    line: 106
+    key_from: alias ambigu + petunjuk konteks
+  warnings:
+  - QUANTUM_VULNERABLE
+- id: RSASSA-PKCS1-V1_5-3072
+  entry_id: RSASSA-PKCS1-V1_5
+  primitive: signature
+  family: RSA
+  variant: PKCS1-v1_5-SIG
+  key_bits: 3072
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 186-5
+  - RFC 8017
+  quantum_vulnerable: true
+  uk1_primitive: dss
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program
+    confidence: 0.75
+    evidence: 0-56A), ECDSA Signature (FIPS 186-4), KDF (SP 800-135), RSA PKCS1-v1.5 RSASP1 (FIPS 186-4), RSA PKCS1-vPSS RSASP1
+      (FIPS 186-4), RS
+    match: PKCS1-v1.5
+    line: 106
+    key_from: alias ambigu + petunjuk konteks
+  warnings:
+  - QUANTUM_VULNERABLE
+- id: RSASSA-PKCS1-V1_5-4096
+  entry_id: RSASSA-PKCS1-V1_5
+  primitive: signature
+  family: RSA
+  variant: PKCS1-v1_5-SIG
+  key_bits: 4096
+  block_or_output_bits: null
+  security_strength_bits: 152
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - FIPS 186-5
+  - RFC 8017
+  quantum_vulnerable: true
+  uk1_primitive: dss
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program
+    confidence: 0.75
+    evidence: 0-56A), ECDSA Signature (FIPS 186-4), KDF (SP 800-135), RSA PKCS1-v1.5 RSASP1 (FIPS 186-4), RSA PKCS1-vPSS RSASP1
+      (FIPS 186-4), RS
+    match: PKCS1-v1.5
+    line: 106
+    key_from: alias ambigu + petunjuk konteks
+  warnings:
+  - QUANTUM_VULNERABLE
+- id: CTR-DRBG-AES-128
+  entry_id: CTR-DRBG
+  primitive: drbg
+  family: DRBG
+  variant: CTR_DRBG
+  key_bits: 128
+  block_or_output_bits: null
+  security_strength_bits: 128
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-90A Rev.1
+  - ISO/IEC 18031
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: C-SHA3-512 2.0 - HTML KMAC-128 - HTML KMAC-256 - HTML DRBGs ctrDRBG-AES-128 - HTML ctrDRBG-AES-192 - HTML ctrDRBG-AES-256
+      - HTML ctrDRB
+    match: ctrDRBG-AES-128
+    line: 157
+    key_from: alias
+  warnings: []
+- id: CTR-DRBG-AES-192
+  entry_id: CTR-DRBG
+  primitive: drbg
+  family: DRBG
+  variant: CTR_DRBG
+  key_bits: 192
+  block_or_output_bits: null
+  security_strength_bits: 192
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-90A Rev.1
+  - ISO/IEC 18031
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: MAC-128 - HTML KMAC-256 - HTML DRBGs ctrDRBG-AES-128 - HTML ctrDRBG-AES-192 - HTML ctrDRBG-AES-256 - HTML ctrDRBG-TDES
+      - HTML HASH DRBG
+    match: ctrDRBG-AES-192
+    line: 158
+    key_from: alias
+  warnings: []
+- id: CTR-DRBG-AES-256
+  entry_id: CTR-DRBG
+  primitive: drbg
+  family: DRBG
+  variant: CTR_DRBG
+  key_bits: 256
+  block_or_output_bits: null
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-90A Rev.1
+  - ISO/IEC 18031
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: '- HTML DRBGs ctrDRBG-AES-128 - HTML ctrDRBG-AES-192 - HTML ctrDRBG-AES-256 - HTML ctrDRBG-TDES - HTML HASH
+      DRBG - HTML HMAC DRBG - HTM'
+    match: ctrDRBG-AES-256
+    line: 159
+    key_from: alias
+  warnings: []
+- id: HMAC-DRBG-S256
+  entry_id: HMAC-DRBG
+  primitive: drbg
+  family: DRBG
+  variant: HMAC_DRBG
+  key_bits: 256
+  block_or_output_bits: null
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-90A Rev.1
+  - ISO/IEC 18031
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: 'ctrDRBG-AES-256 - HTML ctrDRBG-TDES - HTML HASH DRBG - HTML HMAC DRBG - HTML Digital Signature RSA mode: keyGen
+      - HTML RSA mode:'
+    match: HMAC DRBG
+    line: 162
+    key_from: konteks
+  warnings: []
+- id: HASH-DRBG-S256
+  entry_id: HASH-DRBG
+  primitive: drbg
+  family: DRBG
+  variant: Hash_DRBG
+  key_bits: 256
+  block_or_output_bits: null
+  security_strength_bits: 256
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-90A Rev.1
+  - ISO/IEC 18031
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.75
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.75
+    evidence: 'G-AES-192 - HTML ctrDRBG-AES-256 - HTML ctrDRBG-TDES - HTML HASH DRBG - HTML HMAC DRBG - HTML Digital Signature
+      RSA mode: keyGen'
+    match: HASH DRBG
+    line: 161
+    key_from: konteks
+  warnings: []
+- id: ACVP-CONDITIONINGCOMPONENT-BLOCKCIPHER-DF
+  entry_id: ACVP-CONDITIONINGCOMPONENT-BLOCKCIPHER-DF
+  primitive: kdf
+  family: ConditioningComponent
+  variant: ConditioningComponent BlockCipher_DF
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: tioning Components ConditioningComponent AES-CBC-MAC - HTML ConditioningComponent BlockCipher_DF - HTML ConditioningComponent
+      Hash_DF - HTML Stateful Hash-B
+    match: ConditioningComponent BlockCipher_DF
+    line: 299
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-CONDITIONINGCOMPONENT-HASH-DF
+  entry_id: ACVP-CONDITIONINGCOMPONENT-HASH-DF
+  primitive: kdf
+  family: ConditioningComponent
+  variant: ConditioningComponent Hash_DF
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: -CBC-MAC - HTML ConditioningComponent BlockCipher_DF - HTML ConditioningComponent Hash_DF - HTML Stateful Hash-Based
+      Signatures LMS keyGen - HTML LMS
+    match: ConditioningComponent Hash_DF
+    line: 300
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KDA-ONESTEP-SP800-56CR1
+  entry_id: ACVP-KDA-ONESTEP-SP800-56CR1
+  primitive: kdf
+  family: KDA
+  variant: KDA OneStep Sp800-56Cr1
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: red a valid KAS implementation. KDA HKDF Sp800-56Cr1 - HTML KDA OneStep Sp800-56Cr1 - HTML KDA TwoStep Sp800-56Cr1
+      - HTML KDA HKDF Sp800-56Cr2
+    match: KDA OneStep Sp800-56Cr1
+    line: 263
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KDA-ONESTEP-SP800-56CR2
+  entry_id: ACVP-KDA-ONESTEP-SP800-56CR2
+  primitive: kdf
+  family: KDA
+  variant: KDA OneStep Sp800-56Cr2
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: KDA TwoStep Sp800-56Cr1 - HTML KDA HKDF Sp800-56Cr2 - HTML KDA OneStep Sp800-56Cr2 - HTML KDA OneStepNoCounter
+      Sp800-56Cr2 - HTML KDA TwoStep
+    match: KDA OneStep Sp800-56Cr2
+    line: 266
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KDA-ONESTEPNOCOUNTER-SP800-56CR2
+  entry_id: ACVP-KDA-ONESTEPNOCOUNTER-SP800-56CR2
+  primitive: kdf
+  family: KDA
+  variant: KDA OneStepNoCounter Sp800-56Cr2
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: KDA HKDF Sp800-56Cr2 - HTML KDA OneStep Sp800-56Cr2 - HTML KDA OneStepNoCounter Sp800-56Cr2 - HTML KDA TwoStep
+      Sp800-56Cr2 - HTML KAS KC Testing SP800-
+    match: KDA OneStepNoCounter Sp800-56Cr2
+    line: 267
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KDA-TWOSTEP-SP800-56CR1
+  entry_id: ACVP-KDA-TWOSTEP-SP800-56CR1
+  primitive: kdf
+  family: KDA
+  variant: KDA TwoStep Sp800-56Cr1
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: KDA HKDF Sp800-56Cr1 - HTML KDA OneStep Sp800-56Cr1 - HTML KDA TwoStep Sp800-56Cr1 - HTML KDA HKDF Sp800-56Cr2
+      - HTML KDA OneStep Sp800-56Cr2
+    match: KDA TwoStep Sp800-56Cr1
+    line: 264
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-KDA-TWOSTEP-SP800-56CR2
+  entry_id: ACVP-KDA-TWOSTEP-SP800-56CR2
+  primitive: kdf
+  family: KDA
+  variant: KDA TwoStep Sp800-56Cr2
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: Sp800-56Cr2 - HTML KDA OneStepNoCounter Sp800-56Cr2 - HTML KDA TwoStep Sp800-56Cr2 - HTML KAS KC Testing SP800-56
+      Standalone KAS Key Confirmat
+    match: KDA TwoStep Sp800-56Cr2
+    line: 268
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: HKDF
+  entry_id: HKDF
+  primitive: kdf
+  family: KDF
+  variant: HKDF
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-56C Rev.2
+  - RFC 5869
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: KAS" testing) to be considered a valid KAS implementation. KDA HKDF Sp800-56Cr1 - HTML KDA OneStep Sp800-56Cr1
+      - HTML KDA TwoSt
+    match: KDA HKDF
+    line: 262
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: PBKDF2
+  entry_id: PBKDF2
+  primitive: kdf
+  family: KDF
+  variant: PBKDF2
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-132
+  - RFC 8018
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: TML ANSX9.63 (Component) - HTML ANSX9.42 (Component) - HTML PBKDF - HTML SPDM - HTML Safe Primes SafePrimes
+      KeyGen - HTML Saf
+    match: PBKDF
+    line: 292
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: KDF108-COUNTER
+  entry_id: KDF-108-COUNTER
+  primitive: kdf
+  family: KDF
+  variant: SP800-108-Counter
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-108 Rev.1
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: CDH keyGen - HTML XECDH keyVer - HTML XECDH SSC - HTML KDFs Counter KDF - HTML Feedback KDF - HTML Double Pipeline
+      Iterator KDF - H
+    match: Counter KDF
+    line: 277
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: KDF108-DOUBLE-PIPELINE
+  entry_id: KDF-108-DPI
+  primitive: kdf
+  family: KDF
+  variant: SP800-108-DoublePipeline
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-108 Rev.1
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: ECDH SSC - HTML KDFs Counter KDF - HTML Feedback KDF - HTML Double Pipeline Iterator KDF - HTML KMAC KDF - HTML
+      IKEv1 (Component) - HTML IKEv2 (Comp
+    match: Double Pipeline Iterator KDF
+    line: 279
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: KDF108-FEEDBACK
+  entry_id: KDF-108-FEEDBACK
+  primitive: kdf
+  family: KDF
+  variant: SP800-108-Feedback
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: acceptable
+  standards:
+  - SP 800-108 Rev.1
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: ECDH keyVer - HTML XECDH SSC - HTML KDFs Counter KDF - HTML Feedback KDF - HTML Double Pipeline Iterator KDF
+      - HTML KMAC KDF - HTML
+    match: Feedback KDF
+    line: 278
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI
+- id: ACVP-SPDM
+  entry_id: ACVP-SPDM
+  primitive: kdf
+  family: SPDM
+  variant: SPDM
+  key_bits: null
+  block_or_output_bits: null
+  security_strength_bits: PERLU_VERIFIKASI
+  security_category: null
+  status_nist: PERLU_VERIFIKASI
+  standards:
+  - NIST ACVP specification
+  quantum_vulnerable: false
+  uk1_primitive: hash
+  uk1_profile: null
+  confidence: 0.95
+  inputs:
+  - type: link
+    ref: https://pages.nist.gov/ACVP/
+    confidence: 0.95
+    evidence: (Component) - HTML ANSX9.42 (Component) - HTML PBKDF - HTML SPDM - HTML Safe Primes SafePrimes KeyGen - HTML
+      SafePrimes KeyV
+    match: SPDM
+    line: 293
+    key_from: alias
+  warnings:
+  - PERLU_VERIFIKASI

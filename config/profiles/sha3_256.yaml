@@ -1,5 +1,6 @@
 extends: ../product_profile.yaml
 algorithm:
+  catalog_id: SHA3-256            # ID kanonik algo_catalog
   id: SHA3-256
   name: "SHA3-256 (FIPS 202)"
   primitive: hash

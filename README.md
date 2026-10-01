@@ -7,6 +7,7 @@ Repositori ini dibangun bertahap per Unit Kompetensi (UK-1 s.d. UK-8); setiap UK
 
 | Modul | Unit | Status |
 |---|---|---|
+| **algo_catalog** | Daftar Algoritma yang Diuji — melengkapi UK-1 KUK 1.1 | ✅ selesai (`algo_catalog/`) |
 | **UK-1** | J.61KRP00.012.1 — Menentukan Metode Pengujian yang akan Dilakukan | ✅ selesai (`uk1_metode/`) |
 | UK-2 | Menyusun Skenario Pengujian | ⏳ menyusul |
 | UK-3 … UK-8 | — | ⏳ menyusul |
@@ -32,7 +33,7 @@ dengan binding Python, diuji secara **grey box**. Seluruh data produk bersifat *
 make install        # python3 -m venv .venv && pip install -r requirements.txt
 make kat            # KAT implementasi referensi → LULUS/GAGAL
 make run            # UK-1 end-to-end untuk kelima algoritma
-make test           # 68 unit test (pytest)
+make test           # 159 unit test (pytest)
 make serve          # dashboard statis di http://localhost:8000
 ```
 
@@ -55,6 +56,7 @@ cryptan-id-test-suite/
 ├── config/
 │   ├── product_profile.yaml      # profil produk bersama (input semua UK) + daftar profil algoritma
 │   └── profiles/                 # aes128 · chacha20 · sha3_256 · rsa_oaep_2048 · ecdsa_p256 (extends)
+├── algo_catalog/                 # Daftar Algoritma yang Diuji (UK-1 KUK 1.1) — lihat bagian khusus di bawah
 ├── core/                         # implementasi referensi + util bersama (dipakai UK-1..UK-8)
 │   ├── aes.py chacha20.py keccak.py rsa_oaep.py ecdsa_p256.py numtheory.py
 │   ├── boolean.py                # Walsh/ANF, NL, DDT, LAT, derajat, SAC, branch number/MDS, Berlekamp–Massey
@@ -121,6 +123,90 @@ Contoh keluaran singkat (`make run`):
 
 Nilai acuan yang dijadikan unit test (HASIL UJI LANGSUNG): AES S-box **NL = 112, DU = 4, derajat = 7**,
 MixColumns **branch number = 5 (MDS)**; χ Keccak **DU = 8, derajat = 2**.
+
+
+## 🗂️ Modul `algo_catalog/` — Daftar Algoritma yang Diuji (UK-1 KUK 1.1)
+
+Menyusun daftar lengkap algoritma yang akan diuji, berikut **semua varian** (mode, kurva, parameter set,
+panjang digest) dan **semua varian panjang kuncinya**. Ada tiga cara input yang bisa digabung:
+
+```mermaid
+flowchart LR
+  L["🔗 Link<br/>URL web / PDF"] --> X["Ekstraksi teks<br/>(HTML · PDF)"]
+  F["📄 File<br/>PDF · DOCX · XLSX · CSV · JSON · YAML · TXT · MD · source code"] --> X
+  X --> N["Normalisasi alias → ID kanonik<br/>+ skor keyakinan & bukti"]
+  D["🗂️ Dropdown<br/>Primitif → Algoritma → Varian → Kunci"] --> G
+  N --> C{"Konfirmasi<br/>pengguna"} --> G["Gabung · dedup · peringatan"]
+  S["Katalog: seed YAML + cache scraping NIST"] -.-> N & D
+  G --> O["outputs/algo_catalog/<br/>algorithms_under_test.yaml · .md · .csv · .xlsx"]
+  O -->|tautan otomatis| P["config/product_profile.yaml → UK-1"]
+```
+
+| Komponen | File |
+|---|---|
+| Model data (`id`, `primitive`, `family`, `variant`, `key_bits`, `security_strength_bits`, `status_nist`, `standards`, `aliases`, `source`) | `algo_catalog/schema.py` |
+| Katalog awal (offline) — 128 entri / 225 kombinasi | `algo_catalog/data/catalog_seed.yaml` |
+| Cache hasil scraping (tanggal + URL sumber) | `algo_catalog/data/catalog_cache.json` |
+| Sumber scraping (ACVP, CAVP, SP 800-131A, SP 800-57, IR 8547, ISO opsional) | `config/sources.yaml`, `algo_catalog/scraper.py` |
+| Normalisasi alias & deteksi teks (stdlib, juga jalan di browser via Pyodide) | `algo_catalog/normalize.py` |
+| Opsi Link (robots.txt, User-Agent, jeda) · File (parser per tipe) · Dropdown | `link.py` · `extract.py` · `picker.py` |
+| Gabung/dedup/konfirmasi/peringatan · keluaran | `selection.py` · `output.py` |
+| GUI Streamlit · CLI | `app.py` · `__main__.py` |
+| Contoh input & keluaran | `samples/input/`, `samples/output/opsi_{file,dropdown,link}/` |
+
+**Menjalankan**
+
+```bash
+make catalog-scrape                         # python -m algo_catalog scrape --refresh (offline → seed)
+python -m algo_catalog list --tree          # tampilkan katalog (--primitive hash, dst.)
+python -m algo_catalog select --url https://pages.nist.gov/ACVP/
+python -m algo_catalog select --file samples/input/CryptoService.java --interactive
+python -m algo_catalog select --pick "AES:GCM:128,256" "ECDSA:P-384" "ML-KEM:768" "AES:*"
+make catalog                                # daftar produk dari samples (file + dropdown) → tautkan ke UK-1
+make catalog-gui                            # streamlit run algo_catalog/app.py
+```
+
+Hasil deteksi otomatis (link/file) **wajib dikonfirmasi**:
+- **`--interactive`:** konfirmasi satu per satu.
+- **`--yes`:** terima otomatis deteksi dengan keyakinan ≥ `--min-confidence` (default 0,6).
+- **Tanpa keduanya:** deteksi masuk bagian "kandidat belum dikonfirmasi".
+
+Normalisasi menangani alias dengan maupun tanpa panjang kunci:
+- `aes256gcm`, `AES/GCM/NoPadding` + kunci 256 (parameter `--key-bits` atau konteks `kg.init(256)`), dan `EVP_aes_256_gcm` → `AES-256-GCM`.
+- `RSA/ECB/OAEPWithSHA-256…` + `initialize(3072)` → `RSA-OAEP-3072`.
+- `ec.SECP384R1()` + "ECDSA" di dekatnya → `ECDSA-P384` dengan keyakinan lebih tinggi daripada `ECDH-P384`.
+
+Contoh keluaran `make catalog`:
+
+```
+Daftar akhir: 33 kombinasi · Block cipher 6, Stream cipher 2, Fungsi hash / XOF 7, MAC / AEAD ringan 4,
+              PKC / KEM / key agreement 7, Tanda tangan digital 6, DRBG 1
+Peringatan: 6 tinggi · 10 sedang (rentan kuantum)
+  ⚠ PRESENT-80: security strength 80 bit < 112 bit (SP 800-57 Pt.1)
+  ⚠ TDEA-3KEY: status NIST disallowed (SP 800-131A Rev.2)
+  ⚠ SHA-1: status NIST disallowed (SP 800-131A Rev.2)
+  ⚠ RSAES-PKCS1-V1_5-1024: status NIST disallowed (SP 800-131A Rev.2)
+  → outputs/algo_catalog/algorithms_under_test.yaml  (+ .json, Daftar_Algoritma_Uji.md/.csv/.xlsx)
+  → config/product_profile.yaml  (ditautkan: algorithms_under_test)
+```
+
+Dashboard web (`katalog.html`) menyediakan opsi Dropdown dan deteksi File/teks di browser. Deteksi memakai
+`normalize.py` yang sama melalui Pyodide.
+
+**Asumsi algo_catalog**
+- Status NIST dan security strength di seed dikurasi manual dari SP 800-131A Rev.2, SP 800-57 Pt.1 Tabel 2,
+  SP 800-56A Rev.3/56B Rev.2 App. D (FFC/IFC > 3072), dan FIPS 202–205. Scraping hanya menambah entri baru
+  (bertanda `PERLU_VERIFIKASI`) dan mencatat bukti `seen_in`; status di seed tidak diubah otomatis.
+- `key_bits` untuk HMAC = panjang kunci HMAC yang umum. Untuk cSHAKE/KMAC = varian keamanan. Untuk LMS/XMSS = panjang hash *n*.
+  Untuk DRBG = security strength instansiasi. Untuk XTS = 2 × kunci AES.
+- Deteksi berbasis alias/regex. Penyebutan famili tanpa varian (mis. "AES-256" saja) tidak dipetakan;
+  pilih variannya lewat Dropdown.
+- Opsi Link di browser terbatas CORS; gunakan CLI/GUI untuk halaman non-CORS dan PDF.
+
+**Entri bertanda `PERLU_VERIFIKASI`:**
+- **Status NIST:** AES-FF3-1 (draf SP 800-38G Rev.1 mengusulkan penghapusan), AES-GCM-SIV, X25519/X448 (key agreement).
+- **Security strength:** Poly1305, RC4, LMS/HSS, XMSS, HKDF, SP 800-108 KDF, PBKDF2.
+- **Hasil scraping:** seluruh entri tambahan dari ACVP.
 
 ## 🏷️ Konvensi sumber data
 

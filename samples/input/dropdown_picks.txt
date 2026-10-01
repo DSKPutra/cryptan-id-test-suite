@@ -1,0 +1,7 @@
+# Contoh pilihan opsi Dropdown (sintaks --pick): family:varian:kunci
+AES:CTR:128
+CHACHA:ChaCha20
+SHA-3:SHA3-256
+RSA:OAEP:2048
+ECDSA:P-256
+ML-KEM:768

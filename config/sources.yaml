@@ -1,0 +1,38 @@
+# Sumber scraping katalog algoritma (python -m algo_catalog scrape --refresh).
+# parser: acvp_index | detect   (detect = cari nama algoritma katalog dalam teks halaman)
+# Scraper menghormati robots.txt, memberi jeda antar-request, dan menyimpan cache
+# ke algo_catalog/data/catalog_cache.json. Hasil hanya MENAMBAH/MEMPERBARUI seed.
+user_agent_note: "CryptanID-TestSuite/1.0 (+https://github.com/DSKPutra/cryptan-id-test-suite)"
+delay_seconds: 2.0
+sources:
+  - id: acvp-index
+    title: "NIST ACVP specifications — daftar algoritma & capabilities"
+    url: https://pages.nist.gov/ACVP/
+    parser: acvp_index
+  - id: cavp
+    title: "NIST CSRC — Cryptographic Algorithm Validation Program (CAVP)"
+    url: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program
+    parser: detect
+  - id: sp800-131a
+    title: "NIST SP 800-131A Rev.2 — Transitioning the Use of Cryptographic Algorithms and Key Lengths"
+    url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf
+    parser: detect
+  - id: sp800-57
+    title: "NIST SP 800-57 Part 1 Rev.5 — Recommendation for Key Management"
+    url: https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final
+    parser: detect
+  - id: ir8547
+    title: "NIST IR 8547 (ipd) — Transition to Post-Quantum Cryptography Standards"
+    url: https://csrc.nist.gov/pubs/ir/8547/ipd
+    parser: detect
+  # Opsional — halaman katalog ISO (judul/abstrak publik)
+  - id: iso-18033-3
+    title: "ISO/IEC 18033-3 — Block ciphers"
+    url: https://www.iso.org/standard/54531.html
+    parser: detect
+    optional: true
+  - id: iso-29192-2
+    title: "ISO/IEC 29192-2 — Lightweight block ciphers"
+    url: https://www.iso.org/standard/78477.html
+    parser: detect
+    optional: true

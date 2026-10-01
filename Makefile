@@ -19,7 +19,7 @@ quick:              ## UK-1 mode cepat
 test:               ## unit test (pytest)
 	$(PY) -m pytest
 
-site: run           ## bangun dashboard statis → site/
+site: run catalog-web ## bangun dashboard statis → site/
 	$(PY) scripts/build_site.py --repo $(REPO)
 
 serve: site
@@ -27,3 +27,19 @@ serve: site
 
 clean:
 	rm -rf site .pytest_cache **/__pycache__
+
+.PHONY: catalog catalog-scrape catalog-web catalog-gui
+PICKS = $(shell grep -v '^\#' samples/input/dropdown_picks.txt | sed 's/.*/"&"/' | tr '\n' ' ')
+
+catalog-scrape:     ## perbarui katalog dari NIST (robots.txt dihormati; offline → seed)
+	$(PY) -m algo_catalog scrape --refresh
+
+catalog:            ## susun daftar algoritma uji produk dari samples (file + dropdown) & tautkan ke product_profile.yaml
+	$(PY) -m algo_catalog select --file samples/input/datasheet_securelib.pdf samples/input/vendor_page.html \
+	  samples/input/securelib_crypto.c samples/input/CryptoService.java samples/input/app_crypto.py --pick $(PICKS) --yes
+
+catalog-web:        ## ekspor katalog untuk dashboard
+	$(PY) -m algo_catalog export-web --out web/data/catalog.json
+
+catalog-gui:        ## GUI Streamlit
+	$(PY) -m streamlit run algo_catalog/app.py

@@ -10,7 +10,7 @@
     "module": "UK-1",
     "skkni": "SKKNI 2023-004 (Cryptographic Analyst)"
   },
-  "generated_at": "2026-09-30T23:04:33+07:00",
+  "generated_at": "2026-10-01T09:17:08+07:00",
   "mode": "full",
   "profile": {
     "product": {
@@ -110,7 +110,34 @@
       "status": "LENGKAP",
       "missing": []
     },
-    "source_file": "/Users/deasakakurniaputra/Cryptography Analyst_Dea Saka Kurnia Putra/cryptan-id-test-suite/config/profiles/rsa_oaep_2048.yaml"
+    "algorithms_under_test": {
+      "linked": true,
+      "file": "outputs/algo_catalog/algorithms_under_test.yaml",
+      "generated_at": "2026-10-01T09:16:53+07:00",
+      "total_combinations": 33,
+      "by_primitive": {
+        "block_cipher": 6,
+        "stream_cipher": 2,
+        "hash": 7,
+        "mac": 4,
+        "pkc_kem": 7,
+        "signature": 6,
+        "drbg": 1
+      },
+      "warnings_high": 6,
+      "catalog_id": "RSA-OAEP-2048",
+      "in_list": true,
+      "item": {
+        "security_strength_bits": 112,
+        "status_nist": "acceptable",
+        "standards": [
+          "SP 800-56B Rev.2",
+          "RFC 8017",
+          "ISO/IEC 18033-2"
+        ]
+      }
+    },
+    "source_file": "config/profiles/rsa_oaep_2048.yaml"
   },
   "references": [
     {
@@ -922,7 +949,7 @@
             "d_bits": 2042
           }
         ],
-        "keygen_seconds_avg": 0.884
+        "keygen_seconds_avg": 0.995
       },
       "findings": [
         {
@@ -1039,7 +1066,7 @@
             "DecryptionError: decryption error"
           ]
         },
-        "welch_t_max": 2.69,
+        "welch_t_max": 1.31,
         "samples_per_class": 40
       },
       "findings": [
@@ -1053,7 +1080,7 @@
         },
         {
           "check": "Beda waktu antar kelas galat (Welch |t| maks)",
-          "value": 2.69,
+          "value": 1.31,
           "reference": "< 4,5 (indikatif, n kecil)",
           "status": "OK",
           "note": "Pengukuran pada implementasi referensi; produk diuji di M-ORACLE",
@@ -2177,9 +2204,9 @@
         "logical_cpus": 8
       },
       "ops_per_sec": {
-        "public_op": 4136.65,
-        "private_op": 31.37,
-        "primary": 4136.65
+        "public_op": 4102.09,
+        "private_op": 30.88,
+        "primary": 4102.09
       }
     },
     "capacity": {
@@ -2224,9 +2251,9 @@
       {
         "method_id": "M-KAT",
         "op": "primary",
-        "ops_per_sec": 4136.65,
+        "ops_per_sec": 4102.09,
         "ops_log2": 7.0,
-        "seconds": 0.003867864092925435,
+        "seconds": 0.003900450745839318,
         "time_human": "0.00 detik",
         "log2_seconds": -8.0,
         "data": "2^7.0 operasi/sampel",
@@ -2241,7 +2268,7 @@
       {
         "method_id": "M-KEYSIZE",
         "op": "analysis",
-        "ops_per_sec": 4136.65,
+        "ops_per_sec": 4102.09,
         "ops_log2": 0.0,
         "seconds": 0.0,
         "time_human": "0 detik (analitis)",
@@ -2258,11 +2285,11 @@
       {
         "method_id": "M-PRIME",
         "op": "private_op",
-        "ops_per_sec": 31.37,
+        "ops_per_sec": 30.88,
         "ops_log2": 8.0,
-        "seconds": 1.0200828817341405,
-        "time_human": "1.02 detik",
-        "log2_seconds": 0.0,
+        "seconds": 1.0362694300518138,
+        "time_human": "1.04 detik",
+        "log2_seconds": 0.1,
         "data": "2^8.0 operasi/sampel",
         "memory": "≤ 2^10 B",
         "effort_h": 2,
@@ -2270,14 +2297,14 @@
         "budget_seconds": 86400,
         "reduced": null,
         "status": "LAYAK",
-        "reason": "Estimasi 1.02 detik ≤ anggaran 24 jam"
+        "reason": "Estimasi 1.04 detik ≤ anggaran 24 jam"
       },
       {
         "method_id": "M-PKV",
         "op": "primary",
-        "ops_per_sec": 4136.65,
+        "ops_per_sec": 4102.09,
         "ops_log2": 8.0,
-        "seconds": 0.00773572818585087,
+        "seconds": 0.007800901491678636,
         "time_human": "0.01 detik",
         "log2_seconds": -7.0,
         "data": "2^8.0 operasi/sampel",
@@ -2292,9 +2319,9 @@
       {
         "method_id": "M-RSAWEAK",
         "op": "public_op",
-        "ops_per_sec": 4136.65,
+        "ops_per_sec": 4102.09,
         "ops_log2": 22.0,
-        "seconds": 126.74217059698066,
+        "seconds": 127.80997003966277,
         "time_human": "2.1 menit",
         "log2_seconds": 7.0,
         "data": "2^22.0 operasi/sampel",
@@ -2309,9 +2336,9 @@
       {
         "method_id": "M-FACT",
         "op": "public_op",
-        "ops_per_sec": 4136.65,
+        "ops_per_sec": 4102.09,
         "ops_log2": 112.0,
-        "seconds": 1.568992076479408e+29,
+        "seconds": 1.5822107933196262e+29,
         "time_human": "2^72.1 tahun",
         "log2_seconds": 97.0,
         "data": "2^112.0 operasi/sampel",
@@ -2324,20 +2351,20 @@
         "reduced": {
           "desc": "Faktorisasi modulus mainan 64–96 bit (Pollard rho/ECM) — validasi estimasi",
           "ops_log2": 26,
-          "seconds": 2027.8747295516905,
-          "time_human": "33.8 menit"
+          "seconds": 2044.9595206346044,
+          "time_human": "34.1 menit"
         },
         "status": "LAYAK VERSI TEREDUKSI",
-        "reason": "Alat versi penuh tidak tersedia (cado-nfs); versi tereduksi 33.8 menit"
+        "reason": "Alat versi penuh tidak tersedia (cado-nfs); versi tereduksi 34.1 menit"
       },
       {
         "method_id": "M-ORACLE",
         "op": "private_op",
-        "ops_per_sec": 31.37,
+        "ops_per_sec": 30.88,
         "ops_log2": 13.0,
-        "seconds": 32.6426522154925,
-        "time_human": "32.64 detik",
-        "log2_seconds": 5.0,
+        "seconds": 33.16062176165804,
+        "time_human": "33.16 detik",
+        "log2_seconds": 5.1,
         "data": "2^13.0 operasi/sampel",
         "memory": "≤ 2^12 B",
         "effort_h": 6,
@@ -2345,15 +2372,15 @@
         "budget_seconds": 86400,
         "reduced": null,
         "status": "LAYAK",
-        "reason": "Estimasi 32.64 detik ≤ anggaran 24 jam"
+        "reason": "Estimasi 33.16 detik ≤ anggaran 24 jam"
       },
       {
         "method_id": "M-TIMING",
         "op": "primary",
-        "ops_per_sec": 4136.65,
+        "ops_per_sec": 4102.09,
         "ops_log2": 20.0,
-        "seconds": 31.685542649245164,
-        "time_human": "31.69 detik",
+        "seconds": 31.952492509915693,
+        "time_human": "31.95 detik",
         "log2_seconds": 5.0,
         "data": "2^20.0 operasi/sampel",
         "memory": "≤ 2^16 B",
@@ -2362,14 +2389,14 @@
         "budget_seconds": 86400,
         "reduced": null,
         "status": "LAYAK",
-        "reason": "Estimasi 31.69 detik ≤ anggaran 24 jam"
+        "reason": "Estimasi 31.95 detik ≤ anggaran 24 jam"
       },
       {
         "method_id": "M-CACHE",
         "op": "primary",
-        "ops_per_sec": 4136.65,
+        "ops_per_sec": 4102.09,
         "ops_log2": 22.0,
-        "seconds": 126.74217059698066,
+        "seconds": 127.80997003966277,
         "time_human": "2.1 menit",
         "log2_seconds": 7.0,
         "data": "2^22.0 operasi/sampel",
@@ -2386,10 +2413,10 @@
       {
         "method_id": "M-TVLA",
         "op": "primary",
-        "ops_per_sec": 4136.65,
+        "ops_per_sec": 4102.09,
         "ops_log2": 17.0,
-        "seconds": 3.9606928311556455,
-        "time_human": "3.96 detik",
+        "seconds": 3.9940615637394616,
+        "time_human": "3.99 detik",
         "log2_seconds": 2.0,
         "data": "2^17.0 operasi/sampel",
         "memory": "≤ 2^14 B",
@@ -2406,10 +2433,10 @@
       {
         "method_id": "M-FAULT",
         "op": "primary",
-        "ops_per_sec": 4136.65,
+        "ops_per_sec": 4102.09,
         "ops_log2": 16.0,
-        "seconds": 1.9803464155778228,
-        "time_human": "1.98 detik",
+        "seconds": 1.9970307818697308,
+        "time_human": "2.00 detik",
         "log2_seconds": 1.0,
         "data": "2^16.0 operasi/sampel",
         "memory": "≤ 2^14 B",
@@ -2425,7 +2452,7 @@
       {
         "method_id": "M-CODEREVIEW",
         "op": "analysis",
-        "ops_per_sec": 4136.65,
+        "ops_per_sec": 4102.09,
         "ops_log2": 0.0,
         "seconds": 0.0,
         "time_human": "0 detik (analitis)",
@@ -2442,10 +2469,10 @@
       {
         "method_id": "M-FUZZ",
         "op": "primary",
-        "ops_per_sec": 4136.65,
+        "ops_per_sec": 4102.09,
         "ops_log2": 20.0,
-        "seconds": 31.685542649245164,
-        "time_human": "31.69 detik",
+        "seconds": 31.952492509915693,
+        "time_human": "31.95 detik",
         "log2_seconds": 5.0,
         "data": "2^20.0 operasi/sampel",
         "memory": "≤ 2^16 B",
@@ -2454,12 +2481,12 @@
         "budget_seconds": 86400,
         "reduced": null,
         "status": "LAYAK",
-        "reason": "Estimasi 31.69 detik ≤ anggaran 24 jam"
+        "reason": "Estimasi 31.95 detik ≤ anggaran 24 jam"
       },
       {
         "method_id": "M-ZEROIZE",
         "op": "analysis",
-        "ops_per_sec": 4136.65,
+        "ops_per_sec": 4102.09,
         "ops_log2": 0.0,
         "seconds": 0.0,
         "time_human": "0 detik (analitis)",
@@ -2476,7 +2503,7 @@
       {
         "method_id": "M-SELFTEST",
         "op": "analysis",
-        "ops_per_sec": 4136.65,
+        "ops_per_sec": 4102.09,
         "ops_log2": 0.0,
         "seconds": 0.0,
         "time_human": "0 detik (analitis)",
@@ -2493,9 +2520,9 @@
       {
         "method_id": "M-RNG",
         "op": "primary",
-        "ops_per_sec": 4136.65,
+        "ops_per_sec": 4102.09,
         "ops_log2": 11.93,
-        "seconds": 0.11803784463273423,
+        "seconds": 0.1190323103588659,
         "time_human": "0.12 detik",
         "log2_seconds": -3.1,
         "data": "2^11.9 operasi/sampel",
@@ -2534,7 +2561,7 @@
           "C-API"
         ],
         "variant": "penuh",
-        "reason": "Skor 3.0 ≥ 1.0: relevan terhadap C-API. Estimasi 31.69 detik ≤ anggaran 24 jam"
+        "reason": "Skor 3.0 ≥ 1.0: relevan terhadap C-API. Estimasi 31.95 detik ≤ anggaran 24 jam"
       },
       {
         "method_id": "M-ORACLE",
@@ -2562,7 +2589,7 @@
           "C-PLAT"
         ],
         "variant": "penuh",
-        "reason": "Skor 3.0 ≥ 1.0: relevan terhadap C-MODEXP, C-PLAT. Estimasi 32.64 detik ≤ anggaran 24 jam"
+        "reason": "Skor 3.0 ≥ 1.0: relevan terhadap C-MODEXP, C-PLAT. Estimasi 33.16 detik ≤ anggaran 24 jam"
       },
       {
         "method_id": "M-PKV",
@@ -2614,7 +2641,7 @@
           "C-PLAT"
         ],
         "variant": "penuh",
-        "reason": "Skor 3.0 ≥ 1.0: relevan terhadap C-MODEXP, C-PLAT. Estimasi 31.69 detik ≤ anggaran 24 jam"
+        "reason": "Skor 3.0 ≥ 1.0: relevan terhadap C-MODEXP, C-PLAT. Estimasi 31.95 detik ≤ anggaran 24 jam"
       },
       {
         "method_id": "M-ZEROIZE",
@@ -2687,7 +2714,7 @@
         ],
         "weak_targets": [],
         "variant": "penuh",
-        "reason": "Skor 2.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 1.02 detik ≤ anggaran 24 jam"
+        "reason": "Skor 2.0 ≥ 1.0: relevan terhadap komponen OK (verifikasi). Estimasi 1.04 detik ≤ anggaran 24 jam"
       },
       {
         "method_id": "M-RNG",
@@ -2759,7 +2786,7 @@
           "C-MOD"
         ],
         "variant": "tereduksi",
-        "reason": "Skor 1.5 ≥ 1.0: relevan terhadap C-MOD. Alat versi penuh tidak tersedia (cado-nfs); versi tereduksi 33.8 menit"
+        "reason": "Skor 1.5 ≥ 1.0: relevan terhadap C-MOD. Alat versi penuh tidak tersedia (cado-nfs); versi tereduksi 34.1 menit"
       },
       {
         "method_id": "M-KAT",
@@ -2928,7 +2955,7 @@
       ],
       "pass_criterion": "0 crash, 0 sanitizer error, galat terdefinisi",
       "variant": "penuh",
-      "estimated_time": "31.69 detik"
+      "estimated_time": "31.95 detik"
     },
     "M-ORACLE": {
       "error_classes": [
@@ -2943,7 +2970,7 @@
       "threshold_abs_t": 4.5,
       "pass_criterion": "satu pesan/kode galat & |t| < 4,5",
       "variant": "penuh",
-      "estimated_time": "32.64 detik"
+      "estimated_time": "33.16 detik"
     },
     "M-PKV": {
       "positive_cases": 10,
@@ -2964,7 +2991,7 @@
       "classes": "ciphertext tetap vs acak (RSADP)",
       "timer": "rdtsc / perf_counter_ns, core diisolasi (taskset), turbo dimatikan",
       "variant": "penuh",
-      "estimated_time": "31.69 detik"
+      "estimated_time": "31.95 detik"
     },
     "M-ZEROIZE": {
       "procedure": "core dump / gdb setelah free & pemanggilan API destroy",
@@ -2998,7 +3025,7 @@
       ],
       "reference": "FIPS 186-5 A.1.1/A.1.3, B.3; ISO/IEC 18032",
       "variant": "penuh",
-      "estimated_time": "1.02 detik"
+      "estimated_time": "1.04 detik"
     },
     "M-RNG": {
       "entropy_samples_bits": 1000000,
@@ -3031,7 +3058,7 @@
       "reduced_ops_log2": 26,
       "method": "Pollard rho / ECM (validasi skala)",
       "variant": "tereduksi",
-      "estimated_time": "33.8 menit"
+      "estimated_time": "34.1 menit"
     },
     "M-KAT": {
       "vector_sources": [
@@ -3197,10 +3224,12 @@
       "section": "Bab 1",
       "files": [
         "uk1_metode/profile.py",
-        "config/product_profile.yaml"
+        "config/product_profile.yaml",
+        "algo_catalog/ (Daftar Algoritma yang Diuji)"
       ],
       "tests": [
-        "tests/test_uk1_ek1.py::test_kuk_1_1_*"
+        "tests/test_uk1_ek1.py::test_kuk_1_1_*",
+        "tests/test_algo_catalog.py"
       ]
     },
     {
@@ -3325,7 +3354,7 @@
           ],
           "pass_criterion": "0 crash, 0 sanitizer error, galat terdefinisi",
           "variant": "penuh",
-          "estimated_time": "31.69 detik"
+          "estimated_time": "31.95 detik"
         },
         "requirements": [
           "I-01"
@@ -3354,7 +3383,7 @@
           "threshold_abs_t": 4.5,
           "pass_criterion": "satu pesan/kode galat & |t| < 4,5",
           "variant": "penuh",
-          "estimated_time": "32.64 detik"
+          "estimated_time": "33.16 detik"
         },
         "requirements": [
           "I-03"
@@ -3402,7 +3431,7 @@
           "classes": "ciphertext tetap vs acak (RSADP)",
           "timer": "rdtsc / perf_counter_ns, core diisolasi (taskset), turbo dimatikan",
           "variant": "penuh",
-          "estimated_time": "31.69 detik"
+          "estimated_time": "31.95 detik"
         },
         "requirements": [
           "I-06"
@@ -3477,7 +3506,7 @@
           ],
           "reference": "FIPS 186-5 A.1.1/A.1.3, B.3; ISO/IEC 18032",
           "variant": "penuh",
-          "estimated_time": "1.02 detik"
+          "estimated_time": "1.04 detik"
         },
         "requirements": [
           "K-03"
@@ -3552,7 +3581,7 @@
           "reduced_ops_log2": 26,
           "method": "Pollard rho / ECM (validasi skala)",
           "variant": "tereduksi",
-          "estimated_time": "33.8 menit"
+          "estimated_time": "34.1 menit"
         },
         "requirements": [
           "K-01"

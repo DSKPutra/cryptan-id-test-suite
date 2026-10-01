@@ -1,0 +1,3013 @@
+{
+ "generated": "2026-10-01T09:05:30+07:00",
+ "user_agent": "CryptanID-TestSuite/1.0 (+https://github.com/DSKPutra/cryptan-id-test-suite; praktikum Cryptographic Analyst)",
+ "sources": [
+  {
+   "id": "acvp-index",
+   "url": "https://pages.nist.gov/ACVP/",
+   "title": "NIST ACVP specifications — daftar algoritma & capabilities",
+   "retrieved": "2026-10-01",
+   "status": "ok",
+   "names": 211,
+   "matched": 90,
+   "added": 79
+  },
+  {
+   "id": "cavp",
+   "url": "https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program",
+   "title": "NIST CSRC — Cryptographic Algorithm Validation Program (CAVP)",
+   "retrieved": "2026-10-01",
+   "status": "ok",
+   "kind": "html",
+   "matched": 4
+  },
+  {
+   "id": "sp800-131a",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "title": "NIST SP 800-131A Rev.2 — Transitioning the Use of Cryptographic Algorithms and Key Lengths",
+   "retrieved": "2026-10-01",
+   "status": "ok",
+   "kind": "pdf",
+   "matched": 17
+  },
+  {
+   "id": "sp800-57",
+   "url": "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final",
+   "title": "NIST SP 800-57 Part 1 Rev.5 — Recommendation for Key Management",
+   "retrieved": "2026-10-01",
+   "status": "ok",
+   "kind": "html",
+   "matched": 0
+  },
+  {
+   "id": "ir8547",
+   "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
+   "title": "NIST IR 8547 (ipd) — Transition to Post-Quantum Cryptography Standards",
+   "retrieved": "2026-10-01",
+   "status": "ok",
+   "kind": "html",
+   "matched": 0
+  }
+ ],
+ "entries": [
+  {
+   "id": "ACVP-AES-XPN",
+   "primitive": "block_cipher",
+   "family": "AES",
+   "variant": "AES-XPN",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "AES-XPN"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-AES-XPN",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-ANSX9-42-COMPONENT",
+   "primitive": "kdf",
+   "family": "ANSX9.42",
+   "variant": "ANSX9.42 (Component)",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "ANSX9.42 (Component)"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-ANSX9-42-COMPONENT",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-ANSX9-63-COMPONENT",
+   "primitive": "kdf",
+   "family": "ANSX9.63",
+   "variant": "ANSX9.63 (Component)",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "ANSX9.63 (Component)"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-ANSX9-63-COMPONENT",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-CONDITIONINGCOMPONENT-BLOCKCIPHER-DF",
+   "primitive": "kdf",
+   "family": "ConditioningComponent",
+   "variant": "ConditioningComponent BlockCipher_DF",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "ConditioningComponent BlockCipher_DF"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-CONDITIONINGCOMPONENT-BLOCKCIPHER-DF",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-CONDITIONINGCOMPONENT-HASH-DF",
+   "primitive": "kdf",
+   "family": "ConditioningComponent",
+   "variant": "ConditioningComponent Hash_DF",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "ConditioningComponent Hash_DF"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-CONDITIONINGCOMPONENT-HASH-DF",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-IKEV1-COMPONENT",
+   "primitive": "kdf",
+   "family": "IKEv1",
+   "variant": "IKEv1 (Component)",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "IKEv1 (Component)"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-IKEV1-COMPONENT",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-IKEV2-COMPONENT",
+   "primitive": "kdf",
+   "family": "IKEv2",
+   "variant": "IKEv2 (Component)",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "IKEv2 (Component)"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-IKEV2-COMPONENT",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-CDH-COMPONENT",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC CDH-Component",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC CDH-Component"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-CDH-COMPONENT",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-CDH-COMPONENT-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC CDH-Component Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC CDH-Component Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-CDH-COMPONENT-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-ONEPASSUNIFIED",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC OnePassUnified",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC OnePassUnified"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-ONEPASSUNIFIED",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-ONEPASSUNIFIED-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC OnePassUnified Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC OnePassUnified Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-ONEPASSUNIFIED-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-SSC-ONEPASSUNIFIED-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC SSC OnePassUnified Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC SSC OnePassUnified Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-SSC-ONEPASSUNIFIED-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-SSC-EPHEMERALUNIFIED-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC SSC ephemeralUnified Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC SSC ephemeralUnified Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-SSC-EPHEMERALUNIFIED-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-SSC-FULLMQV-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC SSC fullMqv Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC SSC fullMqv Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-SSC-FULLMQV-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-SSC-FULLUNIFIED-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC SSC fullUnified Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC SSC fullUnified Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-SSC-FULLUNIFIED-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-SSC-ONEPASSDH-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC SSC onePassDh Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC SSC onePassDh Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-SSC-ONEPASSDH-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-SSC-ONEPASSMQV-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC SSC onePassMqv Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC SSC onePassMqv Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-SSC-ONEPASSMQV-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-SSC-STATICUNIFIED-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC SSC staticUnified Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC SSC staticUnified Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-SSC-STATICUNIFIED-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-EPHEMERALUNIFIED",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC ephemeralUnified",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC ephemeralUnified"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-EPHEMERALUNIFIED",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-EPHEMERALUNIFIED-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC ephemeralUnified Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC ephemeralUnified Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-EPHEMERALUNIFIED-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-FULLMQV",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC fullMqv",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC fullMqv"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-FULLMQV",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-FULLMQV-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC fullMqv Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC fullMqv Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-FULLMQV-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-FULLUNIFIED",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC fullUnified",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC fullUnified"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-FULLUNIFIED",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-FULLUNIFIED-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC fullUnified Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC fullUnified Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-FULLUNIFIED-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-ONEPASSDH",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC onePassDh",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC onePassDh"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-ONEPASSDH",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-ONEPASSDH-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC onePassDh Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC onePassDh Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-ONEPASSDH-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-ONEPASSMQV",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC onePassMqv",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC onePassMqv"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-ONEPASSMQV",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-ONEPASSMQV-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC onePassMqv Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC onePassMqv Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-ONEPASSMQV-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-STATICUNIFIED",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC staticUnified",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC staticUnified"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-STATICUNIFIED",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-ECC-STATICUNIFIED-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS ECC staticUnified Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS ECC staticUnified Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-ECC-STATICUNIFIED-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-SSC-DHEPHEM-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC SSC dhEphem Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC SSC dhEphem Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-SSC-DHEPHEM-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-SSC-DHHYBRID1-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC SSC dhHybrid1 Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC SSC dhHybrid1 Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-SSC-DHHYBRID1-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-SSC-DHHYBRIDONEFLOW-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC SSC dhHybridOneFlow Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC SSC dhHybridOneFlow Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-SSC-DHHYBRIDONEFLOW-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-SSC-DHONEFLOW-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC SSC dhOneFlow Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC SSC dhOneFlow Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-SSC-DHONEFLOW-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-SSC-DHSTATIC-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC SSC dhStatic Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC SSC dhStatic Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-SSC-DHSTATIC-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-SSC-MQV1-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC SSC mqv1 Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC SSC mqv1 Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-SSC-MQV1-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-SSC-MQV2-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC SSC mqv2 Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC SSC mqv2 Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-SSC-MQV2-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-DHEPHEM",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC dhEphem",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC dhEphem"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-DHEPHEM",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-DHEPHEM-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC dhEphem Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC dhEphem Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-DHEPHEM-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-DHHYBRID1",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC dhHybrid1",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC dhHybrid1"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-DHHYBRID1",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-DHHYBRID1-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC dhHybrid1 Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC dhHybrid1 Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-DHHYBRID1-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-DHHYBRIDONEFLOW",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC dhHybridOneFlow",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC dhHybridOneFlow"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-DHHYBRIDONEFLOW",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-DHHYBRIDONEFLOW-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC dhHybridOneFlow Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC dhHybridOneFlow Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-DHHYBRIDONEFLOW-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-DHONEFLOW",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC dhOneFlow",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC dhOneFlow"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-DHONEFLOW",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-DHONEFLOW-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC dhOneFlow Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC dhOneFlow Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-DHONEFLOW-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-DHSTATIC",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC dhStatic",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC dhStatic"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-DHSTATIC",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-DHSTATIC-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC dhStatic Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC dhStatic Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-DHSTATIC-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-MQV1",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC mqv1",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC mqv1"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-MQV1",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-MQV1-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC mqv1 Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC mqv1 Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-MQV1-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-MQV2",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC mqv2",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC mqv2"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-MQV2",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-FFC-MQV2-SP800-56AR3",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS FFC mqv2 Sp800-56Ar3",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS FFC mqv2 Sp800-56Ar3"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-FFC-MQV2-SP800-56AR3",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-IFC-KAS1-PARTY-V-CONFIRMATION",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS IFC KAS1-Party_V-confirmation",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS IFC KAS1-Party_V-confirmation"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-IFC-KAS1-PARTY-V-CONFIRMATION",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-IFC-KAS1-BASIC",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS IFC KAS1-basic",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS IFC KAS1-basic"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-IFC-KAS1-BASIC",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-IFC-KAS2-PARTY-U-CONFIRMATION",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS IFC KAS2-Party_U-confirmation",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS IFC KAS2-Party_U-confirmation"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-IFC-KAS2-PARTY-U-CONFIRMATION",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-IFC-KAS2-PARTY-V-CONFIRMATION",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS IFC KAS2-Party_V-confirmation",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS IFC KAS2-Party_V-confirmation"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-IFC-KAS2-PARTY-V-CONFIRMATION",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-IFC-KAS2-BASIC",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS IFC KAS2-basic",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS IFC KAS2-basic"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-IFC-KAS2-BASIC",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-IFC-KAS2-BILATERAL-CONFIRMATION",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS IFC KAS2-bilateral-confirmation",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS IFC KAS2-bilateral-confirmation"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-IFC-KAS2-BILATERAL-CONFIRMATION",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-IFC-SSC-KAS1-SP800-56BR2",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS IFC SSC KAS1 Sp800-56Br2",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS IFC SSC KAS1 Sp800-56Br2"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-IFC-SSC-KAS1-SP800-56BR2",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-IFC-SSC-KAS2-SP800-56BR2",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS IFC SSC KAS2 Sp800-56Br2",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS IFC SSC KAS2 Sp800-56Br2"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-IFC-SSC-KAS2-SP800-56BR2",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KAS-KC-SP800-56-COMPONENT",
+   "primitive": "pkc_kem",
+   "family": "KAS",
+   "variant": "KAS KC Sp800-56 (Component)",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KAS KC Sp800-56 (Component)"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KAS-KC-SP800-56-COMPONENT",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KDA-ONESTEP-SP800-56CR1",
+   "primitive": "kdf",
+   "family": "KDA",
+   "variant": "KDA OneStep Sp800-56Cr1",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KDA OneStep Sp800-56Cr1"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KDA-ONESTEP-SP800-56CR1",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KDA-ONESTEP-SP800-56CR2",
+   "primitive": "kdf",
+   "family": "KDA",
+   "variant": "KDA OneStep Sp800-56Cr2",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KDA OneStep Sp800-56Cr2"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KDA-ONESTEP-SP800-56CR2",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KDA-ONESTEPNOCOUNTER-SP800-56CR2",
+   "primitive": "kdf",
+   "family": "KDA",
+   "variant": "KDA OneStepNoCounter Sp800-56Cr2",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KDA OneStepNoCounter Sp800-56Cr2"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KDA-ONESTEPNOCOUNTER-SP800-56CR2",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KDA-TWOSTEP-SP800-56CR1",
+   "primitive": "kdf",
+   "family": "KDA",
+   "variant": "KDA TwoStep Sp800-56Cr1",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KDA TwoStep Sp800-56Cr1"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KDA-TWOSTEP-SP800-56CR1",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-KDA-TWOSTEP-SP800-56CR2",
+   "primitive": "kdf",
+   "family": "KDA",
+   "variant": "KDA TwoStep Sp800-56Cr2",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "KDA TwoStep Sp800-56Cr2"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-KDA-TWOSTEP-SP800-56CR2",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-PARALLELHASH-128",
+   "primitive": "hash",
+   "family": "ParallelHash",
+   "variant": "ParallelHash-128",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "ParallelHash-128"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-PARALLELHASH-128",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-PARALLELHASH-256",
+   "primitive": "hash",
+   "family": "ParallelHash",
+   "variant": "ParallelHash-256",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "ParallelHash-256"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-PARALLELHASH-256",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-SNMP-COMPONENT",
+   "primitive": "kdf",
+   "family": "SNMP",
+   "variant": "SNMP (Component)",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "SNMP (Component)"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-SNMP-COMPONENT",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-SPDM",
+   "primitive": "kdf",
+   "family": "SPDM",
+   "variant": "SPDM",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "SPDM"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-SPDM",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-SRTP-COMPONENT",
+   "primitive": "kdf",
+   "family": "SRTP",
+   "variant": "SRTP (Component)",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "SRTP (Component)"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-SRTP-COMPONENT",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-SSH-COMPONENT",
+   "primitive": "kdf",
+   "family": "SSH",
+   "variant": "SSH (Component)",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "SSH (Component)"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-SSH-COMPONENT",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-SAFEPRIMES-KEYGEN",
+   "primitive": "pkc_kem",
+   "family": "SafePrimes",
+   "variant": "SafePrimes KeyGen",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "SafePrimes KeyGen"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-SAFEPRIMES-KEYGEN",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-SAFEPRIMES-KEYVER",
+   "primitive": "pkc_kem",
+   "family": "SafePrimes",
+   "variant": "SafePrimes KeyVer",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "SafePrimes KeyVer"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-SAFEPRIMES-KEYVER",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-TLS-V1-0-V1-1-COMPONENT",
+   "primitive": "kdf",
+   "family": "TLS",
+   "variant": "TLS v1.0/v1.1 (Component)",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "TLS v1.0/v1.1 (Component)"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-TLS-V1-0-V1-1-COMPONENT",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-TLS-V1-2-COMPONENT",
+   "primitive": "kdf",
+   "family": "TLS",
+   "variant": "TLS v1.2 (Component)",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "TLS v1.2 (Component)"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-TLS-V1-2-COMPONENT",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-TLS-V1-3-COMPONENT",
+   "primitive": "kdf",
+   "family": "TLS",
+   "variant": "TLS v1.3 (Component)",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "TLS v1.3 (Component)"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-TLS-V1-3-COMPONENT",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-TPM-COMPONENT",
+   "primitive": "kdf",
+   "family": "TPM",
+   "variant": "TPM (Component)",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "TPM (Component)"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-TPM-COMPONENT",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-TUPLEHASH-128",
+   "primitive": "hash",
+   "family": "TupleHash",
+   "variant": "TupleHash-128",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "TupleHash-128"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-TUPLEHASH-128",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  },
+  {
+   "id": "ACVP-TUPLEHASH-256",
+   "primitive": "hash",
+   "family": "TupleHash",
+   "variant": "TupleHash-256",
+   "key_bits": [],
+   "block_or_output_bits": null,
+   "security_strength_bits": "PERLU_VERIFIKASI",
+   "security_category": null,
+   "status_nist": "PERLU_VERIFIKASI",
+   "standards": [
+    "NIST ACVP specification"
+   ],
+   "aliases": [
+    "TupleHash-256"
+   ],
+   "weak_aliases": [],
+   "context_hints": [],
+   "combo_id": "ACVP-TUPLEHASH-256",
+   "auto_alias": false,
+   "quantum_vulnerable": false,
+   "notes": "Ditambahkan otomatis dari indeks ACVP; lengkapi status & strength secara manual",
+   "source": {
+    "type": "scrape",
+    "url": "https://pages.nist.gov/ACVP/",
+    "retrieved": "2026-10-01",
+    "source_id": "acvp-index"
+   }
+  }
+ ],
+ "updates": [
+  {
+   "id": "AES-CBC",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-CBC",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-CCM",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-CCM",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-CFB1",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-CFB1",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-CFB128",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-CFB128",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-CFB8",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-CFB8",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-CTR",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-CTR",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-ECB",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-ECB",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-FF1",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-FF1",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-FF3-1",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-FF3-1",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-GCM",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-GCM",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-GCM-SIV",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-GCM-SIV",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-GMAC",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-GMAC",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-KW",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-KW",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-KWP",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-KWP",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-OFB",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-OFB",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "XTS-AES",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "AES-XTS 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ASCON-AEAD128",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "Ascon-AEAD128",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ASCON-CXOF128",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "Ascon-CXOF128",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ASCON-HASH256",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "Ascon-Hash256",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ASCON-XOF128",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "Ascon-XOF128",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "AES-CMAC",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "CMAC-AES",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "TDEA-3KEY",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "CMAC-TDES",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "KDF-108-COUNTER",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "Counter KDF",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "DSA",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "DSA mode: keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ECDSA-P224",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "Deterministic ECDSA mode: sigGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ECDSA-P256",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "Deterministic ECDSA mode: sigGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ECDSA-P384",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "Deterministic ECDSA mode: sigGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ECDSA-P521",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "Deterministic ECDSA mode: sigGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ECDSA-SECP256K1",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "Deterministic ECDSA mode: sigGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ECDSA-BRAINPOOL",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "Deterministic ECDSA mode: sigGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "KDF-108-DPI",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "Double Pipeline Iterator KDF",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ED25519",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "EDDSA mode: keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ED448",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "EDDSA mode: keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "KDF-108-FEEDBACK",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "Feedback KDF",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "HASH-DRBG",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "HASH DRBG",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "HMAC-DRBG",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "HMAC DRBG",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "HMAC-SHA-1",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "HMAC-SHA-1 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "HMAC-SHA-224",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "HMAC-SHA2-224 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "HMAC-SHA-256",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "HMAC-SHA2-256 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "HMAC-SHA-384",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "HMAC-SHA2-384 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "HMAC-SHA-512",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "HMAC-SHA2-512 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "HMAC-SHA-512/224",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "HMAC-SHA2-512/224 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "HMAC-SHA-512/256",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "HMAC-SHA2-512/256 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "HMAC-SHA3-224",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "HMAC-SHA3-224 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "HMAC-SHA3-256",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "HMAC-SHA3-256 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "HMAC-SHA3-384",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "HMAC-SHA3-384 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "HMAC-SHA3-512",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "HMAC-SHA3-512 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "HKDF",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "KDA HKDF Sp800-56Cr1",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "KMAC",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "KMAC KDF",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "RSA-OAEP",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "KTS IFC KTS-OAEP-Party_V-confirmation",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "LMS-HSS",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "LMS keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ML-DSA-44",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "ML-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ML-DSA-65",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "ML-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ML-DSA-87",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "ML-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ML-KEM-512",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "ML-KEM encapsulation and decapsulation",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ML-KEM-768",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "ML-KEM encapsulation and decapsulation",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "ML-KEM-1024",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "ML-KEM encapsulation and decapsulation",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "PBKDF2",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "PBKDF",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "RSAES-PKCS1-V1_5",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "RSA mode: decryptionPrimitive 1.0 (Component)",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "RSASSA-PKCS1-V1_5",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "RSA mode: decryptionPrimitive 1.0 (Component)",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "RSA-PSS",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "RSA mode: decryptionPrimitive 1.0 (Component)",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SHA-1",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SHA-1",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SHA-224",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SHA-224",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SHA-256",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SHA-256",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SHA-384",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SHA-384",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SHA-512",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SHA-512",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SHA-512/224",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SHA-512/224",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SHA-512/256",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SHA-512/256",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SHA3-224",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SHA3-224 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SHA3-256",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SHA3-256 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SHA3-384",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SHA3-384 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SHA3-512",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SHA3-512 1.0",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SHAKE128",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SHAKE-128",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SHAKE256",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SHAKE-256",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SLH-DSA-SHA2-128S",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SLH-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SLH-DSA-SHA2-128F",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SLH-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SLH-DSA-SHA2-192S",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SLH-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SLH-DSA-SHA2-192F",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SLH-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SLH-DSA-SHA2-256S",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SLH-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SLH-DSA-SHA2-256F",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SLH-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SLH-DSA-SHAKE-128S",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SLH-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SLH-DSA-SHAKE-128F",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SLH-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SLH-DSA-SHAKE-192S",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SLH-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SLH-DSA-SHAKE-192F",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SLH-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SLH-DSA-SHAKE-256S",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SLH-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "SLH-DSA-SHAKE-256F",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "SLH-DSA keyGen",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "X25519",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "XECDH SSC",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "X448",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "XECDH SSC",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "CSHAKE",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "cSHAKE-128",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "CTR-DRBG",
+   "url": "https://pages.nist.gov/ACVP/",
+   "name": "ctrDRBG-AES-128",
+   "source_id": "acvp-index"
+  },
+  {
+   "id": "TDEA-3KEY",
+   "url": "https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program",
+   "name": "Triple DES",
+   "source_id": "cavp"
+  },
+  {
+   "id": "SHA-1",
+   "url": "https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program",
+   "name": "SHA-1",
+   "source_id": "cavp"
+  },
+  {
+   "id": "RSAES-PKCS1-V1_5",
+   "url": "https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program",
+   "name": "PKCS1-v1.5",
+   "source_id": "cavp"
+  },
+  {
+   "id": "RSASSA-PKCS1-V1_5",
+   "url": "https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program",
+   "name": "PKCS1-v1.5",
+   "source_id": "cavp"
+  },
+  {
+   "id": "TDEA-3KEY",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "TDEA",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "HASH-DRBG",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "Hash_DRBG",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "HMAC-DRBG",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "HMAC_DRBG",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "CTR-DRBG",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "CTR_DRBG",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "RSAES-PKCS1-V1_5",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "PKCS1-v 1_5",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "SHA-1",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "SHA-1",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "SHA-224",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "SHA-224",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "SHA-256",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "SHA-256",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "SHA-384",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "SHA -384",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "SHA-512",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "SHA -512",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "SHA-512/224",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "SHA -512/224",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "SHA-512/256",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "SHA -512/256",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "SHA3-224",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "SHA3-224",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "SHA3-256",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "SHA3-256",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "SHA3-384",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "SHA3-384",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "SHA3-512",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "SHA3-512",
+   "source_id": "sp800-131a"
+  },
+  {
+   "id": "AES-GMAC",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",
+   "name": "GMAC",
+   "source_id": "sp800-131a"
+  }
+ ]
+}
