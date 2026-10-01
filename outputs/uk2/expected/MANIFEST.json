@@ -1229,26 +1229,6 @@
   }
  },
  {
-  "file": "expected/hash_boundaries__HMAC-SHA-256-K128.json",
-  "sha256": "77424b9be0393918d7729956ca3f48392496f0dfdddf48ddac1f3e6a35899377",
-  "status": "PERLU_VERIFIKASI",
-  "kind": "deterministic",
-  "id": "hash_boundaries__HMAC-SHA-256-K128",
-  "target": "HMAC-SHA-256-K128",
-  "generator": "hash_boundaries",
-  "summary": null
- },
- {
-  "file": "expected/hash_boundaries__HMAC-SHA-256-K256.json",
-  "sha256": "be267e85951033bc05133e535096ebe0f5c730309f255fae05b7266ed1a8115d",
-  "status": "PERLU_VERIFIKASI",
-  "kind": "deterministic",
-  "id": "hash_boundaries__HMAC-SHA-256-K256",
-  "target": "HMAC-SHA-256-K256",
-  "generator": "hash_boundaries",
-  "summary": null
- },
- {
   "file": "expected/hash_boundaries__SHA-1.json",
   "sha256": "544db293d925c1dee65033d105fa9b9ef83dfd1c7d67ec12f39dd1bd13ac9ea9",
   "status": "COCOK_VEKTOR_RESMI",
@@ -1315,13 +1295,16 @@
  },
  {
   "file": "expected/hash_boundaries__SHAKE256.json",
-  "sha256": "90fcad44690491bb21668f54c71f8c912bac1dcc5b08ce04bca5a06430d83076",
-  "status": "PERLU_VERIFIKASI",
+  "sha256": "d372a99363a793a2324e672862c296f4b80fea8aa53888bfcb15c95f9f48a48f",
+  "status": "COCOK_VEKTOR_RESMI",
   "kind": "deterministic",
   "id": "hash_boundaries__SHAKE256",
   "target": "SHAKE256",
   "generator": "hash_boundaries",
-  "summary": null
+  "summary": {
+   "total": 13,
+   "matched": 13
+  }
  },
  {
   "file": "expected/interop__AES-128-CTR.json",

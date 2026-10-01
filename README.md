@@ -9,7 +9,7 @@ Repositori ini dibangun bertahap per Unit Kompetensi (UK-1 s.d. UK-8); setiap UK
 |---|---|---|
 | **algo_catalog** | Daftar Algoritma yang Diuji — melengkapi UK-1 KUK 1.1 | ✅ selesai (`algo_catalog/`) |
 | **UK-1** | J.61KRP00.012.1 — Menentukan Metode Pengujian yang akan Dilakukan | ✅ selesai (`uk1_metode/`) |
-| UK-2 | Menyusun Skenario Pengujian | ⏳ menyusul |
+| **UK-2** | J.61KRP00.013.1 — Menyusun Skenario Pengujian | ✅ selesai (`uk2_skenario/`) |
 | UK-3 … UK-8 | — | ⏳ menyusul |
 
 Objek praktikum mencakup **kelima kelas primitif** (satu profil per kelas):
@@ -33,7 +33,7 @@ dengan binding Python, diuji secara **grey box**. Seluruh data produk bersifat *
 make install        # python3 -m venv .venv && pip install -r requirements.txt
 make kat            # KAT implementasi referensi → LULUS/GAGAL
 make run            # UK-1 end-to-end untuk kelima algoritma
-make test           # 159 unit test (pytest)
+make test           # 214 unit test (pytest)
 make serve          # dashboard statis di http://localhost:8000
 ```
 
@@ -207,6 +207,90 @@ Dashboard web (`katalog.html`) menyediakan opsi Dropdown dan deteksi File/teks d
 - **Status NIST:** AES-FF3-1 (draf SP 800-38G Rev.1 mengusulkan penghapusan), AES-GCM-SIV, X25519/X448 (key agreement).
 - **Security strength:** Poly1305, RC4, LMS/HSS, XMSS, HKDF, SP 800-108 KDF, PBKDF2.
 - **Hasil scraping:** seluruh entri tambahan dari ACVP.
+
+## 🧪 Modul `uk2_skenario/` — UK-2 Menyusun Skenario Pengujian (J.61KRP00.013.1)
+
+**Bukti unjuk kerja:** skenario pengujian produk kriptografi. **Aspek kritis:** ketepatan memverifikasi skenario
+terhadap spesifikasi desain produk, ditangani `verifier.py`.
+
+```mermaid
+flowchart LR
+  P["config/product_profile.yaml<br/>+ algorithms_under_test"] --> R1["KUK 1.1 method_review<br/>4 kebutuhan SKKNI"]
+  U["outputs/uk1 (UK-1)"] --> R1
+  P --> R2["KUK 1.2 param_space<br/>5 kelas · EP/BVA/DEG/BIT/NEG · pairwise"]
+  T["templat materi PPTX<br/>(data/templates.yaml, recipes.yaml)"] --> D
+  R1 & R2 --> D["KUK 2.1 designer<br/>3 lapis × 3/4 tingkat"]
+  D --> V{"KUK 2.2 verifier<br/>aturan a–f"}
+  V --> TC["KUK 2.3 testcase"] & EX["KUK 2.4 expected<br/>core/ + vektor resmi"]
+  TC & EX --> C["KUK 2.5 compiler<br/>dokumen · keterlacakan · pemetaan hasil"]
+  C --> O["outputs/uk2/uk2_skenario.json → runner UK-3"]
+```
+
+| KUK | Modul | Isi | Bab | Test |
+|---|---|---|---|---|
+| 1.1 | `method_review.py` | Telaah metode UK-1 terhadap jenis algoritma, desain/implementasi, tren serangan, dan best practice; penempatan sel lapis × tingkat; sel kosong; metode tidak relevan | 2 | `test_kuk_1_1_*` |
+| 1.2 | `param_space.py` | 5 kelas parameter, Tetap/Variabel; partisi ekuivalensi, nilai batas, degeneratif, 1-bit, negatif; reduksi pairwise IPOG (mis. hash 2.449.440.000 → 149) | 1, 2 | `test_kuk_1_2_*` |
+| 2.1 | `designer.py`, `data/recipes.yaml` | Matriks 3 lapis × 3/4 tingkat dari templat 6 kategori; lintas-algoritma (RNG → keygen → KDF → cipher/MAC/signature → protokol → produk), siklus hidup kunci, kondisi operasional, PQC; area 19790 | 3 | `test_kuk_2_1_*` |
+| 2.2 | `verifier.py` | Aturan (a) cakupan, (b) nilai di luar spesifikasi hanya negatif, (c) klaim → skenario keamanan, (d) metode UK-1, (e) 11 area 19790/SL, (f) fitur tidak dimiliki | 4 | `test_kuk_2_2_*` |
+| 2.3 | `testcase.py`, `schema/` | ID `<KAT>-<K/S/I>-nn` / `<U/I/S/A>-<K/S/I>-nn`, langkah bernomor, prasyarat, pelaksana, objek `runner` UK-3, JSON Schema | 5 | `test_kuk_2_3_*` |
+| 2.4 | `expected.py`, `data/vectors/` | Expected deterministik dihitung `core/` atau pustaka tepercaya lalu dicocokkan ke vektor resmi; kriteria statistik/kriptanalitik/implementasi/negatif; SHA-256 per berkas | 6 | `test_kuk_2_4_*` |
+| 2.5 | `compiler.py` | Dokumen Bab 1–9 (+ tata kelola model 4), CSV/XLSX, keterlacakan, pemetaan parameter → hasil | 7, 8 | `test_kuk_2_5_*` |
+
+**Menjalankan**
+
+```bash
+python -m uk2_skenario --profile config/product_profile.yaml --uk1 outputs/uk1/uk1_penetapan_metode.json   # (= folder outputs/uk1)
+make uk2-samples        # 3 sampel materi: samples/uk2/{ecdsa_p256_token,tls13_gateway,hsm_x_sl3}/output
+make uk2-templates      # ekstrak ulang templat dari PPTX lokal di docs/materi/ (tidak di-commit)
+```
+
+Keluaran `outputs/uk2/`:
+- `uk2_skenario.json`: dapat dieksekusi runner UK-3; skema di `uk2_skenario/schema/`.
+- `UK2_Dokumen_Skenario_Pengujian.md` dan `.docx`.
+- `test_cases.csv` dan `.xlsx`, `matriks_keterlacakan.csv`, `laporan_verifikasi.md`.
+- `expected/*.json` dan `expected/MANIFEST.json` (berisi SHA-256 tiap berkas).
+
+```
+■ produk — model 3 tingkat · 33 objek uji
+  KUK 1.1 metode UK-1   : 27 ditelaah, 27 relevan, 21 sel kosong → templat
+  KUK 1.2 pairwise      : block 9.408→60, stream 24→12, hash 2.449.440.000→149, pke 315→35, signature 1.296→54
+  KUK 2.2 verifikasi    : LULUS (0 temuan) — (a)L (b)L (c)L (d)L (e)T (f)L
+  KUK 2.3 test case     : 91 (K 32 · S 35 · I 24)
+  KUK 2.4 expected      : 25 cocok vektor resmi · 381 kriteria · 39 PERLU_VERIFIKASI
+```
+
+**Uji reproduksi materi.** Ketiga sampel menghasilkan seluruh test case contoh materi:
+- **ECDSA P-256 token:** DS-K/S/I-01..06.
+- **TLS 1.3 gateway:** PR-K/S/I-01..06.
+- **HSM-X SL 3:** 48 test case U/I/S/A.
+
+Parameter, prosedur, dan kriteria test case tersebut sama dengan materi. Matriks cakupan area 7.2–7.12 HSM-X identik dengan
+tabel materi. Selama pengembangan, verifier menemukan celah nyata yang kemudian ditutup. Contohnya klaim constant-time
+tanpa skenario keamanan (kini XA-S-04) dan klaim "kunci tidak dapat diekspor" pada token (kini DS-S-09).
+
+**Expected value yang cocok dengan vektor resmi** (semua 100%):
+- **Blok & stream:** AES (FIPS 197, SP 800-38A F.1.1/F.5.1), ChaCha20 (RFC 8439), AES-GCM, ChaCha20-Poly1305, AES-KW.
+- **Hash & MAC:** SHA-2/SHA-3/SHAKE/BLAKE2b ("abc"), HMAC-SHA-256, CMAC.
+- **PKC & tanda tangan:** RSA-OAEP 2048/3072 (PKCS#1 + Wycheproof), ECDH P-384, X25519, Ed25519, ECDSA P-256 (RFC 6979 dan
+  516 vektor SigVer: 484 Wycheproof + 32 mutasi encoding).
+- **Protokol:** TLS 1.3 key schedule (RFC 8448, 22 operasi HKDF).
+
+Vektor Wycheproof: C2SP/wycheproof (Apache-2.0), lisensi di `uk2_skenario/data/vectors/`.
+
+**`PERLU_VERIFIKASI` (tidak dikarang):**
+- **KAT tanpa vektor resmi yang dimuat:** ML-KEM-768, ML-DSA-65, SLH-DSA, RSA-PSS-3072, XTS-AES-256, PRESENT-80, TDEA,
+  Ascon-AEAD128, FFDHE3072, ECDSA P-384 (titik/domain/SigVer). Perlu vektor ACVP/CAVP.
+- **Kinerja:** produk belum mencantumkan klaim kinerja.
+- **TLS:** suite SHA-384 (RFC 8448 hanya memuat jejak SHA-256), analisis formal (model Tamarin belum dibuat), dan spesifikasi hybrid
+  X25519MLKEM768.
+
+**Saran antarmuka untuk UK-3 (Melakukan Pengujian):**
+- Baca `uk2_skenario.json` → `test_cases[].runner`, lalu cocokkan `action` ke eksekutor. Contoh: `kat_vectors`/`sigver_vectors`
+  membaca `expected_files`, menjalankan produk (adapter C API/PKCS#11/pyca), lalu membandingkan per vektor.
+- Verifikasi SHA-256 berkas expected terhadap `expected/MANIFEST.json` sebelum eksekusi.
+- Catat hasil per nilai parameter, lalu petakan ke `outcome_map` (Memenuhi / Memenuhi dengan Catatan / Tidak Memenuhi / Inkonklusif).
+- Aksi `manual` menghasilkan checklist bukti.
+- Antarmuka adapter yang disarankan: `encrypt/decrypt/sign/verify/keygen/hash(target, inputs) → output | error_code`.
 
 ## 🏷️ Konvensi sumber data
 

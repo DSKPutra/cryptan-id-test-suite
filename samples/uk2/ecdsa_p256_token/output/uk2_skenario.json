@@ -12,12 +12,12 @@
   "bukti": "Skenario pengujian produk kriptografi",
   "aspek_kritis": "Ketepatan memverifikasi skenario pengujian sesuai spesifikasi desain produk"
  },
- "generated_at": "2026-10-01T10:33:13+07:00",
+ "generated_at": "2026-10-01T13:47:14+07:00",
  "inputs": {
   "profile": "samples/uk2/ecdsa_p256_token/product_profile.yaml",
-  "uk1": "/Users/deasakakurniaputra/Cryptography Analyst_Dea Saka Kurnia Putra/cryptan-id-test-suite/samples/uk2/ecdsa_p256_token/uk1_stub.json",
+  "uk1": "samples/uk2/ecdsa_p256_token/uk1_stub.json",
   "notes": [
-   "STUB_UK1: uk1_stub.json — STUB_UK1 — sampel reproduksi materi; metode dipilih manual sesuai contoh"
+   "STUB_UK1: samples/uk2/ecdsa_p256_token/uk1_stub.json — STUB_UK1 — sampel reproduksi materi; metode dipilih manual sesuai contoh"
   ]
  },
  "profile": {

@@ -1,8 +1,8 @@
 {
- "id": "rfc8448__TLS_1.3",
+ "id": "rfc8448__HKDF",
  "generator": "rfc8448",
  "kind": "deterministic",
- "target": "TLS 1.3",
+ "target": "HKDF",
  "source": "HASIL UJI LANGSUNG (dicocokkan dengan LITERATUR/ACUAN)",
  "status": "COCOK_VEKTOR_RESMI",
  "references": [

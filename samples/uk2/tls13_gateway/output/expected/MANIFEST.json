@@ -410,13 +410,16 @@
  },
  {
   "file": "expected/kat__HKDF.json",
-  "sha256": "26fc68a6b46e1419f2a731c8dfe35287647d015d20e1593aa39ad1a2fcc0ba2c",
-  "status": "PERLU_VERIFIKASI",
+  "sha256": "8d9fb7e799a2cae600dbbeaee5c268b6d32a231717455f37d00033f4f57c2e0b",
+  "status": "COCOK_VEKTOR_RESMI",
   "kind": "deterministic",
   "id": "kat__HKDF",
   "target": "HKDF",
   "generator": "kat",
-  "summary": null
+  "summary": {
+   "total": 22,
+   "matched": 22
+  }
  },
  {
   "file": "expected/kat__ML-KEM-768.json",
@@ -442,14 +445,17 @@
   }
  },
  {
-  "file": "expected/kat_gcm256__TLS_1.3.json",
-  "sha256": "45e694faed1f9086b857f5da850db78df4504896d8aa6a87d9ba0d73d0f0413c",
-  "status": "PERLU_VERIFIKASI",
+  "file": "expected/kat_gcm256__AES-256-GCM.json",
+  "sha256": "6386c99995932291919c8075839ebfa29950c142e5b5dea5eadd45a71c709b68",
+  "status": "COCOK_VEKTOR_RESMI",
   "kind": "deterministic",
-  "id": "kat_gcm256__TLS_1.3",
-  "target": "TLS 1.3",
+  "id": "kat_gcm256__AES-256-GCM",
+  "target": "AES-256-GCM",
   "generator": "kat_gcm256",
-  "summary": null
+  "summary": {
+   "total": 66,
+   "matched": 66
+  }
  },
  {
   "file": "expected/keygen_validate__ECDH-P384.json",
@@ -675,12 +681,12 @@
   }
  },
  {
-  "file": "expected/rfc8448__TLS_1.3.json",
-  "sha256": "fdaed05de751300ba943462a6c8c4abc7edb289b2ed8f09531a5aedfeeaa421f",
+  "file": "expected/rfc8448__HKDF.json",
+  "sha256": "363c66fb18131b9ad11993dfdc275e6bc19e66c9ffefe94374730d1b61e7ff8d",
   "status": "COCOK_VEKTOR_RESMI",
   "kind": "deterministic",
-  "id": "rfc8448__TLS_1.3",
-  "target": "TLS 1.3",
+  "id": "rfc8448__HKDF",
+  "target": "HKDF",
   "generator": "rfc8448",
   "summary": {
    "total": 22,

@@ -5,6 +5,8 @@ pypdf>=4.0              # algo_catalog: ekstraksi teks PDF (opsi Link/File)
 openpyxl>=3.1           # algo_catalog: baca/tulis .xlsx
 certifi                 # bundel CA untuk unduhan HTTPS (opsi Link & scraper)
 streamlit>=1.40         # algo_catalog: GUI (streamlit run algo_catalog/app.py)
+python-pptx>=1.0        # UK-2: ekstraksi templat dari materi PPTX (scripts/extract_uk2_templates.py)
+jsonschema>=4.20        # UK-2: validasi uk2_skenario.json terhadap JSON Schema
 # pengembangan / pengujian
 pytest>=8.0
 cryptography>=42.0      # opsional: uji silang interoperabilitas (OpenSSL); dilewati bila tidak ada

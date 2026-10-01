@@ -12,12 +12,12 @@
   "bukti": "Skenario pengujian produk kriptografi",
   "aspek_kritis": "Ketepatan memverifikasi skenario pengujian sesuai spesifikasi desain produk"
  },
- "generated_at": "2026-10-01T10:33:17+07:00",
+ "generated_at": "2026-10-01T13:47:19+07:00",
  "inputs": {
   "profile": "samples/uk2/hsm_x_sl3/product_profile.yaml",
-  "uk1": "/Users/deasakakurniaputra/Cryptography Analyst_Dea Saka Kurnia Putra/cryptan-id-test-suite/samples/uk2/hsm_x_sl3/uk1_stub.json",
+  "uk1": "samples/uk2/hsm_x_sl3/uk1_stub.json",
   "notes": [
-   "STUB_UK1: uk1_stub.json — STUB_UK1 — modul HSM belum didukung pipeline UK-1; metode dipilih manual sesuai contoh"
+   "STUB_UK1: samples/uk2/hsm_x_sl3/uk1_stub.json — STUB_UK1 — modul HSM belum didukung pipeline UK-1; metode dipilih manual sesuai contoh"
   ]
  },
  "profile": {

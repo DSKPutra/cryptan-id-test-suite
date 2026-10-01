@@ -24,6 +24,12 @@ if __name__ == "__main__":
     aut = ROOT / "outputs" / "algo_catalog"
     if aut.exists():
         shutil.copytree(aut, site / "data" / "algo_catalog")
+    # UK-2: produk + 3 sampel materi
+    uk2 = ROOT / "outputs" / "uk2"
+    if uk2.exists():
+        shutil.copytree(uk2, site / "data" / "uk2" / "produk")
+        for sdir in sorted((ROOT / "samples" / "uk2").glob("*/output")):
+            shutil.copytree(sdir, site / "data" / "uk2" / sdir.parent.name)
     pydir = site / "py" / "algo_catalog"
     pydir.mkdir(parents=True, exist_ok=True)
     for f in ("schema.py", "normalize.py"):

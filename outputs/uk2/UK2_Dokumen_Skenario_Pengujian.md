@@ -2,7 +2,7 @@
 
 **Cryptan.ID Test Suite** · Modul **UK-2** · Unit J.61KRP00.013.1 — *Menyusun Skenario Pengujian* · SKKNI 2023-004 (Cryptographic Analyst)
 
-Dibangkitkan 2026-10-01T10:33:02+07:00 · model 3 tingkat · masukan UK-1: `outputs/uk1 (5 algoritma)`
+Dibangkitkan 2026-10-01T13:47:12+07:00 · model 3 tingkat · masukan UK-1: `outputs/uk1 (5 algoritma)`
 
 > Objek uji & data produk ILUSTRATIF. HASIL UJI LANGSUNG = dihitung kode; LITERATUR/ACUAN = dikutip dengan rujukan; PERLU_VERIFIKASI = belum dapat dihitung/dicocokkan, tidak dikarang.
 
@@ -12,7 +12,7 @@ Dibangkitkan 2026-10-01T10:33:02+07:00 · model 3 tingkat · masukan UK-1: `outp
 - Metode UK-1 ditelaah: 27 (relevan 27) · sel kosong diisi templat: 21
 - Skenario: **49** · test case: **91** (K 32 · S 35 · I 24)
 - Verifikasi terhadap spesifikasi desain: **LULUS** (0 temuan)
-- Expected value: 24 cocok vektor resmi · 381 kriteria · 42 PERLU_VERIFIKASI
+- Expected value: 25 cocok vektor resmi · 381 kriteria · 39 PERLU_VERIFIKASI
 
 ## 1. Profil Objek Uji & Ruang Parameter
 
@@ -121,7 +121,7 @@ Reduksi pairwise (t = 2. IPOG) atas 3 parameter Variabel: **24** kombinasi penuh
 | HF-KEY | Kunci/salt (HMAC, KDF) | Material rahasia | Variabel | kunci < blok [BVA]; kunci = blok [BVA]; kunci > blok (di-hash dulu) [BVA]; kunci 0 byte [NEG, NEG] |
 | ENV | Kondisi operasional | Kondisi lingkungan | Variabel | normal [EP]; beban tinggi multi-thread [EP]; memori terbatas [EP] |
 
-Reduksi pairwise (t = 2. IPOG) atas 12 parameter Variabel: **2.449.440.000** kombinasi penuh → **149** kombinasi pairwise (100.0% berkurang; semua pasangan tercakup: True).
+Reduksi pairwise (t = 2. IPOG) atas 12 parameter Variabel: **2.449.440.000** kombinasi penuh → **150** kombinasi pairwise (100.0% berkurang; semua pasangan tercakup: True).
 
 ### 1.4 Ruang parameter — pke
 
@@ -403,6 +403,7 @@ Kriteria keputusan materi: **Deterministik**: KAT/MCT cocok 100%; vektor invalid
 | hash_boundaries__SHA-384 | SHA-384 | deterministic | COCOK_VEKTOR_RESMI | 14/14 | f1c022d02827c04b… |
 | hash_boundaries__SHA-512_256 | SHA-512/256 | deterministic | COCOK_VEKTOR_RESMI | 14/14 | 8274b7b778dea48f… |
 | hash_boundaries__SHA3-256 | SHA3-256 | deterministic | COCOK_VEKTOR_RESMI | 16/16 | defd9434dc037be3… |
+| hash_boundaries__SHAKE256 | SHAKE256 | deterministic | COCOK_VEKTOR_RESMI | 13/13 | d372a99363a793a2… |
 | kat__AES-128-CTR | AES-128-CTR | deterministic | COCOK_VEKTOR_RESMI | 7/7 | 3d743d956ce882c6… |
 | kat__AES-256-GCM | AES-256-GCM | deterministic | COCOK_VEKTOR_RESMI | 66/66 | 0f59a33f04b0a9e0… |
 | kat__AES-256-KW | AES-256-KW | deterministic | COCOK_VEKTOR_RESMI | 68/68 | 48a4be6bfba21e8d… |
@@ -421,9 +422,6 @@ Kriteria keputusan materi: **Deterministik**: KAT/MCT cocok 100%; vektor invalid
 | sigver__ECDSA-P256 | ECDSA-P256 | deterministic | COCOK_VEKTOR_RESMI | 516/516 | c331a7418794f46d… |
 | curve_points__ECDSA-P384 | ECDSA-P384 | deterministic | PERLU_VERIFIKASI | — | 83c50eef835c9c1c… |
 | domain_params__ECDSA-P384 | ECDSA-P384 | deterministic | PERLU_VERIFIKASI | — | f375ffa0b05ed27c… |
-| hash_boundaries__HMAC-SHA-256-K128 | HMAC-SHA-256-K128 | deterministic | PERLU_VERIFIKASI | — | 77424b9be0393918… |
-| hash_boundaries__HMAC-SHA-256-K256 | HMAC-SHA-256-K256 | deterministic | PERLU_VERIFIKASI | — | be267e85951033bc… |
-| hash_boundaries__SHAKE256 | SHAKE256 | deterministic | PERLU_VERIFIKASI | — | 90fcad44690491bb… |
 | interop__AES-128-CTR | AES-128-CTR | deterministic | KRITERIA | — | 8bbe9a1dd1ab8bcd… |
 | interop__AES-256-GCM | AES-256-GCM | deterministic | KRITERIA | — | c3fd2e9032182df7… |
 | interop__AES-256-KW | AES-256-KW | deterministic | KRITERIA | — | 6eff993a6c53e742… |
@@ -515,6 +513,8 @@ Kriteria keputusan materi: **Deterministik**: KAT/MCT cocok 100%; vektor invalid
 | performance__SHA-1 | SHA-1 | implementation | PERLU_VERIFIKASI | — | 9169b229a8dac86c… |
 | performance__SHA-256 | SHA-256 | implementation | PERLU_VERIFIKASI | — | 14f4736f3ae751b1… |
 | performance__SHA-384 | SHA-384 | implementation | PERLU_VERIFIKASI | — | 611388767cc80827… |
+| performance__SHA-512_256 | SHA-512/256 | implementation | PERLU_VERIFIKASI | — | 9d3b35d7e6f19770… |
+| performance__SHA3-256 | SHA3-256 | implementation | PERLU_VERIFIKASI | — | 293488ebc798f7fa… |
 
 ## 7. Pemetaan Parameter → Kemungkinan Hasil Uji (KUK 2.5)
 

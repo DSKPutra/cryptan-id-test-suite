@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skenario Pengujian UK-2</title>
+<meta name="description" content="Cryptan.ID Test Suite — UK-2 Menyusun Skenario Pengujian: telaah metode & parameter, matriks skenario lapis × tingkat, verifikasi terhadap spesifikasi desain, test case, expected value, keterlacakan.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="katalog.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><path d="M10 14v-3a6 6 0 0 1 12 0v3" stroke="#fff" stroke-width="2.4" fill="none"/><rect x="8" y="14" width="16" height="11" rx="2.5" fill="#fff"/><circle cx="16" cy="19.5" r="1.8" fill="var(--accent)"/></svg>
+      <span>Cryptan.ID <b>Test Suite</b></span>
+    </a>
+    <nav class="modules" aria-label="Modul">
+      <a href="katalog.html" class="alt">Katalog</a><a href="index.html" class="alt">UK-1</a><a href="uk2.html" class="cur">UK-2</a>
+      <span>UK-3</span><span>UK-4</span><span>UK-5</span><span>UK-6</span><span>UK-7</span><span>UK-8</span>
+    </nav>
+    <button class="theme" id="theme" aria-label="Ganti tema">◐</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <p class="eyebrow">Modul UK-2 · J.61KRP00.013.1 · SKKNI 2023-004</p>
+    <h1>Menyusun Skenario Pengujian Produk Kriptografi</h1>
+    <p class="lede">Telaah metode UK-1 & ruang parameter → matriks skenario 3 lapis × 3/4 tingkat → <b>verifikasi terhadap spesifikasi
+      desain</b> (aspek kritis) → test case siap-eksekusi UK-3 dengan expected value yang dicocokkan ke vektor resmi.</p>
+  </section>
+  <section id="sets" class="algos" aria-label="Set data"></section>
+  <section id="detail"></section>
+  <p id="err" class="err" hidden></p>
+</main>
+
+<footer class="foot wrap">
+  <span>Cryptan.ID Test Suite · Pelatihan Sertifikasi Cryptographic Analyst Angkatan 1 — Politeknik Siber dan Sandi Negara</span>
+  <span>Objek uji ilustratif · templat dari materi UK-2 (Poltek SSN) · <a href="https://github.com/DSKPutra/cryptan-id-test-suite">source code</a></span>
+</footer>
+<script src="uk2.js"></script>
+</body>
+</html>

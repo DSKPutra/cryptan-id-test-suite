@@ -341,3 +341,10 @@ def test_cli_accepts_uk1_json_path(tmp_path):
 def test_context_stub_when_uk1_missing():
     ctx = context.load(str(PROFILES["ecdsa"][0]), None)
     assert ctx.uk1[0]["schema"] == "STUB_UK1" and any("STUB_UK1" in n for n in ctx.notes)
+
+
+@pytest.mark.parametrize("name", list(PROFILES))
+def test_no_local_path_leak_in_outputs(run, name):
+    out = run(name)[1]
+    for f in ("uk2_skenario.json", "laporan_verifikasi.md"):
+        assert "/Users/" not in (out / f).read_text() and "/private/" not in (out / f).read_text()

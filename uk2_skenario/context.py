@@ -128,13 +128,13 @@ def load_uk1(path: Optional[Path], notes: list) -> (List[dict], str):
             raise ContextError(f"{path}: tidak ada index.json — jalankan UK-1 dulu (python -m uk1_metode)")
         index = json.loads(idx.read_text(encoding="utf-8"))
         res = [json.loads((path / a["files"]["json"]).read_text(encoding="utf-8")) for a in index["algorithms"]]
-        return res, f"{path.as_posix()} ({len(res)} algoritma)"
+        return res, f"{rel(path)} ({len(res)} algoritma)"
     if not path.exists():
         raise ContextError(f"{path}: berkas UK-1 tidak ditemukan")
     d = json.loads(path.read_text(encoding="utf-8"))
     if d.get("schema") == "STUB_UK1" or d.get("stub"):
-        notes.append(f"STUB_UK1: {path.name} — {d.get('note', 'stub')}")
-    return [d], path.as_posix()
+        notes.append(f"STUB_UK1: {rel(path)} — {d.get('note', 'stub')}")
+    return [d], rel(path)
 
 
 def load(profile: str, uk1: Optional[str] = None) -> Context:

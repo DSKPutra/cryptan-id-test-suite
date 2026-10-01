@@ -89,9 +89,13 @@ def _targets(ctx, r) -> list:
         return [o["id"] for o in objs]
     if r["category"] == "cross":
         return [o["id"] for o in ctx.objects]
+    gen = r.get("expected", {}).get("gen")
+    if gen == "kat_gcm256" and any(o["id"] == "AES-256-GCM" for o in ctx.objects):
+        return ["AES-256-GCM"]
+    if gen == "rfc8448" and any(o["id"] == "HKDF" for o in ctx.objects):
+        return ["HKDF"]
     if r["category"] == "protocol":
         return [ctx.uk2.get("protocol", {}).get("name", "protokol")]
-    gen = r.get("expected", {}).get("gen")
     objs = [o for o in ctx.objects_in(r["category"]) if _match(o, r.get("applies"))]
     if gen == "kat_gcm256":
         objs = [o for o in ctx.objects if o["id"] == "AES-256-GCM"]

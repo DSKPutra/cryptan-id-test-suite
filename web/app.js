@@ -2,7 +2,7 @@
 (() => {
   const MODULES = [
     { id: "UK-1", title: "Menentukan Metode Pengujian", ready: true },
-    { id: "UK-2", title: "Menyusun Skenario Pengujian" }, { id: "UK-3" }, { id: "UK-4" },
+    { id: "UK-2", title: "Menyusun Skenario Pengujian", href: "uk2.html" }, { id: "UK-3" }, { id: "UK-4" },
     { id: "UK-5" }, { id: "UK-6" }, { id: "UK-7" }, { id: "UK-8" },
   ];
   const $ = (s, el = document) => el.querySelector(s);
@@ -31,7 +31,9 @@
     try { localStorage.setItem("cryptan-theme", root.dataset.theme); } catch (e) {}
   };
 
-  $("#modules").innerHTML = `<a href="katalog.html" class="alt" title="Daftar algoritma yang diuji">Katalog</a>` + MODULES.map((m) => m.ready
+  $("#modules").innerHTML = `<a href="katalog.html" class="alt" title="Daftar algoritma yang diuji">Katalog</a>` + MODULES.map((m) => m.href
+    ? `<a href="${m.href}" class="alt" title="${esc(m.title)}">${m.id}</a>`
+    : m.ready
     ? `<a href="#" title="${esc(m.title)}">${m.id}</a>`
     : `<span title="${esc(m.title || "segera")} — segera">${m.id}</span>`).join("");
 

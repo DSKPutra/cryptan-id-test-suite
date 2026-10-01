@@ -2,7 +2,7 @@
 
 **Cryptan.ID Test Suite** · Modul **UK-2** · Unit J.61KRP00.013.1 — *Menyusun Skenario Pengujian* · SKKNI 2023-004 (Cryptographic Analyst)
 
-Dibangkitkan 2026-10-01T10:33:17+07:00 · model 4 tingkat · masukan UK-1: `/Users/deasakakurniaputra/Cryptography Analyst_Dea Saka Kurnia Putra/cryptan-id-test-suite/samples/uk2/hsm_x_sl3/uk1_stub.json`
+Dibangkitkan 2026-10-01T13:47:19+07:00 · model 4 tingkat · masukan UK-1: `samples/uk2/hsm_x_sl3/uk1_stub.json`
 
 > Objek uji & data produk ILUSTRATIF. HASIL UJI LANGSUNG = dihitung kode; LITERATUR/ACUAN = dikutip dengan rujukan; PERLU_VERIFIKASI = belum dapat dihitung/dicocokkan, tidak dikarang.
 

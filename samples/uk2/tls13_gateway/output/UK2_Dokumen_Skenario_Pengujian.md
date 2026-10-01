@@ -2,7 +2,7 @@
 
 **Cryptan.ID Test Suite** · Modul **UK-2** · Unit J.61KRP00.013.1 — *Menyusun Skenario Pengujian* · SKKNI 2023-004 (Cryptographic Analyst)
 
-Dibangkitkan 2026-10-01T10:33:16+07:00 · model 3 tingkat · masukan UK-1: `/Users/deasakakurniaputra/Cryptography Analyst_Dea Saka Kurnia Putra/cryptan-id-test-suite/samples/uk2/tls13_gateway/uk1_stub.json`
+Dibangkitkan 2026-10-01T13:47:18+07:00 · model 3 tingkat · masukan UK-1: `samples/uk2/tls13_gateway/uk1_stub.json`
 
 > Objek uji & data produk ILUSTRATIF. HASIL UJI LANGSUNG = dihitung kode; LITERATUR/ACUAN = dikutip dengan rujukan; PERLU_VERIFIKASI = belum dapat dihitung/dicocokkan, tidak dikarang.
 
@@ -12,7 +12,7 @@ Dibangkitkan 2026-10-01T10:33:16+07:00 · model 3 tingkat · masukan UK-1: `/Use
 - Metode UK-1 ditelaah: 6 (relevan 6) · sel kosong diisi templat: 42
 - Skenario: **48** · test case: **74** (K 26 · S 29 · I 19)
 - Verifikasi terhadap spesifikasi desain: **LULUS** (0 temuan)
-- Expected value: 6 cocok vektor resmi · 77 kriteria · 11 PERLU_VERIFIKASI
+- Expected value: 8 cocok vektor resmi · 77 kriteria · 9 PERLU_VERIFIKASI
 
 ## 1. Profil Objek Uji & Ruang Parameter
 
@@ -344,9 +344,11 @@ Kriteria keputusan materi: **Deterministik**: KAT/MCT cocok 100%; vektor invalid
 | hash_boundaries__SHA-384 | SHA-384 | deterministic | COCOK_VEKTOR_RESMI | 14/14 | f1c022d02827c04b… |
 | kat__AES-256-GCM | AES-256-GCM | deterministic | COCOK_VEKTOR_RESMI | 66/66 | 0f59a33f04b0a9e0… |
 | kat__ECDH-P384 | ECDH-P384 | deterministic | COCOK_VEKTOR_RESMI | 1047/1047 | 3bfdb1e13c460060… |
+| kat__HKDF | HKDF | deterministic | COCOK_VEKTOR_RESMI | 22/22 | 8d9fb7e799a2cae6… |
 | kat__X25519 | X25519 | deterministic | COCOK_VEKTOR_RESMI | 518/518 | b2e8dc378d852a7d… |
+| kat_gcm256__AES-256-GCM | AES-256-GCM | deterministic | COCOK_VEKTOR_RESMI | 66/66 | 6386c99995932291… |
 | rfc6979__ECDSA-P384 | ECDSA-P384 | deterministic | COCOK_VEKTOR_RESMI | 4/4 | 7fdb67c736ef8c90… |
-| rfc8448__TLS_1.3 | TLS 1.3 | deterministic | COCOK_VEKTOR_RESMI | 22/22 | fdaed05de751300b… |
+| rfc8448__HKDF | HKDF | deterministic | COCOK_VEKTOR_RESMI | 22/22 | 363c66fb18131b9a… |
 | attack_margin__HKDF | HKDF | cryptanalytic | PERLU_VERIFIKASI | — | 1df1bdd1787c0ce6… |
 | curve_points__ECDSA-P384 | ECDSA-P384 | deterministic | PERLU_VERIFIKASI | — | 83c50eef835c9c1c… |
 | domain_params__ECDSA-P384 | ECDSA-P384 | deterministic | PERLU_VERIFIKASI | — | f375ffa0b05ed27c… |
@@ -361,9 +363,7 @@ Kriteria keputusan materi: **Deterministik**: KAT/MCT cocok 100%; vektor invalid
 | interop__SHA-384 | SHA-384 | deterministic | KRITERIA | — | 65563f7481293e7a… |
 | interop__TLS_1.3 | TLS 1.3 | deterministic | KRITERIA | — | 03f4d7be8ca9ebb0… |
 | interop__X25519 | X25519 | deterministic | KRITERIA | — | d92849305bb376f2… |
-| kat__HKDF | HKDF | deterministic | PERLU_VERIFIKASI | — | 26fc68a6b46e1419… |
 | kat__ML-KEM-768 | ML-KEM-768 | deterministic | PERLU_VERIFIKASI | — | e9164ebaad954160… |
-| kat_gcm256__TLS_1.3 | TLS 1.3 | deterministic | PERLU_VERIFIKASI | — | 45e694faed1f9086… |
 | keygen_validate__ECDH-P384 | ECDH-P384 | deterministic | KRITERIA | — | 592ce0b4c7c6918b… |
 | keygen_validate__ML-KEM-768 | ML-KEM-768 | deterministic | KRITERIA | — | f31246f1be140cf4… |
 | keygen_validate__X25519 | X25519 | deterministic | KRITERIA | — | 20cf29f9f9a1eee2… |
@@ -441,8 +441,8 @@ Kategori hasil: **Memenuhi** — Seluruh kriteria terpenuhi pada semua variasi p
 | OBJ:ECDH-P384 | Kesesuaian ECDH-P384, X25519, ML-KEM-768 terhadap standar | M-PRIME | SCN-PK-KOM-K | PK-K-01 | — | ISO-18032, FIPS-186-5 |
 | OBJ:ECDH-P384 | Kesesuaian ECDH-P384, X25519, ML-KEM-768 terhadap standar | M-KAT | SCN-PK-INT-K | PK-K-02 | — | RFC-8017, ISO-18033-2, SP-800-56B |
 | OBJ:ECDH-P384 | Kesesuaian ECDH-P384, X25519, ML-KEM-768 terhadap standar | M-PKV | SCN-PK-INT-K | PK-K-05 | — | SP-800-56B, SP-800-131A |
-| OBJ:TLS 1.3 | Kesesuaian TLS 1.3 terhadap standar | M-KAT | SCN-PR-KOM-K | PR-K-01 | — | RFC-8446 |
-| OBJ:TLS 1.3 | Kesesuaian TLS 1.3 terhadap standar | M-KAT | SCN-PR-KOM-K | PR-K-02 | — | SP-800-38D |
+| OBJ:HKDF | Kesesuaian HKDF terhadap standar | M-KAT | SCN-PR-KOM-K | PR-K-01 | — | RFC-8446 |
+| OBJ:AES-256-GCM | Kesesuaian AES-256-GCM terhadap standar | M-KAT | SCN-PR-KOM-K | PR-K-02 | — | SP-800-38D |
 | OBJ:TLS 1.3 | Kesesuaian TLS 1.3 terhadap standar | M-KAT | SCN-PR-INT-K | PR-K-03 | — | RFC-8446 |
 | OBJ:TLS 1.3 | Kesesuaian TLS 1.3 terhadap standar | M-KEYSIZE | SCN-PR-INT-K | PR-K-04 | — | RFC-8446 |
 | OBJ:TLS 1.3 | Kesesuaian TLS 1.3 terhadap standar | M-KAT | SCN-PR-INT-K | PR-K-05 | — | FIPS-203 |

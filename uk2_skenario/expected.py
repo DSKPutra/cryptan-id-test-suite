@@ -269,7 +269,7 @@ def kat_hash(tid):
 
 def hash_boundaries(tid, lengths):
     """Digest pada nilai batas panjang pesan — dua implementasi independen bila tersedia + vektor resmi 'abc'."""
-    h = HASHLIB.get(tid)
+    h = HASHLIB.get(tid) or ("shake_256" if tid == "SHAKE256" else None)
     if not h:
         return None
     base = kat_hash(tid)
@@ -278,7 +278,7 @@ def hash_boundaries(tid, lengths):
         if not isinstance(n, int) or n > (1 << 20):
             continue
         m = bytes((i * 7 + 1) & 0xFF for i in range(n))       # pesan uji deterministik
-        got = hashlib.new(h, m).hexdigest()
+        got = hashlib.shake_256(m).hexdigest(64) if tid == "SHAKE256" else hashlib.new(h, m).hexdigest()
         core = keccak.sha3_256(m).hex() if tid == "SHA3-256" else None
         vec.append({"len": n, "msg_gen": "m[i] = (7i + 1) mod 256", "md": got, "core": core,
                     "match": core in (None, got)})
@@ -535,6 +535,8 @@ def build(ctx, recipes: list, out_dir: Path, attacks: list = None) -> dict:
                 return kat_ed25519(), []
             if tid == "ECDSA-P256":
                 return rfc6979(), ["RFC 6979 A.2.5"]
+            if tid == "HKDF":
+                return rfc8448(), ["RFC 8448 §3 (HKDF-SHA256 key schedule TLS 1.3)"]
             if tid in HASHLIB or tid == "SHAKE256":
                 return kat_hash(tid), ["FIPS 180-4 / FIPS 202 / RFC 7693 (contoh 'abc')"]
             return None, []

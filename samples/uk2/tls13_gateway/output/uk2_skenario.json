@@ -12,12 +12,12 @@
   "bukti": "Skenario pengujian produk kriptografi",
   "aspek_kritis": "Ketepatan memverifikasi skenario pengujian sesuai spesifikasi desain produk"
  },
- "generated_at": "2026-10-01T10:33:16+07:00",
+ "generated_at": "2026-10-01T13:47:18+07:00",
  "inputs": {
   "profile": "samples/uk2/tls13_gateway/product_profile.yaml",
-  "uk1": "/Users/deasakakurniaputra/Cryptography Analyst_Dea Saka Kurnia Putra/cryptan-id-test-suite/samples/uk2/tls13_gateway/uk1_stub.json",
+  "uk1": "samples/uk2/tls13_gateway/uk1_stub.json",
   "notes": [
-   "STUB_UK1: uk1_stub.json — STUB_UK1 — protokol TLS 1.3 belum didukung pipeline UK-1; metode dipilih manual sesuai contoh"
+   "STUB_UK1: samples/uk2/tls13_gateway/uk1_stub.json — STUB_UK1 — protokol TLS 1.3 belum didukung pipeline UK-1; metode dipilih manual sesuai contoh"
   ]
  },
  "profile": {
@@ -4650,7 +4650,8 @@
    "filled_from_template": false,
    "params": [],
    "objects": [
-    "TLS 1.3"
+    "AES-256-GCM",
+    "HKDF"
    ],
    "areas": [],
    "claims": [],
@@ -5287,13 +5288,16 @@
    },
    {
     "file": "expected/kat__HKDF.json",
-    "sha256": "26fc68a6b46e1419f2a731c8dfe35287647d015d20e1593aa39ad1a2fcc0ba2c",
-    "status": "PERLU_VERIFIKASI",
+    "sha256": "8d9fb7e799a2cae600dbbeaee5c268b6d32a231717455f37d00033f4f57c2e0b",
+    "status": "COCOK_VEKTOR_RESMI",
     "kind": "deterministic",
     "id": "kat__HKDF",
     "target": "HKDF",
     "generator": "kat",
-    "summary": null
+    "summary": {
+     "total": 22,
+     "matched": 22
+    }
    },
    {
     "file": "expected/interop__SHA-384.json",
@@ -5775,12 +5779,12 @@
     "summary": null
    },
    {
-    "file": "expected/rfc8448__TLS_1.3.json",
-    "sha256": "fdaed05de751300ba943462a6c8c4abc7edb289b2ed8f09531a5aedfeeaa421f",
+    "file": "expected/rfc8448__HKDF.json",
+    "sha256": "363c66fb18131b9ad11993dfdc275e6bc19e66c9ffefe94374730d1b61e7ff8d",
     "status": "COCOK_VEKTOR_RESMI",
     "kind": "deterministic",
-    "id": "rfc8448__TLS_1.3",
-    "target": "TLS 1.3",
+    "id": "rfc8448__HKDF",
+    "target": "HKDF",
     "generator": "rfc8448",
     "summary": {
      "total": 22,
@@ -5788,14 +5792,17 @@
     }
    },
    {
-    "file": "expected/kat_gcm256__TLS_1.3.json",
-    "sha256": "45e694faed1f9086b857f5da850db78df4504896d8aa6a87d9ba0d73d0f0413c",
-    "status": "PERLU_VERIFIKASI",
+    "file": "expected/kat_gcm256__AES-256-GCM.json",
+    "sha256": "6386c99995932291919c8075839ebfa29950c142e5b5dea5eadd45a71c709b68",
+    "status": "COCOK_VEKTOR_RESMI",
     "kind": "deterministic",
-    "id": "kat_gcm256__TLS_1.3",
-    "target": "TLS 1.3",
+    "id": "kat_gcm256__AES-256-GCM",
+    "target": "AES-256-GCM",
     "generator": "kat_gcm256",
-    "summary": null
+    "summary": {
+     "total": 66,
+     "matched": 66
+    }
    },
    {
     "file": "expected/state_machine__TLS_1.3.json",
@@ -6079,9 +6086,9 @@
    }
   ],
   "summary": {
-   "COCOK_VEKTOR_RESMI": 6,
+   "COCOK_VEKTOR_RESMI": 8,
    "KRITERIA": 77,
-   "PERLU_VERIFIKASI": 11
+   "PERLU_VERIFIKASI": 9
   }
  },
  "test_cases": [
@@ -8238,13 +8245,13 @@
     {
      "target": "HKDF",
      "file": "expected/kat__HKDF.json",
-     "sha256": "26fc68a6b46e1419f2a731c8dfe35287647d015d20e1593aa39ad1a2fcc0ba2c",
-     "status": "PERLU_VERIFIKASI",
+     "sha256": "8d9fb7e799a2cae600dbbeaee5c268b6d32a231717455f37d00033f4f57c2e0b",
+     "status": "COCOK_VEKTOR_RESMI",
      "kind": "deterministic"
     }
    ],
    "expected_status": [
-    "PERLU_VERIFIKASI"
+    "COCOK_VEKTOR_RESMI"
    ],
    "runner": {
     "action": "kat_vectors",
@@ -8798,7 +8805,7 @@
    "layer_label": "Uji Kesesuaian",
    "area": null,
    "targets": [
-    "TLS 1.3"
+    "HKDF"
    ],
    "parameters": [],
    "pairwise_combinations": [],
@@ -8809,7 +8816,7 @@
     "source": "tls13_gateway"
    },
    "prerequisites": [
-    "Objek uji tersedia & terkonfigurasi: TLS 1.3",
+    "Objek uji tersedia & terkonfigurasi: HKDF",
     "Kunci & data uji ilustratif (bukan material produksi)",
     "Fitur/akses tersedia: protocol_tls13",
     "Expected value terverifikasi integritasnya (SHA-256 berkas expected/*.json)"
@@ -8843,9 +8850,9 @@
    "expected_kind": "deterministic",
    "expected": [
     {
-     "target": "TLS 1.3",
-     "file": "expected/rfc8448__TLS_1.3.json",
-     "sha256": "fdaed05de751300ba943462a6c8c4abc7edb289b2ed8f09531a5aedfeeaa421f",
+     "target": "HKDF",
+     "file": "expected/rfc8448__HKDF.json",
+     "sha256": "363c66fb18131b9ad11993dfdc275e6bc19e66c9ffefe94374730d1b61e7ff8d",
      "status": "COCOK_VEKTOR_RESMI",
      "kind": "deterministic"
     }
@@ -8857,10 +8864,10 @@
     "action": "kat_vectors",
     "description": "Eksekusi vektor expected & bandingkan byte-per-byte",
     "targets": [
-     "TLS 1.3"
+     "HKDF"
     ],
     "expected_files": [
-     "expected/rfc8448__TLS_1.3.json"
+     "expected/rfc8448__HKDF.json"
     ],
     "inputs": {
      "parameters": [],
@@ -8877,7 +8884,7 @@
     }
    },
    "verification": "TERVERIFIKASI",
-   "narrative": "Penguji melakukan key schedule HKDF terhadap vektor jejak RFC 8448 pada TLS 1.3. Uji dinyatakan Memenuhi bila: Secret turunan identik dengan acuan."
+   "narrative": "Penguji melakukan key schedule HKDF terhadap vektor jejak RFC 8448 pada HKDF. Uji dinyatakan Memenuhi bila: Secret turunan identik dengan acuan."
   },
   {
    "id": "PR-K-02",
@@ -8889,7 +8896,7 @@
    "layer_label": "Uji Kesesuaian",
    "area": null,
    "targets": [
-    "TLS 1.3"
+    "AES-256-GCM"
    ],
    "parameters": [],
    "pairwise_combinations": [],
@@ -8900,7 +8907,7 @@
     "source": "tls13_gateway"
    },
    "prerequisites": [
-    "Objek uji tersedia & terkonfigurasi: TLS 1.3",
+    "Objek uji tersedia & terkonfigurasi: AES-256-GCM",
     "Kunci & data uji ilustratif (bukan material produksi)",
     "Expected value terverifikasi integritasnya (SHA-256 berkas expected/*.json)"
    ],
@@ -8931,24 +8938,24 @@
    "expected_kind": "deterministic",
    "expected": [
     {
-     "target": "TLS 1.3",
-     "file": "expected/kat_gcm256__TLS_1.3.json",
-     "sha256": "45e694faed1f9086b857f5da850db78df4504896d8aa6a87d9ba0d73d0f0413c",
-     "status": "PERLU_VERIFIKASI",
+     "target": "AES-256-GCM",
+     "file": "expected/kat_gcm256__AES-256-GCM.json",
+     "sha256": "6386c99995932291919c8075839ebfa29950c142e5b5dea5eadd45a71c709b68",
+     "status": "COCOK_VEKTOR_RESMI",
      "kind": "deterministic"
     }
    ],
    "expected_status": [
-    "PERLU_VERIFIKASI"
+    "COCOK_VEKTOR_RESMI"
    ],
    "runner": {
     "action": "kat_vectors",
     "description": "Eksekusi vektor expected & bandingkan byte-per-byte",
     "targets": [
-     "TLS 1.3"
+     "AES-256-GCM"
     ],
     "expected_files": [
-     "expected/kat_gcm256__TLS_1.3.json"
+     "expected/kat_gcm256__AES-256-GCM.json"
     ],
     "inputs": {
      "parameters": [],
@@ -8965,7 +8972,7 @@
     }
    },
    "verification": "TERVERIFIKASI",
-   "narrative": "Penguji melakukan kAT AES-256-GCM & tag dimodifikasi pada TLS 1.3. Uji dinyatakan Memenuhi bila: Identik 100%; tag salah ditolak."
+   "narrative": "Penguji melakukan kAT AES-256-GCM & tag dimodifikasi pada AES-256-GCM. Uji dinyatakan Memenuhi bila: Identik 100%; tag salah ditolak."
   },
   {
    "id": "PR-K-03",
@@ -16328,24 +16335,24 @@
    "targets": "ECDH-P384, X25519, ML-KEM-768"
   },
   {
-   "requirement_id": "OBJ:TLS 1.3",
-   "requirement": "Kesesuaian TLS 1.3 terhadap standar",
+   "requirement_id": "OBJ:HKDF",
+   "requirement": "Kesesuaian HKDF terhadap standar",
    "method": "M-KAT",
    "scenario": "SCN-PR-KOM-K",
    "test_case": "PR-K-01",
    "area": "—",
    "standards": "RFC-8446",
-   "targets": "TLS 1.3"
+   "targets": "HKDF"
   },
   {
-   "requirement_id": "OBJ:TLS 1.3",
-   "requirement": "Kesesuaian TLS 1.3 terhadap standar",
+   "requirement_id": "OBJ:AES-256-GCM",
+   "requirement": "Kesesuaian AES-256-GCM terhadap standar",
    "method": "M-KAT",
    "scenario": "SCN-PR-KOM-K",
    "test_case": "PR-K-02",
    "area": "—",
    "standards": "SP-800-38D",
-   "targets": "TLS 1.3"
+   "targets": "AES-256-GCM"
   },
   {
    "requirement_id": "OBJ:TLS 1.3",

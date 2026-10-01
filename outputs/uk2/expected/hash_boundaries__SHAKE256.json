@@ -3,9 +3,109 @@
  "generator": "hash_boundaries",
  "kind": "deterministic",
  "target": "SHAKE256",
- "source": "PERLU_VERIFIKASI",
- "status": "PERLU_VERIFIKASI",
- "references": [],
- "note": "Expected value deterministik untuk SHAKE256 belum dapat dihitung/dicocokkan (vektor resmi ACVP/CAVP belum dimuat) — JANGAN dikarang; unduh vektor ACVP untuk algoritma ini",
- "decision": "Deterministik: identik 100% dengan vektor resmi (menunggu vektor)"
+ "source": "HASIL UJI LANGSUNG (dicocokkan dengan LITERATUR/ACUAN)",
+ "status": "COCOK_VEKTOR_RESMI",
+ "references": [
+  "FIPS 180-4 / FIPS 202 (contoh 'abc')"
+ ],
+ "independent": [
+  "hashlib (OpenSSL)"
+ ],
+ "summary": {
+  "total": 13,
+  "matched": 13
+ },
+ "vectors": [
+  {
+   "id": "SHAKE256-empty-512",
+   "msg": "",
+   "md": "46b9dd2b0ba88d13233b3feb743eeb243fcd52ea62b81b82b50c27646ed5762fd75dc4ddd8c0f200cb05019d67b592f6fc821c49479ab48640292eacb3b7c4be",
+   "match": true
+  },
+  {
+   "len": 0,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "46b9dd2b0ba88d13233b3feb743eeb243fcd52ea62b81b82b50c27646ed5762fd75dc4ddd8c0f200cb05019d67b592f6fc821c49479ab48640292eacb3b7c4be",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 1,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "94da6280b240ea6a2ab2cfdf0fb301fd77153d5b748baf796190856803d977ba5cc356e16eea587f2c74c5480c41fea01b45f55abc9722853f30d2a34e7fcdef",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 55,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "3c43cca28b632e849ef9fb80cd1325e9510ace9a7684ba04a22e368cd81d1b38ee0ef74b5a825857cfee1985b2eb3005167b23e0259bf61dd1af5ddbaa34d196",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 56,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "fe0fbda94bb71a829e32172f092625b234f0b4bfa2fdb617eca61dc7a919a480e1cf55408d750eecdd926b339f8e4cb127b19c391acb1929b679feb319b6e88a",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 63,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "cbf421404ec7bf915a8e5f8decc09f5f9a37987d3304d84d8029370629c5a5f2538eb75accf7a38f0a6fe5bed5584a6d1b1b53244096e0015db7dbe7b01cae53",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 64,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "82d35ef5e97c860f24388acd13519b1b2f7ec7e2a640219750390c2e99a3a944708f3f22b306e9e020b5edf29b0dba8eef5c9a92512b3eca0720c2856b689e70",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 65,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "811dfbe96c1a2498cdce5b46b5f4d5498f269b1921c22ea2aeb546c32938fff0fc8be0d215d41cb5c23a81549767bb5b6b616991b10a8aa2b2e00dc6395a990c",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 135,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "d2fbe0a6ded494501cc37fd4f5da330b23e16601b12e4c37f332fdeb44311e6323db9fafa88327234ab271a50e5e9f55570595e8cec78296d0f3f4e2388d6391",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 136,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "982c21d1d328ea0c182357958a9f776ca6a1811bf0f2c64b14262edef5d201c681a1883aa04988575f429adbb00859983e8f07e2047d6dd591730e57e1529c00",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 137,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "aca65e9d4a27361044d570d20712ab5d6f8a43bfc0f9d4ef0b6f52ff7e6075271197657d0b9253be1731921fda2c480ea1b03b264fc9cf894be1da65890adc98",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 272,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "1f6101111d4c40318325a808496146116be168ca47002da55708c4739f2ae882b04d55dd1ad9a3ab81c6e646fa66db3919bc7cd6e1a8d6e94619ccef666b96c0",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 1048576,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "21f460e285dbc6109a7cb1447bda2caa42485518499e914ac05765bcc904a0bd0374cb550a13ef5642f02d88c513e5159a19199fdea2a5f4328ed4fbe784a44c",
+   "core": null,
+   "match": true
+  }
+ ],
+ "decision": "Deterministik: keluaran produk identik 100% dengan expected; vektor 'invalid' wajib ditolak"
 }

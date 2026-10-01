@@ -19,7 +19,7 @@ quick:              ## UK-1 mode cepat
 test:               ## unit test (pytest)
 	$(PY) -m pytest
 
-site: run catalog-web ## bangun dashboard statis → site/
+site: run catalog-web uk2 ## bangun dashboard statis → site/
 	$(PY) scripts/build_site.py --repo $(REPO)
 
 serve: site
@@ -43,3 +43,13 @@ catalog-web:        ## ekspor katalog untuk dashboard
 
 catalog-gui:        ## GUI Streamlit
 	$(PY) -m streamlit run algo_catalog/app.py
+
+.PHONY: uk2 uk2-samples uk2-templates
+uk2:                ## UK-2 Menyusun Skenario Pengujian (produk)
+	$(PY) -m uk2_skenario --profile config/product_profile.yaml --uk1 outputs/uk1
+
+uk2-samples:        ## UK-2 pada 3 profil sampel materi (ECDSA token, TLS 1.3, HSM-X SL 3)
+	$(PY) -m uk2_skenario --samples
+
+uk2-templates:      ## ekstrak ulang templat dari materi PPTX lokal (docs/materi/)
+	$(PY) scripts/extract_uk2_templates.py

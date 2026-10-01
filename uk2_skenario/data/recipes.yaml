@@ -158,7 +158,7 @@ categories:
        methods: [M-MCT], standards: [ISO-18367], applies: {primitive: [hash]}, expected: {kind: deterministic, gen: mct}, runner: mct}
     - {id: HF-K-04, level: Integrasi, layer: K, title: "Konsistensi chunking (one-shot vs update bertahap) & XOF",
        steps: ["Hash pesan 1 MiB sekaligus dan bertahap acak (1…b+7 byte)", "Untuk XOF: minta 256 & 512 bit"], pass: "Digest identik; prefiks XOF konsisten",
-       methods: [M-KAT], standards: [FIPS-202], requires: [streaming_api], expected: {kind: deterministic, gen: hash_boundaries}, runner: roundtrip, params: [HF-CHUNK, HF-DIG]}
+       methods: [M-KAT], standards: [FIPS-202], requires: [streaming_api], applies: {primitive: [hash]}, expected: {kind: deterministic, gen: hash_boundaries}, runner: roundtrip, params: [HF-CHUNK, HF-DIG]}
     - {id: HF-K-05, level: Integrasi, layer: K, title: "KAT HMAC/KMAC/KDF (kunci < = > blok)",
        steps: ["Muat vektor HMAC (Wycheproof/RFC 4231) & KDF", "Eksekusi; bandingkan tag", "Vektor invalid harus ditolak"], pass: "Identik 100%",
        methods: [M-KAT], standards: [SP-800-107, FIPS-202], applies: {primitive: [mac, kdf]}, expected: {kind: deterministic, gen: kat}, runner: kat_vectors, params: [HF-KEY]}
