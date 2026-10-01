@@ -1,0 +1,414 @@
+# =============================================================================
+# Resep skenario/test case UK-2 (KUK 2.1 & 2.3) — Cryptan.ID Test Suite
+# - block/stream/hash/pke: disusun dari sel matriks materi (templates.yaml) dengan struktur
+#   seperti contoh materi (6 test case per lapis: Komponen → Integrasi → Sistem).
+# - signature/protocol/module: `from_example` = ID test case contoh materi (examples/*.yaml);
+#   parameter, prosedur & kriteria lulus diambil dari materi, nilai disesuaikan profil.
+# Field: level, layer, title, steps (prosedur bernomor), pass, methods (UK-1), standards,
+#   claims (tag klaim produk), requires (fitur produk; aturan f), applies (family/variant/id),
+#   expected {kind, gen}, runner (aksi UK-3), priority, executor, params (id ruang parameter, KUK 1.2)
+# kind: deterministic | statistical | cryptanalytic | implementation | negative
+# =============================================================================
+defaults:
+  executor: {Komponen: "Penguji lab (Cryptographic Analyst)", Integrasi: "Penguji lab (Cryptographic Analyst)",
+             Sistem: "Penguji lab + test engineer", Unit: "Pengembang / tim verifikasi internal",
+             UAT: "Pengguna / pemilik proses bisnis bersama penguji"}
+  priority: Sedang
+
+categories:
+  # ------------------------------------------------------------------ BLOCK CIPHER
+  block:
+    - {id: BC-K-01, level: Komponen, layer: K, title: "Verifikasi S-box, permutasi, key schedule & nilai antara per ronde",
+       steps: ["Ambil vektor contoh per ronde (FIPS 197 App. B/C) untuk kunci yang didukung", "Jalankan unit enkripsi produk dengan trace nilai antara (build analisis)",
+               "Bandingkan state awal/akhir tiap ronde & round key dengan implementasi referensi core/"],
+       pass: "Seluruh nilai antara & round key identik 100%", methods: [M-KAT, M-SBOX], standards: [FIPS-197, ISO-18367],
+       applies: {family: [AES]}, expected: {kind: deterministic, gen: kat}, runner: kat_vectors, priority: Tinggi, params: [BC-KEY-LEN]}
+    - {id: BC-K-02, level: Integrasi, layer: K, title: "KAT per algoritma × mode × panjang kunci",
+       steps: ["Muat berkas expected value untuk target", "Eksekusi enkripsi/dekripsi produk pada setiap vektor", "Catat keluaran & bandingkan byte-per-byte"],
+       pass: "Ciphertext/tag/plaintext identik 100% dengan vektor resmi; vektor invalid ditolak", methods: [M-KAT], standards: [FIPS-197, SP-800-38A, SP-800-38D, ISO-18367],
+       expected: {kind: deterministic, gen: kat}, runner: kat_vectors, priority: Tinggi, params: [BC-KEY-LEN, BC-MODE]}
+    - {id: BC-K-03, level: Integrasi, layer: K, title: "Monte Carlo Test & Multi-block Message Test",
+       steps: ["Jalankan MCT 100 × 1000 iterasi berantai (gaya CAVP)", "Jalankan MMT 1–10 blok per mode", "Bandingkan 100 checkpoint dengan core/ atau pustaka tepercaya"],
+       pass: "100% checkpoint identik", methods: [M-MCT], standards: [ISO-18367], expected: {kind: deterministic, gen: mct}, runner: mct, params: [BC-MODE, BC-LEN]}
+    - {id: BC-K-04, level: Integrasi, layer: K, title: "Round-trip D(E(x)) = x pada nilai batas panjang pesan",
+       steps: ["Bangkitkan pesan pada setiap nilai batas panjang (0, 1, b−1, b, b+1, 1 MiB)", "Enkripsi lalu dekripsi dengan kunci & nonce yang sama", "Bandingkan dengan pesan asli"],
+       pass: "D(E(x)) = x untuk 100% kasus", methods: [M-KAT, M-FUZZ], standards: [SP-800-38A, ISO-29119], expected: {kind: deterministic, gen: roundtrip}, runner: roundtrip, params: [BC-LEN, BC-PT]}
+    - {id: BC-K-05, level: Integrasi, layer: K, title: "Penolakan parameter di luar spesifikasi (negative test)",
+       steps: ["Panggil API dengan panjang kunci & mode yang tidak didukung (nilai NEG ruang parameter)", "Catat kode galat", "Pastikan tidak ada keluaran kriptografis"],
+       pass: "Seluruh parameter di luar spesifikasi ditolak dengan galat terdefinisi", methods: [M-FUZZ], standards: [ISO-29119, ISO-19790], expected: {kind: negative, gen: reject_params},
+       runner: api_negative, priority: Tinggi, params: [BC-KEY-LEN, BC-MODE]}
+    - {id: BC-K-06, level: Sistem, layer: K, title: "Interoperabilitas format ciphertext dengan implementasi referensi",
+       steps: ["Enkripsi data dengan produk, dekripsi dengan pustaka referensi (OpenSSL/pyca)", "Lakukan arah sebaliknya", "Periksa format (IV ∥ CT ∥ tag) sesuai dokumentasi"],
+       pass: "Interoperabel dua arah 100%", methods: [M-KAT], standards: [ISO-18367], expected: {kind: deterministic, gen: interop}, runner: interop, params: [BC-MODE]}
+    - {id: BC-S-01, level: Komponen, layer: S, title: "Properti S-box: NL, DU (DDT), bias LAT, derajat aljabar, SAC",
+       steps: ["Ekstrak S-box dari produk (white/grey box) atau gunakan S-box standar", "Hitung NL, DDT, LAT, derajat, SAC secara exhaustive", "Bandingkan dengan nilai acuan desain"],
+       pass: "NL = 112, DU = 4, derajat = 7 (AES)", methods: [M-SBOX], standards: [FIPS-197, ISO-18033-3], applies: {family: [AES]}, expected: {kind: cryptanalytic, gen: sbox_props},
+       runner: component_props, claims: [bit_security], params: [BC-ROUNDS]}
+    - {id: BC-S-02, level: Integrasi, layer: S, title: "Avalanche kunci & plaintext + uji keacakan keluaran terstruktur",
+       steps: ["Bangkitkan dataset key-avalanche, plaintext-avalanche, low/high-density, korelasi P–C", "Ukur fraksi bit berubah (N = 10 000 sampel)", "Jalankan SP 800-22 pada keystream/keluaran (100 × 10^6 bit)"],
+       pass: "Avalanche rerata n/2 (σ ≈ √n/2); proporsi lolos ≥ ambang SP 800-22; P-value_T ≥ 0,0001", methods: [M-AVAL, M-SP80022], standards: [SP-800-22],
+       expected: {kind: statistical, gen: avalanche_sp80022}, runner: statistical_suite, params: [BC-KEY-VAL, BC-PT]}
+    - {id: BC-S-03, level: Integrasi, layer: S, title: "Uji IV/nonce reuse pada mode CTR/GCM",
+       steps: ["Kirim dua pesan dengan kunci & nonce sama ke API", "Periksa apakah produk mendeteksi/menolak reuse", "Bila tidak, tunjukkan XOR plaintext bocor dari XOR ciphertext"],
+       pass: "Reuse ditolak/terdeteksi; nonce yang dibangkitkan produk tidak pernah berulang (≥ 2^16 pesan)", methods: [M-NONCE], standards: [SP-800-38A, SP-800-38D],
+       applies: {variant: [CTR, GCM, GCM-SIV, CCM]}, claims: [aead, nonce_misuse], expected: {kind: negative, gen: nonce_reuse}, runner: nonce_stats, priority: Tinggi, params: [BC-IV]}
+    - {id: BC-S-04, level: Integrasi, layer: S, title: "Kriptanalisis ronde tereduksi (diferensial, linear, integral)",
+       steps: ["Bangun varian ronde tereduksi (2–4 ronde) dengan core/", "Jalankan distinguisher diferensial/linear/integral (Λ-set 2^8)", "Bandingkan margin dengan serangan literatur (UK-1)"],
+       pass: "Serangan hanya berhasil pada ronde tereduksi; kompleksitas ronde penuh ≥ klaim bit security", methods: [M-DIFF, M-LIN, M-INT], standards: [ISO-15408],
+       applies: {family: [AES]}, claims: [bit_security], expected: {kind: cryptanalytic, gen: attack_margin}, runner: reduced_round_analysis, params: [BC-ROUNDS]}
+    - {id: BC-S-05, level: Sistem, layer: S, title: "Kebijakan rekey & batas data per kunci (birthday bound)",
+       steps: ["Baca batas data per kunci dari dokumentasi/profil", "Hitung 2^(n/2) blok untuk tiap target", "Uji API melewati batas (maks + 1)"],
+       pass: "Batas ≤ 2^(n/2) blok dan ditegakkan produk (pesan berlebih ditolak/rekey)", methods: [M-KEYSIZE], standards: [SP-800-38D, SP-800-57],
+       claims: [bit_security], expected: {kind: cryptanalytic, gen: data_limit}, runner: api_negative, params: [BC-LEN]}
+    - {id: BC-S-06, level: Sistem, layer: S, title: "Tingkat keamanan & status transisi algoritma",
+       steps: ["Bandingkan security strength tiap target dengan SP 800-57 & status SP 800-131A", "Tandai algoritma legacy/disallowed (mis. TDEA, PRESENT-80)", "Periksa bahwa legacy hanya untuk dekripsi"],
+       pass: "Strength ≥ 112 bit untuk layanan approved; legacy hanya legacy use", methods: [M-KEYSIZE], standards: [SP-800-57, SP-800-131A],
+       claims: [bit_security], expected: {kind: cryptanalytic, gen: strength}, runner: config_audit, priority: Tinggi}
+    - {id: BC-I-01, level: Komponen, layer: I, title: "Lookup constant-time (cache T-table) & zeroization round key",
+       steps: ["Ukur waktu enkripsi fixed-vs-random key (10^6 pengukuran, dudect)", "Lakukan Flush+Reload pada tabel bila tersedia", "Dump memori setelah free konteks"],
+       pass: "|t| < 4,5; tidak ada sisa round key di memori", methods: [M-TIMING, M-ZEROIZE], standards: [ISO-17825, ISO-19790], claims: [constant_time],
+       requires: [timing_measurement], expected: {kind: implementation, gen: tvla}, runner: timing_tvla, priority: Tinggi, params: [BC-KEY-VAL]}
+    - {id: BC-I-02, level: Integrasi, layer: I, title: "Padding oracle & verifikasi tag constant-time",
+       steps: ["Kirim ciphertext dengan padding/tag rusak pada posisi berbeda", "Ukur waktu respons & kode galat (10^5 sampel per kelas)", "Uji Welch t antar kelas"],
+       pass: "Galat seragam; |t| < 4,5", methods: [M-TIMING], standards: [ISO-17825], claims: [aead, constant_time], requires: [timing_measurement],
+       expected: {kind: implementation, gen: tvla}, runner: oracle_uniformity, params: [BC-LEN]}
+    - {id: BC-I-03, level: Integrasi, layer: I, title: "Fuzzing API cipher (panjang ekstrem, buffer tidak selaras)",
+       steps: ["Bangkitkan 10^6 masukan malformed (panjang 0, maks+1, NULL, unaligned)", "Jalankan di bawah ASan/UBSan", "Catat crash/hang & kode galat"],
+       pass: "Tanpa crash/hang/sanitizer error; galat terdefinisi", methods: [M-FUZZ], standards: [ISO-29119, ISO-18045], requires: [fuzzing_harness],
+       expected: {kind: implementation, gen: fuzz}, runner: fuzz, params: [BC-LEN]}
+    - {id: BC-I-04, level: Sistem, layer: I, title: "DFA / fault injection pada enkripsi",
+       steps: ["Injeksi glitch tegangan/clock pada ronde ke-8/9", "Kumpulkan ciphertext salah", "Coba pulihkan kunci (DFA)"],
+       pass: "Ciphertext salah tidak pernah dikeluarkan", methods: [M-FAULT], standards: [ISO-19790], requires: [power_glitch],
+       expected: {kind: implementation, gen: fault}, runner: manual, params: [ENV]}
+    - {id: BC-I-05, level: Sistem, layer: I, title: "Throughput & ketahanan operasional (multi-thread)",
+       steps: ["Ukur throughput 1/4/8 thread untuk tiap target", "Jalankan 24 jam beban tinggi", "Periksa konsistensi hasil & penggunaan memori"],
+       pass: "Sesuai klaim kinerja; tanpa degradasi keamanan/kebocoran memori", methods: [M-SELFTEST], standards: [ISO-29119], requires: [multi_thread],
+       expected: {kind: implementation, gen: performance}, runner: performance, params: [ENV]}
+    - {id: BC-I-06, level: Sistem, layer: I, title: "Penanganan galat & log yang aman",
+       steps: ["Picu galat (tag salah, kunci salah, self-test gagal)", "Periksa pesan galat & log", "Pastikan tidak ada material kunci/plaintext di log"],
+       pass: "Galat terdefinisi; log tanpa data rahasia", methods: [M-SELFTEST, M-ZEROIZE], standards: [ISO-19790], requires: [error_codes],
+       expected: {kind: implementation, gen: error_handling}, runner: api_negative}
+
+  # ------------------------------------------------------------------ STREAM CIPHER
+  stream:
+    - {id: SC-K-01, level: Komponen, layer: K, title: "Verifikasi quarter-round / fungsi inisialisasi (state awal)",
+       steps: ["Ambil vektor quarter-round & block function (RFC 8439 §2.1.1, §2.3.2)", "Jalankan unit produk", "Bandingkan state 16 word"],
+       pass: "State identik 100%", methods: [M-KAT], standards: [RFC-8439, ISO-18367], applies: {family: [ChaCha]}, expected: {kind: deterministic, gen: kat}, runner: kat_vectors, priority: Tinggi}
+    - {id: SC-K-02, level: Integrasi, layer: K, title: "Test vector keystream / AEAD (kunci, nonce, counter)",
+       steps: ["Muat expected value target (RFC 8439 / Wycheproof)", "Enkripsi & dekripsi pada setiap vektor", "Bandingkan keluaran & tag"],
+       pass: "Identik 100%; tag invalid ditolak", methods: [M-KAT], standards: [RFC-8439, ISO-18367], expected: {kind: deterministic, gen: kat}, runner: kat_vectors, priority: Tinggi, params: [SC-KEY, SC-NONCE]}
+    - {id: SC-K-03, level: Integrasi, layer: K, title: "Konsistensi resinkronisasi & counter awal",
+       steps: ["Enkripsi pesan panjang sekaligus vs bertahap dengan counter awal 0/1", "Mulai ulang dari counter tengah", "Bandingkan keystream"],
+       pass: "Keystream konsisten", methods: [M-KAT], standards: [RFC-8439], expected: {kind: deterministic, gen: roundtrip}, runner: roundtrip, params: [SC-KSLEN]}
+    - {id: SC-K-04, level: Integrasi, layer: K, title: "Penolakan kunci/nonce dengan panjang salah",
+       steps: ["Panggil API dengan kunci 248 bit, nonce 64 bit", "Catat kode galat"], pass: "Ditolak dengan galat terdefinisi", methods: [M-FUZZ], standards: [ISO-29119],
+       expected: {kind: negative, gen: reject_params}, runner: api_negative, params: [SC-KEY, SC-NONCE]}
+    - {id: SC-K-05, level: Integrasi, layer: K, title: "AEAD: integrasi MAC (bit-flipping ditolak)",
+       steps: ["Balik 1 bit ciphertext/AAD/tag", "Dekripsi"], pass: "Seluruh modifikasi ditolak", methods: [M-KAT], standards: [RFC-8439], claims: [aead],
+       applies: {variant: [ChaCha20-Poly1305]}, expected: {kind: negative, gen: kat}, runner: kat_vectors}
+    - {id: SC-K-06, level: Sistem, layer: K, title: "Interoperabilitas & sinkronisasi pada kanal nyata",
+       steps: ["Enkripsi dengan produk, dekripsi dengan OpenSSL/libsodium dan sebaliknya", "Simulasikan bit loss/delay"], pass: "Interoperabel; galat sinkronisasi terdeteksi",
+       methods: [M-KAT], standards: [ISO-18367], expected: {kind: deterministic, gen: interop}, runner: interop}
+    - {id: SC-S-01, level: Komponen, layer: S, title: "Properti komponen nonlinear (carry ARX) & difusi per ronde",
+       steps: ["Hitung NL/derajat/CI fungsi carry", "Ukur avalanche per ronde permutasi", "Tentukan ronde difusi penuh"],
+       pass: "Derajat 2, NL 2; difusi penuh ≤ 4 ronde", methods: [M-BOOL, M-DIFFUSION], standards: [ISO-18033-4], applies: {family: [ChaCha]},
+       expected: {kind: cryptanalytic, gen: arx_props}, runner: component_props}
+    - {id: SC-S-02, level: Integrasi, layer: S, title: "Keacakan keystream (SP 800-22) & kompleksitas linear",
+       steps: ["Bangkitkan 100 barisan × 10^6 bit (kunci & nonce acak)", "Jalankan 15 uji SP 800-22", "Hitung kompleksitas linear (Berlekamp–Massey, N = 10^4)"],
+       pass: "Proporsi ≥ ambang; P-value_T ≥ 0,0001; |L − N/2| ≤ 3", methods: [M-SP80022, M-LC], standards: [SP-800-22], expected: {kind: statistical, gen: avalanche_sp80022},
+       runner: statistical_suite, params: [SC-KSLEN]}
+    - {id: SC-S-03, level: Integrasi, layer: S, title: "Key/IV avalanche & distinguisher chosen-IV (ronde tereduksi)",
+       steps: ["Balik 1 bit kunci/nonce (10 000 sampel)", "Ukur fraksi bit berubah", "Uji bias diferensial 3–4 ronde (analisis)"],
+       pass: "Avalanche ≈ 0,5; distinguisher hanya pada ronde tereduksi", methods: [M-AVAL, M-ARX-PNB], standards: [ISO-18033-4], claims: [bit_security],
+       expected: {kind: statistical, gen: avalanche_sp80022}, runner: statistical_suite, params: [SC-NONCE, SC-INIT]}
+    - {id: SC-S-04, level: Integrasi, layer: S, title: "Manajemen nonce: reuse & counter overflow",
+       steps: ["Kirim 2^16 pesan, kumpulkan nonce", "Uji pemakaian ulang nonce dengan kunci sama", "Minta keystream > 2^32 blok"],
+       pass: "Tidak ada nonce berulang; overflow ditolak", methods: [M-NONCE], standards: [RFC-8439], claims: [aead, nonce_misuse], expected: {kind: negative, gen: nonce_reuse},
+       runner: nonce_stats, priority: Tinggi, params: [SC-NONCE, SC-KSLEN]}
+    - {id: SC-S-05, level: Sistem, layer: S, title: "Skenario IV reuse & malleability end-to-end",
+       steps: ["Rekam dua sesi dengan nonce sama (simulasi cacat)", "Tunjukkan kebocoran XOR & bit-flipping tanpa MAC"], pass: "Produk mencegah kondisi; AEAD menolak modifikasi",
+       methods: [M-NONCE], standards: [RFC-8439], claims: [aead], expected: {kind: negative, gen: nonce_reuse}, runner: manual}
+    - {id: SC-S-06, level: Sistem, layer: S, title: "Tingkat keamanan kunci 256 bit",
+       steps: ["Bandingkan ruang kunci & serangan terbaik literatur (UK-1)"], pass: "Serangan terbaik ronde penuh ≥ 2^256 (brute force)", methods: [M-KEYSIZE],
+       standards: [SP-800-57], claims: [bit_security], expected: {kind: cryptanalytic, gen: strength}, runner: config_audit}
+    - {id: SC-I-01, level: Komponen, layer: I, title: "Constant-time ARX & clocking independen data",
+       steps: ["dudect fixed-vs-random key (10^6 pengukuran)"], pass: "|t| < 4,5", methods: [M-TIMING], standards: [ISO-17825], claims: [constant_time], requires: [timing_measurement],
+       expected: {kind: implementation, gen: tvla}, runner: timing_tvla}
+    - {id: SC-I-02, level: Integrasi, layer: I, title: "Verifikasi tag Poly1305 constant-time",
+       steps: ["Tag benar vs salah pada posisi byte berbeda (10^5 sampel)", "Welch t"], pass: "|t| < 4,5", methods: [M-TIMING], standards: [ISO-17825], claims: [constant_time, aead],
+       requires: [timing_measurement], applies: {variant: [ChaCha20-Poly1305]}, expected: {kind: implementation, gen: tvla}, runner: oracle_uniformity}
+    - {id: SC-I-03, level: Integrasi, layer: I, title: "Fuzzing API stream/AEAD", steps: ["10^6 masukan malformed di bawah sanitizer"], pass: "Tanpa crash/hang",
+       methods: [M-FUZZ], standards: [ISO-29119], requires: [fuzzing_harness], expected: {kind: implementation, gen: fuzz}, runner: fuzz}
+    - {id: SC-I-04, level: Sistem, layer: I, title: "Zeroization kunci & state setelah sesi", steps: ["Dump memori pasca-destroy", "Cari pola kunci uji"], pass: "0 kemunculan",
+       methods: [M-ZEROIZE], standards: [ISO-19790], requires: [key_import_export], expected: {kind: implementation, gen: zeroize}, runner: manual}
+    - {id: SC-I-05, level: Sistem, layer: I, title: "Throughput & latensi", steps: ["Ukur MB/s 1–8 thread"], pass: "Sesuai klaim kinerja", methods: [M-SELFTEST], standards: [ISO-29119],
+       requires: [multi_thread], expected: {kind: implementation, gen: performance}, runner: performance}
+    - {id: SC-I-06, level: Sistem, layer: I, title: "Side-channel & fault pada perangkat target", steps: ["TVLA daya/EM 10^5 trace", "Glitch saat enkripsi"], pass: "|t| < 4,5; tanpa keluaran salah",
+       methods: [M-TVLA, M-FAULT], standards: [ISO-17825], requires: [side_channel_lab], expected: {kind: implementation, gen: tvla}, runner: manual}
+
+  # ------------------------------------------------------------------ HASH / MAC / KDF
+  hash:
+    - {id: HF-K-01, level: Komponen, layer: K, title: "Verifikasi permutasi/fungsi kompresi, konstanta & padding",
+       steps: ["Bandingkan konstanta ronde & offset rotasi dengan standar", "Jalankan permutasi pada state uji (core/)", "Periksa padding pad10*1 / MD-strengthening pada batas b"],
+       pass: "Identik 100%", methods: [M-KAT, M-PAD], standards: [FIPS-202, FIPS-180-4, ISO-10118-3], expected: {kind: deterministic, gen: hash_boundaries}, runner: kat_vectors, priority: Tinggi}
+    - {id: HF-K-02, level: Integrasi, layer: K, title: "Short/Long Message Test pada nilai batas panjang pesan",
+       steps: ["Hash pesan pada setiap nilai batas (0, 1, b−L−1, b−L, b−1, b, b+1, 1 MiB)", "Bandingkan dengan expected value (dua implementasi independen + vektor resmi)"],
+       pass: "Digest identik 100%", methods: [M-KAT, M-PAD], standards: [FIPS-202, FIPS-180-4], expected: {kind: deterministic, gen: hash_boundaries}, runner: kat_vectors, priority: Tinggi, params: [HF-LEN, HF-PAT]}
+    - {id: HF-K-03, level: Integrasi, layer: K, title: "Monte Carlo Test hash", steps: ["MCT 100 × 1000 iterasi (gaya CAVP)", "Bandingkan checkpoint"], pass: "100% checkpoint identik",
+       methods: [M-MCT], standards: [ISO-18367], expected: {kind: deterministic, gen: mct}, runner: mct}
+    - {id: HF-K-04, level: Integrasi, layer: K, title: "Konsistensi chunking (one-shot vs update bertahap) & XOF",
+       steps: ["Hash pesan 1 MiB sekaligus dan bertahap acak (1…b+7 byte)", "Untuk XOF: minta 256 & 512 bit"], pass: "Digest identik; prefiks XOF konsisten",
+       methods: [M-KAT], standards: [FIPS-202], requires: [streaming_api], expected: {kind: deterministic, gen: hash_boundaries}, runner: roundtrip, params: [HF-CHUNK, HF-DIG]}
+    - {id: HF-K-05, level: Integrasi, layer: K, title: "KAT HMAC/KMAC/KDF (kunci < = > blok)",
+       steps: ["Muat vektor HMAC (Wycheproof/RFC 4231) & KDF", "Eksekusi; bandingkan tag", "Vektor invalid harus ditolak"], pass: "Identik 100%",
+       methods: [M-KAT], standards: [SP-800-107, FIPS-202], applies: {primitive: [mac, kdf]}, expected: {kind: deterministic, gen: kat}, runner: kat_vectors, params: [HF-KEY]}
+    - {id: HF-K-06, level: Sistem, layer: K, title: "Penggunaan hash dalam HMAC/KDF/tanda tangan/integritas berkas",
+       steps: ["Verifikasi silang digest berkas dengan sha3sum/OpenSSL", "Periksa label domain separation"], pass: "Konsisten", methods: [M-KAT], standards: [ISO-18367],
+       expected: {kind: deterministic, gen: interop}, runner: interop}
+    - {id: HF-S-01, level: Komponen, layer: S, title: "Properti χ / fungsi kompresi & batas jejak diferensial",
+       steps: ["Hitung DDT & derajat χ", "Ukur difusi per ronde Keccak-f", "Bandingkan dengan acuan (DU 8, derajat 2)"], pass: "Sesuai acuan desain",
+       methods: [M-SBOX, M-DIFFUSION], standards: [FIPS-202], applies: {family: [SHA-3]}, expected: {kind: cryptanalytic, gen: sbox_props}, runner: component_props}
+    - {id: HF-S-02, level: Integrasi, layer: S, title: "Avalanche & distribusi keluaran (χ², entropi)", steps: ["10 000 pasangan pesan beda 1 bit", "Uji χ² byte keluaran"],
+       pass: "Avalanche n/2 (σ ≈ √n/2); χ² p ≥ 0,01", methods: [M-AVAL, M-SP80022], standards: [SP-800-22], expected: {kind: statistical, gen: avalanche_sp80022}, runner: statistical_suite, params: [HF-PAT]}
+    - {id: HF-S-03, level: Integrasi, layer: S, title: "Batas generik collision/preimage (keluaran terpotong)",
+       steps: ["Cari collision pada digest terpotong t = 16/24/32 bit", "Bandingkan kerja empiris dengan √(π/2·2^t)"], pass: "Kerja empiris ±20% dari prediksi; klaim penuh = min(n/2, c/2)",
+       methods: [M-GENERIC, M-KEYSIZE], standards: [SP-800-107, FIPS-202], claims: [collision, preimage, bit_security], expected: {kind: cryptanalytic, gen: generic_bound},
+       runner: statistical_suite, params: [HF-DIG]}
+    - {id: HF-S-04, level: Integrasi, layer: S, title: "Evaluasi length-extension (hash murni vs MAC)",
+       steps: ["Untuk SHA-2: tunjukkan length-extension pada H(k ∥ m)", "Pastikan produk memakai HMAC untuk autentikasi"], pass: "Tidak ada konstruksi H(k ∥ m) pada produk",
+       methods: [M-PAD], standards: [SP-800-107], expected: {kind: cryptanalytic, gen: attack_margin}, runner: manual}
+    - {id: HF-S-05, level: Integrasi, layer: S, title: "Ronde tereduksi: (near-)collision & margin keamanan",
+       steps: ["Bandingkan serangan literatur (collision 5/24 ronde) dengan jumlah ronde"], pass: "Margin ≥ 20%", methods: [M-DIFF], standards: [FIPS-202], applies: {family: [SHA-3]},
+       claims: [collision], expected: {kind: cryptanalytic, gen: attack_margin}, runner: reduced_round_analysis}
+    - {id: HF-S-06, level: Sistem, layer: S, title: "Kecukupan panjang digest terhadap umur data & Grover",
+       steps: ["Hitung strength klasik & kuantum (Grover: preimage 2^(n/2))", "Bandingkan dengan umur data produk"], pass: "Strength ≥ 112 bit (klasik) untuk umur data",
+       methods: [M-KEYSIZE], standards: [SP-800-57, SP-800-107], claims: [bit_security, preimage], expected: {kind: cryptanalytic, gen: strength}, runner: config_audit}
+    - {id: HF-I-01, level: Komponen, layer: I, title: "Counter panjang pesan (overflow > 2^32 byte) & endianness",
+       steps: ["Hash pesan 2^32 + 1 byte (streaming)", "Bandingkan dengan referensi"], pass: "Digest benar; tanpa overflow", methods: [M-FUZZ], standards: [FIPS-180-4],
+       requires: [streaming_api], expected: {kind: deterministic, gen: hash_boundaries}, runner: kat_vectors}
+    - {id: HF-I-02, level: Integrasi, layer: I, title: "Pembandingan digest/HMAC constant-time", steps: ["Tag benar vs salah per posisi byte (10^5)", "Welch t"], pass: "|t| < 4,5",
+       methods: [M-TIMING], standards: [ISO-17825], claims: [constant_time], requires: [timing_measurement], expected: {kind: implementation, gen: tvla}, runner: oracle_uniformity}
+    - {id: HF-I-03, level: Integrasi, layer: I, title: "API streaming yang aman (fuzzing update/final)", steps: ["Urutan update/final menyimpang 10^6 kali"], pass: "Tanpa crash; galat terdefinisi",
+       methods: [M-FUZZ], standards: [ISO-29119], requires: [fuzzing_harness], expected: {kind: implementation, gen: fuzz}, runner: fuzz}
+    - {id: HF-I-04, level: Sistem, layer: I, title: "Kinerja volume besar", steps: ["Hash 10 GiB; ukur GB/s"], pass: "Sesuai klaim kinerja", methods: [M-SELFTEST], standards: [ISO-29119],
+       requires: [multi_thread], expected: {kind: implementation, gen: performance}, runner: performance}
+    - {id: HF-I-05, level: Sistem, layer: I, title: "Validasi integritas pada alur operasional", steps: ["Rusak 1 byte berkas; verifikasi"], pass: "Kerusakan terdeteksi",
+       methods: [M-KAT], standards: [ISO-29119], expected: {kind: negative, gen: reject_params}, runner: api_negative}
+    - {id: HF-I-06, level: Sistem, layer: I, title: "Zeroization kunci HMAC/KDF", steps: ["Dump memori pasca-destroy"], pass: "0 sisa kunci", methods: [M-ZEROIZE], standards: [ISO-19790],
+       requires: [key_import_export], applies: {primitive: [mac, kdf]}, expected: {kind: implementation, gen: zeroize}, runner: manual}
+
+  # ------------------------------------------------------------------ PUBLIC KEY ENCRYPTION / KEM / KEY AGREEMENT
+  pke:
+    - {id: PK-K-01, level: Komponen, layer: K, title: "Aritmetika modular/kurva/NTT, uji primalitas & validasi parameter",
+       steps: ["Uji primalitas p, q kunci sampel (Miller–Rabin 64)", "Periksa parameter domain kurva/grup", "Bandingkan aritmetika dengan core/"],
+       pass: "Seluruh pemeriksaan LULUS", methods: [M-PRIME, M-CURVE, M-KAT], standards: [ISO-18032, FIPS-186-5], expected: {kind: deterministic, gen: keygen_validate}, runner: keygen_validate}
+    - {id: PK-K-02, level: Integrasi, layer: K, title: "KAT Enc/Dec atau Encaps/Decaps / key agreement",
+       steps: ["Muat expected value target (PKCS#1 / Wycheproof / RFC 7748)", "Eksekusi pada tiap vektor", "Bandingkan keluaran; invalid ditolak"],
+       pass: "Identik 100%; invalid ditolak", methods: [M-KAT], standards: [RFC-8017, ISO-18033-2, SP-800-56B], expected: {kind: deterministic, gen: kat}, runner: kat_vectors, priority: Tinggi, params: [PK-DOM]}
+    - {id: PK-K-03, level: Integrasi, layer: K, title: "Round-trip Dec(Enc(m)) = m pada panjang pesan batas",
+       steps: ["m = 0, 1, k−2hLen−2 (maks OAEP), k−2hLen−1 (melebihi)", "Enkripsi lalu dekripsi"], pass: "Round-trip 100%; m terlalu panjang ditolak",
+       methods: [M-KAT], standards: [RFC-8017], applies: {family: [RSA]}, expected: {kind: deterministic, gen: roundtrip}, runner: roundtrip}
+    - {id: PK-K-04, level: Integrasi, layer: K, title: "Pembangkitan kunci: 100 pasangan valid", steps: ["Bangkitkan 100 kunci", "Periksa syarat FIPS 186-5 A.1.3 / validitas titik"],
+       pass: "100% kunci valid", methods: [M-PRIME], standards: [FIPS-186-5], requires: [keygen], expected: {kind: deterministic, gen: keygen_validate}, runner: keygen_validate}
+    - {id: PK-K-05, level: Integrasi, layer: K, title: "Penolakan domain/panjang kunci di luar spesifikasi", steps: ["Impor RSA-1024, modulus 2047 bit, kurva tak didukung"],
+       pass: "Seluruhnya ditolak", methods: [M-PKV], standards: [SP-800-56B, SP-800-131A], expected: {kind: negative, gen: reject_params}, runner: api_negative, params: [PK-DOM, PK-KEYS]}
+    - {id: PK-K-06, level: Sistem, layer: K, title: "Interoperabilitas format kunci (PKCS#8, X.509 SPKI) & ciphertext",
+       steps: ["Ekspor/impor kunci ke OpenSSL", "Enkripsi produk ↔ dekripsi OpenSSL"], pass: "Interoperabel dua arah", methods: [M-KAT], standards: [ISO-18367],
+       requires: [key_import_export], expected: {kind: deterministic, gen: interop}, runner: interop}
+    - {id: PK-S-01, level: Komponen, layer: S, title: "Estimasi bit security & kualitas bilangan prima",
+       steps: ["Hitung strength (SP 800-57) per target", "Periksa |p−q|, d, kehalusan p−1 (UK-1)"], pass: "Strength ≥ 112 bit; prima kuat",
+       methods: [M-KEYSIZE, M-PRIME], standards: [SP-800-57, ISO-18032], claims: [bit_security, ind_cca2], expected: {kind: cryptanalytic, gen: strength}, runner: config_audit}
+    - {id: PK-S-02, level: Integrasi, layer: S, title: "Oracle padding/galat dekripsi (Manger/Bleichenbacher)",
+       steps: ["Kirim kelas ciphertext invalid (y≠0, lHash salah, tanpa 0x01, c ≥ n)", "Catat pesan galat & waktu (10^5 per kelas)", "Uji Welch t antar kelas"],
+       pass: "Satu jenis galat; |t| < 4,5", methods: [M-ORACLE], standards: [SP-800-56B, ISO-17825], applies: {family: [RSA]}, claims: [ind_cca2, oracle],
+       expected: {kind: implementation, gen: oracle}, runner: oracle_uniformity, priority: Tinggi, params: [PK-CT, PK-PAD]}
+    - {id: PK-S-03, level: Integrasi, layer: S, title: "Validasi kunci publik lawan (invalid-curve, small-subgroup)",
+       steps: ["Kirim titik di luar kurva, low-order, titik tak hingga", "Periksa penolakan & shared secret nol"], pass: "Seluruhnya ditolak",
+       methods: [M-PKV], standards: [SP-800-56A, SP-800-186], applies: {family: [ECDH, XECDH, ECIES]}, expected: {kind: negative, gen: kat}, runner: kat_vectors, priority: Tinggi, params: [PK-PEER]}
+    - {id: PK-S-04, level: Integrasi, layer: S, title: "Batch-GCD & entropi pembangkitan kunci",
+       steps: ["Bangkitkan ≥ 1000 kunci RSA", "Batch-GCD seluruh modulus", "Uji Fermat/Pollard p−1/Wiener"], pass: "0 faktor bersama; 0 kunci lemah",
+       methods: [M-RSAWEAK, M-RNG], standards: [ISO-18032, SP-800-90A], applies: {family: [RSA]}, claims: [rng], requires: [keygen], expected: {kind: cryptanalytic, gen: weak_keys}, runner: weak_key_battery}
+    - {id: PK-S-05, level: Integrasi, layer: S, title: "Laju kegagalan dekapsulasi & implicit rejection (KEM)",
+       steps: ["10^6 encaps/decaps", "Ciphertext dimodifikasi → harus menghasilkan kunci pseudoacak (implicit rejection)"], pass: "Laju kegagalan ≤ klaim (2^-139 ML-KEM-512…); implicit rejection benar",
+       methods: [M-KAT], standards: [FIPS-203], applies: {family: [ML-KEM]}, claims: [ind_cca2], expected: {kind: cryptanalytic, gen: strength}, runner: statistical_suite}
+    - {id: PK-S-06, level: Sistem, layer: S, title: "Kesiapan transisi PQC (hybrid, crypto-agility) & umur kunci",
+       steps: ["Inventarisasi target rentan kuantum", "Uji penggantian ke ML-KEM / hybrid tanpa ubah arsitektur"], pass: "Rencana migrasi sesuai IR 8547; mode hybrid berfungsi",
+       methods: [M-KEYSIZE], standards: [FIPS-203, SP-800-131A], claims: [bit_security], expected: {kind: cryptanalytic, gen: strength}, runner: config_audit}
+    - {id: PK-I-01, level: Komponen, layer: I, title: "Eksponensiasi/perkalian skalar constant-time & proteksi RSA-CRT",
+       steps: ["dudect fixed-vs-random kunci privat (10^6)", "Periksa verifikasi hasil CRT sebelum keluaran"], pass: "|t| < 4,5; hasil CRT diverifikasi",
+       methods: [M-TIMING], standards: [ISO-17825], claims: [constant_time], requires: [timing_measurement], expected: {kind: implementation, gen: tvla}, runner: timing_tvla, priority: Tinggi}
+    - {id: PK-I-02, level: Integrasi, layer: I, title: "Fuzzing ciphertext & kunci malformed", steps: ["10^6 ciphertext/DER kunci malformed di bawah sanitizer"], pass: "Tanpa crash; galat seragam",
+       methods: [M-FUZZ], standards: [ISO-29119], requires: [fuzzing_harness], expected: {kind: implementation, gen: fuzz}, runner: fuzz, params: [PK-CT]}
+    - {id: PK-I-03, level: Integrasi, layer: I, title: "Keseragaman galat & waktu respons dekripsi", steps: ["Kelas galat berbeda, 10^5 sampel", "Welch t"], pass: "|t| < 4,5",
+       methods: [M-ORACLE, M-TIMING], standards: [ISO-17825], claims: [oracle], requires: [timing_measurement], expected: {kind: implementation, gen: oracle}, runner: oracle_uniformity}
+    - {id: PK-I-04, level: Sistem, layer: I, title: "Penyimpanan kunci privat & zeroization", steps: ["Ekspor/hapus kunci; dump memori"], pass: "Kunci privat tidak tersisa/terkunci sesuai kebijakan",
+       methods: [M-ZEROIZE], standards: [ISO-19790], requires: [key_import_export], expected: {kind: implementation, gen: zeroize}, runner: manual}
+    - {id: PK-I-05, level: Sistem, layer: I, title: "Kinerja operasi kunci privat", steps: ["Ukur ops/detik decrypt/decaps 1–8 thread"], pass: "Sesuai klaim kinerja",
+       methods: [M-SELFTEST], standards: [ISO-29119], requires: [multi_thread], expected: {kind: implementation, gen: performance}, runner: performance}
+    - {id: PK-I-06, level: Sistem, layer: I, title: "Fault pada RSA-CRT (Bellcore)", steps: ["Glitch saat dekripsi/tanda tangan CRT"], pass: "Keluaran salah tidak pernah dilepas",
+       methods: [M-FAULT], standards: [ISO-19790], requires: [power_glitch], applies: {family: [RSA]}, expected: {kind: implementation, gen: fault}, runner: manual}
+
+  # ------------------------------------------------------------------ DIGITAL SIGNATURE (contoh materi DS-*)
+  signature:
+    - {from_example: DS-K-01, title: "Aritmetika kurva pada titik khusus", steps: ["Hitung O, P + (−P), P + P, n·G dengan produk", "Hitung yang sama dengan implementasi referensi core/", "Bandingkan seluruh hasil"],
+       methods: [M-CURVE, M-KAT], standards: [FIPS-186-5, SP-800-186], applies: {family: [ECDSA]}, expected: {kind: deterministic, gen: curve_points}, runner: kat_vectors}
+    - {from_example: DS-K-02, title: "SHA-256: Short/Long Message & Monte Carlo Test", steps: ["Hash pesan pada nilai batas panjang (b = 64: 0, 55, 56, 64, 65 byte) dan 1 MB", "Jalankan MCT SHA-256", "Bandingkan digest"],
+       methods: [M-KAT], standards: [FIPS-180-4], expected: {kind: deterministic, gen: hash_boundaries}, runner: kat_vectors, params: [DS-MSG]}
+    - {from_example: DS-K-03, title: "Validitas pasangan kunci hasil KeyGen", steps: ["Bangkitkan 100 pasangan kunci", "Periksa 1 ≤ d ≤ n − 1", "Periksa Q = d·G valid di kurva (validasi penuh)"],
+       methods: [M-PKV], standards: [FIPS-186-5, SP-800-186], requires: [keygen], applies: {family: [ECDSA]}, expected: {kind: deterministic, gen: keygen_validate}, runner: keygen_validate}
+    - {from_example: DS-K-04, title: "Tanda tangan deterministik RFC 6979", steps: ["Gunakan d & pesan dari vektor RFC 6979 A.2.5", "Bangkitkan (r, s) dengan produk", "Bandingkan dengan vektor acuan"],
+       methods: [M-KAT], standards: [RFC-6979, FIPS-186-5], applies: {family: [ECDSA]}, expected: {kind: deterministic, gen: rfc6979}, runner: kat_vectors, priority: Tinggi}
+    - {from_example: DS-K-05, title: "SigVer ≥ 500 vektor valid & invalid (gaya Wycheproof)", steps: ["Muat vektor SigVer (Wycheproof + mutasi encoding)", "Verifikasi tiap vektor dengan produk", "Catat terima/tolak per vektor"],
+       methods: [M-KAT, M-SIGMAL], standards: [FIPS-186-5, ISO-14888-3], applies: {family: [ECDSA]}, expected: {kind: deterministic, gen: sigver}, runner: sigver_vectors, priority: Tinggi, params: [DS-ENC]}
+    - {from_example: DS-K-06, title: "Verifikasi silang dokumen bertanda tangan", steps: ["Tanda tangani dokumen 3 ukuran", "Verifikasi dengan ≥ 2 verifier referensi", "Ulangi dua arah"],
+       methods: [M-KAT], standards: [ISO-18367], requires: [pdf_signing], expected: {kind: deterministic, gen: interop}, runner: interop}
+    - {from_example: DS-S-01, title: "Parameter domain di dalam produk", steps: ["Ekstrak p, a, b, G, n, h dari produk", "Cocokkan dengan SP 800-186", "Uji primalitas n; h = 1"],
+       methods: [M-CURVE], standards: [SP-800-186, FIPS-186-5], applies: {family: [ECDSA]}, claims: [bit_security], expected: {kind: deterministic, gen: domain_params}, runner: kat_vectors}
+    - {from_example: DS-S-02, title: "Bias nonce k (MSB/LSB) & simulasi HNP", steps: ["Bangkitkan N tanda tangan, pesan acak, d uji diketahui", "Hitung k = s⁻¹(e + r·d) mod n", "Uji bias MSB/LSB (χ²) & keacakan bit k", "Simulasikan serangan lattice/HNP"],
+       methods: [M-NONCE], standards: [FIPS-186-5, RFC-6979], applies: {family: [ECDSA]}, claims: [euf_cma, nonce_bias], expected: {kind: statistical, gen: nonce_stats}, runner: nonce_stats, priority: Tinggi, params: [DS-NONCE, DS-N]}
+    - {from_example: DS-S-03, title: "Nilai r berulang", steps: ["Gunakan N tanda tangan dari DS-S-02 untuk kedua mode nonce", "Cari r berulang untuk pesan berbeda"],
+       methods: [M-NONCE], standards: [FIPS-186-5], applies: {family: [ECDSA]}, claims: [euf_cma, nonce_bias], expected: {kind: statistical, gen: nonce_stats}, runner: nonce_stats, priority: Tinggi, params: [DS-NONCE]}
+    - {from_example: DS-S-04, title: "Penolakan kunci publik invalid", steps: ["Masukkan Q = O, Q di luar kurva, koordinat ≥ p ke verifier", "Masukkan ke proses impor sertifikat"],
+       methods: [M-PKV], standards: [SP-800-186], applies: {family: [ECDSA]}, claims: [euf_cma], expected: {kind: negative, gen: pubkey_negative}, runner: kat_vectors, priority: Tinggi, params: [DS-Q]}
+    - {from_example: DS-S-05, title: "Kualitas DRBG pembangkit d & k", steps: ["Kumpulkan keluaran DRBG (mode acak)", "Estimasi min-entropi SP 800-90B", "Jalankan SP 800-22"],
+       methods: [M-RNG], standards: [SP-800-90B, SP-800-22], requires: [rng_internal], claims: [rng, nonce_bias], expected: {kind: statistical, gen: rng_stats}, runner: statistical_suite}
+    - {from_example: DS-S-06, title: "Verifikasi end-to-end dokumen termanipulasi", steps: ["Ubah dokumen; substitusi/cabut/kedaluwarsakan sertifikat; manipulasi timestamp", "Verifikasi melalui aplikasi"],
+       methods: [M-SIGMAL], standards: [ISO-14888-3], requires: [pdf_signing, certificates], claims: [euf_cma], expected: {kind: negative, gen: reject_params}, runner: manual}
+    - {from_example: DS-I-01, title: "Timing perkalian skalar (TVLA)", steps: ["Fixed-vs-random d dan k", "10^5 pengukuran waktu perkalian skalar", "Uji TVLA (Welch t)"],
+       methods: [M-TIMING], standards: [ISO-17825], claims: [constant_time], requires: [timing_measurement], expected: {kind: implementation, gen: tvla}, runner: timing_tvla, priority: Tinggi}
+    - {from_example: DS-I-02, title: "Kebocoran daya/EM pada token", steps: ["Akuisisi 10^5 trace daya/EM", "TVLA; lanjut CPA bila |t| ≥ 4,5"],
+       methods: [M-TVLA], standards: [ISO-17825, ISO-20085], requires: [side_channel_lab, token], expected: {kind: implementation, gen: tvla}, runner: manual}
+    - {from_example: DS-I-03, title: "Fault injection saat signing (kritis RFC 6979)", steps: ["Glitch tegangan/clock pada ronde perkalian skalar", "Kumpulkan tanda tangan keluaran", "Verifikasi seluruh tanda tangan"],
+       methods: [M-FAULT], standards: [ISO-19790], requires: [power_glitch], expected: {kind: implementation, gen: fault}, runner: manual}
+    - {from_example: DS-I-04, title: "Fuzzing parser DER/ASN.1 tanda tangan & sertifikat", steps: ["Bangkitkan 10^6 input DER/ASN.1 malformed", "Fuzzing parser", "Catat crash/hang & galat"],
+       methods: [M-FUZZ], standards: [ISO-29119], requires: [fuzzing_harness], expected: {kind: implementation, gen: fuzz}, runner: fuzz}
+    - {from_example: DS-I-05, title: "Ekspor kunci, pemutusan daya & audit log", steps: ["Coba ekspor d melalui API", "Putus daya/reset token saat operasi", "Periksa zeroization & audit log"],
+       methods: [M-ZEROIZE], standards: [ISO-19790], requires: [key_non_exportable], claims: [key_non_exportable], expected: {kind: implementation, gen: zeroize}, runner: manual}
+    - {from_example: DS-I-06, title: "Throughput & latensi signing paralel", steps: ["Beban 1, 10, 100 dokumen paralel", "Ukur throughput & latensi"],
+       methods: [M-TIMING], standards: [ISO-29119], requires: [multi_doc_signing], expected: {kind: implementation, gen: performance}, runner: performance}
+    # tambahan untuk produk library (tanpa token/PDF): skenario Sistem setara
+    - {id: DS-K-07, level: Sistem, layer: K, title: "Interoperabilitas tanda tangan dengan pustaka referensi",
+       steps: ["Tanda tangani pesan dengan produk; verifikasi dengan OpenSSL/pyca", "Arah sebaliknya", "Untuk EdDSA/ML-DSA gunakan vektor resmi"], pass: "Status verifikasi konsisten dua arah",
+       methods: [M-KAT], standards: [ISO-18367], expected: {kind: deterministic, gen: interop}, runner: interop}
+    - {id: DS-K-08, level: Integrasi, layer: K, title: "KAT SigGen/SigVer EdDSA / PQC (ML-DSA, SLH-DSA)",
+       steps: ["Muat vektor RFC 8032 / Wycheproof / ACVP", "Verifikasi & tanda tangani", "Invalid harus ditolak"], pass: "Identik 100%; invalid ditolak",
+       methods: [M-KAT], standards: [FIPS-186-5, FIPS-204, FIPS-205], applies: {family: [EdDSA, ML-DSA, SLH-DSA, RSA]}, expected: {kind: deterministic, gen: kat}, runner: kat_vectors}
+    - {id: DS-S-07, level: Sistem, layer: S, title: "Tingkat keamanan skema & kesiapan PQC",
+       steps: ["Hitung strength tiap skema (SP 800-57/FIPS 204)", "Tandai skema rentan kuantum (IR 8547)"], pass: "Strength ≥ 112 bit; rencana migrasi PQC",
+       methods: [M-KEYSIZE], standards: [SP-800-57, FIPS-204], claims: [bit_security, euf_cma], expected: {kind: cryptanalytic, gen: strength}, runner: config_audit}
+    - {id: DS-S-08, level: Integrasi, layer: S, title: "Malleability & penolakan (r,s) di luar rentang",
+       steps: ["Kirim (r, n−s), r/s = 0, ≥ n, DER non-kanonik", "Catat terima/tolak"], pass: "Di luar rentang ditolak; kebijakan low-s didokumentasikan",
+       methods: [M-SIGMAL], standards: [FIPS-186-5], applies: {family: [ECDSA]}, claims: [euf_cma], expected: {kind: negative, gen: sigver}, runner: sigver_vectors, params: [DS-ENC]}
+
+  # ------------------------------------------------------------------ PROTOKOL (contoh materi PR-*)
+  protocol:
+    - {from_example: PR-K-01, title: "Key schedule HKDF terhadap vektor jejak RFC 8448", steps: ["Ambil nilai jejak RFC 8448 (ECDHE shared secret, transcript hash)", "Hitung HKDF-Extract/Expand-Label seluruh secret", "Bandingkan dengan acuan"],
+       methods: [M-KAT], standards: [RFC-8446], requires: [protocol_tls13], expected: {kind: deterministic, gen: rfc8448}, runner: kat_vectors, priority: Tinggi}
+    - {from_example: PR-K-02, title: "KAT AES-256-GCM & tag dimodifikasi", steps: ["Muat vektor AES-256-GCM (Wycheproof)", "Enkripsi/dekripsi", "Ubah 1 bit tag, pastikan ditolak"],
+       methods: [M-KAT], standards: [SP-800-38D], expected: {kind: deterministic, gen: kat_gcm256}, runner: kat_vectors, priority: Tinggi}
+    - {from_example: PR-K-03, title: "Full handshake, HRR, resumption PSK", steps: ["Jalankan full handshake, HelloRetryRequest, resumption PSK", "Rekam transcript & transisi state", "Bandingkan dengan RFC 8446 §4"],
+       methods: [M-KAT], standards: [RFC-8446], requires: [protocol_tls13, session_resumption], expected: {kind: deterministic, gen: state_machine}, runner: protocol_harness}
+    - {from_example: PR-K-04, title: "Negosiasi versi × suite × grup (pairwise)", steps: ["Ambil kombinasi pairwise dari ruang parameter (KUK 1.2)", "Klien menawarkan tiap kombinasi", "Catat pilihan server"],
+       methods: [M-KEYSIZE], standards: [RFC-8446], requires: [protocol_tls13], expected: {kind: deterministic, gen: negotiation}, runner: protocol_harness, params: [PR-VER, PR-SUITE, PR-GROUP]}
+    - {from_example: PR-K-05, title: "Grup hybrid X25519MLKEM768", steps: ["Handshake dengan klien pendukung hybrid", "Bandingkan shared secret dengan spesifikasi hybrid"],
+       methods: [M-KAT], standards: [FIPS-203], requires: [hybrid_kem], expected: {kind: deterministic, gen: hybrid}, runner: protocol_harness}
+    - {from_example: PR-K-06, title: "Interoperabilitas ≥ 3 klien referensi", steps: ["Uji dengan OpenSSL, BoringSSL, NSS (dua arah)"], methods: [M-KAT], standards: [RFC-8446],
+       requires: [network], expected: {kind: deterministic, gen: interop}, runner: interop}
+    - {from_example: PR-S-01, level: Komponen, title: "Analisis formal Tamarin", steps: ["Modelkan handshake + resumption", "Buktikan lemma secrecy, autentikasi mutual, FS, KCI"],
+       methods: [M-KEYSIZE], standards: [RFC-8446], requires: [formal_model], claims: [secrecy, mutual_auth, forward_secrecy], expected: {kind: cryptanalytic, gen: formal}, runner: formal_model}
+    - {from_example: PR-S-02, title: "Downgrade: TLS ≤ 1.2 & suite lemah; MitM ubah ClientHello", steps: ["Tawarkan versi/suite lemah", "MitM mengubah ClientHello", "Periksa sentinel anti-downgrade & Finished"],
+       methods: [M-FUZZ], standards: [RFC-8446], requires: [protocol_tls13], claims: [downgrade], expected: {kind: negative, gen: reject_params}, runner: protocol_harness, priority: Tinggi, params: [PR-VER, PR-SUITE]}
+    - {from_example: PR-S-03, title: "Key share invalid", steps: ["Kirim key share di luar kurva, titik tak hingga, low-order X25519", "Periksa alert"],
+       methods: [M-PKV], standards: [RFC-8446, SP-800-56A], requires: [protocol_tls13], claims: [secrecy], expected: {kind: negative, gen: pubkey_negative}, runner: protocol_harness, priority: Tinggi, params: [PR-KS]}
+    - {from_example: PR-S-04, title: "Replay ClientHello/Finished/early data & sequence", steps: ["Kirim ulang/ubah urutan record", "Amati efek & alert"],
+       methods: [M-NONCE], standards: [RFC-8446], requires: [protocol_tls13], claims: [replay], expected: {kind: negative, gen: reject_params}, runner: protocol_harness, params: [PR-0RTT, PR-ORDER]}
+    - {from_example: PR-S-05, title: "Variasi sertifikat klien (autentikasi mutual)", steps: ["Handshake dengan seluruh variasi sertifikat"], methods: [M-PKV], standards: [RFC-5280],
+       requires: [mutual_auth, certificates], claims: [mutual_auth], expected: {kind: negative, gen: reject_params}, runner: protocol_harness, params: [PR-CERT]}
+    - {from_example: PR-S-06, title: "Forward secrecy pasca-kompromi kunci jangka panjang", steps: ["Rekam trafik", "Bocorkan kunci privat jangka panjang", "Coba dekripsi trafik lampau"],
+       methods: [M-KEYSIZE], standards: [RFC-8446], requires: [protocol_tls13], claims: [forward_secrecy], expected: {kind: cryptanalytic, gen: formal}, runner: manual}
+    - {from_example: PR-I-01, title: "Fuzzing state machine", steps: ["≥ 10^5 urutan pesan menyimpang (gaya TLS-Attacker)"], methods: [M-FUZZ], standards: [ISO-29119],
+       requires: [fuzzing_harness, protocol_tls13], expected: {kind: implementation, gen: fuzz}, runner: fuzz, params: [PR-ORDER]}
+    - {from_example: PR-I-02, title: "Fuzzing parser record & extension", steps: ["Panjang salah, extension duplikat"], methods: [M-FUZZ], standards: [ISO-29119],
+       requires: [fuzzing_harness], expected: {kind: implementation, gen: fuzz}, runner: fuzz}
+    - {from_example: PR-I-03, title: "Timing dekripsi record & verifikasi Finished", steps: ["Tag valid vs invalid, 10^5 sampel", "TVLA"], methods: [M-TIMING], standards: [ISO-17825],
+       requires: [timing_measurement], expected: {kind: implementation, gen: tvla}, runner: timing_tvla}
+    - {from_example: PR-I-04, title: "DoS / resource exhaustion", steps: ["Banjir ClientHello, amplifikasi HRR, KeyUpdate berulang"], methods: [M-FUZZ], standards: [ISO-29119],
+       requires: [load_testing], expected: {kind: implementation, gen: performance}, runner: performance}
+    - {from_example: PR-I-05, title: "Rotasi kunci session ticket", steps: ["Periksa kebijakan rotasi, umur ≤ 7 hari, zeroization"], methods: [M-ZEROIZE], standards: [RFC-8446],
+       requires: [session_tickets], expected: {kind: implementation, gen: zeroize}, runner: config_audit}
+    - {from_example: PR-I-06, title: "Gangguan jaringan", steps: ["Latensi 500 ms, loss 5%, putus di tengah handshake (emulator jaringan)"], methods: [M-FUZZ], standards: [ISO-29119],
+       requires: [network], expected: {kind: implementation, gen: error_handling}, runner: protocol_harness, params: [PR-NET]}
+
+# --------------------------------------------------------------------- MODUL ISO/IEC 19790 (contoh materi HSM-X U/I/S/A-*)
+module:
+  default_steps: ["Siapkan modul pada status awal yang ditetapkan prasyarat", "Laksanakan prosedur sesuai asersi ISO/IEC 24759 untuk area terkait", "Catat bukti (log, status output, hasil pengukuran)", "Bandingkan dengan kriteria lulus"]
+  meta:
+    U-K-01: {methods: [M-KAT], standards: [ISO-18367, SP-800-38D], expected: {kind: deterministic, gen: kat_gcm256}, runner: kat_vectors, requires: [debug_build], priority: Tinggi}
+    U-K-02: {methods: [M-KAT], standards: [FIPS-186-5, FIPS-204], expected: {kind: deterministic, gen: kat}, runner: sigver_vectors, requires: [debug_build], priority: Tinggi}
+    U-K-03: {methods: [M-KAT, M-RNG], standards: [SP-800-90A], expected: {kind: deterministic, gen: drbg}, runner: kat_vectors, requires: [debug_build]}
+    U-K-04: {methods: [M-SELFTEST], standards: [ISO-19790, ISO-24759], expected: {kind: negative, gen: selftest}, runner: manual, requires: [self_tests]}
+    U-S-01: {methods: [M-RNG], standards: [SP-800-90B], expected: {kind: statistical, gen: rng_stats}, runner: statistical_suite, requires: [entropy_source], claims: [ssp_protection]}
+    U-S-02: {methods: [M-KEYSIZE], standards: [SP-800-131A], expected: {kind: negative, gen: reject_params}, runner: api_negative}
+    U-S-03: {methods: [M-ZEROIZE], standards: [ISO-19790], expected: {kind: implementation, gen: zeroize}, runner: manual, requires: [debug_build], claims: [ssp_protection]}
+    U-S-04: {methods: [M-FUZZ], standards: [ISO-19790], expected: {kind: negative, gen: reject_params}, runner: manual, requires: [roles_identity_auth], claims: [identity_auth]}
+    U-I-01: {methods: [M-TVLA], standards: [ISO-17825], expected: {kind: implementation, gen: tvla}, runner: manual, requires: [side_channel_lab]}
+    U-I-02: {methods: [M-CODEREVIEW], standards: [ISO-18045], expected: {kind: implementation, gen: sast}, runner: manual, requires: [source_code]}
+    U-I-03: {methods: [M-FUZZ], standards: [ISO-29119], expected: {kind: implementation, gen: fuzz}, runner: fuzz, requires: [fuzzing_harness]}
+    U-I-04: {methods: [M-TIMING], standards: [ISO-17825], expected: {kind: implementation, gen: tvla}, runner: timing_tvla}
+    I-K-01: {methods: [M-SELFTEST], standards: [ISO-24759], expected: {kind: deterministic, gen: role_matrix}, runner: manual, requires: [roles_identity_auth], claims: [identity_auth]}
+    I-K-02: {methods: [M-KEYSIZE], standards: [ISO-24759], expected: {kind: deterministic, gen: approved_indicator}, runner: config_audit}
+    I-K-03: {methods: [M-ZEROIZE], standards: [ISO-19790], expected: {kind: deterministic, gen: ssp_lifecycle}, runner: manual, claims: [ssp_protection]}
+    I-K-04: {methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: negative, gen: selftest}, runner: manual, requires: [self_tests]}
+    I-S-01: {methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: negative, gen: selftest}, runner: manual, priority: Tinggi}
+    I-S-02: {methods: [M-ZEROIZE], standards: [ISO-19790, SP-800-38F], expected: {kind: negative, gen: reject_params}, runner: api_negative, requires: [key_wrap], claims: [ssp_protection], priority: Tinggi}
+    I-S-03: {methods: [M-FUZZ], standards: [ISO-19790], expected: {kind: negative, gen: reject_params}, runner: manual, requires: [roles_identity_auth], claims: [identity_auth]}
+    I-S-04: {methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: negative, gen: reject_params}, runner: manual, requires: [firmware_update], claims: [firmware_integrity], priority: Tinggi}
+    I-I-01: {methods: [M-CODEREVIEW], standards: [ISO-19790], expected: {kind: deterministic, gen: reproducible_build}, runner: manual, requires: [reproducible_build]}
+    I-I-02: {methods: [M-TVLA], standards: [ISO-17825], expected: {kind: implementation, gen: tvla}, runner: manual, requires: [side_channel_lab]}
+    I-I-03: {methods: [M-FAULT], standards: [ISO-19790], expected: {kind: implementation, gen: fault}, runner: manual, requires: [power_glitch], claims: [firmware_integrity]}
+    I-I-04: {methods: [M-FUZZ], standards: [ISO-29119], expected: {kind: implementation, gen: fuzz}, runner: fuzz, requires: [fuzzing_harness]}
+    S-K-01: {methods: [M-SELFTEST], standards: [ISO-24759], expected: {kind: deterministic, gen: inspection}, runner: manual}
+    S-K-02: {methods: [M-SELFTEST], standards: [ISO-24759], expected: {kind: deterministic, gen: inspection}, runner: manual}
+    S-K-03: {methods: [M-SELFTEST], standards: [ISO-24759], expected: {kind: deterministic, gen: inspection}, runner: manual}
+    S-K-04: {methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: deterministic, gen: selftest}, runner: manual, requires: [self_tests]}
+    S-S-01: {methods: [M-FAULT], standards: [ISO-19790], expected: {kind: negative, gen: tamper}, runner: manual, requires: [tamper_response, physical_access], claims: [tamper], priority: Tinggi}
+    S-S-02: {methods: [M-FAULT], standards: [ISO-19790], expected: {kind: negative, gen: tamper}, runner: manual, requires: [environmental_failure_protection], claims: [tamper]}
+    S-S-03: {methods: [M-ZEROIZE], standards: [ISO-19790], expected: {kind: negative, gen: reject_params}, runner: manual, requires: [split_knowledge], claims: [ssp_protection], priority: Tinggi}
+    S-S-04: {methods: [M-FAULT], standards: [ISO-19790], expected: {kind: cryptanalytic, gen: claims_eval}, runner: manual}
+    S-I-01: {methods: [M-TVLA], standards: [ISO-17825, ISO-20085], expected: {kind: implementation, gen: tvla}, runner: manual, requires: [side_channel_lab]}
+    S-I-02: {methods: [M-CODEREVIEW], standards: [ISO-19790], expected: {kind: negative, gen: reject_params}, runner: manual}
+    S-I-03: {methods: [M-SELFTEST], standards: [ISO-29119], expected: {kind: implementation, gen: performance}, runner: performance, requires: [load_testing, cluster_failover]}
+    S-I-04: {methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: negative, gen: inspection}, runner: manual}
+    A-K-01: {methods: [M-ZEROIZE], standards: [ISO-19790], expected: {kind: deterministic, gen: inspection}, runner: manual, requires: [dual_control], claims: [dual_control]}
+    A-K-02: {methods: [M-KAT], standards: [ISO-29119], expected: {kind: deterministic, gen: interop}, runner: interop, requires: [pkcs11, kmip]}
+    A-K-03: {methods: [M-KEYSIZE], standards: [SP-800-131A], expected: {kind: deterministic, gen: approved_indicator}, runner: config_audit}
+    A-K-04: {methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: deterministic, gen: inspection}, runner: manual, requires: [audit_log]}
+    A-S-01: {methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: negative, gen: reject_params}, runner: manual, requires: [dual_control], claims: [dual_control]}
+    A-S-02: {methods: [M-ZEROIZE], standards: [ISO-19790], expected: {kind: deterministic, gen: inspection}, runner: manual, claims: [tamper]}
+    A-S-03: {methods: [M-ZEROIZE], standards: [ISO-19790], expected: {kind: deterministic, gen: inspection}, runner: manual, requires: [backup_restore], claims: [ssp_protection]}
+    A-S-04: {methods: [M-KEYSIZE], standards: [FIPS-203, FIPS-204], expected: {kind: deterministic, gen: interop}, runner: interop, requires: [pqc_hybrid]}
+    A-I-01: {methods: [M-SELFTEST], standards: [ISO-29119], expected: {kind: implementation, gen: performance}, runner: performance, requires: [load_testing]}
+    A-I-02: {methods: [M-SELFTEST], standards: [ISO-29119], expected: {kind: implementation, gen: performance}, runner: performance, requires: [cluster_failover]}
+    A-I-03: {methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: implementation, gen: inspection}, runner: manual, requires: [firmware_update]}
+    A-I-04: {methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: implementation, gen: inspection}, runner: manual}
+
+# --------------------------------------------------------------------- LINTAS-ALGORITMA (materi slide 18)
+cross:
+  - {id: XA-K-01, level: Integrasi, layer: K, title: "Konsistensi antarmuka sepanjang rantai RNG → keygen → KDF → cipher/MAC/signature",
+     steps: ["Jalankan alur end-to-end dengan data uji tetap", "Periksa endianness, encoding (DER/raw), panjang parameter & kode galat antar-komponen", "Bandingkan keluaran tiap tahap dengan referensi"],
+     pass: "Format & kode galat konsisten di seluruh rantai", methods: [M-KAT], standards: [ISO-18367], expected: {kind: deterministic, gen: interop}, runner: chain_e2e}
+  - {id: XA-S-01, level: Integrasi, layer: S, title: "Prasyarat keacakan RNG/sumber entropi untuk seluruh hilir",
+     steps: ["Kumpulkan keluaran DRBG produk", "Estimasi min-entropi (SP 800-90B) & SP 800-22", "Gagalkan sumber entropi (simulasi) dan pastikan keygen berhenti"],
+     pass: "Min-entropi ≥ klaim; uji statistik lolos; kegagalan hulu terdeteksi", methods: [M-RNG], standards: [SP-800-90A, SP-800-90B, SP-800-22], claims: [rng],
+     requires: [rng_internal], expected: {kind: statistical, gen: rng_stats}, runner: statistical_suite, priority: Tinggi}
+  - {id: XA-S-02, level: Sistem, layer: S, title: "Siklus hidup kunci: pembangkitan → distribusi → penyimpanan → penggunaan → rotasi → pemusnahan",
+     steps: ["Jalankan siklus lengkap untuk satu kunci tiap kelas primitif", "Verifikasi kebijakan rotasi & batas penggunaan", "Pastikan pemusnahan (zeroize) di akhir"],
+     pass: "Setiap transisi sesuai kebijakan; kunci termusnahkan", methods: [M-ZEROIZE, M-KEYSIZE], standards: [SP-800-57, ISO-19790], claims: [bit_security],
+     expected: {kind: deterministic, gen: ssp_lifecycle}, runner: chain_e2e}
+  - {id: XA-I-01, level: Sistem, layer: I, title: "Kondisi operasional: gangguan daya/restart, beban tinggi, kegagalan jaringan",
+     steps: ["Hentikan proses saat operasi kunci", "Restart & jalankan ulang self-test", "Uji di bawah beban tinggi"], pass: "Sifat keamanan tidak menurun; tidak ada keluaran parsial",
+     methods: [M-SELFTEST], standards: [ISO-19790], expected: {kind: implementation, gen: error_handling}, runner: manual, params: [ENV]}
+  - {id: XA-S-03, level: Sistem, layer: S, title: "Crypto-agility & transisi PQC (hybrid)",
+     steps: ["Ganti algoritma rentan kuantum ke padanan PQC (ML-KEM/ML-DSA) melalui konfigurasi", "Uji mode hybrid", "Pastikan arsitektur & format tidak berubah"],
+     pass: "Penggantian berhasil tanpa perubahan arsitektur; sesuai rencana IR 8547", methods: [M-KEYSIZE], standards: [FIPS-203, FIPS-204, SP-800-131A], claims: [bit_security],
+     requires: [kem], expected: {kind: cryptanalytic, gen: strength}, runner: config_audit}

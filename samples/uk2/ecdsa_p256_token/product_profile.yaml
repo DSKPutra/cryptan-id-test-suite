@@ -8,7 +8,7 @@ uk2:
   testing_model: 3
   iso19790_security_level: null
   features: [api, signature, keygen, rng_internal, token, secure_element, pdf_signing, certificates, timestamp, revocation,
-             physical_access, power_glitch, side_channel_lab, key_non_exportable, audit_log, error_codes, multi_doc_signing, fuzzing_harness]
+             physical_access, power_glitch, side_channel_lab, timing_measurement, key_non_exportable, audit_log, error_codes, multi_doc_signing, fuzzing_harness]
   claims:
     - {id: C-STRENGTH, claim: "128 bit", tags: [bit_security]}
     - {id: C-EUF, claim: "EUF-CMA", tags: [euf_cma, nonce_bias]}
