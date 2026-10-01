@@ -1,0 +1,12 @@
+{
+ "id": "zeroize__TLS_1.3",
+ "generator": "zeroize",
+ "kind": "implementation",
+ "target": "TLS 1.3",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "residual_key_occurrences": 0
+ },
+ "decision": "Sesuai kebijakan manajemen kunci"
+}

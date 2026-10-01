@@ -1,0 +1,12 @@
+{
+ "id": "interop__BLAKE2B-512",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "BLAKE2B-512",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Konsisten"
+ },
+ "decision": "Konsisten"
+}

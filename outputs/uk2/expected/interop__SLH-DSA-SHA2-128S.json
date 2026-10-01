@@ -1,0 +1,12 @@
+{
+ "id": "interop__SLH-DSA-SHA2-128S",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "SLH-DSA-SHA2-128S",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Status verifikasi konsisten dua arah"
+ },
+ "decision": "Status verifikasi konsisten dua arah"
+}

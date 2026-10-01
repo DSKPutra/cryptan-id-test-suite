@@ -1,0 +1,77 @@
+{
+ "id": "hash_boundaries__SHA-1",
+ "generator": "hash_boundaries",
+ "kind": "deterministic",
+ "target": "SHA-1",
+ "source": "HASIL UJI LANGSUNG (dicocokkan dengan LITERATUR/ACUAN)",
+ "status": "COCOK_VEKTOR_RESMI",
+ "references": [
+  "FIPS 180-4 / FIPS 202 (contoh 'abc')"
+ ],
+ "independent": [
+  "hashlib (OpenSSL)"
+ ],
+ "summary": {
+  "total": 8,
+  "matched": 8
+ },
+ "vectors": [
+  {
+   "len": 0,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 1,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "bf8b4530d8d246dd74ac53a13471bba17941dff7",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 55,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "04bb34aef4880b625e6b1564a014abd25fc02bfe",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 56,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "83b9fcb6d3e3b20f376ab989a1b6353bcc6c0f44",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 63,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "ab15090e8dbe512f3733350f9623ab11f9b5165b",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 64,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "54305ee7e4c7bc5a96afc6d1994fc52d9bcb665f",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 65,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "5985422a25357371ebd2a7f6ecd7eebed43db42c",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 1048576,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "5906753ea9f2f3520484fbad2877e62e2f9adc76",
+   "core": null,
+   "match": true
+  }
+ ],
+ "decision": "Deterministik: keluaran produk identik 100% dengan expected; vektor 'invalid' wajib ditolak"
+}

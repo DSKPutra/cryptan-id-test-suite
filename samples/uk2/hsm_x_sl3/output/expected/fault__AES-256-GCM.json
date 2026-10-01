@@ -1,0 +1,12 @@
+{
+ "id": "fault__AES-256-GCM",
+ "generator": "fault",
+ "kind": "implementation",
+ "target": "AES-256-GCM",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "faulty_outputs_released": 0
+ },
+ "decision": "Tidak ada bypass verifikasi"
+}

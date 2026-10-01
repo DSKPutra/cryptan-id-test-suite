@@ -1,0 +1,12 @@
+{
+ "id": "ssp_lifecycle__ML-KEM-768",
+ "generator": "ssp_lifecycle",
+ "kind": "deterministic",
+ "target": "ML-KEM-768",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Setiap transisi sesuai security policy"
+ },
+ "decision": "Setiap transisi sesuai security policy"
+}

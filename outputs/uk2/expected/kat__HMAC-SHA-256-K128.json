@@ -1,0 +1,46 @@
+{
+ "id": "kat__HMAC-SHA-256-K128",
+ "generator": "kat",
+ "kind": "deterministic",
+ "target": "HMAC-SHA-256-K128",
+ "source": "HASIL UJI LANGSUNG (dicocokkan dengan LITERATUR/ACUAN)",
+ "status": "COCOK_VEKTOR_RESMI",
+ "references": [
+  "Wycheproof hmac_sha256_test.json (HMACSHA256, 174 uji; C2SP/wycheproof, Apache-2.0)",
+  "Wycheproof hmac_sha256_test.json (HMACSHA256, 174 uji; C2SP/wycheproof, Apache-2.0)"
+ ],
+ "independent": [
+  "Python hmac/hashlib"
+ ],
+ "summary": {
+  "total": 3,
+  "matched": 3
+ },
+ "vectors": [
+  {
+   "tcId": 163,
+   "key": "a349ac0a9f9f74e48e099cc3dbf9a9c9",
+   "msg": "",
+   "tag": "3a8437b877b75cc08a4d8d7559a8fc6869a58c713da63d1d4b350d59b597e30c",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 164,
+   "key": "ac686ba0f1a51b4ec4f0b30492b7f556",
+   "msg": "2fa43a14ae500507deb95ab5bd32b0fe",
+   "tag": "008532a53d0c0ab22027ae249023375374e2239b959609e8339b05a15742a675",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 165,
+   "key": "73ef9ef1a4225e51e3c1db3ace1fa24f",
+   "msg": "ffad380d9aabb0acede5c1bf112925cdfc3d379fc2376a4fe2644490d0430ac3",
+   "tag": "9c7cb9f7c207ec46d1e3c55764731c4ab5ddbae4e1401e52a895df0cff4787c9",
+   "result": "valid",
+   "match": true
+  }
+ ],
+ "decision": "Deterministik: keluaran produk identik 100% dengan expected; vektor 'invalid' wajib ditolak"
+}

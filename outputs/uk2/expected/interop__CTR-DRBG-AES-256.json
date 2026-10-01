@@ -1,0 +1,12 @@
+{
+ "id": "interop__CTR-DRBG-AES-256",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "CTR-DRBG-AES-256",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Format & kode galat konsisten di seluruh rantai"
+ },
+ "decision": "Format & kode galat konsisten di seluruh rantai"
+}

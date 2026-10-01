@@ -1,0 +1,19 @@
+{
+ "id": "reject_params__SHAKE256",
+ "generator": "reject_params",
+ "kind": "negative",
+ "target": "SHAKE256",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "decision": "Seluruh masukan negatif DITOLAK",
+ "expected_errors": [
+  "E_AUTH_FAILED",
+  "E_DECRYPT",
+  "E_FORMAT",
+  "E_INVALID_KEY",
+  "E_INVALID_PARAMETER",
+  "E_STATE"
+ ],
+ "reject": true,
+ "cases": []
+}

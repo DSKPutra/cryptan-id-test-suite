@@ -1,0 +1,12 @@
+{
+ "id": "inspection__ML-DSA-65",
+ "generator": "inspection",
+ "kind": "deterministic",
+ "target": "ML-DSA-65",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Sesuai deklarasi"
+ },
+ "decision": "Sesuai deklarasi"
+}

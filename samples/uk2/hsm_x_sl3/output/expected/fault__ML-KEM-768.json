@@ -1,0 +1,12 @@
+{
+ "id": "fault__ML-KEM-768",
+ "generator": "fault",
+ "kind": "implementation",
+ "target": "ML-KEM-768",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "faulty_outputs_released": 0
+ },
+ "decision": "Tidak ada bypass verifikasi"
+}

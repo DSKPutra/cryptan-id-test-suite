@@ -1,0 +1,12 @@
+{
+ "id": "keygen_validate__ECDSA-P384",
+ "generator": "keygen_validate",
+ "kind": "deterministic",
+ "target": "ECDSA-P384",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "100% pasangan kunci valid"
+ },
+ "decision": "100% pasangan kunci valid"
+}

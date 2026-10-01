@@ -1,0 +1,12 @@
+{
+ "id": "approved_indicator__ECDSA-P384",
+ "generator": "approved_indicator",
+ "kind": "deterministic",
+ "target": "ECDSA-P384",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Indikator benar untuk setiap layanan"
+ },
+ "decision": "Indikator benar untuk setiap layanan"
+}

@@ -1,0 +1,16 @@
+{
+ "id": "fuzz__TLS_1.3",
+ "generator": "fuzz",
+ "kind": "implementation",
+ "target": "TLS 1.3",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "crash": 0,
+  "hang": 0,
+  "sanitizer_errors": 0,
+  "executions_min": 1000000,
+  "error_code": "E_FORMAT"
+ },
+ "decision": "Tidak ada transisi ilegal atau crash"
+}

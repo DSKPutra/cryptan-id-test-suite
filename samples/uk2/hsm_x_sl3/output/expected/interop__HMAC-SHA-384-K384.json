@@ -1,0 +1,12 @@
+{
+ "id": "interop__HMAC-SHA-384-K384",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "HMAC-SHA-384-K384",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Seluruh fungsi yang dibutuhkan tersedia"
+ },
+ "decision": "Seluruh fungsi yang dibutuhkan tersedia"
+}

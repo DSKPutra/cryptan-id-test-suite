@@ -1,0 +1,12 @@
+{
+ "id": "keygen_validate__X25519",
+ "generator": "keygen_validate",
+ "kind": "deterministic",
+ "target": "X25519",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Seluruh pemeriksaan LULUS"
+ },
+ "decision": "Seluruh pemeriksaan LULUS"
+}

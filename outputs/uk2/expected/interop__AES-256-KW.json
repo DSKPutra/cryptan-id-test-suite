@@ -1,0 +1,12 @@
+{
+ "id": "interop__AES-256-KW",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "AES-256-KW",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Interoperabel dua arah 100%"
+ },
+ "decision": "Interoperabel dua arah 100%"
+}

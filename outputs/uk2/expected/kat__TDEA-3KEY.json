@@ -1,0 +1,11 @@
+{
+ "id": "kat__TDEA-3KEY",
+ "generator": "kat",
+ "kind": "deterministic",
+ "target": "TDEA-3KEY",
+ "source": "PERLU_VERIFIKASI",
+ "status": "PERLU_VERIFIKASI",
+ "references": [],
+ "note": "Expected value deterministik untuk TDEA-3KEY belum dapat dihitung/dicocokkan (vektor resmi ACVP/CAVP belum dimuat) — JANGAN dikarang; unduh vektor ACVP untuk algoritma ini",
+ "decision": "Deterministik: identik 100% dengan vektor resmi (menunggu vektor)"
+}

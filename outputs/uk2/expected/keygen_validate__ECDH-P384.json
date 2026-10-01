@@ -1,0 +1,12 @@
+{
+ "id": "keygen_validate__ECDH-P384",
+ "generator": "keygen_validate",
+ "kind": "deterministic",
+ "target": "ECDH-P384",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Seluruh pemeriksaan LULUS"
+ },
+ "decision": "Seluruh pemeriksaan LULUS"
+}

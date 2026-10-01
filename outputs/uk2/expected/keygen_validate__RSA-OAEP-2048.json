@@ -1,0 +1,12 @@
+{
+ "id": "keygen_validate__RSA-OAEP-2048",
+ "generator": "keygen_validate",
+ "kind": "deterministic",
+ "target": "RSA-OAEP-2048",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Seluruh pemeriksaan LULUS"
+ },
+ "decision": "Seluruh pemeriksaan LULUS"
+}

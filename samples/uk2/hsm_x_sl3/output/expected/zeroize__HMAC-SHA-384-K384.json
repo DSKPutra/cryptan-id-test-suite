@@ -1,0 +1,12 @@
+{
+ "id": "zeroize__HMAC-SHA-384-K384",
+ "generator": "zeroize",
+ "kind": "implementation",
+ "target": "HMAC-SHA-384-K384",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "residual_key_occurrences": 0
+ },
+ "decision": "Tidak ada sisa SSP"
+}

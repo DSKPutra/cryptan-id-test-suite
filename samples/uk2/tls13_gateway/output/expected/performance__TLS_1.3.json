@@ -1,0 +1,13 @@
+{
+ "id": "performance__TLS_1.3",
+ "generator": "performance",
+ "kind": "implementation",
+ "target": "TLS 1.3",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "PERLU_VERIFIKASI",
+ "criteria": {
+  "criterion": "sesuai klaim kinerja produk",
+  "status": "PERLU_VERIFIKASI"
+ },
+ "decision": "Layanan tersedia sesuai SLA"
+}

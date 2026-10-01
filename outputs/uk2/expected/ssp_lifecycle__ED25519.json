@@ -1,0 +1,12 @@
+{
+ "id": "ssp_lifecycle__ED25519",
+ "generator": "ssp_lifecycle",
+ "kind": "deterministic",
+ "target": "ED25519",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Setiap transisi sesuai kebijakan; kunci termusnahkan"
+ },
+ "decision": "Setiap transisi sesuai kebijakan; kunci termusnahkan"
+}

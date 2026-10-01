@@ -1,0 +1,12 @@
+{
+ "id": "interop__HMAC-SHA-256-K128",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "HMAC-SHA-256-K128",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Konsisten"
+ },
+ "decision": "Konsisten"
+}

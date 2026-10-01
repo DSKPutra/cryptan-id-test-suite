@@ -1,0 +1,12 @@
+{
+ "id": "fault__ML-DSA-65",
+ "generator": "fault",
+ "kind": "implementation",
+ "target": "ML-DSA-65",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "faulty_outputs_released": 0
+ },
+ "decision": "Tidak ada bypass verifikasi"
+}

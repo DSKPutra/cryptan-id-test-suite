@@ -1,0 +1,12 @@
+{
+ "id": "interop__ML-KEM-768",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "ML-KEM-768",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Format & kode galat konsisten di seluruh rantai"
+ },
+ "decision": "Format & kode galat konsisten di seluruh rantai"
+}

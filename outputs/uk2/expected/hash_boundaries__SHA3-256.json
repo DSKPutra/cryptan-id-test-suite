@@ -1,0 +1,127 @@
+{
+ "id": "hash_boundaries__SHA3-256",
+ "generator": "hash_boundaries",
+ "kind": "deterministic",
+ "target": "SHA3-256",
+ "source": "HASIL UJI LANGSUNG (dicocokkan dengan LITERATUR/ACUAN)",
+ "status": "COCOK_VEKTOR_RESMI",
+ "references": [
+  "FIPS 180-4 / FIPS 202 (contoh 'abc')"
+ ],
+ "independent": [
+  "hashlib (OpenSSL)",
+  "core/keccak.py"
+ ],
+ "summary": {
+  "total": 16,
+  "matched": 16
+ },
+ "vectors": [
+  {
+   "id": "SHA3-256-abc",
+   "msg": "616263",
+   "md": "3a985da74fe225b2045c172d6bd390bd855f086e3e9d525b46bfe24511431532",
+   "match": true
+  },
+  {
+   "id": "FIPS202-empty",
+   "source": "NIST CSRC SHA3-256 example (pesan kosong)",
+   "match": true
+  },
+  {
+   "id": "FIPS202-abc",
+   "source": "NIST CSRC SHA3-256 example ('abc')",
+   "match": true
+  },
+  {
+   "id": "FIPS202-1600bit",
+   "source": "NIST CSRC SHA3-256 example (200 byte 0xA3)",
+   "match": true
+  },
+  {
+   "len": 0,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a",
+   "core": "a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a",
+   "match": true
+  },
+  {
+   "len": 1,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "2767f15c8af2f2c7225d5273fdd683edc714110a987d1054697c348aed4e6cc7",
+   "core": "2767f15c8af2f2c7225d5273fdd683edc714110a987d1054697c348aed4e6cc7",
+   "match": true
+  },
+  {
+   "len": 55,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "e295d6856bfd2567150c2222b7f976551c3170aa80cf28ff1e5d692602924418",
+   "core": "e295d6856bfd2567150c2222b7f976551c3170aa80cf28ff1e5d692602924418",
+   "match": true
+  },
+  {
+   "len": 56,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "35f1df38437236f7f3eaf081735f9f274122d6c208d08474ebe4cccd6c701f3f",
+   "core": "35f1df38437236f7f3eaf081735f9f274122d6c208d08474ebe4cccd6c701f3f",
+   "match": true
+  },
+  {
+   "len": 63,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "98b20f10733ca6966e793f5c734c2dd0881430a67881db27648981ec3f5b694a",
+   "core": "98b20f10733ca6966e793f5c734c2dd0881430a67881db27648981ec3f5b694a",
+   "match": true
+  },
+  {
+   "len": 64,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "700161427c7148c13c572a6c3d62776b82a1230658b2314316d54080fd4a66cb",
+   "core": "700161427c7148c13c572a6c3d62776b82a1230658b2314316d54080fd4a66cb",
+   "match": true
+  },
+  {
+   "len": 65,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "ef7fdbcd858322ca4381ae210891e188ac229019d51128a7feaaaf29080b05ad",
+   "core": "ef7fdbcd858322ca4381ae210891e188ac229019d51128a7feaaaf29080b05ad",
+   "match": true
+  },
+  {
+   "len": 135,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "64ccd300c1cf3d3846046bd588a1613e5ba619c09d45d4b7cc9afa093af29e19",
+   "core": "64ccd300c1cf3d3846046bd588a1613e5ba619c09d45d4b7cc9afa093af29e19",
+   "match": true
+  },
+  {
+   "len": 136,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "f106d1024a855c6a20d300bb53ec5472a1bae126fa630fee78219b51add7d768",
+   "core": "f106d1024a855c6a20d300bb53ec5472a1bae126fa630fee78219b51add7d768",
+   "match": true
+  },
+  {
+   "len": 137,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "fa4d0b0141ec2c69a5dc314ed611a0819b920e95d13d586df89f370809e9465a",
+   "core": "fa4d0b0141ec2c69a5dc314ed611a0819b920e95d13d586df89f370809e9465a",
+   "match": true
+  },
+  {
+   "len": 272,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "0aaa9f42c58fd5464106c57379773972d2d92cb50b17f5c009c514dbf336b5b4",
+   "core": "0aaa9f42c58fd5464106c57379773972d2d92cb50b17f5c009c514dbf336b5b4",
+   "match": true
+  },
+  {
+   "len": 1048576,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "a8f0328c8c87e4943b33bb5e0486fd393c9d4514c1e570eea8077d69c8793119",
+   "core": "a8f0328c8c87e4943b33bb5e0486fd393c9d4514c1e570eea8077d69c8793119",
+   "match": true
+  }
+ ],
+ "decision": "Deterministik: keluaran produk identik 100% dengan expected; vektor 'invalid' wajib ditolak"
+}

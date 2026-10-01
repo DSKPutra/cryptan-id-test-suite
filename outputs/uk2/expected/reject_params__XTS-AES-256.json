@@ -1,0 +1,65 @@
+{
+ "id": "reject_params__XTS-AES-256",
+ "generator": "reject_params",
+ "kind": "negative",
+ "target": "XTS-AES-256",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "decision": "Seluruh masukan negatif DITOLAK",
+ "expected_errors": [
+  "E_AUTH_FAILED",
+  "E_DECRYPT",
+  "E_FORMAT",
+  "E_INVALID_KEY",
+  "E_INVALID_PARAMETER",
+  "E_STATE"
+ ],
+ "reject": true,
+ "cases": [
+  {
+   "param": "BC-KEY-LEN",
+   "name": "Panjang kunci",
+   "class": "Parameter publik/domain",
+   "value": 0,
+   "technique": "BVA",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "BC-KEY-LEN",
+   "name": "Panjang kunci",
+   "class": "Parameter publik/domain",
+   "value": 72,
+   "technique": "BVA",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "BC-KEY-LEN",
+   "name": "Panjang kunci",
+   "class": "Parameter publik/domain",
+   "value": 192,
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "BC-KEY-LEN",
+   "name": "Panjang kunci",
+   "class": "Parameter publik/domain",
+   "value": 264,
+   "technique": "BVA",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "BC-MODE",
+   "name": "Mode operasi",
+   "class": "Konfigurasi",
+   "value": "CBC",
+   "technique": "EP",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  }
+ ]
+}

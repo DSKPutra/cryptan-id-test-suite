@@ -1,0 +1,12 @@
+{
+ "id": "inspection__AES-256-GCM",
+ "generator": "inspection",
+ "kind": "deterministic",
+ "target": "AES-256-GCM",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Sesuai deklarasi"
+ },
+ "decision": "Sesuai deklarasi"
+}

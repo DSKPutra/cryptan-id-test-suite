@@ -1,0 +1,12 @@
+{
+ "id": "inspection__SHA-384",
+ "generator": "inspection",
+ "kind": "deterministic",
+ "target": "SHA-384",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Sesuai deklarasi"
+ },
+ "decision": "Sesuai deklarasi"
+}

@@ -1,0 +1,12 @@
+{
+ "id": "ssp_lifecycle__RSAES-PKCS1-V1_5-1024",
+ "generator": "ssp_lifecycle",
+ "kind": "deterministic",
+ "target": "RSAES-PKCS1-V1_5-1024",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Setiap transisi sesuai kebijakan; kunci termusnahkan"
+ },
+ "decision": "Setiap transisi sesuai kebijakan; kunci termusnahkan"
+}

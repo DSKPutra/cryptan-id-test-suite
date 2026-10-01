@@ -1,0 +1,12 @@
+{
+ "id": "reproducible_build__CTR-DRBG-AES-256",
+ "generator": "reproducible_build",
+ "kind": "deterministic",
+ "target": "CTR-DRBG-AES-256",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Hash identik (reproducible build)"
+ },
+ "decision": "Hash identik (reproducible build)"
+}

@@ -1,0 +1,12 @@
+{
+ "id": "mct__SHA-1",
+ "generator": "mct",
+ "kind": "deterministic",
+ "target": "SHA-1",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "100% checkpoint identik"
+ },
+ "decision": "100% checkpoint identik"
+}

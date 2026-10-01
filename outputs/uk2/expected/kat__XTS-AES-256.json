@@ -1,0 +1,11 @@
+{
+ "id": "kat__XTS-AES-256",
+ "generator": "kat",
+ "kind": "deterministic",
+ "target": "XTS-AES-256",
+ "source": "PERLU_VERIFIKASI",
+ "status": "PERLU_VERIFIKASI",
+ "references": [],
+ "note": "Expected value deterministik untuk XTS-AES-256 belum dapat dihitung/dicocokkan (vektor resmi ACVP/CAVP belum dimuat) — JANGAN dikarang; unduh vektor ACVP untuk algoritma ini",
+ "decision": "Deterministik: identik 100% dengan vektor resmi (menunggu vektor)"
+}

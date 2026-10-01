@@ -1,0 +1,12 @@
+{
+ "id": "approved_indicator__AES-256-KW",
+ "generator": "approved_indicator",
+ "kind": "deterministic",
+ "target": "AES-256-KW",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Indikator benar untuk setiap layanan"
+ },
+ "decision": "Indikator benar untuk setiap layanan"
+}

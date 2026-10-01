@@ -1,0 +1,12 @@
+{
+ "id": "ssp_lifecycle__AES-256-KW",
+ "generator": "ssp_lifecycle",
+ "kind": "deterministic",
+ "target": "AES-256-KW",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Setiap transisi sesuai security policy"
+ },
+ "decision": "Setiap transisi sesuai security policy"
+}

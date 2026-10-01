@@ -1,0 +1,12 @@
+{
+ "id": "reproducible_build__AES-256-GCM",
+ "generator": "reproducible_build",
+ "kind": "deterministic",
+ "target": "AES-256-GCM",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Hash identik (reproducible build)"
+ },
+ "decision": "Hash identik (reproducible build)"
+}

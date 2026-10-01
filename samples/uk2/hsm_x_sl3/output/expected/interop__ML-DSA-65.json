@@ -1,0 +1,12 @@
+{
+ "id": "interop__ML-DSA-65",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "ML-DSA-65",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Seluruh fungsi yang dibutuhkan tersedia"
+ },
+ "decision": "Seluruh fungsi yang dibutuhkan tersedia"
+}

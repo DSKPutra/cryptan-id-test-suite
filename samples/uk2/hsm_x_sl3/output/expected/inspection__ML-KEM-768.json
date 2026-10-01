@@ -1,0 +1,12 @@
+{
+ "id": "inspection__ML-KEM-768",
+ "generator": "inspection",
+ "kind": "deterministic",
+ "target": "ML-KEM-768",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Sesuai deklarasi"
+ },
+ "decision": "Sesuai deklarasi"
+}

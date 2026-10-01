@@ -1,0 +1,12 @@
+{
+ "id": "ssp_lifecycle__HMAC-SHA-384-K384",
+ "generator": "ssp_lifecycle",
+ "kind": "deterministic",
+ "target": "HMAC-SHA-384-K384",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Setiap transisi sesuai security policy"
+ },
+ "decision": "Setiap transisi sesuai security policy"
+}

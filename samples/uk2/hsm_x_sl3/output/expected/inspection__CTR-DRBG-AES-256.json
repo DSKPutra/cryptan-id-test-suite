@@ -1,0 +1,12 @@
+{
+ "id": "inspection__CTR-DRBG-AES-256",
+ "generator": "inspection",
+ "kind": "deterministic",
+ "target": "CTR-DRBG-AES-256",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Sesuai deklarasi"
+ },
+ "decision": "Sesuai deklarasi"
+}

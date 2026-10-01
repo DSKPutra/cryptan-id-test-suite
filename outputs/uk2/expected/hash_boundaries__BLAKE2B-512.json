@@ -1,0 +1,111 @@
+{
+ "id": "hash_boundaries__BLAKE2B-512",
+ "generator": "hash_boundaries",
+ "kind": "deterministic",
+ "target": "BLAKE2B-512",
+ "source": "HASIL UJI LANGSUNG (dicocokkan dengan LITERATUR/ACUAN)",
+ "status": "COCOK_VEKTOR_RESMI",
+ "references": [
+  "FIPS 180-4 / FIPS 202 (contoh 'abc')"
+ ],
+ "independent": [
+  "hashlib (OpenSSL)"
+ ],
+ "summary": {
+  "total": 13,
+  "matched": 13
+ },
+ "vectors": [
+  {
+   "id": "BLAKE2B-512-abc",
+   "msg": "616263",
+   "md": "ba80a53f981c4d0d6a2797b69f12f6e94c212f14685ac4b74b12bb6fdbffa2d17d87c5392aab792dc252d5de4533cc9518d38aa8dbf1925ab92386edd4009923",
+   "match": true
+  },
+  {
+   "len": 0,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "786a02f742015903c6c6fd852552d272912f4740e15847618a86e217f71f5419d25e1031afee585313896444934eb04b903a685b1448b755d56f701afe9be2ce",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 1,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "9545ba37b230d8a2e716c4707586542780815b7c4088edcb9af6a9452d50f32474d5ba9aab52a67aca864ef2696981c2eadf49020416136afd838fb048d21653",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 55,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "28b9ae3d75fc4bd682b207668aa14281f06c5b71045f8d62598fc88d6d21cc17e02e1a05ab4b4db7363a76290556606c0b6f40ed7fefe31bbc99d25e1a7528a7",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 56,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "e3e61f4d727907d8cd7df01820f177334a1ea518cf8491650b5fcf82f9f0c854dbec3bffdea83b4ff0ec813b6db26e3677b3b583b3ec5bbb80750c39bcfde576",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 63,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "aa0b6903fb8c1e8ae8a7848b897c4b387d9f2497cc4fc5bb3155bd1747df4e6ef61a20f0a2f5f7a1dfef24eedcb45a83c16802cc2c0579e32948419c7211a779",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 64,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "379355d84f743f09561bd671fcd37d1fab74442333f468b4cbd6ccb02a3e9c1715af17acc8f6a2f070ee4e14b0c6a1e6d1214400a4f9e3c3397cd61df92c7008",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 65,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "8eeeeb626ed8e6b4112a3a54143d0a5a1604248d0b0b6c017d2c1f39394db73afd576756abfdd9bf79a568b5f625e82701aebd7d5759eb46d3c1806fb17342ad",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 127,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "d073fb3259c723b20a64ecf77083891a157c81c1882da42060222dfc7ebbda6da1b8ed55197aabd0ab17cf935499d8e4f6d93a4bb83a1aa5670a1612c70df1bb",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 128,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "c6d375fd4421510489194b8ccd9b1fc9e96dd25eab56f33bd698266fb38d8fbde447b617cdb5779c5fbeafe53fae640c85c457f6449ce307a11d88d18788d7f0",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 129,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "7cb95d837c7ccea0f9137c7bcdca4cd71152aa6ca7bf16d399d261191bd7f919c5c7699d0fd0c6ad98d98eae7ee3f0f0fa1e9fc35d84410886343ffc79624765",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 256,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "add2f992dacfe7e31e9fc9f0a0b7b2740e95691ac93f9888ed292517a5d2db501aa2383e8b1a3685a628a1f06456debac9dd0fd9a3603f12f285a238b2771f72",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 1048576,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "bcc22f3ded44ec34f4cddd6a2a78bb3772780e499196ff8e177d97453a10c05bf41cfe847d36cbbe9fc8470241593fe02a9e4f10565256d65cf2fc806e10f60c",
+   "core": null,
+   "match": true
+  }
+ ],
+ "decision": "Deterministik: keluaran produk identik 100% dengan expected; vektor 'invalid' wajib ditolak"
+}

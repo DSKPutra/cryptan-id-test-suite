@@ -1,0 +1,14 @@
+{
+ "id": "tvla__CTR-DRBG-AES-256",
+ "generator": "tvla",
+ "kind": "implementation",
+ "target": "CTR-DRBG-AES-256",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "tvla_abs_t_max": 4.5,
+  "measurements_min": 100000,
+  "method": "Welch t fixed-vs-random (ISO/IEC 17825)"
+ },
+ "decision": "Tidak ada informasi kunci yang dapat dipulihkan; |t| < 4,5 pada seluruh operasi"
+}

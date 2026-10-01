@@ -1,0 +1,13 @@
+{
+ "id": "error_handling__HMAC-SHA-256-K256",
+ "generator": "error_handling",
+ "kind": "implementation",
+ "target": "HMAC-SHA-256-K256",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "defined_error_codes": true,
+  "secret_in_logs": 0
+ },
+ "decision": "Sifat keamanan tidak menurun; tidak ada keluaran parsial"
+}

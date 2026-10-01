@@ -1,0 +1,12 @@
+{
+ "id": "interop__ECDSA-P256",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "ECDSA-P256",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Status verifikasi konsisten"
+ },
+ "decision": "Status verifikasi konsisten"
+}

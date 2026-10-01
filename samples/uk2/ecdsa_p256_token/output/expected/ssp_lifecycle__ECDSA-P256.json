@@ -1,0 +1,12 @@
+{
+ "id": "ssp_lifecycle__ECDSA-P256",
+ "generator": "ssp_lifecycle",
+ "kind": "deterministic",
+ "target": "ECDSA-P256",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Setiap transisi sesuai kebijakan; kunci termusnahkan"
+ },
+ "decision": "Setiap transisi sesuai kebijakan; kunci termusnahkan"
+}

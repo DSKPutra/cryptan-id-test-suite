@@ -1,0 +1,12 @@
+{
+ "id": "ssp_lifecycle__ML-DSA-65",
+ "generator": "ssp_lifecycle",
+ "kind": "deterministic",
+ "target": "ML-DSA-65",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Setiap transisi sesuai security policy"
+ },
+ "decision": "Setiap transisi sesuai security policy"
+}

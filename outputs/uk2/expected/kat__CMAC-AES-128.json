@@ -1,0 +1,838 @@
+{
+ "id": "kat__CMAC-AES-128",
+ "generator": "kat",
+ "kind": "deterministic",
+ "target": "CMAC-AES-128",
+ "source": "HASIL UJI LANGSUNG (dicocokkan dengan LITERATUR/ACUAN)",
+ "status": "COCOK_VEKTOR_RESMI",
+ "references": [
+  "Wycheproof aes_cmac_test.json (AES-CMAC, 311 uji; C2SP/wycheproof, Apache-2.0)",
+  "Wycheproof aes_cmac_test.json (AES-CMAC, 311 uji; C2SP/wycheproof, Apache-2.0)"
+ ],
+ "independent": [
+  "pyca/cryptography"
+ ],
+ "summary": {
+  "total": 102,
+  "matched": 102
+ },
+ "vectors": [
+  {
+   "tcId": 1,
+   "key": "e34f15c7bd819930fe9d66e0c166e61c",
+   "msg": "",
+   "tag": "d47afca1d857a5933405b1eb7a5cb7af",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 2,
+   "key": "e1e726677f4893890f8c027f9d8ef80d",
+   "msg": "3f",
+   "tag": "15f856bbed3b321952a584b3c4437a63",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 3,
+   "key": "b151f491c4c006d1f28214aa3da9a985",
+   "msg": "27d9",
+   "tag": "bdbbebac982dd62b9f682618a6a604e9",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 4,
+   "key": "c36ff15f72777ee21deec07b63c1a0cd",
+   "msg": "50b428",
+   "tag": "be0c3ede157568af394023eb9a7cc983",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 5,
+   "key": "32b9c5c78c3a0689a86052420fa1e8fc",
+   "msg": "0b9262ec",
+   "tag": "57e1506856c55dd32cd9ca821adb6c81",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 6,
+   "key": "43151bbaef367277ebfc97509d0aa49c",
+   "msg": "eaa91273e7",
+   "tag": "e01adc3be6a7621824232c4285dd35b9",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 7,
+   "key": "481440298525cc261f8159159aedf62d",
+   "msg": "6123c556c5cc",
+   "tag": "a281e0d2d5378dfdcc1310fd9782ca56",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 8,
+   "key": "9ca26eb88731efbf7f810d5d95e196ac",
+   "msg": "7e48f06183aa40",
+   "tag": "fc81761f2f7b4ce13b53d36e32677332",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 9,
+   "key": "48f0d03e41cc55c4b58f737b5acdea32",
+   "msg": "f4a133aa6d5985a0",
+   "tag": "1f1cd0327c02e6d00086915937dd61d9",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 10,
+   "key": "1c958849f31996b28939ce513087d1be",
+   "msg": "b0d2fee11b8e2f86b7",
+   "tag": "555f462151f7dd16de698d639fb26760",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 11,
+   "key": "39de0ebea97c09b2301a90009a423253",
+   "msg": "81e5c33b4c620852f044",
+   "tag": "9b004f15b7f6f366374954e64bc58f5f",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 12,
+   "key": "91656d8fc0aced60ddb1c4006d0dde53",
+   "msg": "7b3e440fe566790064b2ec",
+   "tag": "76672ed16c29be449e0c80785cc38e89",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 13,
+   "key": "af7d5134720b5386158d51ea126e7cf9",
+   "msg": "7cc6fcc925c20f3c83b5567c",
+   "tag": "2dc5c88cf3b80ab6c0199f40be904abc",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 14,
+   "key": "4ed56753de6f75a032ebabca3ce27971",
+   "msg": "0c8c0f5619d9f8da5339281285",
+   "tag": "eab4366d97e99a0850f077329ad058c0",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 15,
+   "key": "beba50c936b696c15e25046dffb23a64",
+   "msg": "821ea8532fbabffb6e3d212e9b46",
+   "tag": "22f33cab09c173f75d3401fe44efeead",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 16,
+   "key": "501d81ebf912ddb87fbe3b7aac1437bc",
+   "msg": "2368e3c3636b5e8e94d2081adbf798",
+   "tag": "aeb784a3825168ddd61f72d0202125e6",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 17,
+   "key": "e09eaa5a3f5e56d279d5e7a03373f6ea",
+   "msg": "ef4eab37181f98423e53e947e7050fd0",
+   "tag": "40facf0e2fb51b73a7472681b033d6dc",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 18,
+   "key": "831e664c9e3f0c3094c0b27b9d908eb2",
+   "msg": "26603bb76dd0a0180791c4ed4d3b058807",
+   "tag": "a8144c8b24f2aa47d9c160cff4ab1716",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 19,
+   "key": "cbffc6c8c7f76f46349c32d666f4efb0",
+   "msg": "6df067add738195fd55ac2e76b476971b9a0e6d8",
+   "tag": "5cb595f9587afa7470a3157040b917bf",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 20,
+   "key": "fda6a01194beb462953d7e6c49b32dac",
+   "msg": "f60ae3b036abcab78c98fc1d4b67970c0955cb6fe24483f8907fd73319679b",
+   "tag": "1f0f8124ab6c832e87684bac701544c1",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 21,
+   "key": "9bd3902ed0996c869b572272e76f3889",
+   "msg": "a7ba19d49ee1ea02f098aa8e30c740d893a4456ccc294040484ed8a00a55f93e",
+   "tag": "45082218c2d05eef32247feb1133d0a3",
+   "result": "valid",
+   "match": true
+  },
+  {
+   "tcId": 22,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "96dd6e5a882cbd564c39ae7d1c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 23,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "43802eb1931f0032afe984443738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 24,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7acfbbca7a2ea68b966fc5399f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 25,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "95dd6e5a882cbd564c39ae7d1c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 26,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "40802eb1931f0032afe984443738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 27,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "79cfbbca7a2ea68b966fc5399f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 28,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "17dd6e5a882cbd564c39ae7d1c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 29,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "c2802eb1931f0032afe984443738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 30,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "fbcfbbca7a2ea68b966fc5399f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 31,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dc6e5a882cbd564c39ae7d1c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 32,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42812eb1931f0032afe984443738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 33,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcebbca7a2ea68b966fc5399f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 34,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6eda882cbd564c39ae7d1c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 35,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802e31931f0032afe984443738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 36,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbb4a7a2ea68b966fc5399f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 37,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a892cbd564c39ae7d1c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 38,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1921f0032afe984443738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 39,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca7b2ea68b966fc5399f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 40,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a8a2cbd564c39ae7d1c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 41,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1911f0032afe984443738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 42,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca782ea68b966fc5399f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 43,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a882cbdd64c39ae7d1c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 44,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1931f00b2afe984443738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 45,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca7a2ea60b966fc5399f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 46,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a882cbd564d39ae7d1c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 47,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1931f0032aee984443738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 48,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca7a2ea68b976fc5399f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 49,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a882cbd56cc39ae7d1c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 50,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1931f00322fe984443738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 51,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca7a2ea68b166fc5399f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 52,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a882cbd564c19ae7d1c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 53,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1931f0032afc984443738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 54,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca7a2ea68b964fc5399f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 55,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a882cbd564c39af7d1c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 56,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1931f0032afe985443738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 57,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca7a2ea68b966fc4399f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 58,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a882cbd564c39ae7d1d5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 59,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1931f0032afe984443638cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 60,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca7a2ea68b966fc5399e74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 61,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a882cbd564c39ae7d1e5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 62,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1931f0032afe984443538cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 63,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca7a2ea68b966fc5399d74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 64,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a882cbd564c39ae7d9c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 65,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1931f0032afe98444b738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 66,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca7a2ea68b966fc5391f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 67,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a882cbd564c39ae7d1c5a31ab",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 68,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1931f0032afe984443738cd30",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 69,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca7a2ea68b966fc5399f74809f",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 70,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a882cbd564c39ae7d1c5a31a8",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 71,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1931f0032afe984443738cd33",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 72,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca7a2ea68b966fc5399f74809c",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 73,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a882cbd564c39ae7d1c5a31ea",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 74,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1931f0032afe984443738cd71",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 75,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca7a2ea68b966fc5399f7480de",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 76,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a882cbd564c39ae7d1c5a312a",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 77,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1931f0032afe984443738cdb1",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 78,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca7a2ea68b966fc5399f74801e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 79,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "96dd6e5a882cbd564d39ae7d1c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 80,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "43802eb1931f0032aee984443738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 81,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7acfbbca7a2ea68b976fc5399f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 82,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6eda882cbdd64c39ae7d1c5a31aa",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 83,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802e31931f00b2afe984443738cd31",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 84,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbb4a7a2ea60b966fc5399f74809e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 85,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "97dd6e5a882cbdd64c39ae7d1c5a312a",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 86,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "42802eb1931f00b2afe984443738cdb1",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 87,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7bcfbbca7a2ea60b966fc5399f74801e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 88,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "682291a577d342a9b3c65182e3a5ce55",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 89,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "bd7fd14e6ce0ffcd50167bbbc8c732ce",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 90,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "8430443585d1597469903ac6608b7f61",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 91,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "00000000000000000000000000000000",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 92,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "00000000000000000000000000000000",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 93,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "00000000000000000000000000000000",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 94,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "ffffffffffffffffffffffffffffffff",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 95,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "ffffffffffffffffffffffffffffffff",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 96,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "ffffffffffffffffffffffffffffffff",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 97,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "175deeda08ac3dd6ccb92efd9cdab12a",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 98,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "c200ae31139f80b22f6904c4b7b84db1",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 99,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "fb4f3b4afaae260b16ef45b91ff4001e",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 100,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "",
+   "tag": "96dc6f5b892dbc574d38af7c1d5b30ab",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 101,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "0001020304050607",
+   "tag": "43812fb0921e0133aee885453639cc30",
+   "result": "invalid",
+   "match": true
+  },
+  {
+   "tcId": 102,
+   "key": "000102030405060708090a0b0c0d0e0f",
+   "msg": "000102030405060708090a0b0c0d0e0f",
+   "tag": "7acebacb7b2fa78a976ec4389e75819f",
+   "result": "invalid",
+   "match": true
+  }
+ ],
+ "decision": "Deterministik: keluaran produk identik 100% dengan expected; vektor 'invalid' wajib ditolak"
+}

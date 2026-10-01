@@ -1,0 +1,13 @@
+{
+ "id": "error_handling__BLAKE2B-512",
+ "generator": "error_handling",
+ "kind": "implementation",
+ "target": "BLAKE2B-512",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "defined_error_codes": true,
+  "secret_in_logs": 0
+ },
+ "decision": "Sifat keamanan tidak menurun; tidak ada keluaran parsial"
+}

@@ -1,0 +1,14 @@
+{
+ "id": "oracle__RSA-OAEP-2048",
+ "generator": "oracle",
+ "kind": "implementation",
+ "target": "RSA-OAEP-2048",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "error_classes": 1,
+  "tvla_abs_t_max": 4.5,
+  "error_code": "E_DECRYPT"
+ },
+ "decision": "Satu jenis galat; |t| < 4,5"
+}

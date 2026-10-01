@@ -1,0 +1,12 @@
+{
+ "id": "interop__SHA-512_256",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "SHA-512/256",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Konsisten"
+ },
+ "decision": "Konsisten"
+}

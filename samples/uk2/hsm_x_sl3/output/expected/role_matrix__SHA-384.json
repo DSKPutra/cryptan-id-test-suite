@@ -1,0 +1,12 @@
+{
+ "id": "role_matrix__SHA-384",
+ "generator": "role_matrix",
+ "kind": "deterministic",
+ "target": "SHA-384",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Akses sesuai matriks peran–layanan"
+ },
+ "decision": "Akses sesuai matriks peran–layanan"
+}

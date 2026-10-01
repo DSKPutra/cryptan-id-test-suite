@@ -1,0 +1,12 @@
+{
+ "id": "interop__ECDH-P384",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "ECDH-P384",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Format & kode galat konsisten di seluruh rantai"
+ },
+ "decision": "Format & kode galat konsisten di seluruh rantai"
+}

@@ -1,0 +1,83 @@
+{
+ "id": "reject_params__ECDH-P384",
+ "generator": "reject_params",
+ "kind": "negative",
+ "target": "ECDH-P384",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "decision": "Seluruh masukan negatif DITOLAK",
+ "expected_errors": [
+  "E_AUTH_FAILED",
+  "E_DECRYPT",
+  "E_FORMAT",
+  "E_INVALID_KEY",
+  "E_INVALID_PARAMETER",
+  "E_STATE"
+ ],
+ "reject": true,
+ "cases": [
+  {
+   "param": "PK-DOM",
+   "name": "Ukuran kunci & domain",
+   "class": "Parameter publik/domain",
+   "value": "RSA-1024",
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PK-DOM",
+   "name": "Ukuran kunci & domain",
+   "class": "Parameter publik/domain",
+   "value": "RSA-2047 (modulus ganjil-bit)",
+   "technique": "BVA",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PK-KEYS",
+   "name": "Panjang modulus/kunci",
+   "class": "Parameter publik/domain",
+   "value": 0,
+   "technique": "BVA",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PK-KEYS",
+   "name": "Panjang modulus/kunci",
+   "class": "Parameter publik/domain",
+   "value": 254,
+   "technique": "BVA",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PK-KEYS",
+   "name": "Panjang modulus/kunci",
+   "class": "Parameter publik/domain",
+   "value": 256,
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PK-KEYS",
+   "name": "Panjang modulus/kunci",
+   "class": "Parameter publik/domain",
+   "value": 512,
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PK-KEYS",
+   "name": "Panjang modulus/kunci",
+   "class": "Parameter publik/domain",
+   "value": 3073,
+   "technique": "BVA",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  }
+ ]
+}

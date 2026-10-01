@@ -1,0 +1,16 @@
+{
+ "id": "fuzz__AES-256-KW",
+ "generator": "fuzz",
+ "kind": "implementation",
+ "target": "AES-256-KW",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "crash": 0,
+  "hang": 0,
+  "sanitizer_errors": 0,
+  "executions_min": 1000000,
+  "error_code": "E_FORMAT"
+ },
+ "decision": "Tanpa crash/hang; galat terdefinisi"
+}

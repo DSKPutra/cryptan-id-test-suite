@@ -1,0 +1,12 @@
+{
+ "id": "ssp_lifecycle__AES-128-CTR",
+ "generator": "ssp_lifecycle",
+ "kind": "deterministic",
+ "target": "AES-128-CTR",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Setiap transisi sesuai kebijakan; kunci termusnahkan"
+ },
+ "decision": "Setiap transisi sesuai kebijakan; kunci termusnahkan"
+}

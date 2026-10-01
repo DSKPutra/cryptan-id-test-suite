@@ -1,0 +1,12 @@
+{
+ "id": "zeroize__ECDSA-P256",
+ "generator": "zeroize",
+ "kind": "implementation",
+ "target": "ECDSA-P256",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "residual_key_occurrences": 0
+ },
+ "decision": "d tidak terekspor; log lengkap"
+}

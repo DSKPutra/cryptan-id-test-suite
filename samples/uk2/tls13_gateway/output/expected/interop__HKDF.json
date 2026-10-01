@@ -1,0 +1,12 @@
+{
+ "id": "interop__HKDF",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "HKDF",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Konsisten"
+ },
+ "decision": "Konsisten"
+}

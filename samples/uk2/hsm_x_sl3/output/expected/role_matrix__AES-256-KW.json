@@ -1,0 +1,12 @@
+{
+ "id": "role_matrix__AES-256-KW",
+ "generator": "role_matrix",
+ "kind": "deterministic",
+ "target": "AES-256-KW",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Akses sesuai matriks peran–layanan"
+ },
+ "decision": "Akses sesuai matriks peran–layanan"
+}

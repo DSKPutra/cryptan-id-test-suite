@@ -1,0 +1,12 @@
+{
+ "id": "fault__ECDSA-P256",
+ "generator": "fault",
+ "kind": "implementation",
+ "target": "ECDSA-P256",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "faulty_outputs_released": 0
+ },
+ "decision": "Tanda tangan salah tidak pernah dikeluarkan"
+}

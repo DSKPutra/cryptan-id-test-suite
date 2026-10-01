@@ -1,0 +1,12 @@
+{
+ "id": "reproducible_build__ML-DSA-65",
+ "generator": "reproducible_build",
+ "kind": "deterministic",
+ "target": "ML-DSA-65",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Hash identik (reproducible build)"
+ },
+ "decision": "Hash identik (reproducible build)"
+}

@@ -1,0 +1,14 @@
+{
+ "id": "tvla__RSAES-PKCS1-V1_5-1024",
+ "generator": "tvla",
+ "kind": "implementation",
+ "target": "RSAES-PKCS1-V1_5-1024",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "tvla_abs_t_max": 4.5,
+  "measurements_min": 100000,
+  "method": "Welch t fixed-vs-random (ISO/IEC 17825)"
+ },
+ "decision": "|t| < 4,5; hasil CRT diverifikasi"
+}

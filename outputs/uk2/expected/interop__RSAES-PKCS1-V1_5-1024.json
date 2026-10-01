@@ -1,0 +1,12 @@
+{
+ "id": "interop__RSAES-PKCS1-V1_5-1024",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "RSAES-PKCS1-V1_5-1024",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Interoperabel dua arah"
+ },
+ "decision": "Interoperabel dua arah"
+}

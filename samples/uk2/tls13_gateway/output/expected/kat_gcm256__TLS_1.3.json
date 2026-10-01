@@ -1,0 +1,11 @@
+{
+ "id": "kat_gcm256__TLS_1.3",
+ "generator": "kat_gcm256",
+ "kind": "deterministic",
+ "target": "TLS 1.3",
+ "source": "PERLU_VERIFIKASI",
+ "status": "PERLU_VERIFIKASI",
+ "references": [],
+ "note": "Expected value deterministik untuk TLS 1.3 belum dapat dihitung/dicocokkan (vektor resmi ACVP/CAVP belum dimuat) — JANGAN dikarang; unduh vektor ACVP untuk algoritma ini",
+ "decision": "Deterministik: identik 100% dengan vektor resmi (menunggu vektor)"
+}

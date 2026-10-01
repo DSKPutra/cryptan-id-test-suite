@@ -1,0 +1,12 @@
+{
+ "id": "interop__CHACHA20-256",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "CHACHA20-256",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Interoperabel; galat sinkronisasi terdeteksi"
+ },
+ "decision": "Interoperabel; galat sinkronisasi terdeteksi"
+}

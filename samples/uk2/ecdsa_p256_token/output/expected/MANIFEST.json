@@ -1,0 +1,377 @@
+[
+ {
+  "file": "expected/attack_margin__SHA-256.json",
+  "sha256": "934c70a6d734ac75c7f7228ff049f57ec2adfe21a667fc7d129068d143c9008c",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "attack_margin__SHA-256",
+  "target": "SHA-256",
+  "generator": "attack_margin",
+  "summary": null
+ },
+ {
+  "file": "expected/avalanche_sp80022__SHA-256.json",
+  "sha256": "cfdba4ec1465599a7cda527f45595f7e083518b3fae80cf377371d184bd49990",
+  "status": "KRITERIA",
+  "kind": "statistical",
+  "id": "avalanche_sp80022__SHA-256",
+  "target": "SHA-256",
+  "generator": "avalanche_sp80022",
+  "summary": null
+ },
+ {
+  "file": "expected/curve_points__ECDSA-P256.json",
+  "sha256": "c630bf43997718474585aabe19d583ebf3d211df2cf3bc1384494b8ac70be9f8",
+  "status": "COCOK_VEKTOR_RESMI",
+  "kind": "deterministic",
+  "id": "curve_points__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "curve_points",
+  "summary": {
+   "total": 4,
+   "matched": 4
+  }
+ },
+ {
+  "file": "expected/domain_params__ECDSA-P256.json",
+  "sha256": "e303e371ae4d4950f40c15aeb67cb2f63d723ab77cd314d21c7c945806be1230",
+  "status": "COCOK_VEKTOR_RESMI",
+  "kind": "deterministic",
+  "id": "domain_params__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "domain_params",
+  "summary": {
+   "total": 2,
+   "matched": 2
+  }
+ },
+ {
+  "file": "expected/error_handling__ECDSA-P256.json",
+  "sha256": "82385c2c8593080a51a66125c2b712d3f3cf69fd8142a7e23a5bd4c2b405b156",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "error_handling__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "error_handling",
+  "summary": null
+ },
+ {
+  "file": "expected/error_handling__HMAC-DRBG-S128.json",
+  "sha256": "4e60c94157706606e5a40aa905ff9f83b96cc04647a668f89bf7285be2616a9c",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "error_handling__HMAC-DRBG-S128",
+  "target": "HMAC-DRBG-S128",
+  "generator": "error_handling",
+  "summary": null
+ },
+ {
+  "file": "expected/error_handling__SHA-256.json",
+  "sha256": "42d1c3a4a6f44424fac3fcf834eb8e72d5b435f29eed8700d524340d9f55235b",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "error_handling__SHA-256",
+  "target": "SHA-256",
+  "generator": "error_handling",
+  "summary": null
+ },
+ {
+  "file": "expected/fault__ECDSA-P256.json",
+  "sha256": "e2560d1fd3610b00b2f65f40e4a2c1f03e733fe35b3a5a5952ca4174531ca902",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "fault__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "fault",
+  "summary": null
+ },
+ {
+  "file": "expected/fuzz__ECDSA-P256.json",
+  "sha256": "fe4d24e93a1a893f38b2f5cb7e914acb7cf7ef010cb561df5acd7a58a96e1ab9",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "fuzz__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "fuzz",
+  "summary": null
+ },
+ {
+  "file": "expected/fuzz__SHA-256.json",
+  "sha256": "26e32b8b18e809c936429ed9cafa1df44d00a74d7b5aca632a45b16ad1d603a8",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "fuzz__SHA-256",
+  "target": "SHA-256",
+  "generator": "fuzz",
+  "summary": null
+ },
+ {
+  "file": "expected/generic_bound__SHA-256.json",
+  "sha256": "ef481702936dd99b2de710cfe9ab77e0570c8024cde4d46e0977ad271352772d",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "generic_bound__SHA-256",
+  "target": "SHA-256",
+  "generator": "generic_bound",
+  "summary": null
+ },
+ {
+  "file": "expected/hash_boundaries__SHA-256.json",
+  "sha256": "0d9fbf5706c154eaf7444b367b65e5d828eab96a4ab509ac5e92917c76f56f0d",
+  "status": "COCOK_VEKTOR_RESMI",
+  "kind": "deterministic",
+  "id": "hash_boundaries__SHA-256",
+  "target": "SHA-256",
+  "generator": "hash_boundaries",
+  "summary": {
+   "total": 9,
+   "matched": 9
+  }
+ },
+ {
+  "file": "expected/interop__ECDSA-P256.json",
+  "sha256": "b9371962a2cb94082f90831c0bb62081643a8725c48e416bcfbe6166d78a1e6b",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "interop__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "interop",
+  "summary": null
+ },
+ {
+  "file": "expected/interop__HMAC-DRBG-S128.json",
+  "sha256": "6344cbbaf8b156d5e117562145b51f51c18362d41f3cd638a21d7e96c7f3ac69",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "interop__HMAC-DRBG-S128",
+  "target": "HMAC-DRBG-S128",
+  "generator": "interop",
+  "summary": null
+ },
+ {
+  "file": "expected/interop__SHA-256.json",
+  "sha256": "7201df6e641b2a4f45da8fc9657b858ee5f25985cd938c97c9fb0afe9a1b1cdd",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "interop__SHA-256",
+  "target": "SHA-256",
+  "generator": "interop",
+  "summary": null
+ },
+ {
+  "file": "expected/keygen_validate__ECDSA-P256.json",
+  "sha256": "a58409404cdbd688c1c6abab459945912c8f5fa5886f56d96490fcc912a71906",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "keygen_validate__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "keygen_validate",
+  "summary": null
+ },
+ {
+  "file": "expected/mct__SHA-256.json",
+  "sha256": "6bd284dc3043d86a5d17019abec4cc28aa712ea8775628dc91e78deaff45956a",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "mct__SHA-256",
+  "target": "SHA-256",
+  "generator": "mct",
+  "summary": null
+ },
+ {
+  "file": "expected/nonce_stats__ECDSA-P256.json",
+  "sha256": "39a9e625750c47a4120ba0fec364fa9020b41629f81e951c6f7b51c953135d1e",
+  "status": "KRITERIA",
+  "kind": "statistical",
+  "id": "nonce_stats__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "nonce_stats",
+  "summary": null
+ },
+ {
+  "file": "expected/performance__ECDSA-P256.json",
+  "sha256": "147b2d588fbaa78e40738dc1690eb40d76dd3e119808bdd10aee1d47b3b66536",
+  "status": "PERLU_VERIFIKASI",
+  "kind": "implementation",
+  "id": "performance__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "performance",
+  "summary": null
+ },
+ {
+  "file": "expected/pubkey_negative__ECDSA-P256.json",
+  "sha256": "83e3bb96cd5af261821df03227ec662adac1cef6f9e7087cd474d5b2721bcd60",
+  "status": "KRITERIA",
+  "kind": "negative",
+  "id": "pubkey_negative__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "pubkey_negative",
+  "summary": null
+ },
+ {
+  "file": "expected/reject_params__ECDSA-P256.json",
+  "sha256": "a813a3950a7ed469ea452294bcd9af691b4ea830b7a26c0ec1c9ec657510d233",
+  "status": "KRITERIA",
+  "kind": "negative",
+  "id": "reject_params__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "reject_params",
+  "summary": null
+ },
+ {
+  "file": "expected/reject_params__SHA-256.json",
+  "sha256": "e155a7bf882c987c1a47d1cdaa234095ec91d57bae769e22f897210c6c931b81",
+  "status": "KRITERIA",
+  "kind": "negative",
+  "id": "reject_params__SHA-256",
+  "target": "SHA-256",
+  "generator": "reject_params",
+  "summary": null
+ },
+ {
+  "file": "expected/rfc6979__ECDSA-P256.json",
+  "sha256": "1b343225ff5109f2435fd78862619f31e08f9ead2470317429e11d20f8a2b1a8",
+  "status": "COCOK_VEKTOR_RESMI",
+  "kind": "deterministic",
+  "id": "rfc6979__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "rfc6979",
+  "summary": {
+   "total": 4,
+   "matched": 4
+  }
+ },
+ {
+  "file": "expected/rng_stats__ECDSA-P256.json",
+  "sha256": "ed12ae6d5bcbc53fe65efa154ef38c141f4d343a3084bcec8cfc1ab0cd9a7eff",
+  "status": "KRITERIA",
+  "kind": "statistical",
+  "id": "rng_stats__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "rng_stats",
+  "summary": null
+ },
+ {
+  "file": "expected/rng_stats__HMAC-DRBG-S128.json",
+  "sha256": "4e61925ad19c3054fbc17ca3ff26e66cc4854bca2fcee62de7a392dd583aab4f",
+  "status": "KRITERIA",
+  "kind": "statistical",
+  "id": "rng_stats__HMAC-DRBG-S128",
+  "target": "HMAC-DRBG-S128",
+  "generator": "rng_stats",
+  "summary": null
+ },
+ {
+  "file": "expected/rng_stats__SHA-256.json",
+  "sha256": "6246ecc83b9e371b92cdf1e677a4fc5bc47dbe39fb32d12c4d1c737b38a1c921",
+  "status": "KRITERIA",
+  "kind": "statistical",
+  "id": "rng_stats__SHA-256",
+  "target": "SHA-256",
+  "generator": "rng_stats",
+  "summary": null
+ },
+ {
+  "file": "expected/sigver__ECDSA-P256.json",
+  "sha256": "c331a7418794f46d4fdc679194fa8b61fedd3529214ead85b3a22acc8cc348f0",
+  "status": "COCOK_VEKTOR_RESMI",
+  "kind": "deterministic",
+  "id": "sigver__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "sigver",
+  "summary": {
+   "total": 516,
+   "matched": 516
+  }
+ },
+ {
+  "file": "expected/ssp_lifecycle__ECDSA-P256.json",
+  "sha256": "dcf88fa6148ab5b596b7e13d94ec10b69c098b4609e471072f07acf61b9fa134",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "ssp_lifecycle__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "ssp_lifecycle",
+  "summary": null
+ },
+ {
+  "file": "expected/ssp_lifecycle__HMAC-DRBG-S128.json",
+  "sha256": "3a2e16fbf77c5b06949e2853180f5f2097692cb7f781fb1f4fe73a40e8bfafb6",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "ssp_lifecycle__HMAC-DRBG-S128",
+  "target": "HMAC-DRBG-S128",
+  "generator": "ssp_lifecycle",
+  "summary": null
+ },
+ {
+  "file": "expected/ssp_lifecycle__SHA-256.json",
+  "sha256": "4fcb496648c42850b8711cc92c6dd5332624b27d59bea6f1a94e9228667335e7",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "ssp_lifecycle__SHA-256",
+  "target": "SHA-256",
+  "generator": "ssp_lifecycle",
+  "summary": null
+ },
+ {
+  "file": "expected/strength__ECDSA-P256.json",
+  "sha256": "2637a25e1c20ae3ec5b4f79b770bd3f5ef825ff92e3053c93c626e3fb4e2a2b9",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "strength__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "strength",
+  "summary": null
+ },
+ {
+  "file": "expected/strength__SHA-256.json",
+  "sha256": "0c546e328162aea872b4b65035039b3e31bd791baafd89ff59397a64c92fe3d6",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "strength__SHA-256",
+  "target": "SHA-256",
+  "generator": "strength",
+  "summary": null
+ },
+ {
+  "file": "expected/tvla__ECDSA-P256.json",
+  "sha256": "428b824c9b785dbdafa5eede4e50af50a4657aa9a6ee94d9b51819ed90568ffb",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "tvla__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "tvla",
+  "summary": null
+ },
+ {
+  "file": "expected/tvla__HMAC-DRBG-S128.json",
+  "sha256": "173b9f00ed6bde81de178505430ff95049f48913b993c30e983ee869cb0bcd12",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "tvla__HMAC-DRBG-S128",
+  "target": "HMAC-DRBG-S128",
+  "generator": "tvla",
+  "summary": null
+ },
+ {
+  "file": "expected/tvla__SHA-256.json",
+  "sha256": "0ccace0c6d8d582c39dfc28ff57cb7b4df6d5cf0593f84b29cfee38bd8afeafd",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "tvla__SHA-256",
+  "target": "SHA-256",
+  "generator": "tvla",
+  "summary": null
+ },
+ {
+  "file": "expected/zeroize__ECDSA-P256.json",
+  "sha256": "c9b91e3fb534e92a83ea5147426c500629279f4126979e91d8fa4583fa8b6a6e",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "zeroize__ECDSA-P256",
+  "target": "ECDSA-P256",
+  "generator": "zeroize",
+  "summary": null
+ }
+]

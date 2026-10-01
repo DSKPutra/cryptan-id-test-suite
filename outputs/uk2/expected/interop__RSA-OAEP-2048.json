@@ -1,0 +1,12 @@
+{
+ "id": "interop__RSA-OAEP-2048",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "RSA-OAEP-2048",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Interoperabel dua arah"
+ },
+ "decision": "Interoperabel dua arah"
+}

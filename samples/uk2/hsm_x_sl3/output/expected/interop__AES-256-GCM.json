@@ -1,0 +1,12 @@
+{
+ "id": "interop__AES-256-GCM",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "AES-256-GCM",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Seluruh fungsi yang dibutuhkan tersedia"
+ },
+ "decision": "Seluruh fungsi yang dibutuhkan tersedia"
+}

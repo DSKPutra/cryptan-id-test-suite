@@ -1,0 +1,19 @@
+{
+ "id": "tamper__ECDSA-P384",
+ "generator": "tamper",
+ "kind": "negative",
+ "target": "ECDSA-P384",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "decision": "Seluruh masukan negatif DITOLAK",
+ "expected_errors": [
+  "E_AUTH_FAILED",
+  "E_DECRYPT",
+  "E_FORMAT",
+  "E_INVALID_KEY",
+  "E_INVALID_PARAMETER",
+  "E_STATE"
+ ],
+ "reject": true,
+ "cases": []
+}

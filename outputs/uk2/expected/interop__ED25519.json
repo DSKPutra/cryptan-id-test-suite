@@ -1,0 +1,12 @@
+{
+ "id": "interop__ED25519",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "ED25519",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Status verifikasi konsisten dua arah"
+ },
+ "decision": "Status verifikasi konsisten dua arah"
+}

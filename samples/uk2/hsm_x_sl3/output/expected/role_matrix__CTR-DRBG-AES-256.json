@@ -1,0 +1,12 @@
+{
+ "id": "role_matrix__CTR-DRBG-AES-256",
+ "generator": "role_matrix",
+ "kind": "deterministic",
+ "target": "CTR-DRBG-AES-256",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Akses sesuai matriks peran–layanan"
+ },
+ "decision": "Akses sesuai matriks peran–layanan"
+}

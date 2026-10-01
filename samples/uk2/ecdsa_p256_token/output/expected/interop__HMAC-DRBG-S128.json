@@ -1,0 +1,12 @@
+{
+ "id": "interop__HMAC-DRBG-S128",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "HMAC-DRBG-S128",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Format & kode galat konsisten di seluruh rantai"
+ },
+ "decision": "Format & kode galat konsisten di seluruh rantai"
+}

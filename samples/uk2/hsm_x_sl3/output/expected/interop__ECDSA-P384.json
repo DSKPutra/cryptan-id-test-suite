@@ -1,0 +1,12 @@
+{
+ "id": "interop__ECDSA-P384",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "ECDSA-P384",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Seluruh fungsi yang dibutuhkan tersedia"
+ },
+ "decision": "Seluruh fungsi yang dibutuhkan tersedia"
+}

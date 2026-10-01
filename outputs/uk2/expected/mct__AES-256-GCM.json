@@ -1,0 +1,12 @@
+{
+ "id": "mct__AES-256-GCM",
+ "generator": "mct",
+ "kind": "deterministic",
+ "target": "AES-256-GCM",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "100% checkpoint identik"
+ },
+ "decision": "100% checkpoint identik"
+}

@@ -1,0 +1,12 @@
+{
+ "id": "negotiation__TLS_1.3",
+ "generator": "negotiation",
+ "kind": "deterministic",
+ "target": "TLS 1.3",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Pilihan server sesuai kebijakan preferensi"
+ },
+ "decision": "Pilihan server sesuai kebijakan preferensi"
+}

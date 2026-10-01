@@ -1,0 +1,12 @@
+{
+ "id": "inspection__HMAC-SHA-384-K384",
+ "generator": "inspection",
+ "kind": "deterministic",
+ "target": "HMAC-SHA-384-K384",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Sesuai deklarasi"
+ },
+ "decision": "Sesuai deklarasi"
+}

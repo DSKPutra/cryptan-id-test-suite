@@ -1,0 +1,47 @@
+{
+ "id": "nonce_reuse__AES-256-GCM",
+ "generator": "nonce_reuse",
+ "kind": "negative",
+ "target": "AES-256-GCM",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "decision": "Seluruh masukan negatif DITOLAK",
+ "expected_errors": [
+  "E_AUTH_FAILED",
+  "E_DECRYPT",
+  "E_FORMAT",
+  "E_INVALID_KEY",
+  "E_INVALID_PARAMETER",
+  "E_STATE"
+ ],
+ "reject": true,
+ "cases": [
+  {
+   "param": "BC-IV",
+   "name": "IV/nonce",
+   "class": "Material rahasia",
+   "value": "nol",
+   "technique": "DEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "BC-IV",
+   "name": "IV/nonce",
+   "class": "Material rahasia",
+   "value": "berulang (reuse)",
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "BC-IV",
+   "name": "IV/nonce",
+   "class": "Material rahasia",
+   "value": "dapat diprediksi (CBC)",
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "id": "drbg__CTR-DRBG-AES-256",
+ "generator": "drbg",
+ "kind": "deterministic",
+ "target": "CTR-DRBG-AES-256",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Keluaran identik 100%"
+ },
+ "decision": "Keluaran identik 100%"
+}

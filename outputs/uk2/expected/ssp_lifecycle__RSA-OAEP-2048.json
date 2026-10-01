@@ -1,0 +1,12 @@
+{
+ "id": "ssp_lifecycle__RSA-OAEP-2048",
+ "generator": "ssp_lifecycle",
+ "kind": "deterministic",
+ "target": "RSA-OAEP-2048",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Setiap transisi sesuai kebijakan; kunci termusnahkan"
+ },
+ "decision": "Setiap transisi sesuai kebijakan; kunci termusnahkan"
+}

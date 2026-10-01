@@ -1,0 +1,34 @@
+{
+ "id": "strength__SLH-DSA-SHA2-128S",
+ "generator": "strength",
+ "kind": "cryptanalytic",
+ "target": "SLH-DSA-SHA2-128S",
+ "source": "LITERATUR/ACUAN",
+ "status": "KRITERIA",
+ "criteria": {
+  "claimed_security_bits": 128,
+  "min_required_bits": 112,
+  "best_attacks_literature": [
+   {
+    "id": "A-P-11",
+    "name": "RNG lemah saat pembangkitan kunci",
+    "time_log2": 15,
+    "status": "praktis"
+   },
+   {
+    "id": "A-D-03",
+    "name": "Bias nonce parsial → lattice (Hidden Number Problem)",
+    "time_log2": 30,
+    "status": "praktis"
+   },
+   {
+    "id": "A-D-01",
+    "name": "Pollard rho (ECDLP)",
+    "time_log2": 128,
+    "status": "teoretis"
+   }
+  ],
+  "rule": "kompleksitas serangan terbaik (ronde penuh) ≥ klaim bit security"
+ },
+ "decision": "Kriptanalitik: Memenuhi bila serangan terbaik ≥ klaim; Memenuhi dengan Catatan bila 112 ≤ klaim < 128 (transisi 2030)"
+}

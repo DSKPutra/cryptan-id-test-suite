@@ -1,0 +1,27 @@
+{
+ "id": "rng_stats__FFDHE3072",
+ "generator": "rng_stats",
+ "kind": "statistical",
+ "target": "FFDHE3072",
+ "source": "HASIL UJI LANGSUNG (rumus)",
+ "status": "KRITERIA",
+ "criteria": {
+  "alpha": 0.01,
+  "sp800_22": {
+   "sequences": 100,
+   "bits_per_sequence": 1000000,
+   "proportion_min": 0.96015,
+   "proportion_formula": "0,99 − 3·√(0,99·0,01/s)",
+   "min_pass_of_100": 97,
+   "uniformity_p_value_T_min": 0.0001
+  },
+  "sp800_90b": {
+   "min_entropy_per_sample": "≥ klaim vendor (PERLU_VERIFIKASI: nilai klaim)",
+   "health_tests": [
+    "Repetition Count",
+    "Adaptive Proportion"
+   ]
+  }
+ },
+ "decision": "Statistik: lolos bila seluruh kriteria terpenuhi; di tepi interval → Inkonklusif (perbesar sampel)"
+}

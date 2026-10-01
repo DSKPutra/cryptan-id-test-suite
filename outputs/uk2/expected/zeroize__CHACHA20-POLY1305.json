@@ -1,0 +1,12 @@
+{
+ "id": "zeroize__CHACHA20-POLY1305",
+ "generator": "zeroize",
+ "kind": "implementation",
+ "target": "CHACHA20-POLY1305",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "residual_key_occurrences": 0
+ },
+ "decision": "0 kemunculan"
+}

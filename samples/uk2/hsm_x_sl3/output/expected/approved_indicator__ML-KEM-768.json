@@ -1,0 +1,12 @@
+{
+ "id": "approved_indicator__ML-KEM-768",
+ "generator": "approved_indicator",
+ "kind": "deterministic",
+ "target": "ML-KEM-768",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Indikator benar untuk setiap layanan"
+ },
+ "decision": "Indikator benar untuk setiap layanan"
+}

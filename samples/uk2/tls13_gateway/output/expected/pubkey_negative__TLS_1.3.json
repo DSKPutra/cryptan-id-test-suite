@@ -1,0 +1,56 @@
+{
+ "id": "pubkey_negative__TLS_1.3",
+ "generator": "pubkey_negative",
+ "kind": "negative",
+ "target": "TLS 1.3",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "decision": "Seluruh masukan negatif DITOLAK",
+ "expected_errors": [
+  "E_AUTH_FAILED",
+  "E_DECRYPT",
+  "E_FORMAT",
+  "E_INVALID_KEY",
+  "E_INVALID_PARAMETER",
+  "E_STATE"
+ ],
+ "reject": true,
+ "cases": [
+  {
+   "param": "PR-KS",
+   "name": "Nilai publik key share",
+   "class": "Data masukan",
+   "value": "di luar kurva",
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PR-KS",
+   "name": "Nilai publik key share",
+   "class": "Data masukan",
+   "value": "titik tak hingga",
+   "technique": "BVA",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PR-KS",
+   "name": "Nilai publik key share",
+   "class": "Data masukan",
+   "value": "low-order X25519",
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PR-KS",
+   "name": "Nilai publik key share",
+   "class": "Data masukan",
+   "value": "panjang salah",
+   "technique": "BVA",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  }
+ ]
+}

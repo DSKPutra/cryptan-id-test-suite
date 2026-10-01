@@ -1,0 +1,12 @@
+{
+ "id": "keygen_validate__RSAES-PKCS1-V1_5-1024",
+ "generator": "keygen_validate",
+ "kind": "deterministic",
+ "target": "RSAES-PKCS1-V1_5-1024",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Seluruh pemeriksaan LULUS"
+ },
+ "decision": "Seluruh pemeriksaan LULUS"
+}

@@ -1,0 +1,12 @@
+{
+ "id": "zeroize__AES-256-KW",
+ "generator": "zeroize",
+ "kind": "implementation",
+ "target": "AES-256-KW",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "residual_key_occurrences": 0
+ },
+ "decision": "Tidak ada sisa SSP"
+}

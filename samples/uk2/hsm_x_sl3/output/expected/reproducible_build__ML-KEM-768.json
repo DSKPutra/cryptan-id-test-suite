@@ -1,0 +1,12 @@
+{
+ "id": "reproducible_build__ML-KEM-768",
+ "generator": "reproducible_build",
+ "kind": "deterministic",
+ "target": "ML-KEM-768",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Hash identik (reproducible build)"
+ },
+ "decision": "Hash identik (reproducible build)"
+}

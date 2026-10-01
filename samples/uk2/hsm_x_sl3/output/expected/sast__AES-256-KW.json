@@ -1,0 +1,13 @@
+{
+ "id": "sast__AES-256-KW",
+ "generator": "sast",
+ "kind": "implementation",
+ "target": "AES-256-KW",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "high_findings": 0,
+  "branch_coverage_min": 0.9
+ },
+ "decision": "Tanpa temuan tinggi; cakupan cabang ≥ target (mis. 90%)"
+}

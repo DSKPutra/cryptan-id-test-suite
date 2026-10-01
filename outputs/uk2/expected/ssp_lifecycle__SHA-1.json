@@ -1,0 +1,12 @@
+{
+ "id": "ssp_lifecycle__SHA-1",
+ "generator": "ssp_lifecycle",
+ "kind": "deterministic",
+ "target": "SHA-1",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Setiap transisi sesuai kebijakan; kunci termusnahkan"
+ },
+ "decision": "Setiap transisi sesuai kebijakan; kunci termusnahkan"
+}

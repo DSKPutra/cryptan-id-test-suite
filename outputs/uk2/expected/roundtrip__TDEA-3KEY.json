@@ -1,0 +1,12 @@
+{
+ "id": "roundtrip__TDEA-3KEY",
+ "generator": "roundtrip",
+ "kind": "deterministic",
+ "target": "TDEA-3KEY",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "D(E(x)) = x untuk 100% kasus"
+ },
+ "decision": "D(E(x)) = x untuk 100% kasus"
+}

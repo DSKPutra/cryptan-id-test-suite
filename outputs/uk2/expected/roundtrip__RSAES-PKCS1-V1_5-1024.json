@@ -1,0 +1,12 @@
+{
+ "id": "roundtrip__RSAES-PKCS1-V1_5-1024",
+ "generator": "roundtrip",
+ "kind": "deterministic",
+ "target": "RSAES-PKCS1-V1_5-1024",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Round-trip 100%; m terlalu panjang ditolak"
+ },
+ "decision": "Round-trip 100%; m terlalu panjang ditolak"
+}

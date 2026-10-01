@@ -1,0 +1,12 @@
+{
+ "id": "roundtrip__CHACHA20-POLY1305",
+ "generator": "roundtrip",
+ "kind": "deterministic",
+ "target": "CHACHA20-POLY1305",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Keystream konsisten"
+ },
+ "decision": "Keystream konsisten"
+}

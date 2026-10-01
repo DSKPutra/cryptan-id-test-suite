@@ -1,0 +1,118 @@
+{
+ "id": "hash_boundaries__SHA-512_256",
+ "generator": "hash_boundaries",
+ "kind": "deterministic",
+ "target": "SHA-512/256",
+ "source": "HASIL UJI LANGSUNG (dicocokkan dengan LITERATUR/ACUAN)",
+ "status": "COCOK_VEKTOR_RESMI",
+ "references": [
+  "FIPS 180-4 / FIPS 202 (contoh 'abc')"
+ ],
+ "independent": [
+  "hashlib (OpenSSL)"
+ ],
+ "summary": {
+  "total": 14,
+  "matched": 14
+ },
+ "vectors": [
+  {
+   "id": "SHA-512/256-abc",
+   "msg": "616263",
+   "md": "53048e2681941ef99b2e29b76b4c7dabe4c2d0c634fc6d46e0e2f13107e7af23",
+   "match": true
+  },
+  {
+   "len": 0,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "c672b8d1ef56ed28ab87c3622c5114069bdd3ad7b8f9737498d0c01ecef0967a",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 1,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "2a8b71c345fac6e44dca4f7a762a560c3bdd7fa3001e84507c946a7d8fd46ee7",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 55,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "7596305dc6bae546116501d29aa02cb68cf9784a6655615c35902cebcf4260a3",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 56,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "2eb260c5ebe391ee008914a439a68ef7686a07167a428df905ca86d438c43395",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 63,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "84deb95c8f16a8004183ae3057322debc4a59377b3418182b13dbc63e98353a8",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 64,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "9e5c749e782e6c7e7821cd15dae9047cb7f6416a2f06504a3d41ba7ce50f2ea6",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 65,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "a80b6dd380c1a2a8fe9fe3e23e7975e3a9a0abb16eec19777f9bd972b10902c3",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 111,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "4029d3ebe870f8fbbe5581f06af38bacdb2668f163b2e029e25df76d4d1c821f",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 112,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "fe94f52a770b70981e9f93f552e5c3220511bf1649da73f01ff750ff2dc0b783",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 127,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "855423f017095f0763ce2b67958ef80f051c6ca0485e2d2cee4b146b86502234",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 128,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "053663d67952eb1446db66a0346dac5cc47ba6aca7e350a2b0ffdfa29cf21e7c",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 129,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "e331f290cea9e99e1a4096778e5170ab4b7d4392337713fc4699089312cf922f",
+   "core": null,
+   "match": true
+  },
+  {
+   "len": 1048576,
+   "msg_gen": "m[i] = (7i + 1) mod 256",
+   "md": "5d59350ddcf1768ce9eee4a10e02a01e99cbfc9e12b0ebd6fd181429663729eb",
+   "core": null,
+   "match": true
+  }
+ ],
+ "decision": "Deterministik: keluaran produk identik 100% dengan expected; vektor 'invalid' wajib ditolak"
+}

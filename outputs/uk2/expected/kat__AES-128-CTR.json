@@ -1,0 +1,59 @@
+{
+ "id": "kat__AES-128-CTR",
+ "generator": "kat",
+ "kind": "deterministic",
+ "target": "AES-128-CTR",
+ "source": "HASIL UJI LANGSUNG (dicocokkan dengan LITERATUR/ACUAN)",
+ "status": "COCOK_VEKTOR_RESMI",
+ "references": [
+  "LITERATUR/ACUAN: FIPS 197, SP 800-38A F.1.1/F.5.1"
+ ],
+ "independent": [
+  "core/aes.py",
+  "pyca/cryptography (OpenSSL)"
+ ],
+ "summary": {
+  "total": 7,
+  "matched": 7
+ },
+ "vectors": [
+  {
+   "id": "FIPS197-B",
+   "source": "FIPS 197 Appendix B (Cipher Example)",
+   "match": true
+  },
+  {
+   "id": "FIPS197-C.1",
+   "source": "FIPS 197 Appendix C.1 (AES-128)",
+   "match": true
+  },
+  {
+   "id": "SP800-38A-F.1.1-b1",
+   "source": "SP 800-38A F.1.1 ECB-AES128 blok 1",
+   "match": true
+  },
+  {
+   "id": "SP800-38A-F.1.1-b2",
+   "source": "SP 800-38A F.1.1 ECB-AES128 blok 2",
+   "match": true
+  },
+  {
+   "id": "SP800-38A-F.1.1-b3",
+   "source": "SP 800-38A F.1.1 ECB-AES128 blok 3",
+   "match": true
+  },
+  {
+   "id": "SP800-38A-F.1.1-b4",
+   "source": "SP 800-38A F.1.1 ECB-AES128 blok 4",
+   "match": true
+  },
+  {
+   "id": "SP800-38A-F.5.1",
+   "source": "SP 800-38A F.5.1 CTR-AES128 (4 blok)",
+   "pt": "6bc1bee22e409f96e93d7e117393172aae2d8a571e03ac9c9eb76fac45af8e5130c81c46a35ce411e5fbc1191a0a52eff69f2445df4f9b17ad2b417be66c3710",
+   "ct": "874d6191b620e3261bef6864990db6ce9806f66b7970fdff8617187bb9fffdff5ae4df3edbd5d35e5b4f09020db03eab1e031dda2fbe03d1792170a0f3009cee",
+   "match": true
+  }
+ ],
+ "decision": "Deterministik: keluaran produk identik 100% dengan expected; vektor 'invalid' wajib ditolak"
+}

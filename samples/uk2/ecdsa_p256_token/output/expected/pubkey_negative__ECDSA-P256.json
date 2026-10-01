@@ -1,0 +1,47 @@
+{
+ "id": "pubkey_negative__ECDSA-P256",
+ "generator": "pubkey_negative",
+ "kind": "negative",
+ "target": "ECDSA-P256",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "decision": "Seluruh masukan negatif DITOLAK",
+ "expected_errors": [
+  "E_AUTH_FAILED",
+  "E_DECRYPT",
+  "E_FORMAT",
+  "E_INVALID_KEY",
+  "E_INVALID_PARAMETER",
+  "E_STATE"
+ ],
+ "reject": true,
+ "cases": [
+  {
+   "param": "DS-Q",
+   "name": "Kunci publik Q",
+   "class": "Data masukan",
+   "value": "titik tak hingga O",
+   "technique": "BVA",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "DS-Q",
+   "name": "Kunci publik Q",
+   "class": "Data masukan",
+   "value": "di luar kurva",
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "DS-Q",
+   "name": "Kunci publik Q",
+   "class": "Data masukan",
+   "value": "koordinat ≥ p",
+   "technique": "BVA",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  }
+ ]
+}

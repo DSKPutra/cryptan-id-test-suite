@@ -1,0 +1,12 @@
+{
+ "id": "roundtrip__ASCON-AEAD128",
+ "generator": "roundtrip",
+ "kind": "deterministic",
+ "target": "ASCON-AEAD128",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "D(E(x)) = x untuk 100% kasus"
+ },
+ "decision": "D(E(x)) = x untuk 100% kasus"
+}

@@ -1,0 +1,36 @@
+{
+ "id": "kat__CHACHA20-256",
+ "generator": "kat",
+ "kind": "deterministic",
+ "target": "CHACHA20-256",
+ "source": "HASIL UJI LANGSUNG (dicocokkan dengan LITERATUR/ACUAN)",
+ "status": "COCOK_VEKTOR_RESMI",
+ "references": [
+  "RFC 8439 §2.3.2, §2.4.2, A.1"
+ ],
+ "independent": [
+  "core/chacha20.py"
+ ],
+ "summary": {
+  "total": 3,
+  "matched": 3
+ },
+ "vectors": [
+  {
+   "id": "RFC8439-2.3.2",
+   "source": "RFC 8439 §2.3.2 (block function)",
+   "match": true
+  },
+  {
+   "id": "RFC8439-2.4.2",
+   "source": "RFC 8439 §2.4.2 (encryption, 'sunscreen')",
+   "match": true
+  },
+  {
+   "id": "RFC8439-A.1-1",
+   "source": "RFC 8439 Appendix A.1 Test Vector #1",
+   "match": true
+  }
+ ],
+ "decision": "Deterministik: keluaran produk identik 100% dengan expected; vektor 'invalid' wajib ditolak"
+}

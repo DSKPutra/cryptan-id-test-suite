@@ -1,0 +1,12 @@
+{
+ "id": "ssp_lifecycle__FFDHE3072",
+ "generator": "ssp_lifecycle",
+ "kind": "deterministic",
+ "target": "FFDHE3072",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Setiap transisi sesuai kebijakan; kunci termusnahkan"
+ },
+ "decision": "Setiap transisi sesuai kebijakan; kunci termusnahkan"
+}

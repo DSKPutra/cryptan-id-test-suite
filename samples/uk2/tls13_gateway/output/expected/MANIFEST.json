@@ -1,0 +1,960 @@
+[
+ {
+  "file": "expected/attack_margin__AES-256-GCM.json",
+  "sha256": "88527692264442671b40821f8508816de53c0a845a1550a099dddf91b63a6881",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "attack_margin__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "attack_margin",
+  "summary": null
+ },
+ {
+  "file": "expected/attack_margin__HKDF.json",
+  "sha256": "1df1bdd1787c0ce6219b7003e3fcd9930c3df7bb6ffb10483957be14739306c2",
+  "status": "PERLU_VERIFIKASI",
+  "kind": "cryptanalytic",
+  "id": "attack_margin__HKDF",
+  "target": "HKDF",
+  "generator": "attack_margin",
+  "summary": null
+ },
+ {
+  "file": "expected/attack_margin__SHA-384.json",
+  "sha256": "469f576ec0f7096a8afa7ad59d12d21daab6121aabe4958c599dca4d0b80a8da",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "attack_margin__SHA-384",
+  "target": "SHA-384",
+  "generator": "attack_margin",
+  "summary": null
+ },
+ {
+  "file": "expected/avalanche_sp80022__AES-256-GCM.json",
+  "sha256": "d2a3e8f46267afb5ebd81981a5ca8fa1efd80493347bd0b891846b6989efc64c",
+  "status": "KRITERIA",
+  "kind": "statistical",
+  "id": "avalanche_sp80022__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "avalanche_sp80022",
+  "summary": null
+ },
+ {
+  "file": "expected/avalanche_sp80022__HKDF.json",
+  "sha256": "bb206c82428f5eff6f178947c4578d79f66dbb6cf6d510e081d76667ec739921",
+  "status": "KRITERIA",
+  "kind": "statistical",
+  "id": "avalanche_sp80022__HKDF",
+  "target": "HKDF",
+  "generator": "avalanche_sp80022",
+  "summary": null
+ },
+ {
+  "file": "expected/avalanche_sp80022__SHA-384.json",
+  "sha256": "bedd99440aa4757bcfeedb910c1ec622bc401c34a941bdf4d1277abfc6e8324a",
+  "status": "KRITERIA",
+  "kind": "statistical",
+  "id": "avalanche_sp80022__SHA-384",
+  "target": "SHA-384",
+  "generator": "avalanche_sp80022",
+  "summary": null
+ },
+ {
+  "file": "expected/curve_points__ECDSA-P384.json",
+  "sha256": "83c50eef835c9c1c7b2f6ef7f34b435732b6f26a4cf126abaac401f9ee55b30b",
+  "status": "PERLU_VERIFIKASI",
+  "kind": "deterministic",
+  "id": "curve_points__ECDSA-P384",
+  "target": "ECDSA-P384",
+  "generator": "curve_points",
+  "summary": null
+ },
+ {
+  "file": "expected/data_limit__AES-256-GCM.json",
+  "sha256": "b571a277707e64cfdcb921702478a84fe74e80c206cd73a58f397c01b7b08527",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "data_limit__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "data_limit",
+  "summary": null
+ },
+ {
+  "file": "expected/domain_params__ECDSA-P384.json",
+  "sha256": "f375ffa0b05ed27ce90806c0cd2a1254f0ce8f3fb12c2dcc33520a45f395da5f",
+  "status": "PERLU_VERIFIKASI",
+  "kind": "deterministic",
+  "id": "domain_params__ECDSA-P384",
+  "target": "ECDSA-P384",
+  "generator": "domain_params",
+  "summary": null
+ },
+ {
+  "file": "expected/error_handling__AES-256-GCM.json",
+  "sha256": "1f0ac51e7739470bd71a51ee8715ad45e14bd9d88a49b85fa1a062c252c4e3bc",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "error_handling__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "error_handling",
+  "summary": null
+ },
+ {
+  "file": "expected/error_handling__ECDH-P384.json",
+  "sha256": "0501747f89dc1d701d7e7ac494a7a9728345339b78682bc9310cf30326313d39",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "error_handling__ECDH-P384",
+  "target": "ECDH-P384",
+  "generator": "error_handling",
+  "summary": null
+ },
+ {
+  "file": "expected/error_handling__ECDSA-P384.json",
+  "sha256": "000ac703a09711a9257aec57953aea7bf9a61f7442a90bb5a1ae1622767e05cb",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "error_handling__ECDSA-P384",
+  "target": "ECDSA-P384",
+  "generator": "error_handling",
+  "summary": null
+ },
+ {
+  "file": "expected/error_handling__HKDF.json",
+  "sha256": "0e3015a78ebb068b826e01a221d04a775126e1d6613d65fa6d3a1e9940ae6028",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "error_handling__HKDF",
+  "target": "HKDF",
+  "generator": "error_handling",
+  "summary": null
+ },
+ {
+  "file": "expected/error_handling__ML-KEM-768.json",
+  "sha256": "c8fe3f93b5ce868228cb3e615b1806e98bf28313a2521a13b158ce91fe9b7cd8",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "error_handling__ML-KEM-768",
+  "target": "ML-KEM-768",
+  "generator": "error_handling",
+  "summary": null
+ },
+ {
+  "file": "expected/error_handling__SHA-384.json",
+  "sha256": "0f0fd26dc28515314a7c89d7f84d6d4af839e19fbd38914d32e2e5a8c796bcb8",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "error_handling__SHA-384",
+  "target": "SHA-384",
+  "generator": "error_handling",
+  "summary": null
+ },
+ {
+  "file": "expected/error_handling__TLS_1.3.json",
+  "sha256": "870ba2c17787644701349001422a9f9817afb9476f787e155465a32f04ed4199",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "error_handling__TLS_1.3",
+  "target": "TLS 1.3",
+  "generator": "error_handling",
+  "summary": null
+ },
+ {
+  "file": "expected/error_handling__X25519.json",
+  "sha256": "91dec693d9936d003582ee1c87204b5d3d2e8bf2bcc73f770fda230379c0bd84",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "error_handling__X25519",
+  "target": "X25519",
+  "generator": "error_handling",
+  "summary": null
+ },
+ {
+  "file": "expected/formal__TLS_1.3.json",
+  "sha256": "11cb42d7a67f05d3da369e0cd2bcd31f41f9c6680608a862c16ba6ccaf52ae96",
+  "status": "PERLU_VERIFIKASI",
+  "kind": "cryptanalytic",
+  "id": "formal__TLS_1.3",
+  "target": "TLS 1.3",
+  "generator": "formal",
+  "summary": null
+ },
+ {
+  "file": "expected/fuzz__AES-256-GCM.json",
+  "sha256": "707c34e128cb4619355ad9dfda461fc97952f106295b47a53b08479eeecabf80",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "fuzz__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "fuzz",
+  "summary": null
+ },
+ {
+  "file": "expected/fuzz__ECDH-P384.json",
+  "sha256": "4eca92a2a35501b2867386ad1bf9d8ad7588c059863815312d7c0fa5c4401ec7",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "fuzz__ECDH-P384",
+  "target": "ECDH-P384",
+  "generator": "fuzz",
+  "summary": null
+ },
+ {
+  "file": "expected/fuzz__ECDSA-P384.json",
+  "sha256": "899cd6adc2ab5a8d3bb027af326b7115310ea9615d6029dc2843630a651b8488",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "fuzz__ECDSA-P384",
+  "target": "ECDSA-P384",
+  "generator": "fuzz",
+  "summary": null
+ },
+ {
+  "file": "expected/fuzz__HKDF.json",
+  "sha256": "dafbc46c0c7e8cd42cb0258d073b4c2e88d253b965aeaae65fa9125902a8fcfc",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "fuzz__HKDF",
+  "target": "HKDF",
+  "generator": "fuzz",
+  "summary": null
+ },
+ {
+  "file": "expected/fuzz__ML-KEM-768.json",
+  "sha256": "72785854ac0ee2287b9360666797a80d3b24e8fffb75508a8e9e4cc77f8f78ce",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "fuzz__ML-KEM-768",
+  "target": "ML-KEM-768",
+  "generator": "fuzz",
+  "summary": null
+ },
+ {
+  "file": "expected/fuzz__SHA-384.json",
+  "sha256": "1c9e95198b999573935afd6f8aa48ecc2cacf60d1e1d99d32555590a4e5bbaf6",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "fuzz__SHA-384",
+  "target": "SHA-384",
+  "generator": "fuzz",
+  "summary": null
+ },
+ {
+  "file": "expected/fuzz__TLS_1.3.json",
+  "sha256": "16d14360e93804ea35dd9b4b6854b3473ec69ba7be79c6824f802feb1f1cb1d6",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "fuzz__TLS_1.3",
+  "target": "TLS 1.3",
+  "generator": "fuzz",
+  "summary": null
+ },
+ {
+  "file": "expected/fuzz__X25519.json",
+  "sha256": "a4b4860d02d4d37409a179a90547e7c94633e0db46d1975dce675414edbd7662",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "fuzz__X25519",
+  "target": "X25519",
+  "generator": "fuzz",
+  "summary": null
+ },
+ {
+  "file": "expected/generic_bound__HKDF.json",
+  "sha256": "83d0792ebefcc0fce740e2dde59476a6d7743e461fc8ad818091d2a964c1c3fd",
+  "status": "PERLU_VERIFIKASI",
+  "kind": "cryptanalytic",
+  "id": "generic_bound__HKDF",
+  "target": "HKDF",
+  "generator": "generic_bound",
+  "summary": null
+ },
+ {
+  "file": "expected/generic_bound__SHA-384.json",
+  "sha256": "6c5374ca4d3a534d6d2a70718765d0b6e1ffc9f6a336c11addf549445d5c4c08",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "generic_bound__SHA-384",
+  "target": "SHA-384",
+  "generator": "generic_bound",
+  "summary": null
+ },
+ {
+  "file": "expected/hash_boundaries__SHA-384.json",
+  "sha256": "f1c022d02827c04b8889917cd8f2c0af13598bde69aab5e0cc9e69892e9182a3",
+  "status": "COCOK_VEKTOR_RESMI",
+  "kind": "deterministic",
+  "id": "hash_boundaries__SHA-384",
+  "target": "SHA-384",
+  "generator": "hash_boundaries",
+  "summary": {
+   "total": 14,
+   "matched": 14
+  }
+ },
+ {
+  "file": "expected/hybrid__TLS_1.3.json",
+  "sha256": "25876e44c2b16e438bdd7e3e8c2578399e0692b20e24d28411c4bc65123d2255",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "hybrid__TLS_1.3",
+  "target": "TLS 1.3",
+  "generator": "hybrid",
+  "summary": null
+ },
+ {
+  "file": "expected/interop__AES-256-GCM.json",
+  "sha256": "c3fd2e9032182df76c3405af2bae8bb6cfc297fc25c73865e3f40f67423ea703",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "interop__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "interop",
+  "summary": null
+ },
+ {
+  "file": "expected/interop__ECDH-P384.json",
+  "sha256": "248e411ba8ab7962f426a18e0963465c097e19463b06ae0f29a4d6e55d9511f2",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "interop__ECDH-P384",
+  "target": "ECDH-P384",
+  "generator": "interop",
+  "summary": null
+ },
+ {
+  "file": "expected/interop__ECDSA-P384.json",
+  "sha256": "b69dd3a4b9d29cf397d331825bedd47cde2f025313fc17573ff002b1b21c6e41",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "interop__ECDSA-P384",
+  "target": "ECDSA-P384",
+  "generator": "interop",
+  "summary": null
+ },
+ {
+  "file": "expected/interop__HKDF.json",
+  "sha256": "b2f772593e22e8d8dec5ed41f40735bce19314ff9520efa7ea98b4472f080d9d",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "interop__HKDF",
+  "target": "HKDF",
+  "generator": "interop",
+  "summary": null
+ },
+ {
+  "file": "expected/interop__ML-KEM-768.json",
+  "sha256": "492f4154623a6fa5d7986bfa5077accf779d8e82b51a76cddcce4aea6a48d703",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "interop__ML-KEM-768",
+  "target": "ML-KEM-768",
+  "generator": "interop",
+  "summary": null
+ },
+ {
+  "file": "expected/interop__SHA-384.json",
+  "sha256": "65563f7481293e7a90ee72f819cfdb2be962ef0a2575e47247131a48333296d2",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "interop__SHA-384",
+  "target": "SHA-384",
+  "generator": "interop",
+  "summary": null
+ },
+ {
+  "file": "expected/interop__TLS_1.3.json",
+  "sha256": "03f4d7be8ca9ebb0890c593025686978a02a18f78056a0ba5c79e05770270fe5",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "interop__TLS_1.3",
+  "target": "TLS 1.3",
+  "generator": "interop",
+  "summary": null
+ },
+ {
+  "file": "expected/interop__X25519.json",
+  "sha256": "d92849305bb376f2515a1692a06f6882678bd5756fa77aa919ada80d10aac62b",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "interop__X25519",
+  "target": "X25519",
+  "generator": "interop",
+  "summary": null
+ },
+ {
+  "file": "expected/kat__AES-256-GCM.json",
+  "sha256": "0f59a33f04b0a9e0e46b8137c93b952769d05d8ea8760bdc8e012ae6a1b234d5",
+  "status": "COCOK_VEKTOR_RESMI",
+  "kind": "deterministic",
+  "id": "kat__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "kat",
+  "summary": {
+   "total": 66,
+   "matched": 66
+  }
+ },
+ {
+  "file": "expected/kat__ECDH-P384.json",
+  "sha256": "3bfdb1e13c4600602c90934b207776334bf19bd1cc0fd00db540a6b39f307d1c",
+  "status": "COCOK_VEKTOR_RESMI",
+  "kind": "deterministic",
+  "id": "kat__ECDH-P384",
+  "target": "ECDH-P384",
+  "generator": "kat",
+  "summary": {
+   "total": 1047,
+   "matched": 1047
+  }
+ },
+ {
+  "file": "expected/kat__HKDF.json",
+  "sha256": "26fc68a6b46e1419f2a731c8dfe35287647d015d20e1593aa39ad1a2fcc0ba2c",
+  "status": "PERLU_VERIFIKASI",
+  "kind": "deterministic",
+  "id": "kat__HKDF",
+  "target": "HKDF",
+  "generator": "kat",
+  "summary": null
+ },
+ {
+  "file": "expected/kat__ML-KEM-768.json",
+  "sha256": "e9164ebaad954160caa91ae07834a8ddb141ce87d9ecf33b7dc47123bc860da0",
+  "status": "PERLU_VERIFIKASI",
+  "kind": "deterministic",
+  "id": "kat__ML-KEM-768",
+  "target": "ML-KEM-768",
+  "generator": "kat",
+  "summary": null
+ },
+ {
+  "file": "expected/kat__X25519.json",
+  "sha256": "b2e8dc378d852a7d04e938eb3f929e2ddc690eaa31c5e4b5509bc5b8620dd3eb",
+  "status": "COCOK_VEKTOR_RESMI",
+  "kind": "deterministic",
+  "id": "kat__X25519",
+  "target": "X25519",
+  "generator": "kat",
+  "summary": {
+   "total": 518,
+   "matched": 518
+  }
+ },
+ {
+  "file": "expected/kat_gcm256__TLS_1.3.json",
+  "sha256": "45e694faed1f9086b857f5da850db78df4504896d8aa6a87d9ba0d73d0f0413c",
+  "status": "PERLU_VERIFIKASI",
+  "kind": "deterministic",
+  "id": "kat_gcm256__TLS_1.3",
+  "target": "TLS 1.3",
+  "generator": "kat_gcm256",
+  "summary": null
+ },
+ {
+  "file": "expected/keygen_validate__ECDH-P384.json",
+  "sha256": "592ce0b4c7c6918b4d63f8191883b1757163a709bb9748f74a4939a8b9acc12e",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "keygen_validate__ECDH-P384",
+  "target": "ECDH-P384",
+  "generator": "keygen_validate",
+  "summary": null
+ },
+ {
+  "file": "expected/keygen_validate__ML-KEM-768.json",
+  "sha256": "f31246f1be140cf4b0248720a9f8e3a46029bbc38e6d72d47043ba8edcc5d823",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "keygen_validate__ML-KEM-768",
+  "target": "ML-KEM-768",
+  "generator": "keygen_validate",
+  "summary": null
+ },
+ {
+  "file": "expected/keygen_validate__X25519.json",
+  "sha256": "20cf29f9f9a1eee222a69c058ab018f97d92fb62fb7a71948006e56d76b50ace",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "keygen_validate__X25519",
+  "target": "X25519",
+  "generator": "keygen_validate",
+  "summary": null
+ },
+ {
+  "file": "expected/mct__AES-256-GCM.json",
+  "sha256": "5909577e4030f3b3e272ea84dbc09a4f472a3ab13a2dffc2f03315c5249d5f5a",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "mct__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "mct",
+  "summary": null
+ },
+ {
+  "file": "expected/mct__SHA-384.json",
+  "sha256": "5646a3d56f444350e74e638ac5db69716fb7151d071c659ac01f388e33f84940",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "mct__SHA-384",
+  "target": "SHA-384",
+  "generator": "mct",
+  "summary": null
+ },
+ {
+  "file": "expected/negotiation__TLS_1.3.json",
+  "sha256": "88250a29b8e52c40e21c1eca5d3064f7535bd9ce5036d48323dc86bb3e695f40",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "negotiation__TLS_1.3",
+  "target": "TLS 1.3",
+  "generator": "negotiation",
+  "summary": null
+ },
+ {
+  "file": "expected/nonce_reuse__AES-256-GCM.json",
+  "sha256": "aacf7248f558d335f5e1b5456c53a3b842aee32179c6075b9713804b82d2cb30",
+  "status": "KRITERIA",
+  "kind": "negative",
+  "id": "nonce_reuse__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "nonce_reuse",
+  "summary": null
+ },
+ {
+  "file": "expected/nonce_stats__ECDSA-P384.json",
+  "sha256": "cd968c4accce051de7571cf8c386a213dd0aeb85c59f35c4e0fb56bc6d473ac2",
+  "status": "KRITERIA",
+  "kind": "statistical",
+  "id": "nonce_stats__ECDSA-P384",
+  "target": "ECDSA-P384",
+  "generator": "nonce_stats",
+  "summary": null
+ },
+ {
+  "file": "expected/oracle__ECDH-P384.json",
+  "sha256": "9d0ee0e87422cb61274baa6b2da64804007ee741128da64a080252416d3351ba",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "oracle__ECDH-P384",
+  "target": "ECDH-P384",
+  "generator": "oracle",
+  "summary": null
+ },
+ {
+  "file": "expected/oracle__ML-KEM-768.json",
+  "sha256": "82d891eec640752fd92aae235df6448783a7b1618b649a8a9b94226dc3c7a795",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "oracle__ML-KEM-768",
+  "target": "ML-KEM-768",
+  "generator": "oracle",
+  "summary": null
+ },
+ {
+  "file": "expected/oracle__X25519.json",
+  "sha256": "a3275a5f811d92a497479611fbb897cd78dc6f232506518d6ba89584294ffb12",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "oracle__X25519",
+  "target": "X25519",
+  "generator": "oracle",
+  "summary": null
+ },
+ {
+  "file": "expected/performance__TLS_1.3.json",
+  "sha256": "f4b6655548f280e35ca012b6912a5bcc2b398ddefaf0adca90c61ddb84682ff9",
+  "status": "PERLU_VERIFIKASI",
+  "kind": "implementation",
+  "id": "performance__TLS_1.3",
+  "target": "TLS 1.3",
+  "generator": "performance",
+  "summary": null
+ },
+ {
+  "file": "expected/pubkey_negative__ECDSA-P384.json",
+  "sha256": "c68a3daff15908396d2b5a720dee8cc5b4e8ea1abd44d988c58cff2130fb0f0d",
+  "status": "KRITERIA",
+  "kind": "negative",
+  "id": "pubkey_negative__ECDSA-P384",
+  "target": "ECDSA-P384",
+  "generator": "pubkey_negative",
+  "summary": null
+ },
+ {
+  "file": "expected/pubkey_negative__TLS_1.3.json",
+  "sha256": "b454b08520e460ad30946f476d9294d15e7254d53a1c9d89c85215571d2f75dd",
+  "status": "KRITERIA",
+  "kind": "negative",
+  "id": "pubkey_negative__TLS_1.3",
+  "target": "TLS 1.3",
+  "generator": "pubkey_negative",
+  "summary": null
+ },
+ {
+  "file": "expected/reject_params__AES-256-GCM.json",
+  "sha256": "ec4c98e125c8b59ef238ffded03bf72def019b808721941c474788a460c7a8f7",
+  "status": "KRITERIA",
+  "kind": "negative",
+  "id": "reject_params__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "reject_params",
+  "summary": null
+ },
+ {
+  "file": "expected/reject_params__ECDH-P384.json",
+  "sha256": "db4cf9cbac2fd5a7bd2a1f91a315be80a8b4164cc4c629e747580cf0595cb02d",
+  "status": "KRITERIA",
+  "kind": "negative",
+  "id": "reject_params__ECDH-P384",
+  "target": "ECDH-P384",
+  "generator": "reject_params",
+  "summary": null
+ },
+ {
+  "file": "expected/reject_params__HKDF.json",
+  "sha256": "7fe38d435ce1a35c9103ed2577f39f2f179ca144eb412263ef131e97842b795a",
+  "status": "KRITERIA",
+  "kind": "negative",
+  "id": "reject_params__HKDF",
+  "target": "HKDF",
+  "generator": "reject_params",
+  "summary": null
+ },
+ {
+  "file": "expected/reject_params__ML-KEM-768.json",
+  "sha256": "bfc3d1f9405df7c7961e0dbd745553759b73babe960e363e641a0352a34397c1",
+  "status": "KRITERIA",
+  "kind": "negative",
+  "id": "reject_params__ML-KEM-768",
+  "target": "ML-KEM-768",
+  "generator": "reject_params",
+  "summary": null
+ },
+ {
+  "file": "expected/reject_params__SHA-384.json",
+  "sha256": "6e1149cef2ec3446775007ae3486d582e9fee10f1027b7b0f281ea8539ef4476",
+  "status": "KRITERIA",
+  "kind": "negative",
+  "id": "reject_params__SHA-384",
+  "target": "SHA-384",
+  "generator": "reject_params",
+  "summary": null
+ },
+ {
+  "file": "expected/reject_params__TLS_1.3.json",
+  "sha256": "0440c21e04961f99aca979dd4e55a31be04ae2406f6098841270f51fa65bab85",
+  "status": "KRITERIA",
+  "kind": "negative",
+  "id": "reject_params__TLS_1.3",
+  "target": "TLS 1.3",
+  "generator": "reject_params",
+  "summary": null
+ },
+ {
+  "file": "expected/reject_params__X25519.json",
+  "sha256": "24b47247451ce8bff472a1716a967125e76c4587daae89fa37dcdb058877abb6",
+  "status": "KRITERIA",
+  "kind": "negative",
+  "id": "reject_params__X25519",
+  "target": "X25519",
+  "generator": "reject_params",
+  "summary": null
+ },
+ {
+  "file": "expected/rfc6979__ECDSA-P384.json",
+  "sha256": "7fdb67c736ef8c90e33f3318c11a24fcef1ea10c3562f0150c83fa1f29087958",
+  "status": "COCOK_VEKTOR_RESMI",
+  "kind": "deterministic",
+  "id": "rfc6979__ECDSA-P384",
+  "target": "ECDSA-P384",
+  "generator": "rfc6979",
+  "summary": {
+   "total": 4,
+   "matched": 4
+  }
+ },
+ {
+  "file": "expected/rfc8448__TLS_1.3.json",
+  "sha256": "fdaed05de751300ba943462a6c8c4abc7edb289b2ed8f09531a5aedfeeaa421f",
+  "status": "COCOK_VEKTOR_RESMI",
+  "kind": "deterministic",
+  "id": "rfc8448__TLS_1.3",
+  "target": "TLS 1.3",
+  "generator": "rfc8448",
+  "summary": {
+   "total": 22,
+   "matched": 22
+  }
+ },
+ {
+  "file": "expected/roundtrip__AES-256-GCM.json",
+  "sha256": "d6ce4974999db6ad62401a288ed314844cd102826017b75b0444b45a88f4a71e",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "roundtrip__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "roundtrip",
+  "summary": null
+ },
+ {
+  "file": "expected/sbox_props__AES-256-GCM.json",
+  "sha256": "cb40358b46c35e46a349f8cc3b1a7c7e9977bd1873ac1d1299c7d7859760cb03",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "sbox_props__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "sbox_props",
+  "summary": null
+ },
+ {
+  "file": "expected/sigver__ECDSA-P384.json",
+  "sha256": "0653bee4a771bdedd7007d06f2229fbf0d2eead9ed2544074cd7de1882c08619",
+  "status": "PERLU_VERIFIKASI",
+  "kind": "deterministic",
+  "id": "sigver__ECDSA-P384",
+  "target": "ECDSA-P384",
+  "generator": "sigver",
+  "summary": null
+ },
+ {
+  "file": "expected/ssp_lifecycle__AES-256-GCM.json",
+  "sha256": "a25389c85d5a189f826cf5c1193bc6f7924ab0acfd21015079341e8e62761f99",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "ssp_lifecycle__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "ssp_lifecycle",
+  "summary": null
+ },
+ {
+  "file": "expected/ssp_lifecycle__ECDH-P384.json",
+  "sha256": "3b205c8cc8c17dcd81b04b6c6d17fe6dd481fefdcf52bcb22f14bbc0124c3f94",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "ssp_lifecycle__ECDH-P384",
+  "target": "ECDH-P384",
+  "generator": "ssp_lifecycle",
+  "summary": null
+ },
+ {
+  "file": "expected/ssp_lifecycle__ECDSA-P384.json",
+  "sha256": "830f0a59d70ed9d2c3f08046486d353629d7a51ea3d57224d4484bdadc183781",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "ssp_lifecycle__ECDSA-P384",
+  "target": "ECDSA-P384",
+  "generator": "ssp_lifecycle",
+  "summary": null
+ },
+ {
+  "file": "expected/ssp_lifecycle__HKDF.json",
+  "sha256": "148d2dac4f1b5b618a8da167f2f3a5318f65ff0cead299be2f35e54a6e467ae8",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "ssp_lifecycle__HKDF",
+  "target": "HKDF",
+  "generator": "ssp_lifecycle",
+  "summary": null
+ },
+ {
+  "file": "expected/ssp_lifecycle__ML-KEM-768.json",
+  "sha256": "56c68b798966cbabfb4206289285076a24454391ad00ab1b635952478a3a9887",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "ssp_lifecycle__ML-KEM-768",
+  "target": "ML-KEM-768",
+  "generator": "ssp_lifecycle",
+  "summary": null
+ },
+ {
+  "file": "expected/ssp_lifecycle__SHA-384.json",
+  "sha256": "ff1489f6b2dee4055c0a083c0f92cb2435e678c82e23ca4407801af270fbca2b",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "ssp_lifecycle__SHA-384",
+  "target": "SHA-384",
+  "generator": "ssp_lifecycle",
+  "summary": null
+ },
+ {
+  "file": "expected/ssp_lifecycle__X25519.json",
+  "sha256": "4ee5d419c2195fe8a20ca2ca9d67c41f7ec5cf5a0f1ce559459b7b5c95815014",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "ssp_lifecycle__X25519",
+  "target": "X25519",
+  "generator": "ssp_lifecycle",
+  "summary": null
+ },
+ {
+  "file": "expected/state_machine__TLS_1.3.json",
+  "sha256": "da19aa7f92bd4d48c84e72045c4ba5a6ba56266698e3e2eb12ab015d223349d9",
+  "status": "KRITERIA",
+  "kind": "deterministic",
+  "id": "state_machine__TLS_1.3",
+  "target": "TLS 1.3",
+  "generator": "state_machine",
+  "summary": null
+ },
+ {
+  "file": "expected/strength__AES-256-GCM.json",
+  "sha256": "0d12a4c7a38b594813ee287986b3dc07682a5eb0ad7bf0997e816f4b9d850c80",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "strength__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "strength",
+  "summary": null
+ },
+ {
+  "file": "expected/strength__ECDH-P384.json",
+  "sha256": "9ab39989f7523733f915ff7c15db4997bd0e3c0a5b49eaad83481dc11ab36da0",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "strength__ECDH-P384",
+  "target": "ECDH-P384",
+  "generator": "strength",
+  "summary": null
+ },
+ {
+  "file": "expected/strength__ECDSA-P384.json",
+  "sha256": "5cdee81a95918e07210a469173558de0243d6b2a660ff8e0719a3837f2d52faa",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "strength__ECDSA-P384",
+  "target": "ECDSA-P384",
+  "generator": "strength",
+  "summary": null
+ },
+ {
+  "file": "expected/strength__HKDF.json",
+  "sha256": "4ef1c3dc6d7f8427bf905f6a3d62d8fc6b8466f4dad0ecf8438e70edcd795bc3",
+  "status": "PERLU_VERIFIKASI",
+  "kind": "cryptanalytic",
+  "id": "strength__HKDF",
+  "target": "HKDF",
+  "generator": "strength",
+  "summary": null
+ },
+ {
+  "file": "expected/strength__ML-KEM-768.json",
+  "sha256": "de72cfe39994d7f1d22a82db4703a852eb1af04473d2e8c188f23a155a43ab5c",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "strength__ML-KEM-768",
+  "target": "ML-KEM-768",
+  "generator": "strength",
+  "summary": null
+ },
+ {
+  "file": "expected/strength__SHA-384.json",
+  "sha256": "04b28263c0c241a424325d43de4af91f0d77831d89e4a3d26039e363c812cf6f",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "strength__SHA-384",
+  "target": "SHA-384",
+  "generator": "strength",
+  "summary": null
+ },
+ {
+  "file": "expected/strength__X25519.json",
+  "sha256": "5694785ab249469cc18a152f18af19111709be9d419f52ea3f269570903a1ade",
+  "status": "KRITERIA",
+  "kind": "cryptanalytic",
+  "id": "strength__X25519",
+  "target": "X25519",
+  "generator": "strength",
+  "summary": null
+ },
+ {
+  "file": "expected/tvla__AES-256-GCM.json",
+  "sha256": "ee8bb2f70898aeee11ce6d09a60ebd1a03533e3704424a6d3abeab6a51ef289f",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "tvla__AES-256-GCM",
+  "target": "AES-256-GCM",
+  "generator": "tvla",
+  "summary": null
+ },
+ {
+  "file": "expected/tvla__ECDH-P384.json",
+  "sha256": "680b0250a624346f581cf628bf3fc6aa9e502a8575f263b78d8c5ccf9aa4b092",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "tvla__ECDH-P384",
+  "target": "ECDH-P384",
+  "generator": "tvla",
+  "summary": null
+ },
+ {
+  "file": "expected/tvla__ECDSA-P384.json",
+  "sha256": "eecdfb0cfcc87140cb321ee6afdc19356ac35dc54a93d377ea0062aefbc478b6",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "tvla__ECDSA-P384",
+  "target": "ECDSA-P384",
+  "generator": "tvla",
+  "summary": null
+ },
+ {
+  "file": "expected/tvla__HKDF.json",
+  "sha256": "e4e0bc48554baf11ea24cf875515e7f7740d21f8c29b99e3320f1298f14d4cba",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "tvla__HKDF",
+  "target": "HKDF",
+  "generator": "tvla",
+  "summary": null
+ },
+ {
+  "file": "expected/tvla__ML-KEM-768.json",
+  "sha256": "2b4b83fda195b57960dea439816701fe2b58aa98027b04cc0b8db690e7194a21",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "tvla__ML-KEM-768",
+  "target": "ML-KEM-768",
+  "generator": "tvla",
+  "summary": null
+ },
+ {
+  "file": "expected/tvla__SHA-384.json",
+  "sha256": "337ee785b0434727c1f1be336d71d947063f01a4fcd898674c21e093d10427c0",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "tvla__SHA-384",
+  "target": "SHA-384",
+  "generator": "tvla",
+  "summary": null
+ },
+ {
+  "file": "expected/tvla__TLS_1.3.json",
+  "sha256": "1f15ef6ccd5cd9cd189faea9d336dbcf32a0c8f59cb60b09500fdc63f4c41e8d",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "tvla__TLS_1.3",
+  "target": "TLS 1.3",
+  "generator": "tvla",
+  "summary": null
+ },
+ {
+  "file": "expected/tvla__X25519.json",
+  "sha256": "a60f7c54f00a172ec0ee7150b1f0672e7085ead065ba6b9dc8cca64be11eb2b1",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "tvla__X25519",
+  "target": "X25519",
+  "generator": "tvla",
+  "summary": null
+ },
+ {
+  "file": "expected/zeroize__TLS_1.3.json",
+  "sha256": "7d8056c5096e6c5348f47a1778d1dfb8fc03b72cf015c3581454eea4b30ad847",
+  "status": "KRITERIA",
+  "kind": "implementation",
+  "id": "zeroize__TLS_1.3",
+  "target": "TLS 1.3",
+  "generator": "zeroize",
+  "summary": null
+ }
+]

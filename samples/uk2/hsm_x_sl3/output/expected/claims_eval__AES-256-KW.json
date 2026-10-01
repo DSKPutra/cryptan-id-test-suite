@@ -1,0 +1,34 @@
+{
+ "id": "claims_eval__AES-256-KW",
+ "generator": "claims_eval",
+ "kind": "cryptanalytic",
+ "target": "AES-256-KW",
+ "source": "LITERATUR/ACUAN",
+ "status": "KRITERIA",
+ "criteria": {
+  "claimed_security_bits": 256,
+  "min_required_bits": 112,
+  "best_attacks_literature": [
+   {
+    "id": "A-BC-05",
+    "name": "Integral / Square attack (ronde tereduksi)",
+    "time_log2": 9,
+    "status": "praktis (ronde tereduksi)"
+   },
+   {
+    "id": "A-BC-08",
+    "name": "Padding oracle (mode CBC)",
+    "time_log2": 12,
+    "status": "praktis"
+   },
+   {
+    "id": "A-P-11",
+    "name": "RNG lemah saat pembangkitan kunci",
+    "time_log2": 15,
+    "status": "praktis"
+   }
+  ],
+  "rule": "kompleksitas serangan terbaik (ronde penuh) ≥ klaim bit security"
+ },
+ "decision": "Kriptanalitik: Memenuhi bila serangan terbaik ≥ klaim; Memenuhi dengan Catatan bila 112 ≤ klaim < 128 (transisi 2030)"
+}

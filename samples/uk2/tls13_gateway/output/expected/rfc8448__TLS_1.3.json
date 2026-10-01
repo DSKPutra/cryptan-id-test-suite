@@ -1,0 +1,197 @@
+{
+ "id": "rfc8448__TLS_1.3",
+ "generator": "rfc8448",
+ "kind": "deterministic",
+ "target": "TLS 1.3",
+ "source": "HASIL UJI LANGSUNG (dicocokkan dengan LITERATUR/ACUAN)",
+ "status": "COCOK_VEKTOR_RESMI",
+ "references": [
+  "RFC 8448 §3",
+  "RFC 8448 §3 Simple 1-RTT Handshake"
+ ],
+ "independent": [
+  "Python hmac (HKDF RFC 5869)"
+ ],
+ "summary": {
+  "total": 22,
+  "matched": 22
+ },
+ "vectors": [
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 derived",
+   "prk": "33ad0a1c607ec03b09e6cd9893680ce210adf300aa1f2660e1b22e10f170f92a",
+   "info": "00200d746c733133206465726976656420e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected": "6f2615a108c702c5678f54fc9dbab69716c076189c48250cebeac3576c3611ba",
+   "match": true
+  },
+  {
+   "op": "HKDF-Extract",
+   "salt": "6f2615a108c702c5678f54fc9dbab69716c076189c48250cebeac3576c3611ba",
+   "ikm": "8bd4054fb55b9d63fdfbacf9f04b9f0d35e6d63f537563efd46272900f89492d",
+   "expected": "1dc826e93606aa6fdc0aadc12f741b01046aa6b99f691ed221a9f0ca043fbeac",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 c hs traffic",
+   "prk": "1dc826e93606aa6fdc0aadc12f741b01046aa6b99f691ed221a9f0ca043fbeac",
+   "info": "002012746c7331332063206873207472616666696320860c06edc07858ee8e78f0e7428c58edd6b43f2ca3e6e95f02ed063cf0e1cad8",
+   "expected": "b3eddb126e067f35a780b3abf45e2d8f3b1a950738f52e9600746a0e27a55a21",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 s hs traffic",
+   "prk": "1dc826e93606aa6fdc0aadc12f741b01046aa6b99f691ed221a9f0ca043fbeac",
+   "info": "002012746c7331332073206873207472616666696320860c06edc07858ee8e78f0e7428c58edd6b43f2ca3e6e95f02ed063cf0e1cad8",
+   "expected": "b67b7d690cc16c4e75e54213cb2d37b4e9c912bcded9105d42befd59d391ad38",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 derived",
+   "prk": "1dc826e93606aa6fdc0aadc12f741b01046aa6b99f691ed221a9f0ca043fbeac",
+   "info": "00200d746c733133206465726976656420e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected": "43de77e0c77713859a944db9db2590b53190a65b3ee2e4f12dd7a0bb7ce254b4",
+   "match": true
+  },
+  {
+   "op": "HKDF-Extract",
+   "salt": "43de77e0c77713859a944db9db2590b53190a65b3ee2e4f12dd7a0bb7ce254b4",
+   "ikm": "0000000000000000000000000000000000000000000000000000000000000000",
+   "expected": "18df06843d13a08bf2a449844c5f8a478001bc4d4c627984d5a41da8d0402919",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 key",
+   "prk": "b67b7d690cc16c4e75e54213cb2d37b4e9c912bcded9105d42befd59d391ad38",
+   "info": "001009746c733133206b657900",
+   "expected": "3fce516009c21727d0f2e4e86ee403bc",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 iv",
+   "prk": "b67b7d690cc16c4e75e54213cb2d37b4e9c912bcded9105d42befd59d391ad38",
+   "info": "000c08746c73313320697600",
+   "expected": "5d313eb2671276ee13000b30",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 finished",
+   "prk": "b67b7d690cc16c4e75e54213cb2d37b4e9c912bcded9105d42befd59d391ad38",
+   "info": "00200e746c7331332066696e697368656400",
+   "expected": "008d3b66f816ea559f96b537e885c31fc068bf492c652f01f288a1d8cdc19fc8",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 c ap traffic",
+   "prk": "18df06843d13a08bf2a449844c5f8a478001bc4d4c627984d5a41da8d0402919",
+   "info": "002012746c73313320632061702074726166666963209608102a0f1ccc6db6250b7b7e417b1a000eaada3daae4777a7686c9ff83df13",
+   "expected": "9e40646ce79a7f9dc05af8889bce6552875afa0b06df0087f792ebb7c17504a5",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 s ap traffic",
+   "prk": "18df06843d13a08bf2a449844c5f8a478001bc4d4c627984d5a41da8d0402919",
+   "info": "002012746c73313320732061702074726166666963209608102a0f1ccc6db6250b7b7e417b1a000eaada3daae4777a7686c9ff83df13",
+   "expected": "a11af9f05531f856ad47116b45a950328204b4f44bfb6b3a4b4f1f3fcb631643",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 exp master",
+   "prk": "18df06843d13a08bf2a449844c5f8a478001bc4d4c627984d5a41da8d0402919",
+   "info": "002010746c73313320657870206d6173746572209608102a0f1ccc6db6250b7b7e417b1a000eaada3daae4777a7686c9ff83df13",
+   "expected": "fe22f881176eda18eb8f44529e6792c50c9a3f89452f68d8ae311b4309d3cf50",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 key",
+   "prk": "a11af9f05531f856ad47116b45a950328204b4f44bfb6b3a4b4f1f3fcb631643",
+   "info": "001009746c733133206b657900",
+   "expected": "9f02283b6c9c07efc26bb9f2ac92e356",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 iv",
+   "prk": "a11af9f05531f856ad47116b45a950328204b4f44bfb6b3a4b4f1f3fcb631643",
+   "info": "000c08746c73313320697600",
+   "expected": "cf782b88dd83549aadf1e984",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 key",
+   "prk": "b3eddb126e067f35a780b3abf45e2d8f3b1a950738f52e9600746a0e27a55a21",
+   "info": "001009746c733133206b657900",
+   "expected": "dbfaa693d1762c5b666af5d950258d01",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 iv",
+   "prk": "b3eddb126e067f35a780b3abf45e2d8f3b1a950738f52e9600746a0e27a55a21",
+   "info": "000c08746c73313320697600",
+   "expected": "5bd3c71b836e0b76bb73265f",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 derived",
+   "prk": "33ad0a1c607ec03b09e6cd9893680ce210adf300aa1f2660e1b22e10f170f92a",
+   "info": "00200d746c733133206465726976656420e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected": "6f2615a108c702c5678f54fc9dbab69716c076189c48250cebeac3576c3611ba",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 finished",
+   "prk": "b3eddb126e067f35a780b3abf45e2d8f3b1a950738f52e9600746a0e27a55a21",
+   "info": "00200e746c7331332066696e697368656400",
+   "expected": "b80ad01015fb2f0bd65ff7d4da5d6bf83f84821d1f87fdc7d3c75b5a7b42d9c4",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 key",
+   "prk": "9e40646ce79a7f9dc05af8889bce6552875afa0b06df0087f792ebb7c17504a5",
+   "info": "001009746c733133206b657900",
+   "expected": "17422dda596ed5d9acd890e3c63f5051",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 iv",
+   "prk": "9e40646ce79a7f9dc05af8889bce6552875afa0b06df0087f792ebb7c17504a5",
+   "info": "000c08746c73313320697600",
+   "expected": "5b78923dee08579033e523d9",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 res master",
+   "prk": "18df06843d13a08bf2a449844c5f8a478001bc4d4c627984d5a41da8d0402919",
+   "info": "002010746c73313320726573206d617374657220209145a96ee8e2a122ff810047cc952684658d6049e86429426db87c54ad143d",
+   "expected": "7df235f2031d2a051287d02b0241b0bfdaf86cc856231f2d5aba46c434ec196c",
+   "match": true
+  },
+  {
+   "op": "HKDF-Expand-Label",
+   "label": "tls13 resumption",
+   "prk": "7df235f2031d2a051287d02b0241b0bfdaf86cc856231f2d5aba46c434ec196c",
+   "info": "002010746c73313320726573756d7074696f6e020000",
+   "expected": "4ecd0eb6ec3b4d87f5d6028f922ca4c5851a277fd41311c9e62d2c9492e1c4f3",
+   "match": true
+  }
+ ],
+ "decision": "Deterministik: keluaran produk identik 100% dengan expected; vektor 'invalid' wajib ditolak",
+ "note": "Jejak RFC 8448 memakai SHA-256; untuk TLS_AES_256_GCM_SHA384 tidak ada jejak resmi → PERLU_VERIFIKASI (gunakan vektor interop)"
+}

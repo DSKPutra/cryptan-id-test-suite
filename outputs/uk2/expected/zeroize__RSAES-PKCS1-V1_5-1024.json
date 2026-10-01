@@ -1,0 +1,12 @@
+{
+ "id": "zeroize__RSAES-PKCS1-V1_5-1024",
+ "generator": "zeroize",
+ "kind": "implementation",
+ "target": "RSAES-PKCS1-V1_5-1024",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "residual_key_occurrences": 0
+ },
+ "decision": "Kunci privat tidak tersisa/terkunci sesuai kebijakan"
+}

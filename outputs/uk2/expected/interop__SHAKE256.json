@@ -1,0 +1,12 @@
+{
+ "id": "interop__SHAKE256",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "SHAKE256",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Konsisten"
+ },
+ "decision": "Konsisten"
+}

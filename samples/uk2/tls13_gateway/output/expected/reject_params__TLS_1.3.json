@@ -1,0 +1,92 @@
+{
+ "id": "reject_params__TLS_1.3",
+ "generator": "reject_params",
+ "kind": "negative",
+ "target": "TLS 1.3",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "decision": "Seluruh masukan negatif DITOLAK",
+ "expected_errors": [
+  "E_AUTH_FAILED",
+  "E_DECRYPT",
+  "E_FORMAT",
+  "E_INVALID_KEY",
+  "E_INVALID_PARAMETER",
+  "E_STATE"
+ ],
+ "reject": true,
+ "cases": [
+  {
+   "param": "PR-VER",
+   "name": "Versi protokol",
+   "class": "Konfigurasi",
+   "value": "TLS 1.2",
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PR-VER",
+   "name": "Versi protokol",
+   "class": "Konfigurasi",
+   "value": "TLS 1.1",
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PR-VER",
+   "name": "Versi protokol",
+   "class": "Konfigurasi",
+   "value": "TLS 1.0",
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PR-VER",
+   "name": "Versi protokol",
+   "class": "Konfigurasi",
+   "value": "SSL 3.0",
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PR-SUITE",
+   "name": "Cipher suite",
+   "class": "Konfigurasi",
+   "value": "CBC (TLS 1.2)",
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PR-SUITE",
+   "name": "Cipher suite",
+   "class": "Konfigurasi",
+   "value": "RC4",
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PR-SUITE",
+   "name": "Cipher suite",
+   "class": "Konfigurasi",
+   "value": "3DES",
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  },
+  {
+   "param": "PR-SUITE",
+   "name": "Cipher suite",
+   "class": "Konfigurasi",
+   "value": "NULL",
+   "technique": "NEG",
+   "in_spec": false,
+   "expect": "DITOLAK"
+  }
+ ]
+}

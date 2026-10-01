@@ -1,0 +1,12 @@
+{
+ "id": "interop__PRESENT-80",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "PRESENT-80",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Interoperabel dua arah 100%"
+ },
+ "decision": "Interoperabel dua arah 100%"
+}

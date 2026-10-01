@@ -1,0 +1,13 @@
+{
+ "id": "performance__ASCON-AEAD128",
+ "generator": "performance",
+ "kind": "implementation",
+ "target": "ASCON-AEAD128",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "PERLU_VERIFIKASI",
+ "criteria": {
+  "criterion": "sesuai klaim kinerja produk",
+  "status": "PERLU_VERIFIKASI"
+ },
+ "decision": "Sesuai klaim kinerja; tanpa degradasi keamanan/kebocoran memori"
+}

@@ -1,0 +1,13 @@
+{
+ "id": "error_handling__TLS_1.3",
+ "generator": "error_handling",
+ "kind": "implementation",
+ "target": "TLS 1.3",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "defined_error_codes": true,
+  "secret_in_logs": 0
+ },
+ "decision": "Sesi setengah jadi dibersihkan; tanpa kebocoran state"
+}

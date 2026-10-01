@@ -1,0 +1,12 @@
+{
+ "id": "state_machine__TLS_1.3",
+ "generator": "state_machine",
+ "kind": "deterministic",
+ "target": "TLS 1.3",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Urutan pesan & state sesuai RFC 8446"
+ },
+ "decision": "Urutan pesan & state sesuai RFC 8446"
+}

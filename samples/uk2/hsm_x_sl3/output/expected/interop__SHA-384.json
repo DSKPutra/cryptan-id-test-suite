@@ -1,0 +1,12 @@
+{
+ "id": "interop__SHA-384",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "SHA-384",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Seluruh fungsi yang dibutuhkan tersedia"
+ },
+ "decision": "Seluruh fungsi yang dibutuhkan tersedia"
+}

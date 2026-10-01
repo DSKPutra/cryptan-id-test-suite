@@ -1,0 +1,12 @@
+{
+ "id": "role_matrix__ML-KEM-768",
+ "generator": "role_matrix",
+ "kind": "deterministic",
+ "target": "ML-KEM-768",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Akses sesuai matriks peran–layanan"
+ },
+ "decision": "Akses sesuai matriks peran–layanan"
+}

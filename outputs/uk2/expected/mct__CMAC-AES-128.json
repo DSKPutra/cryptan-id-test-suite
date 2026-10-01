@@ -1,0 +1,12 @@
+{
+ "id": "mct__CMAC-AES-128",
+ "generator": "mct",
+ "kind": "deterministic",
+ "target": "CMAC-AES-128",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "100% checkpoint identik"
+ },
+ "decision": "100% checkpoint identik"
+}

@@ -1,0 +1,14 @@
+{
+ "id": "tvla__SLH-DSA-SHA2-128S",
+ "generator": "tvla",
+ "kind": "implementation",
+ "target": "SLH-DSA-SHA2-128S",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "tvla_abs_t_max": 4.5,
+  "measurements_min": 100000,
+  "method": "Welch t fixed-vs-random (ISO/IEC 17825)"
+ },
+ "decision": "|t| < 4,5"
+}

@@ -1,0 +1,56 @@
+{
+ "id": "rfc6979__ECDSA-P256",
+ "generator": "rfc6979",
+ "kind": "deterministic",
+ "target": "ECDSA-P256",
+ "source": "HASIL UJI LANGSUNG (dicocokkan dengan LITERATUR/ACUAN)",
+ "status": "COCOK_VEKTOR_RESMI",
+ "references": [
+  "RFC 6979 A.2.5"
+ ],
+ "independent": [
+  "core/ecdsa_p256.py"
+ ],
+ "summary": {
+  "total": 4,
+  "matched": 4
+ },
+ "vectors": [
+  {
+   "id": "RFC6979-A.2.5-pubkey",
+   "source": "RFC 6979 Appendix A.2.5 (ECDSA, 256 bits, prime field)",
+   "match": true
+  },
+  {
+   "id": "RFC6979-A.2.5-sample-SHA256",
+   "source": "RFC 6979 Appendix A.2.5 (ECDSA, 256 bits, prime field)",
+   "match": true,
+   "hash": "sha256",
+   "msg_ascii": "sample",
+   "k": "A6E3C57DD01ABE90086538398355DD4C3B17AA873382B0F24D6129493D8AAD60",
+   "r": "EFD48B2AACB6A8FD1140DD9CD45E81D69D2C877B56AAF991C34D0EA84EAF3716",
+   "s": "F7CB1C942D657C41D436C7A1B6E29F65F3E900DBB9AFF4064DC4AB2F843ACDA8"
+  },
+  {
+   "id": "RFC6979-A.2.5-test-SHA256",
+   "source": "RFC 6979 Appendix A.2.5 (ECDSA, 256 bits, prime field)",
+   "match": true,
+   "hash": "sha256",
+   "msg_ascii": "test",
+   "k": "D16B6AE827F17175E040871A1C7EC3500192C4C92677336EC2537ACAEE0008E0",
+   "r": "F1ABB023518351CD71D881567B1EA663ED3EFCF6C5132B354F28D3B0B7D38367",
+   "s": "019F4113742A2B14BD25926B49C649155F267E60D3814B4C0CC84250E46F0083"
+  },
+  {
+   "id": "RFC6979-A.2.5-sample-SHA1",
+   "source": "RFC 6979 Appendix A.2.5 (ECDSA, 256 bits, prime field)",
+   "match": true,
+   "hash": "sha1",
+   "msg_ascii": "sample",
+   "k": "882905F1227FD620FBF2ABF21244F0BA83D0DC3A9103DBBEE43A1FB858109DB4",
+   "r": "61340C88C3AAEBEB4F6D667F672CA9759A6CCAA9FA8811313039EE4A35471D32",
+   "s": "6D7F147DAC089441BB2E2FE8F7A3FA264B9C475098FDCF6E00D7C996E1B8B7EB"
+  }
+ ],
+ "decision": "Deterministik: keluaran produk identik 100% dengan expected; vektor 'invalid' wajib ditolak"
+}

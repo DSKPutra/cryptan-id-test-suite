@@ -1,0 +1,12 @@
+{
+ "id": "roundtrip__RSA-OAEP-3072",
+ "generator": "roundtrip",
+ "kind": "deterministic",
+ "target": "RSA-OAEP-3072",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Round-trip 100%; m terlalu panjang ditolak"
+ },
+ "decision": "Round-trip 100%; m terlalu panjang ditolak"
+}

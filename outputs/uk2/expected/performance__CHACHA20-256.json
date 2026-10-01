@@ -1,0 +1,13 @@
+{
+ "id": "performance__CHACHA20-256",
+ "generator": "performance",
+ "kind": "implementation",
+ "target": "CHACHA20-256",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "PERLU_VERIFIKASI",
+ "criteria": {
+  "criterion": "sesuai klaim kinerja produk",
+  "status": "PERLU_VERIFIKASI"
+ },
+ "decision": "Sesuai klaim kinerja"
+}

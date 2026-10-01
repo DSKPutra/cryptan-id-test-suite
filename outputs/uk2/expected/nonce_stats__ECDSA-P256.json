@@ -1,0 +1,26 @@
+{
+ "id": "nonce_stats__ECDSA-P256",
+ "generator": "nonce_stats",
+ "kind": "statistical",
+ "target": "ECDSA-P256",
+ "source": "HASIL UJI LANGSUNG (rumus)",
+ "status": "KRITERIA",
+ "criteria": {
+  "alpha": 0.01,
+  "sp800_22": {
+   "sequences": 100,
+   "bits_per_sequence": 1000000,
+   "proportion_min": 0.96015,
+   "proportion_formula": "0,99 − 3·√(0,99·0,01/s)",
+   "min_pass_of_100": 97,
+   "uniformity_p_value_T_min": 0.0001
+  },
+  "nonce": {
+   "repeated_r_allowed": 0,
+   "msb_lsb_bias_test": "χ² df=255 pada 8 bit teratas/terbawah k, p ≥ 0,01",
+   "hnp_rule": "bias ≥ 1 bit → Tidak Memenuhi (lattice/HNP)",
+   "samples_N": 1000000
+  }
+ },
+ "decision": "Statistik: lolos bila seluruh kriteria terpenuhi; di tepi interval → Inkonklusif (perbesar sampel)"
+}

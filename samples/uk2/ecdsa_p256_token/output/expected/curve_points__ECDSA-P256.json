@@ -1,0 +1,42 @@
+{
+ "id": "curve_points__ECDSA-P256",
+ "generator": "curve_points",
+ "kind": "deterministic",
+ "target": "ECDSA-P256",
+ "source": "HASIL UJI LANGSUNG (dicocokkan dengan LITERATUR/ACUAN)",
+ "status": "COCOK_VEKTOR_RESMI",
+ "references": [
+  "SP 800-186 (P-256)"
+ ],
+ "independent": [
+  "core/ecdsa_p256.py",
+  "pyca/cryptography"
+ ],
+ "summary": {
+  "total": 4,
+  "matched": 4
+ },
+ "vectors": [
+  {
+   "case": "P + P = 2G",
+   "x": "7cf27b188d034f7e8a52380304b51ac3c08969e277f21b35a60b48fc47669978",
+   "y": "07775510db8ed040293d9ac69f7430dbba7dade63ce982299e04b79d227873d1",
+   "match": true
+  },
+  {
+   "case": "P + (−P) = O",
+   "result": "O",
+   "match": true
+  },
+  {
+   "case": "n·G = O",
+   "result": "O",
+   "match": true
+  },
+  {
+   "case": "O + P = P",
+   "match": true
+  }
+ ],
+ "decision": "Deterministik: keluaran produk identik 100% dengan expected; vektor 'invalid' wajib ditolak"
+}

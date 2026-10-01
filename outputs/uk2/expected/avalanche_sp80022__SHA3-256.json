@@ -1,0 +1,31 @@
+{
+ "id": "avalanche_sp80022__SHA3-256",
+ "generator": "avalanche_sp80022",
+ "kind": "statistical",
+ "target": "SHA3-256",
+ "source": "HASIL UJI LANGSUNG (rumus)",
+ "status": "KRITERIA",
+ "criteria": {
+  "alpha": 0.01,
+  "sp800_22": {
+   "sequences": 100,
+   "bits_per_sequence": 1000000,
+   "proportion_min": 0.96015,
+   "proportion_formula": "0,99 − 3·√(0,99·0,01/s)",
+   "min_pass_of_100": 97,
+   "uniformity_p_value_T_min": 0.0001
+  },
+  "avalanche": {
+   "output_bits_n": 256,
+   "mean_hw": 128.0,
+   "sigma_hw": 8.0,
+   "mean_fraction": 0.5,
+   "acceptance_fraction": [
+    0.49906,
+    0.50094
+   ],
+   "samples_N": 10000
+  }
+ },
+ "decision": "Statistik: lolos bila seluruh kriteria terpenuhi; di tepi interval → Inkonklusif (perbesar sampel)"
+}

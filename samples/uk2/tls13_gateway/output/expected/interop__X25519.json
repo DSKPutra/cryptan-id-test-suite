@@ -1,0 +1,12 @@
+{
+ "id": "interop__X25519",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "X25519",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Format & kode galat konsisten di seluruh rantai"
+ },
+ "decision": "Format & kode galat konsisten di seluruh rantai"
+}

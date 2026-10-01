@@ -1,0 +1,12 @@
+{
+ "id": "hybrid__TLS_1.3",
+ "generator": "hybrid",
+ "kind": "deterministic",
+ "target": "TLS 1.3",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Shared secret sesuai spesifikasi hybrid"
+ },
+ "decision": "Shared secret sesuai spesifikasi hybrid"
+}

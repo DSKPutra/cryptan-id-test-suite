@@ -1,0 +1,12 @@
+{
+ "id": "ssp_lifecycle__ECDSA-P384",
+ "generator": "ssp_lifecycle",
+ "kind": "deterministic",
+ "target": "ECDSA-P384",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Setiap transisi sesuai security policy"
+ },
+ "decision": "Setiap transisi sesuai security policy"
+}

@@ -1,0 +1,12 @@
+{
+ "id": "zeroize__ML-KEM-768",
+ "generator": "zeroize",
+ "kind": "implementation",
+ "target": "ML-KEM-768",
+ "source": "LITERATUR/ACUAN (ISO/IEC 17825/19790)",
+ "status": "KRITERIA",
+ "criteria": {
+  "residual_key_occurrences": 0
+ },
+ "decision": "Tidak ada sisa SSP"
+}

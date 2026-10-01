@@ -1,0 +1,12 @@
+{
+ "id": "interop__RSA-PSS-3072",
+ "generator": "interop",
+ "kind": "deterministic",
+ "target": "RSA-PSS-3072",
+ "source": "HASIL UJI LANGSUNG",
+ "status": "KRITERIA",
+ "criteria": {
+  "pass": "Status verifikasi konsisten dua arah"
+ },
+ "decision": "Status verifikasi konsisten dua arah"
+}
