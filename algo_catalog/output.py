@@ -119,11 +119,14 @@ def to_markdown(doc: dict, rows) -> str:
     return "\n".join(L) + "\n"
 
 
-def link_profile(yaml_path: Path, profile_path: Path = PROFILE) -> bool:
-    """Tautkan otomatis: set `algorithms_under_test: <path>` di product_profile.yaml (komentar dipertahankan)."""
+def link_profile(yaml_path: Path, profile_path: Path = None) -> bool:
+    """Tautkan otomatis: set `algorithms_under_test: <path>` di product_profile.yaml (komentar dipertahankan).
+    Path ditulis relatif terhadap folder profil."""
+    import os
+    profile_path = Path(profile_path or PROFILE)                 # dievaluasi saat dipanggil (bisa di-monkeypatch)
     if not profile_path.exists():
         return False
-    rel = Path("..") / yaml_path.resolve().relative_to(ROOT) if yaml_path.resolve().is_relative_to(ROOT) else yaml_path.resolve()
+    rel = Path(os.path.relpath(yaml_path.resolve(), profile_path.resolve().parent))
     line = f"algorithms_under_test: {rel.as_posix()}   # dihasilkan algo_catalog (KUK 1.1)\n"
     text = profile_path.read_text(encoding="utf-8")
     if re.search(r"^algorithms_under_test:.*$", text, re.M):

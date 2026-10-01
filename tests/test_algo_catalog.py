@@ -328,7 +328,9 @@ def test_outputs_and_profile_link(tmp_path, E, monkeypatch):
     md = res["files"]["md"].read_text()
     for col in output.COLUMNS:
         assert col in md
-    assert "algorithms_under_test:" in prof.read_text()
+    assert "algorithms_under_test: ../out/algorithms_under_test.yaml" in prof.read_text()
+    real = (ROOT / "config" / "product_profile.yaml").read_text()
+    assert "pytest-of" not in real and "/private/" not in real       # profil asli tidak tersentuh
 
 
 def test_uk1_profile_reads_linked_list():
