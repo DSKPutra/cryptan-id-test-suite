@@ -1,0 +1,525 @@
+# DIHASILKAN oleh scripts/extract_uk2_templates.py dari materi PPTX — jangan disunting manual
+source: Materi UK-2 'Penetapan Skenario Pengujian Modul Kriptografi Berbasis ISO/IEC 19790' (Dr. Santi Indarjani, Poltek SSN)
+code: HSM
+model: 4 tingkat
+security_level: 3
+profile:
+  Jenis: Modul perangkat keras multi-chip standalone (HSM jaringan)
+  Target: ISO/IEC 19790 Tingkat Keamanan 3; diuji menurut ISO/IEC 24759
+  Algoritma approved: AES-256-GCM, AES-KW, SHA-384, HMAC-SHA-384, ECDSA P-384, ML-KEM-768, ML-DSA-65, CTR_DRBG (AES-256)
+  Peran: Crypto Officer dan User; autentikasi berbasis identitas; dual control untuk operasi kritis
+  Layanan: KeyGen, sign/verify, encrypt/decrypt, wrap/unwrap, backup, update firmware, zeroise
+boundary_components:
+- Manajer Layanan & Autentikasi
+- Engine Algoritma
+- Key Store (SSP)
+- DRBG + Sumber Entropi
+- Self-Test
+- Firmware Loader (verifikasi tanda tangan)
+- Sensor tamper & sirkuit zeroisation menyelubungi seluruh komponen
+ports:
+- Data input
+- Data output
+- Control input
+- Status output
+- Power
+param_space:
+- parameter: Tingkat keamanan target
+  values: SL 1–4; ditetapkan SL 3
+  area: Semua
+  impact: 'Menentukan persyaratan yang berlaku: autentikasi berbasis identitas, respons tamper, uji non-invasif'
+- parameter: Parameter algoritma
+  values: IV GCM 96/non-96 bit; tag 96/128; P-384; ML-KEM-768; ML-DSA-65; parameter non-approved
+  area: '7.2'
+  impact: Parameter non-approved harus ditolak atau ditandai layanan non-approved
+- parameter: Kondisi sumber entropi
+  values: Normal; suhu batas operasi; sumber dirusak/macet
+  area: '7.9'
+  impact: Menentukan kualitas DRBG dan kunci; uji kesehatan harus mendeteksi kegagalan
+- parameter: Peran & kredensial
+  values: CO, User, tanpa autentikasi; benar, salah, kedaluwarsa, berulang
+  area: '7.4'
+  impact: Menguji kontrol akses dan kekuatan mekanisme autentikasi
+- parameter: Status modul
+  values: Power-up, operasional, galat, degraded, update firmware
+  area: 7.3, 7.10
+  impact: Output data wajib terhambat pada status galat dan selama self-test
+- parameter: Metode entri/output SSP
+  values: Plaintext, terbungkus AES-KW, split knowledge N-dari-M
+  area: '7.9'
+  impact: Pada SL 3 CSP harus terlindung saat masuk/keluar batas kriptografis
+- parameter: Kondisi fisik & lingkungan
+  values: Tutup dibuka, pengeboran, probing; suhu/tegangan di luar rentang
+  area: '7.7'
+  impact: Menguji tamper evidence/response dan zeroisation
+- parameter: Kuantitas trace side-channel
+  values: 10^4, 10^5, 10^6 trace; fixed-vs-random
+  area: '7.8'
+  impact: Jumlah trace menentukan daya deteksi kebocoran dan keabsahan kesimpulan
+test_cases:
+- id: U-K-01
+  params: 'Engine AES-256-GCM: KAT; IV 96 & non-96 bit; AAD 0/1/16/65 byte; tag 128 bit'
+  procedure: Eksekusi vektor uji pada unit engine terisolasi (ISO/IEC 18367)
+  pass: Hasil identik 100%
+  area: '7.2'
+  level: Unit
+  layer: K
+- id: U-K-02
+  params: 'ECDSA P-384 dan ML-DSA-65: vektor KeyGen/SigGen/SigVer valid dan invalid'
+  procedure: Eksekusi vektor pada unit tanda tangan
+  pass: Valid diterima; seluruh invalid ditolak
+  area: '7.2'
+  level: Unit
+  layer: K
+- id: U-K-03
+  params: 'CTR_DRBG AES-256: instantiate, reseed, generate; additional input 0/256 bit'
+  procedure: Bandingkan keluaran dengan vektor acuan DRBG
+  pass: Keluaran identik 100%
+  area: '7.9'
+  level: Unit
+  layer: K
+- id: U-K-04
+  params: Rutin CAST dan uji integritas firmware; nilai acuan benar vs dirusak 1 bit
+  procedure: Jalankan rutin self-test dengan kedua kondisi
+  pass: Kondisi rusak selalu menghasilkan status galat
+  area: '7.10'
+  level: Unit
+  layer: K
+- id: U-S-01
+  params: 'Sumber entropi fisik: 10^6 sampel mentah; suhu normal dan batas operasi'
+  procedure: Estimasi min-entropi; uji kesehatan (repetition count, adaptive proportion)
+  pass: Min-entropi ≥ klaim; kegagalan injeksi terdeteksi
+  area: '7.9'
+  level: Unit
+  layer: S
+- id: U-S-02
+  params: Panjang kunci, kurva, dan parameter set di luar daftar approved
+  procedure: Panggil fungsi dengan parameter non-approved
+  pass: Ditolak atau ditandai non-approved
+  area: '7.2'
+  level: Unit
+  layer: S
+- id: U-S-03
+  params: Fungsi zeroise untuk SSP 16 byte–4 KB di RAM dan flash
+  procedure: Panggil zeroise lalu periksa memori (build debug)
+  pass: Tidak ada sisa SSP
+  area: '7.9'
+  level: Unit
+  layer: S
+- id: U-S-04
+  params: 'Verifikasi kredensial: panjang min/maks, karakter, percobaan berulang'
+  procedure: Uji unit fungsi autentikasi dan penghitung percobaan
+  pass: Kekuatan autentikasi sesuai batas yang ditetapkan
+  area: '7.4'
+  level: Unit
+  layer: S
+- id: U-I-01
+  params: Fungsi AES dan perkalian skalar P-384; fixed-vs-random; 10^5 trace
+  procedure: TVLA per fungsi pada board pengembangan (ISO/IEC 17825)
+  pass: '|t| < 4,5'
+  area: '7.8'
+  level: Unit
+  layer: I
+- id: U-I-02
+  params: Kode sumber firmware; aturan CERT C/MISRA C
+  procedure: Static analysis dan pengukuran cakupan uji
+  pass: Tanpa temuan tinggi; cakupan cabang ≥ target (mis. 90%)
+  area: '7.5'
+  level: Unit
+  layer: I
+- id: U-I-03
+  params: 'Parser perintah PKCS#11: 10^6 input malformed'
+  procedure: Fuzzing unit parser
+  pass: Tanpa crash/hang; galat terdefinisi
+  area: '7.3'
+  level: Unit
+  layer: I
+- id: U-I-04
+  params: Pembandingan PIN dan MAC; input benar vs salah pada posisi berbeda
+  procedure: Uji waktu konstan (mis. dudect)
+  pass: Tidak ada perbedaan waktu signifikan
+  area: '7.12'
+  level: Unit
+  layer: I
+- id: I-K-01
+  params: Setiap layanan × peran (CO, User, tanpa autentikasi)
+  procedure: Panggil seluruh layanan; bandingkan dengan tabel layanan pada security policy
+  pass: Akses sesuai matriks peran–layanan
+  area: '7.4'
+  level: Integrasi
+  layer: K
+- id: I-K-02
+  params: Layanan approved vs non-approved
+  procedure: Periksa indikator mode approved pada tiap layanan
+  pass: Indikator benar untuk setiap layanan
+  area: '7.2'
+  level: Integrasi
+  layer: K
+- id: I-K-03
+  params: 'Siklus SSP: generate → store → use → wrap/export → zeroise'
+  procedure: Uji alur lintas unit manajer kunci, key store, dan engine
+  pass: Setiap transisi sesuai security policy
+  area: '7.9'
+  level: Integrasi
+  layer: K
+- id: I-K-04
+  params: Urutan self-test pra-operasional; PCT saat KeyGen; uji pemuatan firmware
+  procedure: Amati status output dan log saat boot dan KeyGen
+  pass: Tidak ada output data sebelum self-test lulus
+  area: '7.10'
+  level: Integrasi
+  layer: K
+- id: I-S-01
+  params: Status galat dipicu (self-test gagal, sensor aktif)
+  procedure: Minta layanan kriptografi saat status galat
+  pass: Data output interface terhambat
+  area: '7.3'
+  level: Integrasi
+  layer: S
+- id: I-S-02
+  params: 'Ekspor kunci: plaintext, terbungkus AES-KW, kunci pembungkus lemah'
+  procedure: Coba ekspor melalui API
+  pass: CSP hanya keluar terenkripsi dengan kunci approved
+  area: '7.9'
+  level: Integrasi
+  layer: S
+- id: I-S-03
+  params: Brute-force kredensial, sesi paralel, percobaan eskalasi peran
+  procedure: Serangan logis terhadap alur autentikasi
+  pass: Lockout/penundaan aktif; tanpa eskalasi peran
+  area: '7.4'
+  level: Integrasi
+  layer: S
+- id: I-S-04
+  params: 'Image firmware: tanda tangan valid, invalid, versi lama (rollback)'
+  procedure: Muat image melalui mekanisme update
+  pass: Hanya image sah dengan versi ≥ saat ini diterima
+  area: '7.5'
+  level: Integrasi
+  layer: S
+- id: I-I-01
+  params: Build dari repositori terkendali
+  procedure: Bandingkan hash hasil build ulang dengan image rilis
+  pass: Hash identik (reproducible build)
+  area: '7.11'
+  level: Integrasi
+  layer: I
+- id: I-I-02
+  params: Layanan signing ECDSA melalui API; 10^5 trace
+  procedure: TVLA pada layanan utuh
+  pass: '|t| < 4,5'
+  area: '7.8'
+  level: Integrasi
+  layer: I
+- id: I-I-03
+  params: Glitch tegangan/clock saat verifikasi tanda tangan firmware
+  procedure: Fault injection pada boot chain
+  pass: Tidak ada bypass verifikasi
+  area: '7.12'
+  level: Integrasi
+  layer: I
+- id: I-I-04
+  params: 10^6 urutan pemanggilan API menyimpang
+  procedure: Fuzzing API stateful
+  pass: Tanpa crash; state modul konsisten
+  area: '7.3'
+  level: Integrasi
+  layer: I
+- id: S-K-01
+  params: Batas kriptografis dan komponen yang dikecualikan
+  procedure: Inspeksi fisik dan dokumen terhadap security policy
+  pass: Sesuai deklarasi
+  area: '7.2'
+  level: Sistem
+  layer: K
+- id: S-K-02
+  params: Seluruh antarmuka fisik dan logis; trusted channel
+  procedure: Uji pemisahan dan pemetaan antarmuka
+  pass: Tidak ada jalur tak terdokumentasi
+  area: '7.3'
+  level: Sistem
+  layer: K
+- id: S-K-03
+  params: Panduan instalasi dan inisialisasi
+  procedure: Instal dan inisialisasi hanya dengan panduan
+  pass: Modul mencapai mode approved
+  area: '7.11'
+  level: Sistem
+  layer: K
+- id: S-K-04
+  params: Self-test periodik dan on-demand saat beban tinggi
+  procedure: Jalankan self-test selama operasi berbeban
+  pass: Test berjalan; layanan tertahan sesuai kebijakan
+  area: '7.10'
+  level: Sistem
+  layer: K
+- id: S-S-01
+  params: Pembukaan tutup, pengeboran, probing enclosure
+  procedure: Serangan fisik terhadap tamper evidence dan response
+  pass: Terdeteksi; SSP ter-zeroise seketika
+  area: '7.7'
+  level: Sistem
+  layer: S
+- id: S-S-02
+  params: Suhu dan tegangan di luar rentang operasi
+  procedure: Uji EFP/EFT sesuai tingkat keamanan target
+  pass: Shutdown/zeroise tanpa kompromi SSP
+  area: '7.7'
+  level: Sistem
+  layer: S
+- id: S-S-03
+  params: Entri SSP manual split knowledge; kustodian kurang dari kuorum
+  procedure: Impor kunci dengan jumlah kustodian bervariasi
+  pass: Kunci hanya terbentuk bila kuorum terpenuhi
+  area: '7.9'
+  level: Sistem
+  layer: S
+- id: S-S-04
+  params: Serangan lain yang diklaim dimitigasi
+  procedure: Evaluasi terhadap klaim pada security policy
+  pass: Mitigasi efektif sesuai klaim
+  area: '7.12'
+  level: Sistem
+  layer: S
+- id: S-I-01
+  params: Modul tertutup; SPA/DPA/EM; 10^6 trace
+  procedure: Pengukuran eksternal sesuai ISO/IEC 17825
+  pass: Di bawah metrik yang ditetapkan
+  area: '7.8'
+  level: Sistem
+  layer: I
+- id: S-I-02
+  params: Lingkungan operasi terbatas; upaya memuat kode tak sah
+  procedure: Uji kemampuan eksekusi kode di luar image sah
+  pass: Kode tak sah tidak dapat dijalankan
+  area: '7.6'
+  level: Sistem
+  layer: I
+- id: S-I-03
+  params: Beban 1–10.000 operasi/detik; failover klaster
+  procedure: Uji kinerja dan ketersediaan
+  pass: Sesuai klaim kinerja
+  area: Pengguna
+  level: Sistem
+  layer: I
+- id: S-I-04
+  params: 'Pengiriman: segel, kemasan, verifikasi integritas awal'
+  procedure: Simulasi penerimaan barang dengan kemasan dimanipulasi
+  pass: Manipulasi terdeteksi
+  area: '7.11'
+  level: Sistem
+  layer: I
+- id: A-K-01
+  params: 'Key ceremony root CA: pembangkitan dan backup kunci'
+  procedure: Pelaksanaan seremoni oleh pengguna sesuai SOP
+  pass: Sesuai SOP dan security policy
+  area: '7.9'
+  level: UAT
+  layer: K
+- id: A-K-02
+  params: Aplikasi pengguna melalui PKCS#11/KMIP
+  procedure: Uji dengan aplikasi bisnis nyata
+  pass: Seluruh fungsi yang dibutuhkan tersedia
+  area: '7.3'
+  level: UAT
+  layer: K
+- id: A-K-03
+  params: Konfigurasi algoritma terhadap kebijakan organisasi dan regulasi nasional
+  procedure: Audit konfigurasi produksi
+  pass: Hanya algoritma yang diizinkan aktif
+  area: '7.2'
+  level: UAT
+  layer: K
+- id: A-K-04
+  params: Status output dan log audit
+  procedure: Operator menafsirkan status dan log
+  pass: Status dan log dapat dipahami dan lengkap
+  area: '7.3'
+  level: UAT
+  layer: K
+- id: A-S-01
+  params: Pemisahan tugas dan dual control pada operasi kritis
+  procedure: Latihan operasional dengan peran nyata
+  pass: Tidak ada satu orang yang dapat bertindak sendiri
+  area: '7.4'
+  level: UAT
+  layer: S
+- id: A-S-02
+  params: 'Insiden: tamper, kehilangan kartu kustodian, kompromi kredensial'
+  procedure: Tabletop exercise dan simulasi
+  pass: Prosedur respons berjalan; kunci dapat dicabut/dipulihkan
+  area: '7.7'
+  level: UAT
+  layer: S
+- id: A-S-03
+  params: Backup dan restore kunci terbungkus ke HSM cadangan
+  procedure: Uji pemulihan bencana
+  pass: Pulih tanpa CSP plaintext keluar
+  area: '7.9'
+  level: UAT
+  layer: S
+- id: A-S-04
+  params: Rollout ML-DSA/ML-KEM dan mode hybrid pada aplikasi
+  procedure: Uji pilot transisi PQC
+  pass: Aplikasi berjalan; interoperabilitas terjaga
+  area: '7.2'
+  level: UAT
+  layer: S
+- id: A-I-01
+  params: Beban puncak produksi
+  procedure: Uji beban di lingkungan operasional
+  pass: Memenuhi SLA
+  area: Pengguna
+  level: UAT
+  layer: I
+- id: A-I-02
+  params: Failover, pemutusan daya, restart
+  procedure: Uji ketersediaan operasional
+  pass: RTO/RPO tercapai
+  area: Pengguna
+  level: UAT
+  layer: I
+- id: A-I-03
+  params: Update firmware di lapangan dan prosedur rollback
+  procedure: Pelaksanaan prosedur pemeliharaan
+  pass: Berhasil tanpa kehilangan kunci
+  area: '7.5'
+  level: UAT
+  layer: I
+- id: A-I-04
+  params: Kesalahan umum operator
+  procedure: Observasi penggunaan oleh operator
+  pass: Kesalahan tidak menurunkan keamanan
+  area: '7.11'
+  level: UAT
+  layer: I
+coverage:
+  '7.2':
+    Unit:
+    - U-K-01
+    - U-K-02
+    - U-S-02
+    Integrasi:
+    - I-K-02
+    Sistem:
+    - S-K-01
+    UAT:
+    - A-K-03
+    - A-S-04
+  '7.3':
+    Unit:
+    - U-I-03
+    Integrasi:
+    - I-S-01
+    - I-I-04
+    Sistem:
+    - S-K-02
+    UAT:
+    - A-K-02
+    - A-K-04
+  '7.4':
+    Unit:
+    - U-S-04
+    Integrasi:
+    - I-K-01
+    - I-S-03
+    Sistem: []
+    UAT:
+    - A-S-01
+  '7.5':
+    Unit:
+    - U-I-02
+    Integrasi:
+    - I-S-04
+    Sistem: []
+    UAT:
+    - A-I-03
+  '7.6':
+    Unit: []
+    Integrasi: []
+    Sistem:
+    - S-I-02
+    UAT: []
+  '7.7':
+    Unit: []
+    Integrasi: []
+    Sistem:
+    - S-S-01
+    - S-S-02
+    UAT:
+    - A-S-02
+  '7.8':
+    Unit:
+    - U-I-01
+    Integrasi:
+    - I-I-02
+    Sistem:
+    - S-I-01
+    UAT: []
+  '7.9':
+    Unit:
+    - U-K-03
+    - U-S-01
+    - U-S-03
+    Integrasi:
+    - I-K-03
+    - I-S-02
+    Sistem:
+    - S-S-03
+    UAT:
+    - A-K-01
+    - A-S-03
+  '7.10':
+    Unit:
+    - U-K-04
+    Integrasi:
+    - I-K-04
+    Sistem:
+    - S-K-04
+    UAT: []
+  '7.11':
+    Unit: []
+    Integrasi:
+    - I-I-01
+    Sistem:
+    - S-K-03
+    - S-I-04
+    UAT:
+    - A-I-04
+  '7.12':
+    Unit:
+    - U-I-04
+    Integrasi:
+    - I-I-03
+    Sistem:
+    - S-S-04
+    UAT: []
+outcome_map:
+- condition: Output data keluar saat self-test gagal
+  trigger: Status modul
+  outcome: Tidak Memenuhi
+  action: Temuan kritis area 7.3/7.10; perbaiki state machine, ulangi I-K-04 dan I-S-01
+- condition: Min-entropi di bawah klaim pada suhu batas operasi
+  trigger: Kondisi entropi
+  outcome: Memenuhi dengan Catatan
+  action: Diterima bila rentang suhu operasi dipersempit dalam security policy; jika tidak, tidak memenuhi
+- condition: TVLA |t| ≥ 4,5 pada signing ECDSA melalui API
+  trigger: Kuantitas trace
+  outcome: Tidak Memenuhi
+  action: Konfirmasi eksploitabilitas dengan CPA; terapkan countermeasure
+- condition: Hasil TVLA tidak konsisten antarsesi pengukuran
+  trigger: Kuantitas trace
+  outcome: Inkonklusif
+  action: Perbesar jumlah trace dan kendalikan derau pengukuran
+- condition: Firmware versi lama diterima (rollback)
+  trigger: Image firmware
+  outcome: Tidak Memenuhi
+  action: Terapkan penghitung versi anti-rollback
+- condition: Kunci dapat diimpor tanpa kuorum kustodian
+  trigger: Metode entri SSP
+  outcome: Tidak Memenuhi
+  action: Wajibkan split knowledge pada seluruh jalur impor
+- condition: Seluruh uji sistem lulus, kinerja di bawah SLA
+  trigger: Beban produksi
+  outcome: Memenuhi dengan Catatan
+  action: 'Penerimaan bersyarat: tambah kapasitas atau revisi SLA'

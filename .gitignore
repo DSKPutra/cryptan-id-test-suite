@@ -6,3 +6,7 @@ site/
 .DS_Store
 .vercel
 .netlify
+
+# Materi pelatihan (hak cipta Poltek SSN) — hanya lokal; templat YAML hasil ekstraksi yang di-commit
+docs/materi/*.pptx
+docs/materi/*.pdf

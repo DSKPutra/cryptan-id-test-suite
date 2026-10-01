@@ -1,0 +1,12 @@
+{"schema": "STUB_UK1", "stub": true, "note": "STUB_UK1 — modul HSM belum didukung pipeline UK-1; metode dipilih manual sesuai contoh",
+ "profile": {"algorithm": {"id": "HSM-X", "primitive": "module"}},
+ "selection": {"selected": [
+  {"method_id": "M-KAT", "name": "Known Answer Test", "layer": "Kesesuaian", "level": "Unit"},
+  {"method_id": "M-SELFTEST", "name": "Self-test & error state", "layer": "Implementasi & sistem", "level": "Sistem"},
+  {"method_id": "M-RNG", "name": "Asesmen sumber entropi", "layer": "Implementasi & sistem", "level": "Integrasi"},
+  {"method_id": "M-ZEROIZE", "name": "Zeroisation", "layer": "Implementasi & sistem", "level": "Sistem"},
+  {"method_id": "M-TVLA", "name": "TVLA", "layer": "Implementasi & sistem", "level": "Sistem"},
+  {"method_id": "M-FAULT", "name": "Fault injection", "layer": "Implementasi & sistem", "level": "Sistem"},
+  {"method_id": "M-CODEREVIEW", "name": "Static analysis / review kode", "layer": "Implementasi & sistem", "level": "Unit"},
+  {"method_id": "M-FUZZ", "name": "Fuzzing", "layer": "Implementasi & sistem", "level": "Integrasi"},
+  {"method_id": "M-TIMING", "name": "Constant-time", "layer": "Implementasi & sistem", "level": "Integrasi"}]}}

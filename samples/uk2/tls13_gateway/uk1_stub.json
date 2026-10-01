@@ -1,0 +1,9 @@
+{"schema": "STUB_UK1", "stub": true, "note": "STUB_UK1 — protokol TLS 1.3 belum didukung pipeline UK-1; metode dipilih manual sesuai contoh",
+ "profile": {"algorithm": {"id": "TLS13", "primitive": "protocol"}},
+ "selection": {"selected": [
+  {"method_id": "M-KAT", "name": "Known Answer Test", "layer": "Kesesuaian", "level": "Unit"},
+  {"method_id": "M-PKV", "name": "Validasi kunci publik / key share", "layer": "Kesesuaian", "level": "Unit"},
+  {"method_id": "M-FUZZ", "name": "Fuzzing state machine & parser", "layer": "Implementasi & sistem", "level": "Integrasi"},
+  {"method_id": "M-TIMING", "name": "Timing leakage", "layer": "Implementasi & sistem", "level": "Integrasi"},
+  {"method_id": "M-NONCE", "name": "Replay / nonce", "layer": "Implementasi & sistem", "level": "Integrasi"},
+  {"method_id": "M-KEYSIZE", "name": "Ukuran kunci & grup", "layer": "Kekuatan algoritma", "level": "Sistem"}]}}

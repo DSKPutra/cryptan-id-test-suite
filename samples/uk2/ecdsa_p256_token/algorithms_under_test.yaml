@@ -1,0 +1,6 @@
+schema: cryptan.algo_catalog.algorithms_under_test.v1
+product: SignDoc Token
+items:
+  - {id: ECDSA-P256, entry_id: ECDSA-P256, primitive: signature, family: ECDSA, variant: P-256, key_bits: 256, security_strength_bits: 128, status_nist: acceptable, standards: [FIPS 186-5, SP 800-186], quantum_vulnerable: true}
+  - {id: SHA-256, entry_id: SHA-256, primitive: hash, family: SHA-2, variant: SHA-256, key_bits: null, security_strength_bits: 128, status_nist: acceptable, standards: [FIPS 180-4]}
+  - {id: HMAC-DRBG-S128, entry_id: HMAC-DRBG, primitive: drbg, family: DRBG, variant: HMAC_DRBG, key_bits: 128, security_strength_bits: 128, status_nist: acceptable, standards: [SP 800-90A Rev.1]}

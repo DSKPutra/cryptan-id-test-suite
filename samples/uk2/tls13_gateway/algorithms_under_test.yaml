@@ -1,0 +1,10 @@
+schema: cryptan.algo_catalog.algorithms_under_test.v1
+product: Gateway-TLS13
+items:
+  - {id: AES-256-GCM, entry_id: AES-GCM, primitive: block_cipher, family: AES, variant: GCM, key_bits: 256, security_strength_bits: 256, status_nist: acceptable, standards: [FIPS 197, SP 800-38D]}
+  - {id: SHA-384, entry_id: SHA-384, primitive: hash, family: SHA-2, variant: SHA-384, key_bits: null, security_strength_bits: 192, status_nist: acceptable, standards: [FIPS 180-4]}
+  - {id: HKDF, entry_id: HKDF, primitive: kdf, family: KDF, variant: HKDF, key_bits: null, security_strength_bits: PERLU_VERIFIKASI, status_nist: acceptable, standards: [RFC 5869, SP 800-56C Rev.2]}
+  - {id: ECDH-P384, entry_id: ECDH-P384, primitive: pkc_kem, family: ECDH, variant: P-384, key_bits: 384, security_strength_bits: 192, status_nist: acceptable, standards: [SP 800-56A Rev.3], quantum_vulnerable: true}
+  - {id: X25519, entry_id: X25519, primitive: pkc_kem, family: XECDH, variant: X25519, key_bits: 255, security_strength_bits: 128, status_nist: PERLU_VERIFIKASI, standards: [RFC 7748], quantum_vulnerable: true}
+  - {id: ML-KEM-768, entry_id: ML-KEM-768, primitive: pkc_kem, family: ML-KEM, variant: ML-KEM-768, key_bits: null, security_strength_bits: 192, security_category: 3, status_nist: acceptable, standards: [FIPS 203]}
+  - {id: ECDSA-P384, entry_id: ECDSA-P384, primitive: signature, family: ECDSA, variant: P-384, key_bits: 384, security_strength_bits: 192, status_nist: acceptable, standards: [FIPS 186-5], quantum_vulnerable: true}

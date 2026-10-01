@@ -1,0 +1,25 @@
+# Sampel UK-2 (reproduksi materi studi kasus HSM-X ISO/IEC 19790) — ILUSTRATIF
+product: {name: "HSM-X", version: "1.0 (ilustratif)", description: "Modul perangkat keras multi-chip standalone (HSM jaringan)"}
+implementation: {platform: hsm-network, language: C, interfaces: ["PKCS#11", "KMIP", "konsol CO"], rng: "CTR_DRBG (AES-256) + sumber entropi fisik"}
+tester: {access: white_box, scope: ["Modul kriptografi ISO/IEC 19790 SL 3, diuji menurut ISO/IEC 24759"]}
+algorithms_under_test: algorithms_under_test.yaml
+uk2:
+  product_type: hsm
+  testing_model: 4
+  iso19790_security_level: 3
+  features: [api, pkcs11, kmip, keygen, signature, aead, key_wrap, kem, rng_internal, entropy_source, self_tests, firmware_update,
+             roles_identity_auth, dual_control, split_knowledge, tamper_response, physical_access, environmental_failure_protection,
+             side_channel_lab, power_glitch, debug_build, source_code, reproducible_build, backup_restore, cluster_failover,
+             audit_log, error_codes, fuzzing_harness, load_testing, pqc_hybrid]
+  claims:
+    - {id: C-SL3, claim: "ISO/IEC 19790 Tingkat Keamanan 3", tags: [iso19790_sl3]}
+    - {id: C-SSP, claim: "CSP hanya keluar terenkripsi dengan kunci approved; split knowledge untuk entri manual", tags: [ssp_protection]}
+    - {id: C-TAMPER, claim: "Tamper evidence & response dengan zeroisation", tags: [tamper]}
+    - {id: C-AUTH, claim: "Autentikasi berbasis identitas; dual control operasi kritis", tags: [identity_auth, dual_control]}
+    - {id: C-FW, claim: "Hanya firmware bertanda tangan sah dengan versi ≥ saat ini yang dimuat", tags: [firmware_integrity]}
+  module:
+    roles: ["Crypto Officer", "User", "tanpa autentikasi"]
+    services: [KeyGen, "sign/verify", "encrypt/decrypt", "wrap/unwrap", backup, "update firmware", zeroise]
+    states: [power-up, operasional, galat, degraded, "update firmware"]
+    ssp_entry: [plaintext, "terbungkus AES-KW", "split knowledge N-dari-M"]
+    trace_counts: [10000, 100000, 1000000]

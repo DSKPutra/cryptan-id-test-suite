@@ -1,0 +1,174 @@
+# DIHASILKAN oleh scripts/extract_uk2_templates.py dari materi PPTX — jangan disunting manual
+source: Materi UK-2 'Penetapan Skenario Pengujian Produk Kriptografi' (Dr. Santi Indarjani, Poltek SSN)
+source_slides:
+- 20
+- 21
+- 22
+- 23
+- 24
+code: DS
+profile:
+  Objek uji: Modul tanda tangan elektronik dokumen (aplikasi + token kriptografi/secure element)
+  Skema: ECDSA, kurva P-256, SHA-256, encoding DER
+  Pembangkitan nonce: Deterministik RFC 6979 (mode utama); DRBG acak (mode alternatif)
+  Klaim keamanan: 128 bit; EUF-CMA; kunci privat tidak dapat diekspor
+  Acuan: FIPS 186-5, SEC 1 v2, RFC 6979, NIST SP 800-90B
+param_space:
+- parameter: Kurva & hash
+  status: Tetap
+  values: P-256, SHA-256
+- parameter: Mode nonce
+  status: Variabel
+  values: RFC 6979; DRBG acak
+- parameter: Panjang pesan
+  status: Variabel
+  values: 0, 55, 56, 64, 65 byte; 1 MB; 100 MB
+- parameter: Kunci privat d
+  status: Variabel
+  values: Acak; Hamming weight rendah/tinggi; d = 1; d = n − 1
+- parameter: Encoding (r, s)
+  status: Variabel
+  values: DER kanonik/non-kanonik; r atau s = 0; r atau s ≥ n; s ↔ n − s
+- parameter: Kunci publik Q
+  status: Variabel
+  values: Valid; titik tak hingga O; di luar kurva; koordinat ≥ p
+- parameter: Ukuran sampel
+  status: Variabel
+  values: N = 10^6 tanda tangan (uji nonce); 10^5 trace (side-channel)
+- parameter: Kondisi operasional
+  status: Variabel
+  values: Normal; gangguan daya saat signing; glitch tegangan/clock
+test_cases:
+- id: DS-K-01
+  params: 'Titik khusus: O, P + (−P), P + P, n·G'
+  procedure: Bandingkan aritmetika kurva dengan implementasi referensi
+  pass: Hasil identik 100%; n·G = O
+  level: Komponen
+  layer: K
+- id: DS-K-02
+  params: Pesan 0, 55, 56, 64, 65 byte dan 1 MB
+  procedure: Short/Long Message Test dan Monte Carlo Test SHA-256
+  pass: Digest identik 100%
+  level: Komponen
+  layer: K
+- id: DS-K-03
+  params: 100 pasangan kunci hasil KeyGen
+  procedure: Periksa 1 ≤ d ≤ n − 1 dan Q = d·G valid di kurva
+  pass: 100% pasangan kunci valid
+  level: Integrasi
+  layer: K
+- id: DS-K-04
+  params: Vektor uji RFC 6979 (P-256, SHA-256)
+  procedure: Bangkitkan tanda tangan deterministik untuk pesan dan d yang sama
+  pass: (r, s) identik dengan vektor acuan
+  level: Integrasi
+  layer: K
+- id: DS-K-05
+  params: '≥ 500 vektor SigVer: valid dan seluruh variasi encoding invalid'
+  procedure: Verifikasi; catat keputusan terima/tolak per vektor
+  pass: Valid diterima; seluruh invalid ditolak
+  level: Integrasi
+  layer: K
+- id: DS-K-06
+  params: Dokumen PDF bertanda tangan, 3 ukuran berkas
+  procedure: Verifikasi silang dengan ≥ 2 verifier referensi, dua arah
+  pass: Status verifikasi konsisten
+  level: Sistem
+  layer: K
+- id: DS-S-01
+  params: Parameter domain P-256 di dalam produk
+  procedure: Cocokkan p, a, b, G, n, h dengan standar
+  pass: Identik; n prima, h = 1
+  level: Komponen
+  layer: S
+- id: DS-S-02
+  params: N = 10^6 tanda tangan, pesan acak, d uji diketahui
+  procedure: Hitung k = s⁻¹(e + r·d) mod n; uji bias MSB/LSB dan keacakan bit k
+  pass: Tidak ada bias signifikan (α = 0,01); serangan HNP simulasi gagal
+  level: Integrasi
+  layer: S
+- id: DS-S-03
+  params: N tanda tangan dari DS-S-02, kedua mode nonce
+  procedure: Cari nilai r berulang untuk pesan berbeda
+  pass: Tidak ada r berulang
+  level: Integrasi
+  layer: S
+- id: DS-S-04
+  params: Q = O, Q di luar kurva, koordinat ≥ p
+  procedure: Masukkan ke verifier dan ke proses impor sertifikat
+  pass: Seluruhnya ditolak
+  level: Integrasi
+  layer: S
+- id: DS-S-05
+  params: Keluaran DRBG pembangkit d dan k (mode acak)
+  procedure: Estimasi min-entropi SP 800-90B; NIST SP 800-22
+  pass: Min-entropi ≥ klaim; lolos uji statistik
+  level: Integrasi
+  layer: S
+- id: DS-S-06
+  params: Dokumen diubah, sertifikat disubstitusi/dicabut/kedaluwarsa, timestamp dimanipulasi
+  procedure: Verifikasi end-to-end melalui aplikasi
+  pass: Verifikasi gagal dengan status yang benar
+  level: Sistem
+  layer: S
+- id: DS-I-01
+  params: Fixed-vs-random d dan k; 10^5 pengukuran waktu
+  procedure: Ukur waktu perkalian skalar; uji TVLA
+  pass: '|t| < 4,5'
+  level: Komponen
+  layer: I
+- id: DS-I-02
+  params: 10^5 trace daya/EM pada token
+  procedure: TVLA, dilanjutkan CPA bila |t| ≥ 4,5
+  pass: Tidak ada kebocoran terukur
+  level: Komponen
+  layer: I
+- id: DS-I-03
+  params: Glitch tegangan/clock pada ronde perkalian skalar
+  procedure: Injeksi galat saat signing (kritis untuk RFC 6979)
+  pass: Tanda tangan salah tidak pernah dikeluarkan
+  level: Integrasi
+  layer: I
+- id: DS-I-04
+  params: 10^6 input DER/ASN.1 malformed
+  procedure: Fuzzing parser tanda tangan dan sertifikat
+  pass: Tanpa crash/hang; galat seragam
+  level: Integrasi
+  layer: I
+- id: DS-I-05
+  params: Perintah ekspor kunci, pemutusan daya, reset token
+  procedure: Coba ekspor d; periksa zeroization dan audit log
+  pass: d tidak terekspor; log lengkap
+  level: Sistem
+  layer: I
+- id: DS-I-06
+  params: Beban 1, 10, 100 dokumen paralel
+  procedure: Ukur throughput dan latensi signing
+  pass: Sesuai klaim kinerja produk
+  level: Sistem
+  layer: I
+outcome_map:
+- condition: Nilai r berulang ditemukan pada pesan berbeda
+  trigger: Mode nonce
+  outcome: Tidak Memenuhi
+  action: 'Temuan kritis: kunci privat dapat dipulihkan; perbaiki pembangkitan nonce'
+- condition: Bias ≥ 1 bit pada MSB/LSB nonce k
+  trigger: Mode nonce, ukuran sampel
+  outcome: Tidak Memenuhi
+  action: Rawan serangan lattice/HNP; uji ulang setelah perbaikan
+- condition: Proporsi lolos di tepi interval kepercayaan
+  trigger: Ukuran sampel
+  outcome: Inkonklusif
+  action: Perbesar N (mis. 10^7) lalu ulangi uji statistik
+- condition: Tanda tangan s ↔ n − s diterima
+  trigger: Encoding (r, s)
+  outcome: Memenuhi dengan Catatan
+  action: Dapat diterima bila keunikan tanda tangan tidak diandalkan; terapkan low-s
+- condition: TVLA |t| ≥ 4,5 pada perkalian skalar
+  trigger: Kunci privat d
+  outcome: Tidak Memenuhi
+  action: Konfirmasi eksploitabilitas dengan CPA; perbaiki ke constant-time
+- condition: Gagal diverifikasi oleh satu verifier referensi
+  trigger: Encoding, format dokumen
+  outcome: Memenuhi dengan Catatan
+  action: Perbaiki encoding; ulangi DS-K-06

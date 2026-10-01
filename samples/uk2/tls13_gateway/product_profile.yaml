@@ -1,0 +1,29 @@
+# Sampel UK-2 (reproduksi materi Contoh 2) — ILUSTRATIF
+product: {name: "Gateway-TLS13", version: "1.0 (ilustratif)", description: "Modul TLS 1.3 pada gateway layanan dengan autentikasi mutual"}
+implementation: {platform: linux-x86_64-service, language: C, interfaces: ["TLS 1.3 (TCP/443)", "konsol admin"], rng: "OS CSPRNG"}
+tester: {access: grey_box, scope: ["Protokol TLS 1.3 + primitif penyusunnya pada gateway"]}
+algorithms_under_test: algorithms_under_test.yaml
+uk2:
+  product_type: gateway
+  testing_model: 3
+  iso19790_security_level: null
+  features: [api, protocol_tls13, aead, kdf, signature, kem, hybrid_kem, certificates, revocation, mutual_auth, session_resumption,
+             zero_rtt, network, formal_model, fuzzing_harness, timing_measurement, load_testing, session_tickets, error_codes]
+  claims:
+    - {id: C-CONF, claim: "Kerahasiaan kunci sesi", tags: [secrecy]}
+    - {id: C-MAUTH, claim: "Autentikasi mutual", tags: [mutual_auth]}
+    - {id: C-FS, claim: "Forward secrecy", tags: [forward_secrecy]}
+    - {id: C-DOWN, claim: "Ketahanan downgrade", tags: [downgrade]}
+    - {id: C-REPLAY, claim: "Ketahanan replay", tags: [replay]}
+  protocol:
+    name: TLS 1.3
+    versions_supported: ["TLS 1.3"]
+    versions_tested: ["TLS 1.3", "TLS 1.2", "TLS 1.1", "TLS 1.0", "SSL 3.0"]
+    cipher_suites: [TLS_AES_256_GCM_SHA384]
+    cipher_suites_tested: [TLS_AES_256_GCM_SHA384, "CBC (TLS 1.2)", RC4, 3DES, "NULL"]
+    groups: [secp384r1, x25519, X25519MLKEM768]
+    signature_schemes: [ecdsa_secp384r1_sha384]
+    zero_rtt: [nonaktif, aktif]
+    certificates: [valid, kedaluwarsa, dicabut, self-signed, "CA asing", "nama tidak cocok"]
+    network_conditions: ["latensi 500 ms", "loss 5%", "putus di tengah handshake", "OCSP tak terjangkau"]
+    ticket_lifetime_days_max: 7

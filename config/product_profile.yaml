@@ -47,6 +47,29 @@ resources:
 
 algorithms_under_test: /private/var/folders/_m/xvjrg2b12yn5bgh7p7ppzxz00000gn/T/pytest-of-deasakakurniaputra/pytest-6/test_outputs_and_profile_link0/out/algorithms_under_test.yaml   # dihasilkan algo_catalog (KUK 1.1)
 
+# ---------------------------------------------------------------------------
+# UK-2 — informasi tambahan untuk penyusunan & verifikasi skenario (ILUSTRATIF)
+# ---------------------------------------------------------------------------
+uk2:
+  product_type: library            # library | application | token | hsm | gateway
+  testing_model: 3                 # 3 = Komponen–Integrasi–Sistem; 4 = Unit–Integration–System–UAT (modul ISO/IEC 19790)
+  iso19790_security_level: null    # null = tidak berlaku (bukan modul tervalidasi)
+  # Fitur produk — skenario yang membutuhkan fitur di luar daftar ini DITOLAK verifier (aturan f)
+  features: [api, software_library, keygen, key_import_export, streaming_api, self_tests, error_codes,
+             rng_internal, aead, signature, kem, timing_measurement, fuzzing_harness, multi_thread]
+  # Klaim keamanan produk — setiap klaim wajib punya ≥ 1 skenario Uji Keamanan (aturan c)
+  claims:
+    - {id: C-STRENGTH, claim: "Tingkat keamanan ≥ 112 bit untuk seluruh algoritma approved (SP 800-57)", tags: [bit_security]}
+    - {id: C-AEAD, claim: "AEAD (AES-GCM, ChaCha20-Poly1305): kerahasiaan IND-CPA + integritas INT-CTXT bila nonce unik", tags: [aead, nonce_misuse]}
+    - {id: C-PKE, claim: "RSA-OAEP: IND-CCA2; galat dekripsi seragam (tanpa oracle)", tags: [ind_cca2, oracle]}
+    - {id: C-SIG, claim: "ECDSA/EdDSA/ML-DSA: EUF-CMA; nonce tidak berulang/bias", tags: [euf_cma, nonce_bias]}
+    - {id: C-HASH, claim: "SHA3-256/SHA-2: collision 2^(n/2), preimage 2^n", tags: [collision, preimage]}
+    - {id: C-CT, claim: "Operasi dengan data rahasia berjalan constant-time pada x86-64", tags: [constant_time]}
+    - {id: C-RNG, claim: "Kunci & nonce dari HMAC_DRBG/CTR_DRBG (SP 800-90A) dengan entropi memadai", tags: [rng]}
+  limits:                          # batas penggunaan yang diklaim (dipakai skenario Sistem)
+    max_message_bytes: 1073741824
+    rekey_after_messages: 4294967296
+
 # Profil algoritma objek praktikum (satu per kelas primitif) — "All"
 algorithms:
   - profiles/aes128.yaml

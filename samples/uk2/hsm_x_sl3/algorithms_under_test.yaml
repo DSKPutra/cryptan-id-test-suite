@@ -1,0 +1,11 @@
+schema: cryptan.algo_catalog.algorithms_under_test.v1
+product: HSM-X
+items:
+  - {id: AES-256-GCM, entry_id: AES-GCM, primitive: block_cipher, family: AES, variant: GCM, key_bits: 256, security_strength_bits: 256, status_nist: acceptable, standards: [FIPS 197, SP 800-38D]}
+  - {id: AES-256-KW, entry_id: AES-KW, primitive: block_cipher, family: AES, variant: KW, key_bits: 256, security_strength_bits: 256, status_nist: acceptable, standards: [SP 800-38F]}
+  - {id: SHA-384, entry_id: SHA-384, primitive: hash, family: SHA-2, variant: SHA-384, key_bits: null, security_strength_bits: 192, status_nist: acceptable, standards: [FIPS 180-4]}
+  - {id: HMAC-SHA-384-K384, entry_id: HMAC-SHA-384, primitive: mac, family: HMAC, variant: SHA-384, key_bits: 384, security_strength_bits: 384, status_nist: acceptable, standards: [FIPS 198-1]}
+  - {id: ECDSA-P384, entry_id: ECDSA-P384, primitive: signature, family: ECDSA, variant: P-384, key_bits: 384, security_strength_bits: 192, status_nist: acceptable, standards: [FIPS 186-5], quantum_vulnerable: true}
+  - {id: ML-KEM-768, entry_id: ML-KEM-768, primitive: pkc_kem, family: ML-KEM, variant: ML-KEM-768, key_bits: null, security_strength_bits: 192, security_category: 3, status_nist: acceptable, standards: [FIPS 203]}
+  - {id: ML-DSA-65, entry_id: ML-DSA-65, primitive: signature, family: ML-DSA, variant: ML-DSA-65, key_bits: null, security_strength_bits: 192, security_category: 3, status_nist: acceptable, standards: [FIPS 204]}
+  - {id: CTR-DRBG-AES-256, entry_id: CTR-DRBG, primitive: drbg, family: DRBG, variant: CTR_DRBG, key_bits: 256, security_strength_bits: 256, status_nist: acceptable, standards: [SP 800-90A Rev.1]}

@@ -1,0 +1,98 @@
+# DIHASILKAN oleh scripts/extract_uk2_templates.py dari materi PPTX — jangan disunting manual
+source: Materi UK-2 'Penetapan Skenario Pengujian Modul Kriptografi Berbasis ISO/IEC 19790' (Dr. Santi Indarjani, Poltek SSN)
+areas:
+- area: '7.2'
+  name: Spesifikasi modul
+  dominant:
+  - K
+  - S
+- area: '7.3'
+  name: Antarmuka modul
+  dominant:
+  - K
+  - I
+- area: '7.4'
+  name: Peran, layanan & autentikasi
+  dominant:
+  - K
+  - S
+- area: '7.5'
+  name: Keamanan software/firmware
+  dominant:
+  - S
+  - I
+- area: '7.6'
+  name: Lingkungan operasi
+  dominant:
+  - I
+- area: '7.7'
+  name: Keamanan fisik
+  dominant:
+  - S
+- area: '7.8'
+  name: Keamanan non-invasif
+  dominant:
+  - I
+  - S
+- area: '7.9'
+  name: Manajemen SSP
+  dominant:
+  - K
+  - S
+- area: '7.10'
+  name: Self-test
+  dominant:
+  - K
+- area: '7.11'
+  name: Jaminan siklus hidup
+  dominant:
+  - K
+  - I
+- area: '7.12'
+  name: Mitigasi serangan lain
+  dominant:
+  - S
+  - I
+framework_3x4:
+  Unit Testing:
+    desc: Fungsi/primitif dan unit firmware diuji terisolasi
+    K: KAT algoritma, vektor DRBG, rutin self-test
+    S: Entropi, zeroisation, kekuatan autentikasi
+    I: SAST, fuzzing parser, TVLA per fungsi
+  Integration Testing:
+    desc: 'Unit dirangkai: API, manajer kunci, engine, key store, boot chain'
+    K: Matriks peran–layanan, siklus SSP, indikator approved
+    S: Penghambatan output, ekspor kunci, update firmware
+    I: Reproducible build, fault pada boot, fuzzing API
+  System Testing:
+    desc: Modul utuh pada batas kriptografis, seluruh antarmuka
+    K: Batas kriptografis, antarmuka, security policy
+    S: Tamper, EFP/EFT, split knowledge
+    I: Side-channel modul tertutup, lingkungan operasi, pengiriman
+  UAT:
+    desc: Modul di lingkungan dan kasus penggunaan nyata pengguna
+    K: Key ceremony, integrasi aplikasi, kepatuhan regulasi
+    S: Dual control, respons insiden, pemulihan bencana
+    I: Kinerja, ketersediaan, pemeliharaan lapangan
+governance:
+  Unit Testing:
+    executor: Pengembang / tim verifikasi internal
+    entry: Desain & kode unit dibekukan; vektor uji tersedia
+    exit: Seluruh uji unit lulus; cakupan cabang ≥ target; tanpa temuan SAST tingkat tinggi
+  Integration Testing:
+    executor: Tim verifikasi internal
+    entry: Uji unit lulus; antarmuka antar-unit terdokumentasi
+    exit: Alur layanan, peran, dan SSP sesuai rancangan security policy
+  System Testing:
+    executor: Laboratorium uji terakreditasi (ISO/IEC 17025)
+    entry: Security policy final; bukti vendor sesuai ISO/IEC 24759
+    exit: Seluruh asersi uji terpenuhi pada tingkat keamanan yang ditargetkan
+  UAT:
+    executor: Pengguna / pemilik proses bisnis bersama penguji
+    entry: Laporan uji sistem tersedia; lingkungan operasional siap
+    exit: Kriteria penerimaan pengguna terpenuhi; berita acara penerimaan
+standards:
+- ISO/IEC 19790:2012
+- ISO/IEC 24759:2017
+- ISO/IEC 18367
+- ISO/IEC 17825

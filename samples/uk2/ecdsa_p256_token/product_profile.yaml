@@ -1,0 +1,22 @@
+# Sampel UK-2 (reproduksi materi Contoh 1) — ILUSTRATIF
+product: {name: "SignDoc Token", version: "1.0 (ilustratif)", description: "Modul tanda tangan elektronik dokumen (aplikasi + token kriptografi/secure element)"}
+implementation: {platform: token-secure-element, language: C, interfaces: ["PKCS#11", "aplikasi desktop"], rng: "DRBG token (SP 800-90A) + sumber entropi fisik"}
+tester: {access: grey_box, scope: ["Kesesuaian, keamanan, implementasi skema ECDSA P-256/SHA-256 pada aplikasi + token"]}
+algorithms_under_test: algorithms_under_test.yaml
+uk2:
+  product_type: token
+  testing_model: 3
+  iso19790_security_level: null
+  features: [api, signature, keygen, rng_internal, token, secure_element, pdf_signing, certificates, timestamp, revocation,
+             physical_access, power_glitch, side_channel_lab, key_non_exportable, audit_log, error_codes, multi_doc_signing, fuzzing_harness]
+  claims:
+    - {id: C-STRENGTH, claim: "128 bit", tags: [bit_security]}
+    - {id: C-EUF, claim: "EUF-CMA", tags: [euf_cma, nonce_bias]}
+    - {id: C-NOEXP, claim: "Kunci privat tidak dapat diekspor", tags: [key_non_exportable]}
+  parameters:
+    nonce_modes: [rfc6979, drbg]
+    sample_signatures: 1000000
+    sample_traces: 100000
+    document_sizes: ["100 KB", "10 MB", "100 MB"]
+    parallel_documents: [1, 10, 100]
+    operating_conditions: [normal, "gangguan daya saat signing", "glitch tegangan/clock"]

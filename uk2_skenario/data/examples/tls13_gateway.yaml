@@ -1,0 +1,174 @@
+# DIHASILKAN oleh scripts/extract_uk2_templates.py dari materi PPTX — jangan disunting manual
+source: Materi UK-2 'Penetapan Skenario Pengujian Produk Kriptografi' (Dr. Santi Indarjani, Poltek SSN)
+source_slides:
+- 25
+- 26
+- 27
+- 28
+- 29
+code: PR
+profile:
+  Objek uji: Modul TLS 1.3 pada gateway layanan dengan autentikasi mutual
+  Konfigurasi: TLS_AES_256_GCM_SHA384; grup secp384r1, x25519, X25519MLKEM768 (hybrid)
+  Autentikasi: ecdsa_secp384r1_sha384; sertifikat X.509 dari CA internal
+  Klaim keamanan: Kerahasiaan kunci sesi, autentikasi mutual, forward secrecy, ketahanan downgrade dan replay
+  Acuan: RFC 8446, RFC 8448, RFC 5280, RFC 6960, spesifikasi hybrid ML-KEM (IETF)
+param_space:
+- parameter: Versi protokol
+  status: Variabel
+  values: TLS 1.3; 1.2; 1.1/1.0; SSL 3.0
+- parameter: Cipher suite
+  status: Variabel
+  values: AEAD kuat; CBC; RC4/3DES/NULL
+- parameter: Grup pertukaran kunci
+  status: Variabel
+  values: secp384r1, x25519, hybrid; grup tidak didukung (memicu HRR)
+- parameter: Nilai publik key share
+  status: Variabel
+  values: Valid; di luar kurva; titik tak hingga; low-order X25519; panjang salah
+- parameter: Sertifikat klien
+  status: Variabel
+  values: Valid, kedaluwarsa, dicabut, self-signed, CA asing, nama tidak cocok
+- parameter: Urutan pesan
+  status: Variabel
+  values: Normal; dilewati; diulang; disisipkan
+- parameter: Replay & 0-RTT
+  status: Variabel
+  values: 0-RTT nonaktif/aktif; replay ClientHello dan early data
+- parameter: Kondisi jaringan
+  status: Variabel
+  values: Latensi 500 ms; loss 5%; putus di tengah handshake; OCSP tak terjangkau
+test_cases:
+- id: PR-K-01
+  params: Vektor jejak RFC 8448
+  procedure: Hitung HKDF-SHA384 dan seluruh secret pada key schedule
+  pass: Secret turunan identik dengan acuan
+  level: Komponen
+  layer: K
+- id: PR-K-02
+  params: KAT AES-256-GCM; tag dimodifikasi 1 bit
+  procedure: Enkripsi/dekripsi dan verifikasi tag
+  pass: Identik 100%; tag salah ditolak
+  level: Komponen
+  layer: K
+- id: PR-K-03
+  params: Full handshake, HelloRetryRequest, resumption PSK
+  procedure: Rekam transcript dan transisi state
+  pass: Urutan pesan & state sesuai RFC 8446
+  level: Integrasi
+  layer: K
+- id: PR-K-04
+  params: Kombinasi versi × suite × grup (pairwise)
+  procedure: Klien menawarkan tiap kombinasi
+  pass: Pilihan server sesuai kebijakan preferensi
+  level: Integrasi
+  layer: K
+- id: PR-K-05
+  params: Grup hybrid X25519MLKEM768
+  procedure: Handshake dengan klien pendukung hybrid
+  pass: Shared secret sesuai spesifikasi hybrid
+  level: Integrasi
+  layer: K
+- id: PR-K-06
+  params: ≥ 3 implementasi klien referensi
+  procedure: Uji interoperabilitas dua arah
+  pass: Seluruh handshake berhasil
+  level: Sistem
+  layer: K
+- id: PR-S-01
+  params: Model formal handshake + resumption
+  procedure: 'Analisis Tamarin: secrecy, autentikasi mutual, FS, KCI'
+  pass: Seluruh lemma terbukti
+  level: Model
+  layer: S
+- id: PR-S-02
+  params: Penawaran TLS ≤ 1.2, suite lemah; MitM mengubah ClientHello
+  procedure: Uji negosiasi dan sentinel anti-downgrade
+  pass: Ditolak; modifikasi menggagalkan Finished
+  level: Integrasi
+  layer: S
+- id: PR-S-03
+  params: Key share di luar kurva, titik tak hingga, low-order X25519
+  procedure: Kirim key share invalid ke server
+  pass: Seluruhnya ditolak dengan alert yang tepat
+  level: Integrasi
+  layer: S
+- id: PR-S-04
+  params: Replay ClientHello/Finished dan early data; sequence number diubah
+  procedure: Kirim ulang atau ubah urutan record
+  pass: Replay tidak menghasilkan efek; record ditolak
+  level: Integrasi
+  layer: S
+- id: PR-S-05
+  params: Seluruh variasi sertifikat klien
+  procedure: Handshake autentikasi mutual
+  pass: Hanya sertifikat valid yang diterima
+  level: Sistem
+  layer: S
+- id: PR-S-06
+  params: Kunci privat jangka panjang dibocorkan pasca-sesi
+  procedure: Coba dekripsi trafik yang telah direkam
+  pass: Trafik lampau tidak dapat didekripsi
+  level: Sistem
+  layer: S
+- id: PR-I-01
+  params: ≥ 10^5 urutan pesan menyimpang
+  procedure: Fuzzing state machine (gaya TLS-Attacker)
+  pass: Tidak ada transisi ilegal atau crash
+  level: Integrasi
+  layer: I
+- id: PR-I-02
+  params: Panjang record/extension salah, extension duplikat
+  procedure: Fuzzing parser record dan extension
+  pass: Alert benar; tanpa crash/kebocoran memori
+  level: Integrasi
+  layer: I
+- id: PR-I-03
+  params: Record dengan tag valid vs invalid; 10^5 sampel
+  procedure: Ukur waktu respons dekripsi dan verifikasi Finished
+  pass: TVLA |t| < 4,5
+  level: Integrasi
+  layer: I
+- id: PR-I-04
+  params: Banjir ClientHello, amplifikasi HRR, KeyUpdate berulang
+  procedure: Uji beban dan resource exhaustion
+  pass: Layanan tersedia sesuai SLA
+  level: Sistem
+  layer: I
+- id: PR-I-05
+  params: Rotasi kunci session ticket; umur tiket
+  procedure: Periksa kebijakan rotasi, umur ≤ 7 hari, zeroization
+  pass: Sesuai kebijakan manajemen kunci
+  level: Sistem
+  layer: I
+- id: PR-I-06
+  params: Latensi 500 ms, loss 5%, putus di tengah handshake
+  procedure: Uji pada emulator jaringan
+  pass: Sesi setengah jadi dibersihkan; tanpa kebocoran state
+  level: Sistem
+  layer: I
+outcome_map:
+- condition: Titik low-order X25519 diterima (shared secret nol)
+  trigger: Nilai publik key share
+  outcome: Tidak Memenuhi
+  action: Temuan kritis; wajibkan pemeriksaan shared secret nol
+- condition: Server menerima TLS 1.2 dengan suite non-AEAD
+  trigger: Versi, cipher suite
+  outcome: Tidak Memenuhi
+  action: Batasi ke TLS 1.3 atau TLS 1.2 ECDHE-AEAD sesuai profil
+- condition: 0-RTT aktif tanpa mekanisme anti-replay
+  trigger: Replay & 0-RTT
+  outcome: Memenuhi dengan Catatan
+  action: Diterima hanya untuk permintaan idempoten; selain itu nonaktifkan
+- condition: Sertifikat dicabut diterima saat OCSP tak terjangkau
+  trigger: Sertifikat, kondisi jaringan
+  outcome: Memenuhi dengan Catatan
+  action: Terapkan hard-fail atau OCSP stapling wajib
+- condition: Analisis Tamarin tidak berhenti (non-termination)
+  trigger: Model formal
+  outcome: Inkonklusif
+  action: Sederhanakan model atau tambahkan lemma bantu
+- condition: Crash pada fuzzing state machine
+  trigger: Urutan pesan
+  outcome: Tidak Memenuhi
+  action: Perbaiki state machine; ulangi PR-I-01 dan PR-K-03

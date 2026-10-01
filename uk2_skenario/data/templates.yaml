@@ -1,0 +1,314 @@
+# DIHASILKAN oleh scripts/extract_uk2_templates.py dari materi PPTX — jangan disunting manual
+source: Materi UK-2 'Penetapan Skenario Pengujian Produk Kriptografi' (Dr. Santi Indarjani, Poltek SSN)
+framework_3x3:
+  Komponen:
+    desc: 'Fungsi penyusun: S-box, key schedule, fungsi kompresi, aritmetika'
+    K: Nilai antara, konstanta, dan struktur sesuai spesifikasi
+    S: Properti kriptografis komponen (nonlinearitas, difusi, derajat aljabar)
+    I: Constant-time, zeroization, tidak ada percabangan bergantung data rahasia
+  Integrasi:
+    desc: Komponen dirangkai menjadi algoritma utuh, mode, atau skema
+    K: KAT, Monte Carlo Test, round-trip, vektor invalid
+    S: Keacakan output, avalanche, kriptanalisis (diferensial, linear, aljabar)
+    I: Side-channel, fault injection, fuzzing, penanganan galat
+  Sistem:
+    desc: Algoritma di dalam produk dan lingkungan operasional
+    K: Interoperabilitas, format data, kesesuaian profil/standar
+    S: Serangan end-to-end, manajemen kunci, batas penggunaan kunci
+    I: Kinerja, ketahanan operasional, audit dan logging
+param_classes:
+- 'no': 1
+  class: Material rahasia
+  examples: Kunci, nonce rahasia, seed RNG
+- 'no': 2
+  class: Data masukan
+  examples: Plaintext, pesan, ciphertext, tanda tangan
+- 'no': 3
+  class: Parameter publik/domain
+  examples: Ukuran kunci, kurva, grup, parameter set PQC
+- 'no': 4
+  class: Konfigurasi
+  examples: Mode operasi, padding, jumlah ronde, cipher suite
+- 'no': 5
+  class: Kondisi lingkungan
+  examples: Jaringan, daya, temperatur, beban sistem
+techniques:
+- technique: Partisi ekuivalensi
+  desc: Satu wakil per kelas nilai yang diharapkan berperilaku sama.
+- technique: Analisis nilai batas
+  desc: Nilai 0, minimum, b−1, b, b+1, maksimum, dan di luar rentang.
+- technique: Input degeneratif/berpola
+  desc: Nol-semua, satu-semua, low/high-density, periodik.
+- technique: Variasi 1-bit (diferensial)
+  desc: Mengukur difusi dan avalanche terhadap tiap bit input.
+- technique: Kombinatorial t-way
+  desc: Kombinasi parameter secara pairwise untuk menekan jumlah kasus.
+- technique: Negative testing
+  desc: Input invalid, malformed, dan berulang untuk menguji penolakan.
+outcome_categories:
+  Memenuhi: Seluruh kriteria terpenuhi pada semua variasi parameter yang ditetapkan.
+  Memenuhi dengan Catatan: Lulus, tetapi terdapat batasan penggunaan (mis. batas data per kunci, parameter minimum).
+  Tidak Memenuhi: Minimal satu kriteria gagal; parameter pemicu kegagalan diidentifikasi.
+  Inkonklusif: Bukti statistik belum cukup; diperlukan sampel lebih besar atau uji lanjutan.
+decision_criteria:
+  Deterministik: KAT/MCT cocok 100%; vektor invalid seluruhnya ditolak.
+  Statistik: α = 0,01; proporsi lolos dalam interval kepercayaan; p-value terdistribusi seragam.
+  Kriptanalitik: Kompleksitas serangan terbaik ≥ klaim tingkat keamanan (bit security).
+  Implementasi: Tidak ada kebocoran terukur (mis. TVLA |t| < 4,5) dan galat seragam.
+categories:
+  block:
+    code: BC
+    label: Block Cipher
+    source_slides:
+    - 6
+    - 7
+    params:
+    - parameter: Panjang & nilai kunci
+      variations: 128/192/256 bit; acak, low/high-density, kunci lemah/semi-lemah, related-key
+      impact: Menentukan hasil avalanche kunci, keacakan output, dan ketahanan related-key
+    - parameter: Blok plaintext
+      variations: Acak, low/high-density, nol-semua, satu-semua, berpola
+      impact: Input berpola memicu kegagalan statistik bila difusi lemah
+    - parameter: Mode operasi
+      variations: ECB, CBC, CTR, GCM, XTS
+      impact: ECB membocorkan pola; hasil keamanan bergantung pada mode, bukan hanya primitif
+    - parameter: IV/nonce
+      variations: Acak, berulang, dapat diprediksi, nol
+      impact: Nonce berulang pada CTR/GCM → keystream/tag reuse → tidak memenuhi
+    - parameter: Panjang pesan & padding
+      variations: 0 byte, kelipatan blok, non-kelipatan, sangat panjang
+      impact: Menguji padding oracle dan batas volume data per kunci
+    - parameter: Jumlah ronde
+      variations: Penuh vs tereduksi
+      impact: Mengukur margin keamanan terhadap serangan diferensial, linear, integral
+    notes:
+    - Uji keacakan output memakai dataset terstruktur (key/plaintext avalanche, low/high-density, korelasi P–C) agar kegagalan dapat ditelusuri
+      ke parameter penyebabnya.
+    - Batas data per kunci (birthday bound ≈ 2^(n/2) blok) ditetapkan sebagai parameter skenario, bukan asumsi.
+    matrix:
+      Komponen:
+        K: Verifikasi S-box, permutasi, key schedule, dan nilai antara per ronde
+        S: Nonlinearitas, uniformitas diferensial, bias LAT, derajat aljabar S-box; SAC per ronde
+        I: Lookup constant-time (tanpa kebocoran cache T-table); zeroization round key
+      Integrasi:
+        K: KAT, MCT, MMT per mode & padding; round-trip D(E(x)) = x
+        S: Avalanche kunci/plaintext; keacakan output; uji IV/nonce reuse; reduced-round
+        I: Padding oracle; verifikasi tag constant-time; analisis timing/power (CPA/DPA)
+      Sistem:
+        K: Interoperabilitas dengan implementasi referensi; format ciphertext
+        S: Kebijakan rekey & batas data per kunci; skenario serangan end-to-end
+        I: DFA/fault injection; throughput; penanganan galat dan log yang aman
+  stream:
+    code: SC
+    label: Stream Cipher
+    source_slides:
+    - 8
+    - 9
+    params:
+    - parameter: Kunci
+      variations: 80/128/256 bit; acak, berpola, low/high-density
+      impact: Sensitivitas keystream terhadap bit kunci (key avalanche)
+    - parameter: IV/nonce
+      variations: Acak, berurutan, berbeda 1 bit, berulang
+      impact: IV berdekatan menguji difusi inisialisasi; IV berulang → keystream identik
+    - parameter: Ronde inisialisasi
+      variations: Penuh vs tereduksi
+      impact: Ronde tereduksi memunculkan distinguisher (cube/chosen-IV)
+    - parameter: Panjang keystream
+      variations: 10^6 bit hingga ≥ 2^30 bit
+      impact: Menentukan daya uji statistik, profil kompleksitas linear, deteksi periode
+    - parameter: Ukuran state
+      variations: Relatif terhadap panjang kunci
+      impact: State < 2 × kunci membuka time–memory–data trade-off
+    notes:
+    - Hasil uji keacakan sangat bergantung pada panjang barisan dan jumlah sampel; keduanya ditetapkan sebelum pengujian agar keputusan statistik
+      konsisten.
+    - Stream cipher tanpa autentikasi rentan bit-flipping; skenario integrasi wajib memasukkan MAC/AEAD.
+    matrix:
+      Komponen:
+        K: Verifikasi polinomial LFSR/NLFSR, fungsi filter/FSM, dan fase inisialisasi
+        S: Periode, kompleksitas linear (Berlekamp–Massey), imunitas korelasi & aljabar fungsi Boolean
+        I: Implementasi constant-time; clocking tidak bergantung data rahasia
+      Integrasi:
+        K: Test vector keystream (kunci, IV); konsistensi resinkronisasi
+        S: NIST SP 800-22/TestU01; key/IV avalanche; cube tester; kompleksitas guess-and-determine
+        I: Manajemen nonce (counter, overflow); integrasi MAC/AEAD; penanganan resync
+      Sistem:
+        K: Interoperabilitas & sinkronisasi pada kanal nyata (bit loss, delay)
+        S: Skenario IV reuse & malleability end-to-end
+        I: Throughput, latensi; side-channel & fault pada perangkat target
+  hash:
+    code: HF
+    label: Fungsi Hash
+    source_slides:
+    - 10
+    - 11
+    params:
+    - parameter: Panjang pesan
+      variations: 0, 1 byte, b−1, b, b+1 (b = ukuran blok), sangat panjang
+      impact: Batas padding & encoding panjang paling sering memunculkan cacat
+    - parameter: Pola pesan
+      variations: Acak, nol-semua, low-density, berbeda 1 bit
+      impact: Menguji avalanche dan distribusi output
+    - parameter: Panjang digest
+      variations: Penuh, terpotong (truncation), XOF variabel
+      impact: Truncation menurunkan collision resistance menjadi 2^(t/2)
+    - parameter: Pemecahan input
+      variations: One-shot vs update bertahap acak
+      impact: Hasil harus identik; perbedaan menunjukkan cacat state internal
+    - parameter: Kunci/salt (HMAC, KDF)
+      variations: Kunci < blok, = blok, > blok
+      impact: Kunci > blok di-hash lebih dahulu; memengaruhi kesesuaian HMAC
+    - parameter: Jumlah ronde
+      variations: Penuh vs tereduksi
+      impact: Mengukur margin terhadap (near-)collision & preimage
+    notes:
+    - Konstruksi Merkle–Damgård rentan length-extension; skenario membedakan penggunaan hash murni dan sebagai MAC.
+    - 'Klaim keamanan dibandingkan dengan batas generik: preimage 2^n dan collision 2^(n/2).'
+    matrix:
+      Komponen:
+        K: Verifikasi fungsi kompresi/permutasi, konstanta, padding & encoding panjang
+        S: Batas jejak diferensial; SAC fungsi kompresi; near-collision ronde tereduksi
+        I: Counter panjang pesan (overflow > 2^32 byte); endianness
+      Integrasi:
+        K: Short/Long Message Test, Monte Carlo Test, konsistensi chunking & XOF
+        S: Avalanche; distribusi output (χ², entropi); evaluasi length-extension
+        I: Pembandingan digest/HMAC constant-time; API streaming yang aman
+      Sistem:
+        K: Penggunaan hash dalam HMAC, KDF, tanda tangan, integritas berkas
+        S: Kecukupan panjang digest terhadap umur data & ancaman kuantum (Grover)
+        I: Kinerja volume besar; validasi integritas pada alur operasional
+  pke:
+    code: PK
+    label: Public Key Encryption
+    source_slides:
+    - 12
+    - 13
+    params:
+    - parameter: Ukuran kunci & domain
+      variations: RSA 2048/3072/4096; P-256/P-384; ML-KEM-512/768/1024
+      impact: Menentukan tingkat keamanan dan kelayakan terhadap ancaman kuantum
+    - parameter: Kualitas pembangkitan kunci
+      variations: Sumber acak baik vs entropi rendah
+      impact: Entropi rendah → faktor prima bersama (batch GCD), kunci dapat ditebak
+    - parameter: Skema padding
+      variations: PKCS#1 v1.5, OAEP; transformasi FO (KEM)
+      impact: PKCS#1 v1.5 berpotensi membuka oracle Bleichenbacher
+    - parameter: Ciphertext masukan
+      variations: Valid, termodifikasi, malformed, di luar rentang
+      impact: 'Menguji perilaku CCA: pesan galat & waktu respons harus seragam'
+    - parameter: Kunci publik lawan
+      variations: Valid, titik tidak di kurva, subgrup kecil
+      impact: Tanpa validasi → invalid-curve / small-subgroup attack
+    notes:
+    - Pada KEM berbasis lattice, laju kegagalan dekapsulasi dan implicit rejection menjadi parameter uji tersendiri.
+    - Pesan galat yang berbeda untuk jenis kegagalan berbeda sudah cukup untuk menyatakan tidak memenuhi uji keamanan.
+    matrix:
+      Komponen:
+        K: Aritmetika modular/kurva/polinomial (NTT), uji primalitas, validasi parameter
+        S: Estimasi bit security (termasuk lattice estimator untuk PQC); kualitas bilangan prima
+        I: Eksponensiasi/perkalian skalar constant-time; proteksi fault pada RSA-CRT
+      Integrasi:
+        K: KAT KeyGen/Enc/Dec atau Encaps/Decaps; Dec(Enc(m)) = m
+        S: Oracle padding; validasi kunci publik; decryption failure rate; batch GCD
+        I: Keseragaman galat & waktu respons; fuzzing ciphertext malformed
+      Sistem:
+        K: Interoperabilitas format kunci (PKCS#8, X.509) & ciphertext
+        S: Kesiapan transisi PQC (hybrid, crypto-agility); umur kunci
+        I: Penyimpanan kunci privat (HSM/secure element); zeroization; kinerja
+  signature:
+    code: DS
+    label: Digital Signature
+    source_slides:
+    - 14
+    - 15
+    params:
+    - parameter: Nonce k (ECDSA/DSA/Schnorr)
+      variations: Acak, deterministik (RFC 6979), bias beberapa bit, berulang
+      impact: Nonce berulang/bias → kunci privat terpulihkan (serangan lattice/HNP)
+    - parameter: Fungsi hash & pesan
+      variations: SHA-2/SHA-3; pesan kosong hingga sangat panjang
+      impact: Ketidaksesuaian hash–kurva menurunkan tingkat keamanan efektif
+    - parameter: Encoding tanda tangan
+      variations: DER kanonik/non-kanonik, (r, s) di luar rentang, s ↔ n−s
+      impact: Menguji penolakan tanda tangan tidak sah dan malleability
+    - parameter: Kunci publik
+      variations: Valid, titik identitas, tidak di kurva
+      impact: Verifier wajib menolak kunci publik invalid
+    - parameter: Parameter PQC & state
+      variations: ML-DSA-44/65/87, SLH-DSA; LMS/XMSS (stateful)
+      impact: Skema stateful gagal total bila indeks OTS terpakai ulang
+    notes:
+    - Uji verifikasi menggunakan lebih banyak vektor invalid daripada vektor valid; kegagalan menolak merupakan temuan kritis.
+    - Tanda tangan deterministik rentan fault attack sehingga uji injeksi galat wajib disertakan.
+    matrix:
+      Komponen:
+        K: Aritmetika kurva/lattice, pembangkitan nonce, hash-to-scalar
+        S: Uji statistik bias nonce; estimasi bit security skema
+        I: Perkalian skalar & rejection sampling constant-time
+      Integrasi:
+        K: KAT KeyGen/SigGen/SigVer; vektor invalid (gaya Wycheproof)
+        S: Malleability; penolakan kunci publik invalid; kesesuaian klaim EUF-CMA
+        I: Uji fault saat signing; persistensi state skema stateful saat gangguan daya
+      Sistem:
+        K: 'Kesesuaian PKI: sertifikat, rantai kepercayaan, format CMS/XML-DSig'
+        S: Validasi timestamp, revokasi, non-repudiation end-to-end
+        I: Proteksi kunci penandatangan (HSM); audit log; kinerja volume tinggi
+  protocol:
+    code: PR
+    label: Protokol Kriptografi
+    source_slides:
+    - 16
+    - 17
+    params:
+    - parameter: Versi & cipher suite
+      variations: Terbaru, lawas, kombinasi campuran
+      impact: Negosiasi lemah membuka downgrade attack
+    - parameter: Parameter pertukaran kunci
+      variations: Grup DH/kurva; nilai publik valid, 0, 1, p−1, subgrup kecil
+      impact: Tanpa validasi → small-subgroup/confinement attack
+    - parameter: Nonce, timestamp, sequence
+      variations: Segar, berulang, kedaluwarsa, tidak berurutan
+      impact: Menguji ketahanan replay dan reflection
+    - parameter: Urutan & format pesan
+      variations: Sesuai spesifikasi, dilewati, diulang, malformed
+      impact: Menguji ketangguhan state machine
+    - parameter: Kredensial & identitas
+      variations: Sertifikat valid, kedaluwarsa, dicabut, self-signed, nama tidak cocok
+      impact: Menguji autentikasi dan pencegahan MitM
+    - parameter: Kondisi jaringan
+      variations: Latensi, paket hilang, sesi terputus, resumption
+      impact: Menguji keamanan resumption dan penanganan timeout
+    notes:
+    - Keamanan protokol ditentukan oleh komposisi; primitif yang lulus uji tidak menjamin protokol aman.
+    - Analisis formal (mis. ProVerif/Tamarin) untuk secrecy, autentikasi, dan forward secrecy dilakukan sebelum uji implementasi.
+    matrix:
+      Komponen:
+        K: Kesesuaian primitif penyusun (KDF, AEAD, tanda tangan) dengan spesifikasi
+        S: Kecukupan parameter tiap primitif; pemisahan domain (label KDF)
+        I: Validasi nilai publik & sertifikat; parser pesan yang aman
+      Integrasi:
+        K: State machine, format pesan, transcript hash handshake
+        S: Analisis formal; replay, reflection, downgrade, KCI, unknown key-share
+        I: Fuzzing state machine & pesan; penanganan galat dan alert
+      Sistem:
+        K: Interoperabilitas antarvendor; kesesuaian profil/standar nasional
+        S: MitM end-to-end, forward secrecy, kompromi kunci jangka panjang
+        I: Ketahanan DoS/resource exhaustion; manajemen sesi & kunci; logging
+cross_algorithm:
+  chain:
+  - RNG / Sumber Entropi
+  - Pembangkitan Kunci
+  - KDF
+  - Cipher / MAC / Signature
+  - Protokol
+  - Produk
+  themes:
+  - theme: Konsistensi antarmuka
+    desc: Endianness, encoding (DER/raw), panjang parameter, dan kode galat konsisten antarkomponen.
+  - theme: Siklus hidup kunci
+    desc: Pembangkitan, distribusi, penyimpanan, penggunaan, rotasi, dan pemusnahan diuji sebagai satu alur.
+  - theme: Kondisi operasional
+    desc: Gangguan daya, restart, beban tinggi, dan kegagalan jaringan tidak menurunkan sifat keamanan.
+  - theme: Crypto-agility & transisi PQC
+    desc: Algoritma dan parameter dapat diganti (termasuk mode hybrid) tanpa mengubah arsitektur.

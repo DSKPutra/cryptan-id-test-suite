@@ -1,0 +1,14 @@
+{"schema": "STUB_UK1", "stub": true, "note": "STUB_UK1 — sampel reproduksi materi; metode dipilih manual sesuai contoh",
+ "profile": {"algorithm": {"id": "ECDSA-P256", "primitive": "dss"}},
+ "selection": {"selected": [
+  {"method_id": "M-KAT", "name": "Known Answer Test", "layer": "Kesesuaian", "level": "Unit"},
+  {"method_id": "M-PKV", "name": "Validasi kunci publik", "layer": "Kesesuaian", "level": "Unit"},
+  {"method_id": "M-SIGMAL", "name": "Penolakan (r,s) non-kanonik", "layer": "Kesesuaian", "level": "Unit"},
+  {"method_id": "M-CURVE", "name": "Validasi parameter domain", "layer": "Kesesuaian", "level": "Unit"},
+  {"method_id": "M-NONCE", "name": "Keunikan & bias nonce", "layer": "Implementasi & sistem", "level": "Integrasi"},
+  {"method_id": "M-RNG", "name": "Asesmen RBG", "layer": "Implementasi & sistem", "level": "Integrasi"},
+  {"method_id": "M-TIMING", "name": "Timing leakage", "layer": "Implementasi & sistem", "level": "Integrasi"},
+  {"method_id": "M-TVLA", "name": "TVLA daya/EM", "layer": "Implementasi & sistem", "level": "Sistem"},
+  {"method_id": "M-FAULT", "name": "Fault injection", "layer": "Implementasi & sistem", "level": "Sistem"},
+  {"method_id": "M-FUZZ", "name": "Fuzzing", "layer": "Implementasi & sistem", "level": "Integrasi"},
+  {"method_id": "M-ZEROIZE", "name": "Zeroization", "layer": "Implementasi & sistem", "level": "Sistem"}]}}
