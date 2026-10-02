@@ -1,0 +1,25 @@
+# Entri pelengkap std_report untuk dokumen wajib yang belum punya entri di algo_catalog (tidak mengubah algo_catalog).
+# Format sama dengan catalog_seed.yaml. Keanggotaan yang belum dipastikan → (PERLU_VERIFIKASI).
+entries:
+- {id: PRIME-GEN-MR, source_body: [ISO-IEC, FIPS], source_doc: ["ISO/IEC 18032", "FIPS 186-5"], primitive: pkc_kem, family: PrimeGen,
+   variant: "Miller–Rabin (probabilistik)", key_bits: [1024, 1536, 2048], security_strength_bits: PERLU_VERIFIKASI, status_nist: acceptable,
+   standards: [ISO/IEC 18032, FIPS 186-5 App. B.3], combo_id: "PRIME-GEN-MR-{k}",
+   notes: "Mekanisme pembangkitan/verifikasi bilangan prima (ISO/IEC 18032); key_bits = ukuran prima. Diuji dengan core/numtheory.py + pycryptodome"}
+- {id: ISO9796-2-S1, source_body: [ISO-IEC], source_doc: ["ISO/IEC 9796-2"], primitive: signature, family: ISO9796-2, variant: "Skema 1 (message recovery)",
+   key_bits: [2048, 3072], security_strength_bits: {2048: 112, 3072: 128}, status_nist: not_nist, standards: [ISO/IEC 9796-2], combo_id: "ISO9796-2-S1-{k}",
+   quantum_vulnerable: true, notes: "Tanda tangan RSA dengan pemulihan pesan"}
+- {id: ISO9796-2-S2, source_body: [ISO-IEC], source_doc: ["ISO/IEC 9796-2"], primitive: signature, family: ISO9796-2, variant: "Skema 2 (message recovery, acak)",
+   key_bits: [2048, 3072], security_strength_bits: {2048: 112, 3072: 128}, status_nist: not_nist, standards: [ISO/IEC 9796-2], combo_id: "ISO9796-2-S2-{k}",
+   quantum_vulnerable: true}
+- {id: ISO9796-2-S3, source_body: [ISO-IEC], source_doc: ["ISO/IEC 9796-2"], primitive: signature, family: ISO9796-2, variant: "Skema 3 (message recovery, deterministik)",
+   key_bits: [2048, 3072], security_strength_bits: {2048: 112, 3072: 128}, status_nist: not_nist, standards: [ISO/IEC 9796-2], combo_id: "ISO9796-2-S3-{k}",
+   quantum_vulnerable: true}
+- {id: PHOTON, source_body: [ISO-IEC], source_doc: ["ISO/IEC 29192-5"], primitive: hash, family: PHOTON, variant: PHOTON, key_bits: [80, 128, 160, 224, 256],
+   block_or_output_bits: null, security_strength_bits: PERLU_VERIFIKASI, status_nist: not_nist, standards: [ISO/IEC 29192-5], combo_id: "PHOTON-{k}",
+   notes: "Lightweight hash; key_bits = panjang keluaran (PHOTON-80/20/16 … PHOTON-256/32/32)"}
+- {id: SPONGENT, source_body: [ISO-IEC], source_doc: ["ISO/IEC 29192-5"], primitive: hash, family: SPONGENT, variant: SPONGENT, key_bits: [88, 128, 160, 224, 256],
+   block_or_output_bits: null, security_strength_bits: PERLU_VERIFIKASI, status_nist: not_nist, standards: [ISO/IEC 29192-5], combo_id: "SPONGENT-{k}",
+   notes: "Lightweight hash; key_bits = panjang keluaran"}
+- {id: LESAMNTA-LW, source_body: [ISO-IEC], source_doc: ["ISO/IEC 29192-5"], primitive: hash, family: Lesamnta-LW, variant: Lesamnta-LW,
+   block_or_output_bits: 256, security_strength_bits: 120, status_nist: not_nist, standards: [ISO/IEC 29192-5], combo_id: "LESAMNTA-LW",
+   notes: "Strength 2^120 (klaim desainer, PERLU_VERIFIKASI terhadap teks standar)"}

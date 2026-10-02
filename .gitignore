@@ -10,3 +10,8 @@ site/
 # Materi pelatihan (hak cipta Poltek SSN) — hanya lokal; templat YAML hasil ekstraksi yang di-commit
 docs/materi/*.pptx
 docs/materi/*.pdf
+
+# std_report: laporan berklasifikasi TERBATAS & vektor Wycheproof lengkap (diunduh ulang untuk mode full)
+outputs/std_report/
+samples/std_report/*.pdf
+std_report/vectors/wycheproof/

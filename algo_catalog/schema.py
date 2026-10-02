@@ -57,6 +57,8 @@ class Entry:
     combo_id: Optional[str] = None
     auto_alias: bool = False
     quantum_vulnerable: bool = False
+    source_body: List[str] = field(default_factory=list)    # FIPS | NIST-SP | ISO-IEC (boleh lebih dari satu)
+    source_doc: List[str] = field(default_factory=list)     # mis. "FIPS 197", "SP 800-38D", "ISO/IEC 18033-3"
     notes: str = ""
     source: Dict[str, Any] = field(default_factory=lambda: {"type": "seed"})
 
@@ -115,6 +117,7 @@ class Entry:
             "security_strength_bits": self.strength(k), "security_category": self.category(k),
             "status_nist": self.status(k), "standards": list(self.standards),
             "quantum_vulnerable": self.quantum_vulnerable, "notes": self.notes,
+            "source_body": list(self.source_body), "source_doc": list(self.source_doc),
         }
 
     def to_dict(self) -> dict:
