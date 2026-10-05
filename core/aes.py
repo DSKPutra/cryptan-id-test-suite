@@ -128,6 +128,8 @@ def ecb_encrypt(key: bytes, data: bytes) -> bytes:
 
 def ctr_keystream(key: bytes, counter_block: bytes, nblocks: int) -> bytes:
     """Keystream mode CTR (SP 800-38A) — dipakai untuk uji keacakan SP 800-22."""
+    if len(counter_block) != 16:
+        raise ValueError("counter block CTR harus 16 byte")
     ctr = int.from_bytes(counter_block, "big")
     out = bytearray()
     for i in range(nblocks):

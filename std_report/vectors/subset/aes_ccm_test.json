@@ -1,0 +1,1261 @@
+{
+"algorithm": "AES-CCM",
+"schema": "aead_test_schema_v1.json",
+"numberOfTests": 552,
+"header": [
+"Test vectors of type AeadTest test authenticated encryption with additional data.",
+"The test vectors are intended for testing both encryption and decryption.",
+"Test vectors with \"result\" : \"valid\" are valid encryptions.",
+"Test vectors with \"result\" : \"invalid\" are using invalid parameters",
+"or contain an invalid ciphertext or tag."
+],
+"notes": {
+"CVE-2017-18330": {
+"bugType": "KNOWN_BUG",
+"description": "CCM allows nonces longer then the block size of the cipher. Some implementations had memory overflows when the nonce was longer than 60 bytes. This test vector checks for such overflows.",
+"cves": [
+"CVE-2017-18330"
+]
+},
+"InsecureTagSize": {
+"bugType": "AUTH_BYPASS",
+"description": "Tag size 2 is invalid.",
+"effect": "Ciphertexts can be forged if tag size 2 is allowed.",
+"links": [
+"https://eprint.iacr.org/2003/070.pdf Section 3.3"
+]
+},
+"InvalidNonceSize": {
+"bugType": "MISSING_STEP",
+"description": "CCM is only defined for nonces of size 7 .. 13. No other nonce sizes should be used. The encoding of the octet B0 is undefined in these cases."
+},
+"InvalidTagSize": {
+"bugType": "MISSING_STEP",
+"description": "CCM is only defined for tags of size 4, 6, 8, 10, 12, 14, 16. No other tags sizes should be used. The encoding of the octet B0 is undefined in these cases."
+},
+"ModifiedTag": {
+"bugType": "AUTH_BYPASS",
+"description": "The test vector contains a ciphertext with a modified tag. The test vector was obtained by manipulating a valid ciphertext. The purpose of the test is to check whether the verification fully checks the tag.",
+"effect": "Failing to fully verify a tag reduces the security level of an encryption."
+},
+"Pseudorandom": {
+"bugType": "FUNCTIONALITY",
+"description": "The test vector contains pseudorandomly generated inputs. The goal of the test vector is to check the correctness of the implementation for various sizes of the input parameters. Some libraries do not support all the parameter sizes. For example, CCM allows nonce sizes in the range 7 .. 13, but implementations may reject some of the smaller sizes."
+}
+},
+"testGroups": [
+{
+"ivSize": 96,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 1,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "bedcfb5a011ebc84600fcb296c15af0d",
+"iv": "438a547a94ea88dce46c6c85",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "25d1a38495a7dea45bda049705627d10",
+"result": "valid"
+},
+{
+"tcId": 52,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f",
+"iv": "505152535455565758595a5b",
+"aad": "",
+"msg": "202122232425262728292a2b2c2d2e2f",
+"ct": "3ee9f3430f3e803c0a46b7a84cd803de",
+"tag": "3d6d5f66430ad65bb034077297f0929a",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 79,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "5019eb9fef82e5750b631758f0213e3e5fcca12748b40eb4",
+"iv": "ff0ddb0a0d7b36d219da12b5",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "2d03f5e8c2e5a1b43c7708dd0cbf0acd",
+"result": "valid"
+},
+{
+"tcId": 130,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f1011121314151617",
+"iv": "505152535455565758595a5b",
+"aad": "",
+"msg": "202122232425262728292a2b2c2d2e2f",
+"ct": "ef6720509035750ecafac4b3e4fac356",
+"tag": "7455dfe5b5e6f2b67abe9575be8e4784",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 157,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "80ba3192c803ce965ea371d5ff073cf0f43b6a2ab576b208426e11409c09b9b0",
+"iv": "4da5bf8dfd5852c1ea12379d",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "6dc4ef59a73ebcabb5e34c0d34d9f2d7",
+"result": "valid"
+},
+{
+"tcId": 208,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+"iv": "505152535455565758595a5b",
+"aad": "",
+"msg": "202122232425262728292a2b2c2d2e2f",
+"ct": "9d2a30abc5e178f7c6317ec9498dac39",
+"tag": "8ac2dd770de58f0b92802fdcb9d7d410",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 56,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 235,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "19d532dbcc934a009ce1b94a0b31ddc7",
+"iv": "f0bf6a9bcf6c0d",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "7b12263aaf1e4cb6e4b406e026698209",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 64,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 241,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "f3434725c82a7f8bb07df1f8122fb6c9",
+"iv": "28e9b7851724bae3",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "1c645830e6ee05589b70f02347e11c93",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 72,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 247,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "2ec7a468e3649186e1f9deccdf95a229",
+"iv": "99fdb158fb8ebcce64",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "658f01f90c35331cdd6986f736cc37da",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 80,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 253,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "1e6c6214a6a5dd5b628c71de07788137",
+"iv": "40bcc315dec88bf326cc",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "dfd70e3e5a13166b460613abab928f26",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 88,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 259,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "9d2fa75929612e1213460f998946dcec",
+"iv": "0e948a03dbfa10817e8826",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "2f1fa3585b9a11ff47bd486f95572246",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 104,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 265,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "694a2ae94cc2fc6c82dcd16c58a34195",
+"iv": "8b4de9497e78d9c73bdcb374de",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "36b20bcb064609cbc03ae32786f72eb5",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 56,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 271,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "b4544cae6b60b7720f3ade71e90e58c21d6e487183d4666a",
+"iv": "2ba3da112cf5e6",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "341551f2c05ee9314f0eb552939e5486",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 64,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 277,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "d74599b3d2db81653de43b52fc994c50d0be759fab87c33a",
+"iv": "d1c61cf8532531b5",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "bd78dfc804a420c19fb13b2f58d82c5c",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 72,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 283,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "f162a1094012f6bfb10270cd5609a20dc24dec3727f8e598",
+"iv": "0562f03f5124642f40",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "a9eef8c9f9460006b73f2da2317c7b7d",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 80,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 289,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "172f22f2e59364dc418cd751dfa8444ae18644c0f9a2be84",
+"iv": "bf9026d3ddaa37e7f180",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "b077ff4fad9ff4a94b6de8a66ba5b16c",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 88,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 295,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "87c55b2f185f177faaf4b16d93af6dad477146345d0ea992",
+"iv": "0946c69953f4b952bc7c23",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "257b3c597ecd1d67c3dd35dc70c68e48",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 104,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 301,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "d465544b5db9eb1c495cafaf5d9ac7e10faae74541a0a718",
+"iv": "9582afc30556ca12d154c42f03",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "37f618f8bb7ff85ec644b1cbcca4c28a",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 56,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 307,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "491828f2dddcff5f966e6627f4b6a85a2ea76fd1e0b6117a13e94d0e81c063a5",
+"iv": "4feedf9d9c07e0",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "1ca0a418f337a4c04f2123fefd31796d",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 64,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 313,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "61ba694897925d1b4174d40401469c3ef267cdb9f829edb1a10618c16d666059",
+"iv": "0d10c5c84b88d688",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "8ec71f7daf935edfac9de968f1d76477",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 72,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 319,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "66f6d79b723ccd3136d2cf788fc5b1c2f4b98463a57ae4dd29f3888aba37d086",
+"iv": "0a0aab4230fc3ee8ca",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "2e59d7b1d1ada4c5f4c74b3539668799",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 80,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 325,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "44ab204d150adb17f83d1e5205b6e1419673fadee610fb9a38185a96741021eb",
+"iv": "ff3914982be30b3b2112",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "f500cef310410d8940cf3490f5f3b5d7",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 88,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 331,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "46948c6d69845499104d5dc2fae44880cfe7d0bcbcee57efc0133c266b6d2621",
+"iv": "05f715fd0a5603dd84af76",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "11e678c0b260c5a3ea70f6a46e4ef436",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 104,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 337,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "a4994b65143536707b151ee6e79e69ab9c6d73000819fd2991dd28abede6b3e8",
+"iv": "ac64444972d778d52f5531ae88",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "8f3530c8adf86ebc6c4497cede15ccd9",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 128,
+"tagSize": 32,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 343,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "103e859d3a238724bf85b2100f442f1d",
+"iv": "f91d64784161fabd6c962e50",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "2b31c21b",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 128,
+"tagSize": 48,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 351,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "1a852b3456353cfd21726d1122109f1d",
+"iv": "bde9165d65f301a2e4ff1d4a",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "bd22f7195c49",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 128,
+"tagSize": 64,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 359,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "5afb73f37d05147566a7ac9734eba3ff",
+"iv": "026dd125c98ef1507f6d1d15",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "a4c4b136625f0243",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 128,
+"tagSize": 80,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 367,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "1faf8005f77553f5ee26865e31f5087b",
+"iv": "40df77e537c895ab71464acc",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "22ffed9c2dca19fa32ef",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 128,
+"tagSize": 96,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 375,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "0ad9da994db2ed7b9e35e98895194c4b",
+"iv": "57e364c16b3689bc156b3115",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "73586eab8ced7540620fea72",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 128,
+"tagSize": 112,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 383,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "f21f0700f16aa098d6617cc3683012c1",
+"iv": "42394a30fcd252556bf2cb36",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "39d0703dcf7d0c316222d716afec",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 192,
+"tagSize": 32,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 391,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "85e017fbc86056c8c18915b369c0c92dd3af3fc677782f8c",
+"iv": "3d57511eaffbe4e9e90d6ec3",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "4fc4192c",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 192,
+"tagSize": 48,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 399,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "21acb09bb48dc6417e4d87a3168fcb84e31950519331db93",
+"iv": "5d3e03633746d3729b609dd1",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "40d04296cf7e",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 192,
+"tagSize": 64,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 407,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "5c049b3edd2b926fcd3434c421532b7e7908712a85057226",
+"iv": "b2b793469d4ac1dfc3756c8f",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "c27816bb97e98d11",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 192,
+"tagSize": 80,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 415,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "89c4e797062e49ad02d2bcf2eb0ff65fc17cd29cd55c8bbf",
+"iv": "68de7404e6d137a583890b0f",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "ba50e04ef887145562f1",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 192,
+"tagSize": 96,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 423,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "08711372dbacacbb68ef12e5ef59b69fd46c9be4c2fb8324",
+"iv": "8321748412380b0e7b14a7ef",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "6c1ee8d9718f724ce8d96beb",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 192,
+"tagSize": 112,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 431,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "cd2adc91b19d564babc97e12037c8bc91af687f959dae1d4",
+"iv": "678b89fdf4e135dd67e3f28f",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "a75407b62989f1be04131a43ce16",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 256,
+"tagSize": 32,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 439,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "9948edf5cfb2f53363ed83bfb15e7cb502f0628dc9f2b87223f22334c40b8923",
+"iv": "44e154e9b3f7fd47a97fc7be",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "92a59922",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 256,
+"tagSize": 48,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 447,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "f162c319c6cff093d5956aeede3701181942888211087824817827a432f86d9f",
+"iv": "69d742d94fee251140e6d779",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "fcdc5aa33914",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 256,
+"tagSize": 64,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 455,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "d2a41cd9ce5e917d16b9ab55819ef8501e06aa78ef132fd3ebe6fecd91beb39b",
+"iv": "f71bf6bc21c6d6354e4b4cdf",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "23928a009d21a10f",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 256,
+"tagSize": 80,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 463,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "a0917ebe151778cb88bb2e356169ad1a4b9ebe2bcc2a352bc789a50b4f312d3e",
+"iv": "32811354382608bd076d8a87",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "b41d1dafd0d25931d285",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 256,
+"tagSize": 96,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 471,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "0737424e0c2f4048638133a18d676dc1d83a233877613acc0eb5a681305366c0",
+"iv": "f028d0ecf26c312b9f623395",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "d37f07c4ecef1fcaf0fe444a",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 256,
+"tagSize": 112,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 479,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "08f5fe4c8f6393accdcb560a3c271096ff0d9d67438fffd34df718652c6b8efe",
+"iv": "25c5f84fe6ec3c2f7c1b7cc5",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "66b23023e608cd9391567aa85f5a",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 0,
+"keySize": 128,
+"tagSize": 96,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 487,
+"comment": "Invalid nonce size",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "000102030405060708090a0b0c0d0e0f",
+"iv": "",
+"aad": "",
+"msg": "202122232425262728292a2b2c2d2e2f",
+"ct": "be1722a5817195c503814be1bd093110",
+"tag": "6f79a8cf92c856b8f16dee92",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 8,
+"keySize": 128,
+"tagSize": 96,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 488,
+"comment": "Invalid nonce size",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "000102030405060708090a0b0c0d0e0f",
+"iv": "40",
+"aad": "",
+"msg": "202122232425262728292a2b2c2d2e2f",
+"ct": "210389226958def4b44f1e168632113c",
+"tag": "d4e97a100800a5c16bea4fdf",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 16,
+"keySize": 128,
+"tagSize": 96,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 489,
+"comment": "Invalid nonce size",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "000102030405060708090a0b0c0d0e0f",
+"iv": "4041",
+"aad": "",
+"msg": "202122232425262728292a2b2c2d2e2f",
+"ct": "95bf208e8673b9f9a38f9609b5e78f2a",
+"tag": "df814191696cf3129fb40dc0",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 32,
+"keySize": 128,
+"tagSize": 96,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 490,
+"comment": "Invalid nonce size",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "000102030405060708090a0b0c0d0e0f",
+"iv": "40414243",
+"aad": "",
+"msg": "202122232425262728292a2b2c2d2e2f",
+"ct": "a7dab4bfcf3e2afa4b319cfdc17f15f1",
+"tag": "c4e8b1fa0d791777417ce52c",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 48,
+"keySize": 128,
+"tagSize": 96,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 491,
+"comment": "Invalid nonce size",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "000102030405060708090a0b0c0d0e0f",
+"iv": "404142434445",
+"aad": "",
+"msg": "202122232425262728292a2b2c2d2e2f",
+"ct": "a89a23f4f32ba009c3aa8fa0191f84c5",
+"tag": "659621c2ad5bc61de2ce8046",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 112,
+"keySize": 128,
+"tagSize": 96,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 492,
+"comment": "Invalid nonce size",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "000102030405060708090a0b0c0d0e0f",
+"iv": "404142434445464748494a4b4c4d",
+"aad": "",
+"msg": "202122232425262728292a2b2c2d2e2f",
+"ct": "f9d0078bcd568bf97924e6d71f406087",
+"tag": "095c0da2ea6dda5a87121c2a",
+"result": "invalid"
+}
+]
+}
+],
+"subsetOf": 552
+}

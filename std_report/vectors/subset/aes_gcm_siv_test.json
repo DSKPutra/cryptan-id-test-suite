@@ -1,0 +1,730 @@
+{
+"algorithm": "AES-GCM-SIV",
+"schema": "aead_test_schema_v1.json",
+"numberOfTests": 202,
+"header": [
+"Test vectors of type AeadTest test authenticated encryption with additional data.",
+"The test vectors are intended for testing both encryption and decryption.",
+"Test vectors with \"result\" : \"valid\" are valid encryptions.",
+"Test vectors with \"result\" : \"invalid\" are using invalid parameters",
+"or contain an invalid ciphertext or tag."
+],
+"notes": {
+"Ktv": {
+"bugType": "BASIC",
+"description": "Known test vector."
+},
+"ModifiedTag": {
+"bugType": "CAN_OF_WORMS",
+"description": "The test vector contains a ciphertext such that the actual and computed tag differ slightly. The goal of this test vector is to detect incomplete tag verification.",
+"effect": "The construction of the test vector requires the knowledge of the key, because any modification of the tag modifies the plaintext. Therefore, it is unclear whether an incomplete verification is exploitable."
+},
+"Pseudorandom": {
+"bugType": "FUNCTIONALITY",
+"description": "The test vector contains pseudorandomly generated inputs. The goal of the test vector is to check the correctness of the implementation for various sizes of the input parameters. Some libraries do not support all the parameter sizes. "
+},
+"WrappedIv": {
+"bugType": "MISSING_STEP",
+"description": "The counter for AES-GCM-SIV is reduced modulo 2**32. This test vector was constructed to test for correct wrapping of the counter."
+}
+},
+"testGroups": [
+{
+"ivSize": 96,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 1,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "01000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "dc20e2d83f25705bb49e439eca56de25",
+"result": "valid"
+},
+{
+"tcId": 2,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "01000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "",
+"msg": "0100000000000000",
+"ct": "b5d839330ac7b786",
+"tag": "578782fff6013b815b287c22493a364c",
+"result": "valid"
+},
+{
+"tcId": 3,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "01000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "",
+"msg": "010000000000000000000000",
+"ct": "7323ea61d05932260047d942",
+"tag": "a4978db357391a0bc4fdec8b0d106639",
+"result": "valid"
+},
+{
+"tcId": 4,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "01000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "",
+"msg": "01000000000000000000000000000000",
+"ct": "743f7c8077ab25f8624e2e948579cf77",
+"tag": "303aaf90f6fe21199c6068577437a0c4",
+"result": "valid"
+},
+{
+"tcId": 5,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "01000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "",
+"msg": "0100000000000000000000000000000002000000000000000000000000000000",
+"ct": "84e07e62ba83a6585417245d7ec413a9fe427d6315c09b57ce45f2e3936a9445",
+"tag": "1a8e45dcd4578c667cd86847bf6155ff",
+"result": "valid"
+},
+{
+"tcId": 6,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "01000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "",
+"msg": "010000000000000000000000000000000200000000000000000000000000000003000000000000000000000000000000",
+"ct": "3fd24ce1f5a67b75bf2351f181a475c7b800a5b4d3dcf70106b1eea82fa1d64df42bf7226122fa92e17a40eeaac1201b",
+"tag": "5e6e311dbf395d35b0fe39c2714388f8",
+"result": "valid"
+},
+{
+"tcId": 7,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "01000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "",
+"msg": "01000000000000000000000000000000020000000000000000000000000000000300000000000000000000000000000004000000000000000000000000000000",
+"ct": "2433668f1058190f6d43e360f4f35cd8e475127cfca7028ea8ab5c20f7ab2af02516a2bdcbc08d521be37ff28c152bba36697f25b4cd169c6590d1dd39566d3f",
+"tag": "8a263dd317aa88d56bdf3936dba75bb8",
+"result": "valid"
+},
+{
+"tcId": 8,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "01000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "01",
+"msg": "0200000000000000",
+"ct": "1e6daba35669f427",
+"tag": "3b0a1a2560969cdf790d99759abd1508",
+"result": "valid"
+},
+{
+"tcId": 9,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "01000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "01",
+"msg": "020000000000000000000000",
+"ct": "296c7889fd99f41917f44620",
+"tag": "08299c5102745aaa3a0c469fad9e075a",
+"result": "valid"
+},
+{
+"tcId": 10,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "01000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "01",
+"msg": "02000000000000000000000000000000",
+"ct": "e2b0c5da79a901c1745f700525cb335b",
+"tag": "8f8936ec039e4e4bb97ebd8c4457441f",
+"result": "valid"
+},
+{
+"tcId": 11,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "01000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "01",
+"msg": "0200000000000000000000000000000003000000000000000000000000000000",
+"ct": "620048ef3c1e73e57e02bb8562c416a319e73e4caac8e96a1ecb2933145a1d71",
+"tag": "e6af6a7f87287da059a71684ed3498e1",
+"result": "valid"
+},
+{
+"tcId": 12,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "01000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "01",
+"msg": "020000000000000000000000000000000300000000000000000000000000000004000000000000000000000000000000",
+"ct": "50c8303ea93925d64090d07bd109dfd9515a5a33431019c17d93465999a8b0053201d723120a8562b838cdff25bf9d1e",
+"tag": "6a8cc3865f76897c2e4b245cf31c51f2",
+"result": "valid"
+},
+{
+"tcId": 68,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "03f0070a79b12303672101636f328ab0",
+"msg": "",
+"ct": "",
+"tag": "0987e35e40981a2730c1740c7201731f",
+"result": "invalid"
+},
+{
+"tcId": 69,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "99c810afc11b77d4412cd9b97af70ad5",
+"msg": "0fed395814f1750a",
+"ct": "ffffffffffffffff",
+"tag": "ffffffffffffffffffffffffffffffff",
+"result": "invalid"
+},
+{
+"tcId": 70,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "cfa976557c23db250f68942d98eb419f",
+"msg": "",
+"ct": "",
+"tag": "0987e35e40981a2730c1740c7201731f",
+"result": "invalid"
+},
+{
+"tcId": 71,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "59f5f5db9d3ba92bf1afc586572f3e78",
+"msg": "03c0e39b77bd62d32568f4c86c90bfdb",
+"ct": "00000000000000000000000000000000",
+"tag": "13a1883272188b4c8d2727178198fe95",
+"result": "invalid"
+},
+{
+"tcId": 72,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "5359162097d4b81eb7e6cb03e1f553f7",
+"msg": "63995888995b338c",
+"ct": "0000000000000000",
+"tag": "00000000000000000000000000000000",
+"result": "invalid"
+},
+{
+"tcId": 73,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "3156ed845ca9b8ca81bb82ea5cdbbbce",
+"msg": "0fed395814f1750a",
+"ct": "ffffffffffffffff",
+"tag": "ffffffffffffffffffffffffffffffff",
+"result": "invalid"
+},
+{
+"tcId": 74,
+"comment": "Flipped bit 7 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "11305e865df4324a48b699077c39d86c",
+"msg": "",
+"ct": "",
+"tag": "0987e35e40981a2730c1740c7201731f",
+"result": "invalid"
+},
+{
+"tcId": 75,
+"comment": "Flipped bit 7 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "bec93c483172b077b02e317e851dde66",
+"msg": "0fed395814f1750a",
+"ct": "ffffffffffffffff",
+"tag": "ffffffffffffffffffffffffffffffff",
+"result": "invalid"
+},
+{
+"tcId": 76,
+"comment": "Flipped bit 8 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "24190fbe5aaf71dc28fbfa81fa2ab5cd",
+"msg": "03c0e39b77bd62d32568f4c86c90bfdb",
+"ct": "00000000000000000000000000000000",
+"tag": "13a1883272188b4c8d2727178198fe95",
+"result": "invalid"
+},
+{
+"tcId": 77,
+"comment": "Flipped bit 8 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "c341c3c57ca93a5ec1b6719ac9c1ab61",
+"msg": "63995888995b338c",
+"ct": "0000000000000000",
+"tag": "00000000000000000000000000000000",
+"result": "invalid"
+},
+{
+"tcId": 78,
+"comment": "Flipped bit 31 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "9a4547103c602b7162eff0ddd418eac4",
+"msg": "03c0e39b77bd62d32568f4c86c90bfdb",
+"ct": "00000000000000000000000000000000",
+"tag": "13a1883272188b4c8d2727178198fe95",
+"result": "invalid"
+},
+{
+"tcId": 79,
+"comment": "Flipped bit 32 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "cedee8dfdbd2c03788bb9bc2ea878ba6",
+"msg": "03c0e39b77bd62d32568f4c86c90bfdb",
+"ct": "00000000000000000000000000000000",
+"tag": "13a1883272188b4c8d2727178198fe95",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 100,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "0100000000000000000000000000000000000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "07f5f4169bbf55a8400cd47ea6fd400f",
+"result": "valid"
+},
+{
+"tcId": 101,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "0100000000000000000000000000000000000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "",
+"msg": "0100000000000000",
+"ct": "c2ef328e5c71c83b",
+"tag": "843122130f7364b761e0b97427e3df28",
+"result": "valid"
+},
+{
+"tcId": 102,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "0100000000000000000000000000000000000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "",
+"msg": "010000000000000000000000",
+"ct": "9aab2aeb3faa0a34aea8e2b1",
+"tag": "8ca50da9ae6559e48fd10f6e5c9ca17e",
+"result": "valid"
+},
+{
+"tcId": 103,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "0100000000000000000000000000000000000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "",
+"msg": "01000000000000000000000000000000",
+"ct": "85a01b63025ba19b7fd3ddfc033b3e76",
+"tag": "c9eac6fa700942702e90862383c6c366",
+"result": "valid"
+},
+{
+"tcId": 104,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "0100000000000000000000000000000000000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "",
+"msg": "0100000000000000000000000000000002000000000000000000000000000000",
+"ct": "4a6a9db4c8c6549201b9edb53006cba821ec9cf850948a7c86c68ac7539d027f",
+"tag": "e819e63abcd020b006a976397632eb5d",
+"result": "valid"
+},
+{
+"tcId": 105,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "0100000000000000000000000000000000000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "",
+"msg": "010000000000000000000000000000000200000000000000000000000000000003000000000000000000000000000000",
+"ct": "c00d121893a9fa603f48ccc1ca3c57ce7499245ea0046db16c53c7c66fe717e39cf6c748837b61f6ee3adcee17534ed5",
+"tag": "790bc96880a99ba804bd12c0e6a22cc4",
+"result": "valid"
+},
+{
+"tcId": 106,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "0100000000000000000000000000000000000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "",
+"msg": "01000000000000000000000000000000020000000000000000000000000000000300000000000000000000000000000004000000000000000000000000000000",
+"ct": "c2d5160a1f8683834910acdafc41fbb1632d4a353e8b905ec9a5499ac34f96c7e1049eb080883891a4db8caaa1f99dd004d80487540735234e3744512c6f90ce",
+"tag": "112864c269fc0d9d88c61fa47e39aa08",
+"result": "valid"
+},
+{
+"tcId": 107,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "0100000000000000000000000000000000000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "01",
+"msg": "0200000000000000",
+"ct": "1de22967237a8132",
+"tag": "91213f267e3b452f02d01ae33e4ec854",
+"result": "valid"
+},
+{
+"tcId": 108,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "0100000000000000000000000000000000000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "01",
+"msg": "020000000000000000000000",
+"ct": "163d6f9cc1b346cd453a2e4c",
+"tag": "c1a4a19ae800941ccdc57cc8413c277f",
+"result": "valid"
+},
+{
+"tcId": 109,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "0100000000000000000000000000000000000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "01",
+"msg": "02000000000000000000000000000000",
+"ct": "c91545823cc24f17dbb0e9e807d5ec17",
+"tag": "b292d28ff61189e8e49f3875ef91aff7",
+"result": "valid"
+},
+{
+"tcId": 110,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "0100000000000000000000000000000000000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "01",
+"msg": "0200000000000000000000000000000003000000000000000000000000000000",
+"ct": "07dad364bfc2b9da89116d7bef6daaaf6f255510aa654f920ac81b94e8bad365",
+"tag": "aea1bad12702e1965604374aab96dbbc",
+"result": "valid"
+},
+{
+"tcId": 111,
+"comment": "RFC 8452",
+"flags": [
+"Ktv"
+],
+"key": "0100000000000000000000000000000000000000000000000000000000000000",
+"iv": "030000000000000000000000",
+"aad": "01",
+"msg": "020000000000000000000000000000000300000000000000000000000000000004000000000000000000000000000000",
+"ct": "c67a1f0f567a5198aa1fcc8e3f21314336f7f51ca8b1af61feac35a86416fa47fbca3b5f749cdf564527f2314f42fe25",
+"tag": "03332742b228c647173616cfd44c54eb",
+"result": "valid"
+},
+{
+"tcId": 169,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "a5b997fe28ddf26fe182eb8db608bd14",
+"msg": "f663044a4e7dd822aba0b7de2d869981",
+"ct": "00000000000000000000000000000000",
+"tag": "13a1883272188b4c8d2727178198fe95",
+"result": "invalid"
+},
+{
+"tcId": 170,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "5906c4d15a8dc345026d29c98e55cfcd",
+"msg": "759dfbbb8a251ccc",
+"ct": "0000000000000000",
+"tag": "00000000000000000000000000000000",
+"result": "invalid"
+},
+{
+"tcId": 171,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "de645c9a49b8e777ca18c54048b7bde8",
+"msg": "49861b1fb6bcf8e4",
+"ct": "ffffffffffffffff",
+"tag": "ffffffffffffffffffffffffffffffff",
+"result": "invalid"
+},
+{
+"tcId": 172,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "3dbceccc23f7bc994c4df048e43c59fb",
+"msg": "",
+"ct": "",
+"tag": "0987e35e40981a2730c1740c7201731f",
+"result": "invalid"
+},
+{
+"tcId": 173,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "369e1e751ac0d45a5401775304dbe1a0",
+"msg": "f663044a4e7dd822aba0b7de2d869981",
+"ct": "00000000000000000000000000000000",
+"tag": "13a1883272188b4c8d2727178198fe95",
+"result": "invalid"
+},
+{
+"tcId": 174,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "0bf63034cdfd77e90b94936583199da8",
+"msg": "759dfbbb8a251ccc",
+"ct": "0000000000000000",
+"tag": "00000000000000000000000000000000",
+"result": "invalid"
+},
+{
+"tcId": 175,
+"comment": "Flipped bit 7 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "2241caabc859139436c23a274eebf0d1",
+"msg": "",
+"ct": "",
+"tag": "0987e35e40981a2730c1740c7201731f",
+"result": "invalid"
+},
+{
+"tcId": 176,
+"comment": "Flipped bit 7 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "9b6589f03d26c71a67ffb6c9bea6fdb5",
+"msg": "49861b1fb6bcf8e4",
+"ct": "ffffffffffffffff",
+"tag": "ffffffffffffffffffffffffffffffff",
+"result": "invalid"
+},
+{
+"tcId": 177,
+"comment": "Flipped bit 8 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "086f2deb0c0e871a2a38df9adc1f3e9d",
+"msg": "",
+"ct": "",
+"tag": "0987e35e40981a2730c1740c7201731f",
+"result": "invalid"
+},
+{
+"tcId": 178,
+"comment": "Flipped bit 31 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "9dbcadbc6f27b088037e6f738b16c105",
+"msg": "",
+"ct": "",
+"tag": "0987e35e40981a2730c1740c7201731f",
+"result": "invalid"
+},
+{
+"tcId": 179,
+"comment": "Flipped bit 31 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "d44919c638e293a9ce8647d00b8e58c5",
+"msg": "759dfbbb8a251ccc",
+"ct": "0000000000000000",
+"tag": "00000000000000000000000000000000",
+"result": "invalid"
+},
+{
+"tcId": 180,
+"comment": "Flipped bit 31 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+"iv": "000000000000000000000000",
+"aad": "c0537898455fa05d51f7554f12596617",
+"msg": "49861b1fb6bcf8e4",
+"ct": "ffffffffffffffff",
+"tag": "ffffffffffffffffffffffffffffffff",
+"result": "invalid"
+}
+]
+}
+],
+"subsetOf": 202
+}

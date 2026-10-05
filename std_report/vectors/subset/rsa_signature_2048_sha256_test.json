@@ -1,0 +1,341 @@
+{
+"algorithm": "RSASSA-PKCS1-v1_5",
+"numberOfTests": 259,
+"header": [
+"Test vectors of class RsassaPkcs1Verify are intended for checking the",
+"verification of RSA PKCS #1 v 1.5 signatures."
+],
+"notes": {
+"BerEncodedPadding": {
+"bugType": "CAN_OF_WORMS",
+"description": "The padding in a RSA PKCS#1 signature must be DER encoded. This signature uses an alternative BER encoded padding.",
+"effect": "It is unclear if accepting a small number of alternative BER encodings leads to a vulnerability. This needs to be analyzed in detail. Libraries that verify RSA signatures by using an ASN.1 parser are difficult to analyze.",
+"cves": [
+"CVE-2006-4339"
+]
+},
+"EdgeCaseSignature": {
+"bugType": "EDGE_CASE",
+"description": "The test vector contains a signature with a value close to n.The test vector checks for arithmetic errors in the implementation. The construction of the test vector requires the use of a small public exponent and unusual key sizes. These parameter choices may be a reason for a library to reject the signature."
+},
+"InvalidAsnInPadding": {
+"bugType": "AUTH_BYPASS",
+"description": "The signature contains an invalid padding. RSA PKCS#1 verification must not accept incorrect paddings. ",
+"effect": "If the verification of the padding is weak enough so that arbitrary data can be included in the ASN encoding of the padding then it may be possible to forge RSA signatures with low public exponents.",
+"cves": [
+"CVE-2006-4339"
+]
+},
+"InvalidPadding": {
+"bugType": "AUTH_BYPASS",
+"description": "RSA PKCS#1 signature with invalid padding. The padding of RSA PKCS #1 signatures is deterministic. Only signatures with the padding specified in the standard are valid. Other paddings should be rejected.",
+"effect": "Signature forgeries may be possible if the RSA signature verification accepts a large number of alternative paddings.",
+"cves": [
+"CVE-2006-4339"
+]
+},
+"InvalidSignature": {
+"bugType": "AUTH_BYPASS",
+"description": "The signature is an edge case integer. Edge cases such as a value exactly equal to the modulus are sometimes mishandled by an implementation. This can lead to simple forgeries or denial of service attacks through crashes.",
+"cves": [
+"CVE-2017-11185"
+]
+},
+"MissingNull": {
+"bugType": "LEGACY",
+"description": "Some legacy implementations of RSA PKCS#1 signatures did omit a NULL in the ASN encoding. While such signatures are indeed invalid some libraries are accepting such signatures for compatibility.",
+"effect": "Accepting such legacy signatures is not a vulnerability. However, implementations often use ASN parsing to verify the signature. Faulty ASN parsing can add vulnerabilities."
+},
+"ModifiedPadding": {
+"bugType": "AUTH_BYPASS",
+"description": "The padding of this test vector has been modified. RSA PKCS#1 verification must not accept modified paddings. ",
+"effect": "If the verification of the padding is weak enough so that arbitrary data can be included in the ASN encoding of the padding then it may be possible to forge RSA signatures with low public exponents.",
+"cves": [
+"CVE-2006-4339"
+]
+},
+"NoHash": {
+"bugType": "AUTH_BYPASS",
+"description": "The signature uses no hash function. ",
+"effect": "Collision resistant hash functions are essential for the security of RSA signatures. Accepting signatures without proper hashing and padding probably allows signature forgeries."
+},
+"ShortPadding": {
+"bugType": "CAN_OF_WORMS",
+"description": "The signature contains a short PKCS#1 padding. One cause for accepting such signatures are libraries that parse the padding without comparing it to the length of the RSA key.",
+"effect": "The effect of accepting short paddings is unclear. It is usually necessary to analyze the implementation and determine the bug that allows signatures with short paddings to be accepted."
+},
+"SignatureMalleability": {
+"bugType": "SIGNATURE_MALLEABILITY",
+"description": "The signature uses a modified encoding. Each message has exactly one valid RSA PKCS#1 signature.",
+"effect": "One effect of accepting alternative encodings of a signature is signature malleability."
+},
+"SmallPublicKey": {
+"bugType": "WEAK_PARAMS",
+"description": "The public key of this test vector has a small public exponent.For example NIST SP 800-56B rev. 2 requires that e > 2**16. Thus, libraries may reject RSA keys with smaller exponents."
+},
+"SmallSignature": {
+"bugType": "EDGE_CASE",
+"description": "The test vector contains a signature with a small value.The test vector checks for arithmetic errors in the implementation. The construction of the test vector requires the use of a small public exponent and unusual key sizes. These parameter choices may be a reason for a library to reject the signature."
+},
+"WrongHash": {
+"bugType": "WRONG_PRIMITIVE",
+"description": "The signature uses an incorrect hash function. RSA PKCS#1 verification must not accept signatures using alternative hash functions.",
+"effect": "The security of the signature scheme is reduced to the security of the weakest accepted hash function. Bugs in the verification are difficult to detect."
+},
+"WrongPrimitive": {
+"bugType": "WRONG_PRIMITIVE",
+"description": "The signature uses RSASSA-PSS instead of RSA PKCS#1 padding. Signature verification must not accept signatures for distinct paddings.",
+"effect": "The security of the signature scheme is reduced to the security of the weakest padding. Bugs in the verification are difficult to detect.",
+"links": [
+"https://bugzilla.redhat.com/show_bug.cgi?id=1510156"
+]
+}
+},
+"schema": "rsassa_pkcs1_verify_schema_v1.json",
+"testGroups": [
+{
+"keySize": 2048,
+"publicKeyAsn": "3082010a0282010100a2b451a07d0aa5f96e455671513550514a8a5b462ebef717094fa1fee82224e637f9746d3f7cafd31878d80325b6ef5a1700f65903b469429e89d6eac8845097b5ab393189db92512ed8a7711a1253facd20f79c15e8247f3d3e42e46e48c98e254a2fe9765313a03eff8f17e1a029397a1fa26a8dce26f490ed81299615d9814c22da610428e09c7d9658594266f5c021d0fceca08d945a12be82de4d1ece6b4c03145b5d3495d4ed5411eb878daf05fd7afc3e09ada0f1126422f590975a1969816f48698bcbba1b4d9cae79d460d8f9f85e7975005d9bc22c4e5ac0f7c1a45d12569a62807d3b9a02e5a530e773066f453d1f5b4c2e9cf7820283f742b9d50203010001",
+"publicKeyDer": "30820122300d06092a864886f70d01010105000382010f003082010a0282010100a2b451a07d0aa5f96e455671513550514a8a5b462ebef717094fa1fee82224e637f9746d3f7cafd31878d80325b6ef5a1700f65903b469429e89d6eac8845097b5ab393189db92512ed8a7711a1253facd20f79c15e8247f3d3e42e46e48c98e254a2fe9765313a03eff8f17e1a029397a1fa26a8dce26f490ed81299615d9814c22da610428e09c7d9658594266f5c021d0fceca08d945a12be82de4d1ece6b4c03145b5d3495d4ed5411eb878daf05fd7afc3e09ada0f1126422f590975a1969816f48698bcbba1b4d9cae79d460d8f9f85e7975005d9bc22c4e5ac0f7c1a45d12569a62807d3b9a02e5a530e773066f453d1f5b4c2e9cf7820283f742b9d50203010001",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAorRRoH0KpfluRVZxUTVQ\nUUqKW0YuvvcXCU+h/ugiJOY3+XRtP3yv0xh42AMltu9aFwD2WQO0aUKeidbqyIRQ\nl7WrOTGJ25JRLtincRoSU/rNIPecFegkfz0+QuRuSMmOJUov6XZTE6A+/48X4aAp\nOXofomqNzib0kO2BKZYV2YFMItphBCjgnH2WWFlCZvXAIdD87KCNlFoSvoLeTR7O\na0wDFFtdNJXU7VQR64eNrwX9evw+Ca2g8RJkIvWQl1oZaYFvSGmLy7obTZyuedRg\n2Pn4Xnl1AF2bwixOWsD3waRdElaaYoB9O5oC5aUw53MGb0U9H1tMLpz3ggKD90K5\n1QIDAQAB\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"type": "RsassaPkcs1Verify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"keyJwk": {
+"alg": "RS256",
+"e": "AQAB",
+"kid": "none",
+"kty": "RSA",
+"n": "orRRoH0KpfluRVZxUTVQUUqKW0YuvvcXCU-h_ugiJOY3-XRtP3yv0xh42AMltu9aFwD2WQO0aUKeidbqyIRQl7WrOTGJ25JRLtincRoSU_rNIPecFegkfz0-QuRuSMmOJUov6XZTE6A-_48X4aApOXofomqNzib0kO2BKZYV2YFMItphBCjgnH2WWFlCZvXAIdD87KCNlFoSvoLeTR7Oa0wDFFtdNJXU7VQR64eNrwX9evw-Ca2g8RJkIvWQl1oZaYFvSGmLy7obTZyuedRg2Pn4Xnl1AF2bwixOWsD3waRdElaaYoB9O5oC5aUw53MGb0U9H1tMLpz3ggKD90K51Q"
+},
+"publicKey": {
+"modulus": "00a2b451a07d0aa5f96e455671513550514a8a5b462ebef717094fa1fee82224e637f9746d3f7cafd31878d80325b6ef5a1700f65903b469429e89d6eac8845097b5ab393189db92512ed8a7711a1253facd20f79c15e8247f3d3e42e46e48c98e254a2fe9765313a03eff8f17e1a029397a1fa26a8dce26f490ed81299615d9814c22da610428e09c7d9658594266f5c021d0fceca08d945a12be82de4d1ece6b4c03145b5d3495d4ed5411eb878daf05fd7afc3e09ada0f1126422f590975a1969816f48698bcbba1b4d9cae79d460d8f9f85e7975005d9bc22c4e5ac0f7c1a45d12569a62807d3b9a02e5a530e773066f453d1f5b4c2e9cf7820283f742b9d5",
+"publicExponent": "010001"
+},
+"tests": [
+{
+"tcId": 1,
+"comment": "",
+"flags": [],
+"msg": "",
+"sig": "840f5dac53106dd1f9c57219224cf51289290c42f20466875ba8e830ac5690e541536fcc8ab03b731f82bf66d83f194e7e180b3963ec7a2f3f7904a7ce49aed47da4d4b79421eaf937d301b3e696169297b797c32c076a12be4de0b58e003c5123051a84a10c62f8dac2f42a8640008eb3c7cccd6760ff5b51b689763922582845f048fb8150e5a7a6ca2eccc7bdc85349ad5b26c52137a79fa3fe5c29ab5cd7615013219c1941b6708e9c3c23feff5febaf0c8ebca5750b54e3e6e99a3e876b396f27860b7f3ec4e9191703c6332d944f6f69751167680c79c4f6b57f1cc8755d24b6ec158ccdbacdb23107a33cb6b332516c13274d1f9dccc21dced869e486",
+"result": "valid"
+},
+{
+"tcId": 2,
+"comment": "",
+"flags": [],
+"msg": "0000000000000000000000000000000000000000",
+"sig": "8a1b220cb2ab415dc760eb7f5bb10335a3cca269d7dbbf7d0962ba79f9cf7b43a5fc09c99a1584f07403473d6c189a836897a5b6f8ea9fa22d601e6ba5f7411fe27c638b81b1a22363583a80fce8c7df3e40fb51bd0e60d0a6653f79f3bcb7ec3e9dc14cfb5b31ab1735bca692d50ac03f979dda92747c6430f8045efa3513ba6e0ce3e9e35570e1c30c8ebe589b44192e1344ca83dfa576fc6fdc7bf1cd7cee875b001c8c02ce8d602769e4bd9d241c4857182a0089a8b67644e73eef105c550efa47a40874289395ac0c4e02fd4ba98e130a4c2d1b95521c6af4a002ac3bdc6e52122ae4c08cc3da1c896e059acbddec574ac0432f6103dd97273d8803c102",
+"result": "valid"
+},
+{
+"tcId": 3,
+"comment": "",
+"flags": [],
+"msg": "54657374",
+"sig": "264491e844c119f14e425c03282139a558dcdaeb82a4628173cd407fd319f9076eaebc0dd87a1c22e4d17839096886d58a9d5b7f7aeb63efec56c45ac7bead4203b6886e1faa90e028ec0ae094d46bf3f97efdd19045cfbc25a1abda2432639f9876405c0d68f8edbf047c12a454f7681d5d5a2b54bd3723d193dbad4338baad753264006e2d08931c4b8bb79aa1c9cad10eb6605f87c5831f6e2b08e002f9c6f21141f5841d92727dd3e1d99c36bc560da3c9067df99fcaf818941f72588be33032bad22caf6704223bb114d575b6d02d9d222b580005d930e8f40cce9f672eebb634a20177d84351627964b83f2053d736a84ab1a005f63bd5ba943de6205c",
+"result": "valid"
+},
+{
+"tcId": 4,
+"comment": "",
+"flags": [],
+"msg": "313233343030",
+"sig": "1758eb94588e6fc4f50c1be1afcaa41027869f304cad513b1fb12c2f446d63cdc05c4830a7e3e630da7b2da4f7867cc173bf6420f9732277282596de41ded32e21d0cc31441174da8765f57419c7764ea758f55bc17646eb100c435d1ac0eed6fc7ba6de5f832094ee2f479979765e05ac9976788db3c241a9e32a0da864f0019a87646ba623d63f4411af5dee1be9ec488c7e3e1b231479de70b9ac5f78a17b1f4120aece45f26c07e7bb345fdfeb05e14bcaacc614672a465fc523624cb19f66f9c6c3f642b832ca44cb25176d679f0e05606c3fed022cac24c2bf960a406d48818e3eb7ed53b0446032469047dfed95fc18088c92d91d93722c47f88163a8",
+"result": "valid"
+},
+{
+"tcId": 5,
+"comment": "",
+"flags": [],
+"msg": "4d657373616765",
+"sig": "513a5abde16b5e0ecb8659d3ca0845800adf75cfc4437d42fa34e7aafbbe35fc5984d3560cba938f9a622e932bb6162b7fbb6cd8c1cf8815f28c495995ac18cdbe8fabfdce29c17aa021df192ac02d080d7c5eda6bd4c99154178a9d5e1cf3ff4177106315f4e6d74c991b601069acd60b55b3bb4dbf6316c35096a487d6756181d3394944f1c742a2f4d608ce4f6abbfb72347ad7d342ae15dd6d1049fbd0ff55f4d7c43ab805f81ff1fbe9256b5c78c2de6beb787f4b6d66d290a3d4c4857368aea5f7ebaa1296020c8f9e3670441a08038bb810e853a654e44316a4e52428745123ce2714020d00e55a9eb82f7fb41c73d852a82b003670246c6ca2045fc8",
+"result": "valid"
+},
+{
+"tcId": 6,
+"comment": "",
+"flags": [],
+"msg": "61",
+"sig": "38c042a00d6f27742a46f1f963a7b2e04f0eac637849631a491b8e4e58fc721c6ce620d5e705dc8e73409c3909c1c68b6bdb2b30f882cf2797e65030b38c4e7daf6fef9d1f115c890086cf54ca3e7c2b21dcbfd1250ed1d925810970f17dbf482d1784f296adee9ace6979075c1e12f5580cfb322e8737db9d127d38e1b99ed87ec49448a18a6fee650d3c27e4a2a86a3d6e3ce4fe64120be60872fa07a3f78a112715c167fb6c900698ba1afd824087a4cf733335c4a6d5120e3b29bc42f3b3d5db79973e4e321e0910a288d18cdba172d060283c4f4c6656e9175a18b756b7d06251e9060bbfcab04978853eec6032850a0e757bc0c61ad38aa4eb6bb6d907",
+"result": "valid"
+},
+{
+"tcId": 7,
+"comment": "",
+"flags": [],
+"msg": "e0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff",
+"sig": "2ae8d95b19cbd64d0e343ff413fffb85d8e6713c06ac8a1ceba7f3924fa740f8d2b3e120fd71f22711e795cd6468c5e263b1a5ba6ac6b8fa9e23d2d6e7243f510592a61d134e68b8ead00612dbf38c5b7302abc3bf33f23e6d4816a6e3ddcea6482566e84f57464f7d56de4cef0b2256ef21874dda4c131a47292ff8ef853f93804483c8e6373d39ca3a22552e75427b812b861de6a310ff4c366f6f6604116efd9770170aa423554c4ebbd2b5c0698950e66bb5b7c5c346285d9f5c35146255736b6e818e8e77983c93b21e7f60b04a7a525598e7fd8049b181000bffc7f3753a504370f6bb70617ac8e914deb05a198a5758a459c9fcd2fce1aede48e8a852",
+"result": "valid"
+},
+{
+"tcId": 8,
+"comment": "Missing NULL in the ASN encoding",
+"flags": [
+"MissingNull"
+],
+"msg": "313233343030",
+"sig": "095dad1fd82bcd36652a381b7f4dd656bd89b40aa58b56da4f6aa8247874b935e65d2b86752d537df7103884d39dd9ad3d65f87404526b09094c5615c6249979b0dc58d2199ae8696a5b76b4bb03eaf08c2ab6aec686c6b1b289c9b44f648bd30cb1ac6a64a73d68e59cd05e7aa1b780f4bfd7b83dfe3b884ec11821a93dc5bbb47a00eea4557b6b96b5656276001f1f295ddbbbc511a99b9a665b9c2674c8af0d812286d0be3ce74817ba2cad283757de35dfb149f2835f60cb03ff155524a57f78b148feceb84cd20b0ae22e3e48f433fbd9bfd60be8afec93165ee0310be961d3695f309d031320c830aa6ba08b5a51d943797097c57630be391bd23736cc",
+"result": "acceptable"
+},
+{
+"tcId": 9,
+"comment": "length of digestInfo uses long form encoding",
+"flags": [
+"BerEncodedPadding"
+],
+"msg": "313233343030",
+"sig": "8a0e82d4f334aca72a718b6f8f643f69c6048d619d5eba71263a5d2d3ac7a7af133b780c7595ca2c982c006e861948f543cd0210c758691f9626842c25de2843ea314ca8eff285d47e0cffa54180af416004017034962a80a5959c3d3f1bfc154a4824462a93c014f6dfe920824f414a6e30e0e5944d480b99949ec7bf64c4a7461575933b17d7d6b0178b5192392ace3ed8469e8ac1dacae51ad5d3ad73dcb213e056d04596e64d8c0703def3110c7cecc93ba8ac8059f0f3d66b89d8712c62b41d407e4b4a104f4569558b0290c213cad6d0653898b9df8f4a453ab07d13bfb7598d505abbd0c4987e4f1ac66e1a523e113e370ab7cf990f0cc63f50f4f0a4",
+"result": "invalid"
+},
+{
+"tcId": 10,
+"comment": "length of digestInfo contains a leading 0",
+"flags": [
+"BerEncodedPadding"
+],
+"msg": "313233343030",
+"sig": "8d9c25235cdcdcc7ca2558c0be14f83afeb303f00c13106ac5affc952af527a0585cf4801104a7d019fa2e63fd0b923c061a24b8be7c3105443c8eedf4a033d3de802adfd80f872d3c505f41e3feb116f5d5f31f04df3e448bc7e7cbc2343f7dd4f4c3d2670ed3d3c66f91d626bb12a2001160a123d03b77d2a6ec53445db517147171e3ba3cd7dde902c486c74e8d8d33d4f7699791179d1df4fac78cda67da9138c18f2cc8863018e1739fb309408c62051b715096512602c5c4c7e7c394282593ec087832fd48b4f353d8046600e4152c2092632a79bf05497a13840e171047d79c23a76896235e9d5f0f56a78d3fe472fded2899e228f714690b40b66ee7",
+"result": "invalid"
+},
+{
+"tcId": 11,
+"comment": "length of digestInfo uses 50 instead of 49",
+"flags": [
+"InvalidAsnInPadding"
+],
+"msg": "313233343030",
+"sig": "9947c137ebf7013ea9e41f1ce93fd29022e340e6ade56c1119cd826430acf9833bbc1ed05c1899757a79d3104c9b4133ff0aef7e1cbeaafc2ada2422bdf9e29926626527f947124d5549d9f4fddb809f84923aa335d331c392a5ae5e29cb0f503e230ce7bff114206d5dfd51b812f9ed5448d9100125a8cc2324e560c69f4a492988045c97ab90a2806df900c3b95ab95bd634dd0a50edc5312eeef6463bc4b62e54261cc67e9cb9caa9a0a7550183c9e03f26bd5c8718dd77f54290b3a27a054d7d3e39e8cb45529d585ac0e507b8688219d2b8032268020b68d2284f9f743debab5cd47fb3fbd77fdfe3a9d7984b11a37cce190ac89a472578a3332b150f5d",
+"result": "invalid"
+},
+{
+"tcId": 12,
+"comment": "length of digestInfo uses 48 instead of 49",
+"flags": [
+"InvalidAsnInPadding"
+],
+"msg": "313233343030",
+"sig": "259cc7e43882850415f4d7f2321fde08212490f6e9929c37c6a60cf686eec1dee385fc513f5e4105f19f2d63565b2d3762080634306b4ca87f857912bc062f31de6cccae9b48213c1b661ec9874d426d74e4c23c0ca53abc8f7bfdfb9d32dc6b5559f6aec33a5b9445ec4490302af6893890f57969de00287203d8df9a511b678caee2a7d666d9fca912826216ae3c62a37f12dac1412100c966ec7c8ff347eb79566784ef86943e999d0d1aa46fc9e5b90e9b91f4d16bfc2d5b9ffd4515f1d23cd0ce9612d19c28079702e1bc96b98cd86a5708b9000a5d61777a92d7d033557492f9ab1a4aee6719dbb14e6c3b4998480a8d49013898a5418bc8c63c41c5f1",
+"result": "invalid"
+},
+{
+"tcId": 13,
+"comment": "uint32 overflow in length of digestInfo",
+"flags": [
+"InvalidAsnInPadding"
+],
+"msg": "313233343030",
+"sig": "129990973396b70468d380897ccbe6930a485460bfc199c7c8efeedf81c7fc6a98f47c0afc29546c92d3ac2d93d8b1c6909642757fa52de1375867a197dac0ee58c5b62f12182a5b4e703ca981ad344411e2dc3aa6c456dc69651cde35bfe136ca323753137b4a28571eccf8d1f0cc4cb4977238dc33827f1bf670d938f5b902e6389c10b564608b396feb0cdca57f5bc3ad6bbb2cd324d531b0c5538de37482a09ce103ef6399cdfb404021c836151c81adf6f852f9a96919e4e78ce76aec77a48bc5eb224a3fc404373e28f07a1488ce2fb3181075b852a87941bd11735b3cd6f5bc0b660031fbf7671d3bb4f8c9f653b8c36e89320f7532ac0fab23dfadb0",
+"result": "invalid"
+},
+{
+"tcId": 14,
+"comment": "uint64 overflow in length of digestInfo",
+"flags": [
+"InvalidAsnInPadding"
+],
+"msg": "313233343030",
+"sig": "002faa1b204fd30ee0d3d6d79274f3b498f736bf6e6b34c0ec6eb418b7a4c105c1a75669c092f52fb1d39b2247a8d5692aaa44d4a4d70b8f9e636dfef370db9315fc1b35434af3ca21afd366c3295424bc1230a898186105a07788b92bd42c56d5b66a336fca64fbe58a843f391fcb58588466e0ba484502aa26c50ae35585eb95fe0ebf248b7a57782373cbac21a00928a091455347127910eb0b9ac35c1bac4a99eee0b718550ad282b4210eabe0602823209902b2bfac9283baac38940800515877366117a2d383e8f0cd09de7c946cff1eada4f1f97c44cbb3bf3562ce21af7f499af8ff40e13b907e5f4d1696dd52e3726570228095b89d4ed958e618a4",
+"result": "invalid"
+},
+{
+"tcId": 15,
+"comment": "length of digestInfo = 2**31 - 1",
+"flags": [
+"InvalidAsnInPadding"
+],
+"msg": "313233343030",
+"sig": "4c698321f4342f64a87fe6b199d5800af12d39725e449c79706e9af98b51a2d0d724663ab87618b06c49d3c1b98d97db35fbd8746c1d9a61f31ead8893ecc072057ad4004a53009703f66bc2b4fa7fa6826f54e8b873c79bc19ef71fe61a182a8be6cdb6dd35d87d1f46746022f98360f3870f49aceac4bb1a839977af2096539a2d182dfc4bd97af34ea075ba96c39c4a85b3ca83002f97e992c110d40cb6c668eb9fd022a4ef89988095e8c513153f99e37d9cce75a7ffa0a55af6b7d8314de4690934d55895b99cb0882adb346feb8af0480a4fc46251649d6cb2e4358dbadecf27ac713dfda9b8f40cfecb642b39bc1cca681d5628f4fd30e8788635e937",
+"result": "invalid"
+},
+{
+"tcId": 16,
+"comment": "length of digestInfo = 2**32 - 1",
+"flags": [
+"InvalidAsnInPadding"
+],
+"msg": "313233343030",
+"sig": "64401a452e3b56bebb1d5f3cdcac3dbb0a6f6e81bf2fe938143b9df7e8f6380687249a0c30a2bc5ba0fdb1e4d0fdecfdfc74064d365fb8dbca0cefeec0ba6fb4f775b4650839f03dc681c1f78d298f6c789ef4734d0a3ceed09ba8850671911e5e68af41ba2f37f3e56f7864fe4775ccc6af928876290ffcd20b988540c0146db97e333da0eadd4772cf15cb494e366f1f3bae740dbc69cd339a5d1f8a5e608cd61eafed4e85886796520ec5ad7240d11f1ce25463b57d0723509fc368f8f81a6c63ed2c61a216629dcdb9fd226215f8b248e2dbab5cd4f62600fbf921f4fb666384333d92251578dbdc5dcecfacc2c4435a211cc984346bf254b7cd52aa2bf5",
+"result": "invalid"
+}
+]
+},
+{
+"keySize": 2048,
+"publicKeyAsn": "30820108028201010090a5d7aba2c8dc828e616fc1fc45c7c52130c8589dcbe2913da187572f6c23217b89a5186b6f90cbe053abfb0885a91f141dbe106ce6ad303904a5941df26ced10478cb56a7bd6cf1313c4966d9cf7c4509d9dc63566aa323e110af219f3398c04e79bb486de8703793473136f5c9051af24bd2c0208ea1bf9321a3e8f24af00aaca1216842eab248d58cf46ac786c49fd3ca8557e9b53993a4b9718cdc5c474bf1cfe58c07ad97b2c5acb7d86accc0fc7bed147adb2e77b8697d80150948117714b806ff76f9d88147d84e93987b724bf4870429e85a7a7b51486a78d8a88f1688f60e215d43d06221e2b993b5c12a607b80e9e0122472b29945f76b55737c1020103",
+"publicKeyDer": "30820120300d06092a864886f70d01010105000382010d0030820108028201010090a5d7aba2c8dc828e616fc1fc45c7c52130c8589dcbe2913da187572f6c23217b89a5186b6f90cbe053abfb0885a91f141dbe106ce6ad303904a5941df26ced10478cb56a7bd6cf1313c4966d9cf7c4509d9dc63566aa323e110af219f3398c04e79bb486de8703793473136f5c9051af24bd2c0208ea1bf9321a3e8f24af00aaca1216842eab248d58cf46ac786c49fd3ca8557e9b53993a4b9718cdc5c474bf1cfe58c07ad97b2c5acb7d86accc0fc7bed147adb2e77b8697d80150948117714b806ff76f9d88147d84e93987b724bf4870429e85a7a7b51486a78d8a88f1688f60e215d43d06221e2b993b5c12a607b80e9e0122472b29945f76b55737c1020103",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIDANBgkqhkiG9w0BAQEFAAOCAQ0AMIIBCAKCAQEAkKXXq6LI3IKOYW/B/EXH\nxSEwyFidy+KRPaGHVy9sIyF7iaUYa2+Qy+BTq/sIhakfFB2+EGzmrTA5BKWUHfJs\n7RBHjLVqe9bPExPElm2c98RQnZ3GNWaqMj4RCvIZ8zmMBOebtIbehwN5NHMTb1yQ\nUa8kvSwCCOob+TIaPo8krwCqyhIWhC6rJI1Yz0aseGxJ/TyoVX6bU5k6S5cYzcXE\ndL8c/ljAetl7LFrLfYaszA/HvtFHrbLne4aX2AFQlIEXcUuAb/dvnYgUfYTpOYe3\nJL9IcEKehaentRSGp42KiPFoj2DiFdQ9BiIeK5k7XBKmB7gOngEiRysplF92tVc3\nwQIBAw==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"type": "RsassaPkcs1Verify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"keyJwk": {
+"alg": "RS256",
+"e": "Aw",
+"kid": "none",
+"kty": "RSA",
+"n": "kKXXq6LI3IKOYW_B_EXHxSEwyFidy-KRPaGHVy9sIyF7iaUYa2-Qy-BTq_sIhakfFB2-EGzmrTA5BKWUHfJs7RBHjLVqe9bPExPElm2c98RQnZ3GNWaqMj4RCvIZ8zmMBOebtIbehwN5NHMTb1yQUa8kvSwCCOob-TIaPo8krwCqyhIWhC6rJI1Yz0aseGxJ_TyoVX6bU5k6S5cYzcXEdL8c_ljAetl7LFrLfYaszA_HvtFHrbLne4aX2AFQlIEXcUuAb_dvnYgUfYTpOYe3JL9IcEKehaentRSGp42KiPFoj2DiFdQ9BiIeK5k7XBKmB7gOngEiRysplF92tVc3wQ"
+},
+"publicKey": {
+"modulus": "0090a5d7aba2c8dc828e616fc1fc45c7c52130c8589dcbe2913da187572f6c23217b89a5186b6f90cbe053abfb0885a91f141dbe106ce6ad303904a5941df26ced10478cb56a7bd6cf1313c4966d9cf7c4509d9dc63566aa323e110af219f3398c04e79bb486de8703793473136f5c9051af24bd2c0208ea1bf9321a3e8f24af00aaca1216842eab248d58cf46ac786c49fd3ca8557e9b53993a4b9718cdc5c474bf1cfe58c07ad97b2c5acb7d86accc0fc7bed147adb2e77b8697d80150948117714b806ff76f9d88147d84e93987b724bf4870429e85a7a7b51486a78d8a88f1688f60e215d43d06221e2b993b5c12a607b80e9e0122472b29945f76b55737c1",
+"publicExponent": "03"
+},
+"tests": [
+{
+"tcId": 258,
+"comment": "small signature",
+"flags": [
+"SmallSignature",
+"SmallPublicKey"
+],
+"msg": "33363730",
+"sig": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000989e7ff72e67e680bd21d5f966e4ad8a48c3592dbacc4a2f035b4ef4d17a2f25f8a9fef7e78eb99d76d68629ed02d67c43c4b7ec8c3badc32e3d0a524c326537739b0fde156723b27c23ae2b09895e470c64d700f5c",
+"result": "valid"
+}
+]
+},
+{
+"keySize": 2048,
+"publicKeyAsn": "30820108028201010092bf17cdbffb42fa9957ce37826bb451708e7cdec8752b809c81a8d16fe5fe4dab6a9db6d11dbb12086645db7546642b322e8331dd7f29eff68bf40b24f80884f5152b1fda9b9f7ae2fce2721cdee0fc48f85a6e8e64f767ed9727fd2dc597967e276a5e2e768528afdd9df4b6ddda4c174300e4da3c19a3c32299e1e7857934c14dd6203d8c2671289bc392711597155364a59046b2b9f1905fe717ca7efebb4c1969b804118effa240c11ebf97cd68c2aa19c787b3be21e68c0e397c7f04c6ef98950e27e0e19a40da92a3ea10800fe9252b77026d14c2fa1eb4ac102491e5773279f07d856d446f45169b09bf60b8a2695f5e4864eaaf9590aec8c7c2f86d020103",
+"publicKeyDer": "30820120300d06092a864886f70d01010105000382010d0030820108028201010092bf17cdbffb42fa9957ce37826bb451708e7cdec8752b809c81a8d16fe5fe4dab6a9db6d11dbb12086645db7546642b322e8331dd7f29eff68bf40b24f80884f5152b1fda9b9f7ae2fce2721cdee0fc48f85a6e8e64f767ed9727fd2dc597967e276a5e2e768528afdd9df4b6ddda4c174300e4da3c19a3c32299e1e7857934c14dd6203d8c2671289bc392711597155364a59046b2b9f1905fe717ca7efebb4c1969b804118effa240c11ebf97cd68c2aa19c787b3be21e68c0e397c7f04c6ef98950e27e0e19a40da92a3ea10800fe9252b77026d14c2fa1eb4ac102491e5773279f07d856d446f45169b09bf60b8a2695f5e4864eaaf9590aec8c7c2f86d020103",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIDANBgkqhkiG9w0BAQEFAAOCAQ0AMIIBCAKCAQEAkr8Xzb/7QvqZV843gmu0\nUXCOfN7IdSuAnIGo0W/l/k2rap220R27EghmRdt1RmQrMi6DMd1/Ke/2i/QLJPgI\nhPUVKx/am5964vzichze4PxI+FpujmT3Z+2XJ/0txZeWfidqXi52hSiv3Z30tt3a\nTBdDAOTaPBmjwyKZ4eeFeTTBTdYgPYwmcSibw5JxFZcVU2SlkEayufGQX+cXyn7+\nu0wZabgEEY7/okDBHr+XzWjCqhnHh7O+IeaMDjl8fwTG75iVDifg4ZpA2pKj6hCA\nD+klK3cCbRTC+h60rBAkkeV3MnnwfYVtRG9FFpsJv2C4omlfXkhk6q+VkK7Ix8L4\nbQIBAw==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"type": "RsassaPkcs1Verify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"keyJwk": {
+"alg": "RS256",
+"e": "Aw",
+"kid": "none",
+"kty": "RSA",
+"n": "kr8Xzb_7QvqZV843gmu0UXCOfN7IdSuAnIGo0W_l_k2rap220R27EghmRdt1RmQrMi6DMd1_Ke_2i_QLJPgIhPUVKx_am5964vzichze4PxI-FpujmT3Z-2XJ_0txZeWfidqXi52hSiv3Z30tt3aTBdDAOTaPBmjwyKZ4eeFeTTBTdYgPYwmcSibw5JxFZcVU2SlkEayufGQX-cXyn7-u0wZabgEEY7_okDBHr-XzWjCqhnHh7O-IeaMDjl8fwTG75iVDifg4ZpA2pKj6hCAD-klK3cCbRTC-h60rBAkkeV3MnnwfYVtRG9FFpsJv2C4omlfXkhk6q-VkK7Ix8L4bQ"
+},
+"publicKey": {
+"modulus": "0092bf17cdbffb42fa9957ce37826bb451708e7cdec8752b809c81a8d16fe5fe4dab6a9db6d11dbb12086645db7546642b322e8331dd7f29eff68bf40b24f80884f5152b1fda9b9f7ae2fce2721cdee0fc48f85a6e8e64f767ed9727fd2dc597967e276a5e2e768528afdd9df4b6ddda4c174300e4da3c19a3c32299e1e7857934c14dd6203d8c2671289bc392711597155364a59046b2b9f1905fe717ca7efebb4c1969b804118effa240c11ebf97cd68c2aa19c787b3be21e68c0e397c7f04c6ef98950e27e0e19a40da92a3ea10800fe9252b77026d14c2fa1eb4ac102491e5773279f07d856d446f45169b09bf60b8a2695f5e4864eaaf9590aec8c7c2f86d",
+"publicExponent": "03"
+},
+"tests": [
+{
+"tcId": 259,
+"comment": "signature is close to n",
+"flags": [
+"EdgeCaseSignature",
+"SmallPublicKey"
+],
+"msg": "32353934",
+"sig": "92bf17cdbffb42fa9957ce37826bb451708e7cdec8752b809c81a8d16fe5fe4dab6a9db6d11dbb12086645db7546642b322e8331dd7f29eff68bf40b24f80884f5152b1fda9b9f7ae2fce2721cdee0fc48f85a6e8e64f767ed9727fd2dc597967e276a5e2e768528afdd9df4b6ddda4c174300e4da3c19a3c32299e1e7857934c14dd6203d8c2671289bc392711597155364a59046b2b9f1905fe717ca7efebb4c1969b804118effa240b8bf4bb1a6d0616fd5be2f081dc9ef741a9a4ae7274418b791432de470c4556463108388e8e8ed5dcebf3558e4650c2ac97c86fa682176f09b5dd8cfbf15d19c3fe4f961f4607c12cb3dfad9b6a0e59c92faa1fc8622",
+"result": "valid"
+}
+]
+}
+],
+"subsetOf": 259
+}

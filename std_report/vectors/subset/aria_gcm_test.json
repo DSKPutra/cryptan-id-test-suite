@@ -1,0 +1,1269 @@
+{
+"algorithm": "ARIA-GCM",
+"schema": "aead_test_schema_v1.json",
+"numberOfTests": 311,
+"header": [
+"Test vectors of type AeadTest test authenticated encryption with additional data.",
+"The test vectors are intended for testing both encryption and decryption.",
+"Test vectors with \"result\" : \"valid\" are valid encryptions.",
+"Test vectors with \"result\" : \"invalid\" are using invalid parameters",
+"or contain an invalid ciphertext or tag."
+],
+"notes": {
+"CounterWrap": {
+"bugType": "AUTH_BYPASS",
+"description": "The counter for GCM is reduced modulo 2**32. This test vector contains values such that the GCM counter wraps around.",
+"effect": "When the size of the IV is not 12 bytes then detecting incorrect encryptions leaks the information that the GHASH of the IV was close to a multiple of 2**32. Combining this information from multiple incorrect encryptions allows to recover the authentication key."
+},
+"Ktv": {
+"bugType": "BASIC",
+"description": "Known test vector."
+},
+"LongIv": {
+"bugType": "FUNCTIONALITY",
+"description": "GCM allows long IVs. Such IVs are compressed using GHASH to generate the CTR values. Some implementations restrict the range of the IV sizes.",
+"effect": "If IV sizes other than 12 bytes are supported then the correctness of the implementation is critical. An incorrect implementation of long IVs can (and probably does) leak the authentication key."
+},
+"ModifiedTag": {
+"bugType": "AUTH_BYPASS",
+"description": "The test vector contains a ciphertext with a modified tag. The test vector was obtained by manipulating a valid ciphertext. The purpose of the test is to check whether the verification fully checks the tag.",
+"effect": "Failing to fully verify a tag reduces the security level of an encryption."
+},
+"Pseudorandom": {
+"bugType": "FUNCTIONALITY",
+"description": "The test vector contains pseudorandomly generated inputs. The goal of the test vector is to check the correctness of the implementation for various sizes of the input parameters. Some libraries do not support all the parameter sizes. In particular the size of the IV is often restricted."
+},
+"SmallIv": {
+"bugType": "WEAK_PARAMS",
+"description": "GCM leaks the authentication key if the same IV is used twice. Hence short IV sizes are typically discouraged or generated with a special construction such as the one described in Section 8.2 of NIST SP 800-38d. Some libraries may reject small IV sizes."
+},
+"SpecialCase": {
+"bugType": "EDGE_CASE",
+"description": "The test vector contains special cases for iv and tag."
+},
+"ZeroLengthIv": {
+"bugType": "AUTH_BYPASS",
+"description": "GCM does not allow an IV of length 0. Encrypting with an IV of length 0 leaks the authentication key. Hence using an IV of length 0 is insecure even if the key itself is only used for a single encryption.",
+"cves": [
+"CVE-2017-7822"
+]
+}
+},
+"testGroups": [
+{
+"ivSize": 96,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 1,
+"comment": "",
+"flags": [
+"Ktv"
+],
+"key": "e91e5e75da65554a48181f3846349562",
+"iv": "000020e8f5eb00000000315e",
+"aad": "8008315ebf2e6fe020e8f5eb",
+"msg": "f57af5fd4ae19562976ec57a5a7ad55a5af5c5e5c5fdf5c55ad57a4a7272d57262e9729566ed66e97ac54a4a5a7ad5e15ae5fdd5fd5ac5d56ae56ad5c572d54ae54ac55a956afd6aed5a4ac562957a9516991691d572fd14e97ae962ed7a9f4a955af572e162f57a956666e17ae1f54a95f566d54a66e16e4afd6a9f7ae1c5c55ae5d56afde916c5e94a6ec56695e14afde1148416e94ad57ac5146ed59d1cc5",
+"ct": "4d8a9a0675550c704b17d8c9ddc81a5cd6f7da34f2fe1b3db7cb3dfb9697102ea0f3c1fc2dbc873d44bceeae8e4442974ba21ff6789d3272613fb9631a7cf3f14bacbeb421633a90ffbe58c2fa6bdca534f10d0de0502ce1d531b6336e58878278531e5c22bc6c85bbd784d78d9e680aa19031aaf89101d669d7a3965c1f7e16229d7463e0535f4e253f5d18187d40b8ae0f564bd970b5e7e2adfb211e89a953",
+"tag": "5abace3f37f5a736f4be984bbffbedc1",
+"result": "valid"
+},
+{
+"tcId": 39,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f",
+"iv": "505152535455565758595a5b",
+"aad": "",
+"msg": "202122232425262728292a2b2c2d2e2f",
+"ct": "229a411025283b1821081a99959467e5",
+"tag": "15d668baf00273cddab75f61e39554dd",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 66,
+"comment": "",
+"flags": [
+"Ktv"
+],
+"key": "0c5ffd37a11edc42c325287fc0604f2e3e8cd5671a00fe3216aa5eb105783b54",
+"iv": "000020e8f5eb00000000315e",
+"aad": "8008315ebf2e6fe020e8f5eb",
+"msg": "f57af5fd4ae19562976ec57a5a7ad55a5af5c5e5c5fdf5c55ad57a4a7272d57262e9729566ed66e97ac54a4a5a7ad5e15ae5fdd5fd5ac5d56ae56ad5c572d54ae54ac55a956afd6aed5a4ac562957a9516991691d572fd14e97ae962ed7a9f4a955af572e162f57a956666e17ae1f54a95f566d54a66e16e4afd6a9f7ae1c5c55ae5d56afde916c5e94a6ec56695e14afde1148416e94ad57ac5146ed59d1cc5",
+"ct": "6f9e4bcbc8c85fc0128fb1e4a0a20cb9932ff74581f54fc013dd054b19f99371425b352d97d3f337b90b63d1b082adeeea9d2d7391897d591b985e55fb50cb5350cf7d38dc27dda127c078a149c8eb98083d66363a46e3726af217d3a00275ad5bf772c7610ea4c23006878f0ee69a8397703169a419303f40b72e4573714d19e2697df61e7c7252e5abc6bade876ac4961bfac4d5e867afca351a48aed52822",
+"tag": "e210d6ced2cf430ff841472915e7ef48",
+"result": "valid"
+},
+{
+"tcId": 104,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+"iv": "505152535455565758595a5b",
+"aad": "",
+"msg": "202122232425262728292a2b2c2d2e2f",
+"ct": "e0e88fd42c6f5f7b23b2329bd839765a",
+"tag": "1d2896b972fa8063cde93b4963c9c131",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 128,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 131,
+"comment": "J0:000102030405060708090a0b0c0d0e0f",
+"flags": [
+"CounterWrap"
+],
+"key": "00112233445566778899aabbccddeeff",
+"iv": "5ecacab50566ab81a8d10c4353287c0d",
+"aad": "",
+"msg": "00000000000000000000000000000000000000000000000000000000000000000000000000000000",
+"ct": "28912982219d06d2aa745ef28258c86ea717c8c5f073b48d6ad0ad88d579f29b623dce0797aa3005",
+"tag": "1a6b9e64dfa8ad27e3197d4d3a7ffd18",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 128,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 150,
+"comment": "J0:000102030405060708090a0b0c0d0e0f",
+"flags": [
+"CounterWrap"
+],
+"key": "00112233445566778899aabbccddeeff1021324354657687",
+"iv": "1d461154d5bb033dde1e75c3bba239f9",
+"aad": "",
+"msg": "00000000000000000000000000000000000000000000000000000000000000000000000000000000",
+"ct": "099c4f9e172440684926f61b51835cdc6caf2de0aa24afa6a43dba0e78b54a5a5bc6723db019f568",
+"tag": "fd4ae7ecf54c70e888929345be6ca660",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 96,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 169,
+"comment": "special case",
+"flags": [
+"SpecialCase"
+],
+"key": "00112233445566778899aabbccddeeff1021324354657687",
+"iv": "000000000000000000000000",
+"aad": "",
+"msg": "691d777dfa0ab3988fd4c5b9cc8235ad",
+"ct": "eefb2f10c3e69d091bf2b0ea73d893f9",
+"tag": "ffffffffffffffffffffffffffffffff",
+"result": "valid"
+},
+{
+"tcId": 206,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f1011121314151617",
+"iv": "505152535455565758595a5b",
+"aad": "",
+"msg": "202122232425262728292a2b2c2d2e2f",
+"ct": "894860194667dcdae0f5711e1acd0492",
+"tag": "0252c24af26c75520552e79de019a0de",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 128,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 233,
+"comment": "J0:000102030405060708090a0b0c0d0e0f",
+"flags": [
+"CounterWrap"
+],
+"key": "00112233445566778899aabbccddeeff102132435465768798a9bacbdcedfe0f",
+"iv": "be9c763c0d4ea610c00919d2fe7ba2de",
+"aad": "",
+"msg": "00000000000000000000000000000000000000000000000000000000000000000000000000000000",
+"ct": "8a3a84d5c6f022ca4834478586931d0bc70bcbf7535e4850473da4f2d51690d8efe87dd18e9fdeb9",
+"tag": "247a91bdfd0f4fcbe511142e067ea690",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 120,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 252,
+"comment": "unusual IV size",
+"flags": [
+"LongIv"
+],
+"key": "34c74e28182948e03af02a01f46eb4f7",
+"iv": "b0a73119a97d623806b49d45ddf4c7",
+"aad": "",
+"msg": "fe82ba66cf2e265741f2c86c",
+"ct": "189caf412fc340b675b2ce4e",
+"tag": "4a8c4bc441fd546600c3797d94b364cb",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 160,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 253,
+"comment": "unusual IV size",
+"flags": [
+"LongIv"
+],
+"key": "55cb7cac77efe18a1ea3b30c65f3f346",
+"iv": "e22b6b144ab26b5781316e7a42a76202ac4b2278",
+"aad": "",
+"msg": "2f3d11ea32bf5bc72cbe2b8d",
+"ct": "a5cb610ce1f39363c69f33fb",
+"tag": "4efa9d824d8c7e4155420988782c14a7",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 120,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 254,
+"comment": "unusual IV size",
+"flags": [
+"LongIv"
+],
+"key": "66f75acbd8d3acf7af47d13e8384c2809d6b91503a7f294b",
+"iv": "edf93e16294f15eded83808f09320e",
+"aad": "",
+"msg": "a900c86b6b7e0e5563f8f826",
+"ct": "2178c4221d42df2054496ae6",
+"tag": "7aab9f0bbe3f0413ef6edbbeec4f2f08",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 160,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 255,
+"comment": "unusual IV size",
+"flags": [
+"LongIv"
+],
+"key": "ef2e299dd4ecd7e3b9cc62780922cc2c89f78840564d1276",
+"iv": "130c14c839e35b7d56b3350b194b0da342e6b65d",
+"aad": "",
+"msg": "03f59579b14437199583270e",
+"ct": "0447bf14f576d238e34e4ea5",
+"tag": "a3e29d799535ddac7a17c2f1b78f6c6a",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 120,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 256,
+"comment": "unusual IV size",
+"flags": [
+"LongIv"
+],
+"key": "e98b0669a645eb14cd06df6968fc5f10edc9f54feed264e3d410cdc61b72ef51",
+"iv": "17ca250fb733877556263223eadde1",
+"aad": "",
+"msg": "f384b3ed7b274641f5db60cf",
+"ct": "68c6720b14b8d4e416edc982",
+"tag": "e550f717c89c6b49138d5ca6cf12ccca",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 160,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 257,
+"comment": "unusual IV size",
+"flags": [
+"LongIv"
+],
+"key": "849b3e6b8cdd85bdcfb8eb701aa5522ae2340fbe5214e389622cef76979225c4",
+"iv": "0f9d6ed7eef362dfa4a7dfa5c0f74c5b27bd4ebf",
+"aad": "",
+"msg": "8c5564e53051c0de273199b4",
+"ct": "3899dd66b760f82f46092629",
+"tag": "cf094c53e7b4149ed55554d0ee3dffa2",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 256,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 258,
+"comment": "long IV size",
+"flags": [
+"LongIv"
+],
+"key": "5927bae748bb69d81b5a724e0a165652",
+"iv": "365e0b96932b13306f92e9bb23847165bcbf5d35e45a83d75c86ecca70131f4c",
+"aad": "",
+"msg": "316bf99bfafc76f1bfc0b03c",
+"ct": "c252b0878904ae31d17c9af6",
+"tag": "56b52a98501da50cd8f03fa32d83f5de",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 512,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 259,
+"comment": "long IV size",
+"flags": [
+"LongIv"
+],
+"key": "dbd3676f293409273f27b375e03793a3",
+"iv": "967fa7c990eb2becbd450835e28ea3a9000c7216285cfa7696e8c3dac3ce952a1fe638d7c8c73e1d708dce01b5a20fcc9aa011949d2a835f777423c172fa3aa0",
+"aad": "",
+"msg": "625efedb8b7f1aa62238a8f2",
+"ct": "c39e506d76c2ed6cf37d52d8",
+"tag": "166c7801918a83926f30759a1b4c19da",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 1024,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 260,
+"comment": "long IV size",
+"flags": [
+"LongIv"
+],
+"key": "7e5a39dcda7e066988f19adf4de4d501",
+"iv": "494356c3459d60e3a83433c9bcf2c0454a763e496e4ec99bfbe4bbb83a4fda76b542213899dcf5521cd9bbbe5d11545bda44a3f4a681ce2843acea730d83d3930ea30991ee1a68ebf6d1a5a40f9b02a1aab091298df8dd689dc7613bcbff94d35f2ca43377d81618562bcf6573411ec9bc97c5a6276b554054c0fa787073d067",
+"aad": "",
+"msg": "b04729b4adbaac63c2aaf8d8",
+"ct": "e7dd52be35d8c68c2bb0449a",
+"tag": "a5f09b1ebb746c5c1292652c7766eccf",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 2056,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 261,
+"comment": "long IV size",
+"flags": [
+"LongIv"
+],
+"key": "eac3f28cd937ff29eb6158a3721b5145",
+"iv": "6fd260bba87339539c37dc68fdc3656f63c83028cb8adcb531085e98bd570c6b735d0cc4b4b924696000a2d893621ae64dcce992b562b89a5285643a08febccbc52243cbfc8d45212e047b00c87c6b6bf175f8bb678ec55c1091315cbecb8b85700f4a4653623fb78e63cfff7d6235e48e9832c9f0716d10992fc5b0ad4e6972bbeeb1ad670cd7ec8fac82e07ea5a64f9761a39714aaa73affd2cb190a7ac2df5e5dcea6812ae2c872c7ac70453c5e7ec4d0b5b18c6ff3bfb9ae15fea44cf392615b80034edae596b8821f97fca58d167fb44a093b0c009a0bd5631355b0cb25d93ba9b79b006301d99db657e801933fc2764a0ce650eaf5a1299efe60cb53b634",
+"aad": "",
+"msg": "098912a302773377b9c26ac3",
+"ct": "80b0e00c2f9f100661a6e76b",
+"tag": "9253e713d1aeba502989e525752e1acb",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 256,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 262,
+"comment": "long IV size",
+"flags": [
+"LongIv"
+],
+"key": "8f9ebc67a9a6430c2b0ceeaf983e1356964bb928635b9ca4",
+"iv": "36e4b381574d171c7769a788cbc147224fabd8b773f16b8ae84d8f2603aaa440",
+"aad": "",
+"msg": "a3a96ee94f94caa81ebcd66d",
+"ct": "1f0e856b31ae32f530f1eddb",
+"tag": "b48062353513b6e890a1ccde063ed290",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 512,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 263,
+"comment": "long IV size",
+"flags": [
+"LongIv"
+],
+"key": "f4bbdfd06f7fb1434880e4166d38d56e02a3f0df0d5301ce",
+"iv": "90743bd5d794d52ac848b7e2384545a25846acf143be84c0ead0432fcf3172631cf58d0ca78571c03053c1e1b85ed79cb5303d0e3a98ff4f56c4f0a5eb4f0eac",
+"aad": "",
+"msg": "39d2abe6697f17ec27f2a39c",
+"ct": "40d3754048f40e5f938ba7b2",
+"tag": "90c4bb6782f2d14b8e7b70487284bab4",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 1024,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 264,
+"comment": "long IV size",
+"flags": [
+"LongIv"
+],
+"key": "1761c77798ef9cdfa40553f34614fe7402212087f0509411",
+"iv": "fbb3eab379c9b8689dc30b0713690e55d51c956ca36fbcc73eeeee16a46d7c41a7a9626e68e25d685c008c19d3b2b1792bdc99c35441a6fcac35e0d6446dd914f543abd9ecd6b0cb5201c243026c4f13641d67c8d8cd5114b6e11ebbc6b1dee2a18db2150a5a575dcd21648e0337dadbccd3deffd6d979e03e6b9ddfee0abdc2",
+"aad": "",
+"msg": "35ca4eb463a2000138210b4d",
+"ct": "8ed840d420ba66513f2e5776",
+"tag": "c42a27405f96d356218684bd2cafa37e",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 2056,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 265,
+"comment": "long IV size",
+"flags": [
+"LongIv"
+],
+"key": "f795ece7de1881fbc6843eb740f812e41e3fc49ff6c7b940",
+"iv": "3569fca7c9d06e2a03fed1aac2484fd4416ca07d55ecbb333ec674f0ea5c6e75a10dfb9c738b69dab2eda10ada721a61c7f02b7e7f79e8a9e2dc36b3fdf609e436054c82a774ec617dceec84a577037ff1a3f120d9818d042063acb36c9584e81ec94f11f1ee240f2e45e944694a9c8e535acbb01d93958411cff68e3d32f8931746a4a0cece65e93c51c70b3111034b6867b407e0147f97c576d3ed8cec7e8ec26e95643e46e97ea3595c9c3172b4856f2d2b6dc8564666ddac92c794ffb2d4dc7f461761f0e326650f48d327604e095bd8754072116c96360d09f010ac2f39eb96b227f3d738deb756c8699460d88cf716170ae15267b14f4a89164720f1c602",
+"aad": "",
+"msg": "22dbd8037aa05b14cf81dd23",
+"ct": "a683e2a795ff8779e2a506cf",
+"tag": "0b9e12923829e2120fd2aee5631a4414",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 256,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 266,
+"comment": "long IV size",
+"flags": [
+"LongIv"
+],
+"key": "ee4171917d2337496812a2784d6a71300e6b8c1ac3b1ef58cee77c229aeaf2c5",
+"iv": "e826a79361f9d582b64450e3edc82589487853d5b22feaa0c889875bd0d87cd4",
+"aad": "",
+"msg": "94d2f8697facaaa191ba617a",
+"ct": "16c1f8fa2fe325b8a410f1f4",
+"tag": "df5611e230607bc1a8433e616ba0ed29",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 512,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 267,
+"comment": "long IV size",
+"flags": [
+"LongIv"
+],
+"key": "132c59b4bcb8afb31637734a81105bb2c9878f320ace9076d5fd7c5d216c8d12",
+"iv": "ec51ee18cfb46897d3666c7df35c29ca5d898241c4a34f893eb1db5d5c6b76e24617459d1153868154437a0e95aa3c26e956b494a52dd5ac3b9331116c7c775f",
+"aad": "",
+"msg": "12c7be00facda49596e19134",
+"ct": "e305e48df56b858db24fe9ab",
+"tag": "b0874830d4cf0298e54515805127c85b",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 1024,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 268,
+"comment": "long IV size",
+"flags": [
+"LongIv"
+],
+"key": "7b0b12491901d62d097fa26dc71e15cfacafa3226719e47126d99c79d98ec222",
+"iv": "7d08b226b4a5d03f6f8cb3a3cb8d1ce31b059dc5112385275e38a15c97e0f24022b249a5f7019ea577198cb26ac64e82b2b04681537c4198775a523b0e6494b84febaef3399b35c27b0969fa43572bf5827a763aac1af69526f37e38acb5d354f2b68487f275f4361ed39073f7dd6653ac17c0794118a0cf143293ac0be66229",
+"aad": "",
+"msg": "c80312590700c3bbfacd1a40",
+"ct": "d2e2020ee5f5f09aa17c85a3",
+"tag": "f0857f748b33953dfbd0c40a9f0b8e78",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 2056,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 269,
+"comment": "long IV size",
+"flags": [
+"LongIv"
+],
+"key": "3bc3bf39d0d5ffd94cca2b45c678a2d049151ed2babc713be53cb66f54a16337",
+"iv": "92c2cee7e9138b186da51f146fb21fd5b491f1a19eef61d4ed14ce6b21b04fdb6ff8ebb60fddc55926e7bda2a8f35c610bb795232412739d6c2d74458ef5a1a1cde9bf17e47e3b00db0b0504d56dc8b8d3de23f7c3a5d52e8d0aab1e64405aaa852ec2dd667ed9c1fd8dc1fdbbc8712c7a38f30faeab594f33897b41b1720f3c2f954ed91ca450d82c3dcd35858c608ad42f36832e56b04821a132f72e0da7b62cbd3925250f64fbb3f5c4783495893097adc09a32d776e04bf72558d37830b372341f6536d8ee9df4a82e4074e7774ab6917a04fa8c499eb4b46a92def365da8b5eb1e0b438779507d1f5272a6e8629a3f9c7bd4862c5691ee8b56bfe292deb4e",
+"aad": "",
+"msg": "8125ee7637d7d0e03bbacf35",
+"ct": "0aae742e0a263bb44b643a10",
+"tag": "a07604cc6c0fe9ae38300690939c907d",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 8,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 270,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "59a284f50aedd8d3e2a91637d3815579",
+"iv": "80",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "a0457bf1a8cdf20ffc7f1bcf993b841c",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 16,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 272,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "88a972cce9eaf5a7813ce8149d0c1d0e",
+"iv": "0f2f",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "b7ee0661fdb5c583e383148b17ac1499",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 32,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 274,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "4e9a97d3ed54c7b54610793ab05052e1",
+"iv": "cc851957",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "147ea2bae8e3f87958e7b7c0cc9bf3e9",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 48,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 276,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "c6a705677affb49e276d9511caa46145",
+"iv": "4ad80c2854fb",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "268756dd4109f9321d3cf7578cec7aa4",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 64,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 278,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "f3434725c82a7f8bb07df1f8122fb6c9",
+"iv": "28e9b7851724bae3",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "d1357411261d96d200e1ea1cdd723ca7",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 80,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 280,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "1e6c6214a6a5dd5b628c71de07788137",
+"iv": "40bcc315dec88bf326cc",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "1cacaeff508ea1a9eecf61f811de50a6",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 8,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 282,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "c70ce38e84e5f53ed41c3f0d2ca493412ad32cb04c6e2efa",
+"iv": "cb",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "be71e58e22dcf733e95eb19b49e8c793",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 16,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 284,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "cbf45ba488932aea1a10e5862f92e4a7e277bda9f34af6d0",
+"iv": "75e5",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "271075db92c60c65bbeedf444f3d5548",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 32,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 286,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "567563bf4cf154902275a53bc57cd6dd7b370d27011bdac8",
+"iv": "68d7fc38",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "e6c58d647f91d0040d960d0c5f9c3a47",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 48,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 288,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "99fb18f5ba430bb9ea942968ecb799b43406e1af4b6425a1",
+"iv": "a984bdcdcae2",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "e7b0ceb51bf01e8a7e6a1029343bfe83",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 64,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 290,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "d74599b3d2db81653de43b52fc994c50d0be759fab87c33a",
+"iv": "d1c61cf8532531b5",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "c79331f6fb55cae58fbf05afce7b20b0",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 80,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 292,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "172f22f2e59364dc418cd751dfa8444ae18644c0f9a2be84",
+"iv": "bf9026d3ddaa37e7f180",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "1daafe75fe5bc766f0df0173d9b457b1",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 8,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 294,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "8f9a38c1014966e4d9ae736139c5e79b99345874f42d4c7d2c81aa6797c417c0",
+"iv": "a9",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "9748178dc360f0f3e09a122470a788b4",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 16,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 296,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "7d31861f9d3536e14016a3216b1042e0d2f7d4614314268b6f834ec7f38bbb65",
+"iv": "c332",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "4755b2cab6735e09ebb34bef3fc64435",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 32,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 298,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "c224e0bba3d7a99165f7996b67a0fce3e12f2c01179b197b69b7e628bca92096",
+"iv": "6b30145e",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "9aadfafbb30801049cfa6c5ee30988bb",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 48,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 300,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "98e6f8ab673e804e865e32403a6551bf807a959343c60d34559360bc295ecb5b",
+"iv": "d4d857510888",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "88a7e45dbe2e064d7d008042ab17c371",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 64,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 302,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "61ba694897925d1b4174d40401469c3ef267cdb9f829edb1a10618c16d666059",
+"iv": "0d10c5c84b88d688",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "26c9f1326a6748a3060434930a78c051",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 80,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 304,
+"comment": "small IV sizes",
+"flags": [
+"SmallIv"
+],
+"key": "44ab204d150adb17f83d1e5205b6e1419673fadee610fb9a38185a96741021eb",
+"iv": "ff3914982be30b3b2112",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "a56f6cedb2b43f4616c23ae4d787dbb0",
+"result": "valid"
+}
+]
+},
+{
+"ivSize": 0,
+"keySize": 128,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 306,
+"comment": "0 size IV is not valid",
+"flags": [
+"ZeroLengthIv"
+],
+"key": "8f3f52e3c75c58f5cb261f518f4ad30a",
+"iv": "",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "e2070861c255efffdf804cb0be7b9c67",
+"result": "invalid"
+},
+{
+"tcId": 307,
+"comment": "0 size IV is not valid",
+"flags": [
+"ZeroLengthIv"
+],
+"key": "2a4bf90e56b70fdd8649d775c089de3b",
+"iv": "",
+"aad": "",
+"msg": "324ced6cd15ecc5b3741541e22c18ad9",
+"ct": "8cef7b4767b0dfd0b33981e15492dee5",
+"tag": "388a8c985c9016989a6464d0b02b3518",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 0,
+"keySize": 192,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 308,
+"comment": "0 size IV is not valid",
+"flags": [
+"ZeroLengthIv"
+],
+"key": "0b18d21337035c7baa08211b702fa780ac7c09be8f9ed11f",
+"iv": "",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "97fa29eefc2d8ec9927f5ec4adda1116",
+"result": "invalid"
+},
+{
+"tcId": 309,
+"comment": "0 size IV is not valid",
+"flags": [
+"ZeroLengthIv"
+],
+"key": "ba76d594a6df915bb7ab7e6d1a8d024b2796336c1b8328a9",
+"iv": "",
+"aad": "",
+"msg": "d62f302742d61d823ea991b93430d589",
+"ct": "be4fe039eb9e49d89320f66f4f45adde",
+"tag": "7dd51aa7c53404ca9673efda74285c3e",
+"result": "invalid"
+}
+]
+}
+],
+"subsetOf": 311
+}

@@ -1,0 +1,354 @@
+{
+"algorithm": "CHACHA20-POLY1305",
+"schema": "aead_test_schema_v1.json",
+"numberOfTests": 325,
+"header": [
+"Test vectors of type AeadTest test authenticated encryption with additional data.",
+"The test vectors are intended for testing both encryption and decryption.",
+"Test vectors with \"result\" : \"valid\" are valid encryptions.",
+"Test vectors with \"result\" : \"invalid\" are using invalid parameters",
+"or contain an invalid ciphertext or tag."
+],
+"notes": {
+"EdgeCaseCiphertext": {
+"bugType": "EDGE_CASE",
+"description": "The test vector contains values where the ciphertext is a special case. The purpose of the test vector is to detect incorrect poly1305 computations."
+},
+"EdgeCasePoly1305": {
+"bugType": "EDGE_CASE",
+"description": "The test vector contains an edge case for the integer arithmetic used to compute Poly1305. I.e., the goal of the test vector is to catch integer overflows."
+},
+"EdgeCasePolyKey": {
+"bugType": "EDGE_CASE",
+"description": "The test vector contains values where the key for Poly1305 has edge case values. E.g. the nonces have been constructed such that the Poly1305 key contains limbs with values such as 0. The goal of the test vector is to detect incorrect integer arithmetic in the Poly1305 computation."
+},
+"EdgeCaseTag": {
+"bugType": "EDGE_CASE",
+"description": "The tag contains an edge case. The goal of the test vector is to check for arithmetic errors in the final modular addition of CHACHA-POLY-1305."
+},
+"InvalidNonceSize": {
+"bugType": "MODIFIED_PARAMETER",
+"description": "RFC 7539 restricts the size of the nonce of CHACHA-POLY1305 to 12 bytes and XCHACHA-POLY1305 to 24 bytes. Other sizes are invalid."
+},
+"Ktv": {
+"bugType": "BASIC",
+"description": "Known test vector.",
+"links": [
+"RFC 7539"
+]
+},
+"ModifiedTag": {
+"bugType": "AUTH_BYPASS",
+"description": "The test vector contains a ciphertext where the tag has been modified. The goal of the test vector is to detect implementations with partial or incorrect tag verification."
+},
+"Pseudorandom": {
+"bugType": "FUNCTIONALITY",
+"description": "The test vector contains pseudorandomly generated inputs. The goal of the test vector is to check the implementation for different input sizes."
+}
+},
+"testGroups": [
+{
+"ivSize": 96,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 1,
+"comment": "RFC 7539",
+"flags": [
+"Ktv"
+],
+"key": "808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9f",
+"iv": "070000004041424344454647",
+"aad": "50515253c0c1c2c3c4c5c6c7",
+"msg": "4c616469657320616e642047656e746c656d656e206f662074686520636c617373206f66202739393a204966204920636f756c64206f6666657220796f75206f6e6c79206f6e652074697020666f7220746865206675747572652c2073756e73637265656e20776f756c642062652069742e",
+"ct": "d31a8d34648e60db7b86afbc53ef7ec2a4aded51296e08fea9e2b5a736ee62d63dbea45e8ca9671282fafb69da92728b1a71de0a9e060b2905d6a5b67ecd3b3692ddbd7f2d778b8c9803aee328091b58fab324e4fad675945585808b4831d7bc3ff4def08e4b7a9de576d26586cec64b6116",
+"tag": "1ae10b594f09e26a7e902ecbd0600691",
+"result": "valid"
+},
+{
+"tcId": 2,
+"comment": "",
+"flags": [
+"Pseudorandom"
+],
+"key": "80ba3192c803ce965ea371d5ff073cf0f43b6a2ab576b208426e11409c09b9b0",
+"iv": "4da5bf8dfd5852c1ea12379d",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "76acb342cf3166a5b63c0c0ea1383c8d",
+"result": "valid"
+},
+{
+"tcId": 146,
+"comment": "Flipped bit 0 in tag expected tag:f4409bb729039d0814ac514054323f44",
+"flags": [
+"ModifiedTag"
+],
+"key": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+"iv": "000102030405060708090a0b",
+"aad": "000102",
+"msg": "",
+"ct": "",
+"tag": "f5409bb729039d0814ac514054323f44",
+"result": "invalid"
+},
+{
+"tcId": 147,
+"comment": "Flipped bit 1 in tag expected tag:f4409bb729039d0814ac514054323f44",
+"flags": [
+"ModifiedTag"
+],
+"key": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+"iv": "000102030405060708090a0b",
+"aad": "000102",
+"msg": "",
+"ct": "",
+"tag": "f6409bb729039d0814ac514054323f44",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 0,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 317,
+"comment": "nonce has size 0.",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+"iv": "",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 64,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 318,
+"comment": "nonce has size 8.",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+"iv": "0001020304050607",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 88,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 319,
+"comment": "nonce has size 11.",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+"iv": "000102030405060708090a",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 104,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 320,
+"comment": "nonce has size 13.",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+"iv": "000102030405060708090a0b0c",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 112,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 321,
+"comment": "nonce has size 14.",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+"iv": "000102030405060708090a0b0c0d",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 128,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 322,
+"comment": "nonce has size 16.",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+"iv": "000102030405060708090a0b0c0d0e0f",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 192,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 323,
+"comment": "nonce has size 24.",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+"iv": "000102030405060708090a0b0c0d0e0f1011121314151617",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 160,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 324,
+"comment": "nonce has size 20.",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+"iv": "000102030405060708090a0b0c0d0e0f10111213",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "",
+"result": "invalid"
+}
+]
+},
+{
+"ivSize": 256,
+"keySize": 256,
+"tagSize": 128,
+"type": "AeadTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"tests": [
+{
+"tcId": 325,
+"comment": "nonce has size 32.",
+"flags": [
+"InvalidNonceSize"
+],
+"key": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f",
+"iv": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+"aad": "",
+"msg": "",
+"ct": "",
+"tag": "",
+"result": "invalid"
+}
+]
+}
+],
+"subsetOf": 325
+}

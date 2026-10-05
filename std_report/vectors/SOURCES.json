@@ -1,0 +1,634 @@
+[
+ {
+  "file": "subset/aes_cbc_pkcs5_test.json",
+  "source": "Wycheproof (C2SP) — AES-CBC-PKCS5",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/aes_cbc_pkcs5_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 216,
+  "sha256": "50ab9c1efcd2cae0bcfc099214759358256fb7cf2e7d304cb529f1c0bc17ef32",
+  "sha256_original": "e45234427e10cf91f27324e52afe8c00906f294dbae061535e2ae13dd300a46a"
+ },
+ {
+  "file": "subset/aes_ccm_test.json",
+  "source": "Wycheproof (C2SP) — AES-CCM",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/aes_ccm_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 552,
+  "sha256": "b3badd6ac0db7d0c42cf71ed45fd1e72a3ed52f16913d0f23e5f58a2cea2199b",
+  "sha256_original": "e713a981df1f261098245f4a1031a34a611df93e0d83f4a6a2c1a13e9ba62d7b"
+ },
+ {
+  "file": "subset/aes_gcm_siv_test.json",
+  "source": "Wycheproof (C2SP) — AES-GCM-SIV",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/aes_gcm_siv_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 202,
+  "sha256": "d001a68812e7613f77d64c727d722e252d5b3d7a55ddceef8a5c2964edc111d4",
+  "sha256_original": "d96e4f8c0db1a5e3b395907120f9d417d599507e7a08a1f60babff09ae276a8d"
+ },
+ {
+  "file": "subset/aes_kwp_test.json",
+  "source": "Wycheproof (C2SP) — AES-KWP",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/aes_kwp_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 254,
+  "sha256": "03afc18303b569e21c35f89e05a3e568ecd50c5d1a698a9f92f54d9bc62c4df6",
+  "sha256_original": "e89624734deeba8bb937acba5381a5cb137c7050bf8bfd0bd70bd8438170b436"
+ },
+ {
+  "file": "subset/aes_xts_test.json",
+  "source": "Wycheproof (C2SP) — AES-XTS",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/aes_xts_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 123,
+  "sha256": "ee1a96ce53e462d70fe705a7aa1ba5d180d0b34a67cbf30db2329d4611755301",
+  "sha256_original": "5a50a889fb0554843dfff65432ef23038fcd5b960e12464a0e2861336a14186d"
+ },
+ {
+  "file": "subset/aria_gcm_test.json",
+  "source": "Wycheproof (C2SP) — ARIA-GCM",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/aria_gcm_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 49,
+  "tests_full": 311,
+  "sha256": "2db24e68ba4433811101ec599e0f48e9b26b8ff8fe91a026d9e5bcd23bc5c310",
+  "sha256_original": "c96817c86b2a6b4042783d30afb1072089e35a16f870190d33ae50735b2fc3a4"
+ },
+ {
+  "file": "subset/dsa_2048_224_sha224_test.json",
+  "source": "Wycheproof (C2SP) — DSA",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/dsa_2048_224_sha224_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 19,
+  "tests_full": 336,
+  "sha256": "dae9cd79ecacae711779437c7996f2b8f91b9b6cbd1fc15614c4503b81906bb0",
+  "sha256_original": "b7d1838d85e539985b4de37d363e66cfb9f47af1d0817efd07901046c2040fb7"
+ },
+ {
+  "file": "subset/dsa_2048_256_sha256_test.json",
+  "source": "Wycheproof (C2SP) — DSA",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/dsa_2048_256_sha256_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 21,
+  "tests_full": 366,
+  "sha256": "5185cd47a25b0140850608955bec23c4acc0c0cf9991a0d44a153a78c6e7ce4e",
+  "sha256_original": "08a050e4e000bf56bc7ef2399c9c3155ac24fb22be9a0a78eaf391018456d94c"
+ },
+ {
+  "file": "subset/dsa_3072_256_sha256_test.json",
+  "source": "Wycheproof (C2SP) — DSA",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/dsa_3072_256_sha256_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 21,
+  "tests_full": 366,
+  "sha256": "a4ba2167f79c04b2a043e206d2765dac8ad7181fa284e05193c0ce1dacad942a",
+  "sha256_original": "a21e6d1fb4201b80f8b4fc1b8c263eff8fc3b5015f2d2a6c5ff86b2b8d64aebd"
+ },
+ {
+  "file": "subset/ecdh_secp224r1_test.json",
+  "source": "Wycheproof (C2SP) — ECDH",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/ecdh_secp224r1_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 714,
+  "sha256": "c3a16c9472735e35904347e45d6628c890269405d382f1f16b590c31f614820b",
+  "sha256_original": "8663b33953788be6af01d523735b35f59cb8848d213c8fa99d509f4328c6b61b"
+ },
+ {
+  "file": "subset/ecdh_secp256r1_test.json",
+  "source": "Wycheproof (C2SP) — ECDH",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/ecdh_secp256r1_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 612,
+  "sha256": "bf24628fabb65210f55f6bcca35b15829bc5f641f5e3da10c55efc167d37a209",
+  "sha256_original": "cdb8bd5d1206fddb6618c69ffa18f303b4752caba321d348d4aacae3f20cbec4"
+ },
+ {
+  "file": "subset/ecdh_secp521r1_test.json",
+  "source": "Wycheproof (C2SP) — ECDH",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/ecdh_secp521r1_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 916,
+  "sha256": "664fca31df1d8fef3c22d87c8dcfa760b86827e5e5432e3faa8c2ca2143bd8d5",
+  "sha256_original": "b5e379919833afa94ef6cb7e085367408a5ea63cf486ad008ad36ef9be4bebf0"
+ },
+ {
+  "file": "subset/ecdsa_secp224r1_sha224_test.json",
+  "source": "Wycheproof (C2SP) — ECDSA",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/ecdsa_secp224r1_sha224_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 452,
+  "sha256": "809e13a7ef04b0c766d10698ba74fa9baf126e465bccb62083ab43d6c2028b96",
+  "sha256_original": "9bcb7dd003a60aa94ab133e4348b059ddb4d9c2f74bdd2a1ac948efd31ba935d"
+ },
+ {
+  "file": "subset/ecdsa_secp384r1_sha384_test.json",
+  "source": "Wycheproof (C2SP) — ECDSA",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/ecdsa_secp384r1_sha384_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 504,
+  "sha256": "46f3ce7e574c7141afae8d049885baf3bea9fe74a782c4e613017bbe0c05b198",
+  "sha256_original": "8a5b3ae1760975143414811f13588c24d951d9d8c904195087ba327591dfe9cc"
+ },
+ {
+  "file": "subset/ecdsa_secp521r1_sha512_test.json",
+  "source": "Wycheproof (C2SP) — ECDSA",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/ecdsa_secp521r1_sha512_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 542,
+  "sha256": "98607634b556881d50867eaecb4c29ba8e3ffe5702c97602de8d03943f24dad9",
+  "sha256_original": "0fa3bb09a2319242253028b53d555fb8ec2081d891271321205cdaeabb3eef3e"
+ },
+ {
+  "file": "subset/ed448_test.json",
+  "source": "Wycheproof (C2SP) — EDDSA",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/ed448_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 23,
+  "tests_full": 87,
+  "sha256": "bd34d7e91be0786e9c9b8b7f46eab01d4de4434c042d934a757f1bd9530519e5",
+  "sha256_original": "3b3c7995853deb2fbbb49fba0fd292f314dc081f9154bd33252f294ca211289a"
+ },
+ {
+  "file": "subset/hkdf_sha256_test.json",
+  "source": "Wycheproof (C2SP) — HKDF-SHA-256",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/hkdf_sha256_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 18,
+  "tests_full": 86,
+  "sha256": "689f623c090fe933439b543f18857e5a5ba1c7cd3ee52ac56a3517f001012915",
+  "sha256_original": "bb2b462a38b251cb52a2aede706d6d4b62b26864f4e80c95497507ddb07c5f1e"
+ },
+ {
+  "file": "subset/hkdf_sha384_test.json",
+  "source": "Wycheproof (C2SP) — HKDF-SHA-384",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/hkdf_sha384_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 27,
+  "tests_full": 83,
+  "sha256": "df9470e40c274e525e2b3eb338beac71c105723218c2eb23420d7d0f0d74e33d",
+  "sha256_original": "69ff6ea3657bb9c1b8cdffbbb4e7832353d08fd15c0d9997b03f7a6b180e3678"
+ },
+ {
+  "file": "subset/hkdf_sha512_test.json",
+  "source": "Wycheproof (C2SP) — HKDF-SHA-512",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/hkdf_sha512_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 27,
+  "tests_full": 83,
+  "sha256": "97bca6ce2661681b6caab2db78076b321b2da95ed6ac3cdbd13d66ac0a3cfae1",
+  "sha256_original": "bb9a21f4e86041caf5d7792b030349f8ff289087f195b2fbc0fc0afc39deca6f"
+ },
+ {
+  "file": "subset/hmac_sha1_test.json",
+  "source": "Wycheproof (C2SP) — HMACSHA1",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/hmac_sha1_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 28,
+  "tests_full": 170,
+  "sha256": "af87245e2269dc36779482de1e9c4a372b3305950e73877119dbd28295e73779",
+  "sha256_original": "b521c6180a862247986392d3cb49b511fc7fe790e75bee236f84e36ca290c7c0"
+ },
+ {
+  "file": "subset/hmac_sha224_test.json",
+  "source": "Wycheproof (C2SP) — HMACSHA224",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/hmac_sha224_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 28,
+  "tests_full": 172,
+  "sha256": "7662608e17e002229b7e7bbaf15a11ddc2cdb12ae04ab96e14d7e6d2ad80a0ff",
+  "sha256_original": "9b3a2470fe5bc8aa2d3e55f19772dc1f88fda897863ed4eaa4d8536c244c320b"
+ },
+ {
+  "file": "subset/hmac_sha384_test.json",
+  "source": "Wycheproof (C2SP) — HMACSHA384",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/hmac_sha384_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 28,
+  "tests_full": 174,
+  "sha256": "abf399098d60e614a9b89ceb08c3d70bb74be3f2d61b29c16c423d372d39a576",
+  "sha256_original": "28b9776e979dd755d852ca471043ea6cedce8b15f7a28abdf6ea9efd982b43c0"
+ },
+ {
+  "file": "subset/hmac_sha3_224_test.json",
+  "source": "Wycheproof (C2SP) — HMACSHA3-224",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/hmac_sha3_224_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 28,
+  "tests_full": 172,
+  "sha256": "54b6ba955c0bb859ae30c5aea8a436b02f0ed71709f40ddd1fe8f3284da9e978",
+  "sha256_original": "b795ca6ed71afb662b3b2f8258aa6bbab6056103235301391bba8c25bf4b64ca"
+ },
+ {
+  "file": "subset/hmac_sha3_256_test.json",
+  "source": "Wycheproof (C2SP) — HMACSHA3-256",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/hmac_sha3_256_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 28,
+  "tests_full": 174,
+  "sha256": "3be2d637f46515552d053fef729d79216a460467375b55c36c98d4ea3aabe7f2",
+  "sha256_original": "8f1bad7c725c0f6325ea975ddd661f51663862823cd07084b230efe0f6a0ed6b"
+ },
+ {
+  "file": "subset/hmac_sha3_384_test.json",
+  "source": "Wycheproof (C2SP) — HMACSHA3-384",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/hmac_sha3_384_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 28,
+  "tests_full": 174,
+  "sha256": "d38e89708c3976290a35af4d2be6a1271f2ae0774e34089ffa91c2bc4956ada1",
+  "sha256_original": "66423781ae4aa991b8b457b7736659604fffd46688001ca749f444da18f06728"
+ },
+ {
+  "file": "subset/hmac_sha3_512_test.json",
+  "source": "Wycheproof (C2SP) — HMACSHA3-512",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/hmac_sha3_512_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 28,
+  "tests_full": 174,
+  "sha256": "7c222ff92dbbffc678684d1c23e3d89d2f38f63aac2b37a4c985b7b64d84e565",
+  "sha256_original": "60cd4c3be286a9c6ce49d93ce6901762e3cd0ebbfc4f08ccfd5f2b595c641860"
+ },
+ {
+  "file": "subset/hmac_sha512_224_test.json",
+  "source": "Wycheproof (C2SP) — HMACSHA512/224",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/hmac_sha512_224_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 25,
+  "tests_full": 173,
+  "sha256": "4dad71a3641e954b9536f01e07540d1ed7bd72524641517459af89bae3ef6e5a",
+  "sha256_original": "b7d3d3e5b71307a2ef3f667137ca62b03b9f1dc069fc0cd995078d061cc57e78"
+ },
+ {
+  "file": "subset/hmac_sha512_256_test.json",
+  "source": "Wycheproof (C2SP) — HMACSHA512/256",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/hmac_sha512_256_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 28,
+  "tests_full": 175,
+  "sha256": "23a0d80a3d91ef7bbd1b79499446beef571ae3021b9f9301dfd3dd0d2c7959a5",
+  "sha256_original": "6b279a036899a0b6f9e4796a353a20a505655f12037d13bbee48bb9ac6d205cb"
+ },
+ {
+  "file": "subset/hmac_sha512_test.json",
+  "source": "Wycheproof (C2SP) — HMACSHA512",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/hmac_sha512_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 28,
+  "tests_full": 174,
+  "sha256": "696409ed830b726a21120617667446194831ac10094fca855e058010f04be715",
+  "sha256_original": "b6c90477bdb4a6fc8ee3d1f7b2c0b69a8dfffab34718abaa6cabd71cc2ba1207"
+ },
+ {
+  "file": "subset/kmac128_no_customization_test.json",
+  "source": "Wycheproof (C2SP) — KMAC128",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/kmac128_no_customization_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 28,
+  "tests_full": 174,
+  "sha256": "7dfbd9b59c733d5efdd68575ff869639d2ddbd50e70dd82b94d3e1e1a49bde00",
+  "sha256_original": "9482c88537dd71fe94048bffc479ce37398bc53299617d54a3d90dda07d293fa"
+ },
+ {
+  "file": "subset/kmac256_no_customization_test.json",
+  "source": "Wycheproof (C2SP) — KMAC256",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/kmac256_no_customization_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 27,
+  "tests_full": 261,
+  "sha256": "adc87749ee7c7c144932083d803c5e8fbcc9cbac66684b5f42e992a490535c0f",
+  "sha256_original": "950b9e8f64bd4e614aa3d825f0cd0570ec33c6cdfc81cbd043c429265149a671"
+ },
+ {
+  "file": "subset/mldsa_44_verify_test.json",
+  "source": "Wycheproof (C2SP) — ML-DSA-44",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/mldsa_44_verify_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 32,
+  "tests_full": 180,
+  "sha256": "7c85c7069b2af58cc9febba97db7489f28b204b86baccbf9decb68f92cc30eb5",
+  "sha256_original": "0ca1b5df4575263e29b31fae7569a3da41df9a3b6fee56720a992d0cd1153b68"
+ },
+ {
+  "file": "subset/mldsa_65_verify_test.json",
+  "source": "Wycheproof (C2SP) — ML-DSA-65",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/mldsa_65_verify_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 30,
+  "tests_full": 210,
+  "sha256": "cea8ffdfc4eeb3ca9954b3836c3a446381a2fdbd67f75bca2663b95787ff8fd3",
+  "sha256_original": "49ac366d76115eab56b7116f10d06e288e6f23fe6cfb90b26bfb2d731a8d1e02"
+ },
+ {
+  "file": "subset/mldsa_87_verify_test.json",
+  "source": "Wycheproof (C2SP) — ML-DSA-87",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/mldsa_87_verify_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 32,
+  "tests_full": 241,
+  "sha256": "80168e49770d62e81409326ea5d9447cbf6284d9182156dcdea45ca3367ce057",
+  "sha256_original": "e9e04216d4217265a5affba2568476d35742dbd8ffc9d4c23b3441334a08a224"
+ },
+ {
+  "file": "subset/mlkem_1024_test.json",
+  "source": "Wycheproof (C2SP) — ML-KEM",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/mlkem_1024_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 25,
+  "tests_full": 202,
+  "sha256": "e43a836e465f5c2bc196e96870b027d4fdf4f3936b0ecb1ecc62404605c0cd45",
+  "sha256_original": "17c5b764d78c05522f1980fcb41d82add573f11de5d13004ae0b83bf46d9c43a"
+ },
+ {
+  "file": "subset/mlkem_512_test.json",
+  "source": "Wycheproof (C2SP) — ML-KEM",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/mlkem_512_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 24,
+  "tests_full": 200,
+  "sha256": "efa80d3e91ff6c24a264e1dc1a402c86740af09501bb8e4a6f847a41a835ce26",
+  "sha256_original": "18bc5455d5bf8226b3ab1d1deb51f3ed7c44b3d90039eb25416d40fa77e76f20"
+ },
+ {
+  "file": "subset/mlkem_768_test.json",
+  "source": "Wycheproof (C2SP) — ML-KEM",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/mlkem_768_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 25,
+  "tests_full": 201,
+  "sha256": "ab09d55c22196ca267d51a434514892ad90b41e7c91973e23991d6657d8789f5",
+  "sha256_original": "c59c067ae794c343df575dd90f6f7458f51881b11a22d6e9d8677c8d9ee21e90"
+ },
+ {
+  "file": "subset/pbkdf2_hmacsha1_test.json",
+  "source": "Wycheproof (C2SP) — PBKDF2-HMACSHA1",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/pbkdf2_hmacsha1_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 24,
+  "tests_full": 64,
+  "sha256": "0d04d4911a509eedcbdec59b0eff4c4efc0a515b76693149314bc6f187685d37",
+  "sha256_original": "5ef5307e119bd118da50ad276426ed3baade2d093e93b643a1d70be0bf0b861a"
+ },
+ {
+  "file": "subset/pbkdf2_hmacsha256_test.json",
+  "source": "Wycheproof (C2SP) — PBKDF2-HMACSHA256",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/pbkdf2_hmacsha256_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 24,
+  "tests_full": 60,
+  "sha256": "912a904ca58966e900af989f5f3fa5c74a27c1da4c74f8d1f973e1f9b616d30a",
+  "sha256_original": "1bf37af2cefe40c829ee9ecebb3505bb6424be8824bc97aa3e1c2076e860d192"
+ },
+ {
+  "file": "subset/rsa_oaep_4096_sha256_mgf1sha256_test.json",
+  "source": "Wycheproof (C2SP) — RSAES-OAEP",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/rsa_oaep_4096_sha256_mgf1sha256_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 37,
+  "tests_full": 37,
+  "sha256": "231e16b515e0fb9526f2a821feaa2e3ed878eec56cad27acdda62dd4e310268d",
+  "sha256_original": "e0eb85bcd6d66a85941ee3d98e44f7d1ffb0cf870ba6550e1ed3bec4174c60a9"
+ },
+ {
+  "file": "subset/rsa_pkcs1_2048_test.json",
+  "source": "Wycheproof (C2SP) — RSAES-PKCS1-v1_5",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/rsa_pkcs1_2048_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 34,
+  "tests_full": 67,
+  "sha256": "2ef6a4d239e0fdc00031dc45f141330e5977e70bf64876b7ec835c3b27c993f1",
+  "sha256_original": "28466c4390f1f8943754a990ba36397ebbac628117d91b57f87e1ba200b932f3"
+ },
+ {
+  "file": "subset/rsa_pss_2048_sha256_mgf1_32_test.json",
+  "source": "Wycheproof (C2SP) — RSASSA-PSS",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/rsa_pss_2048_sha256_mgf1_32_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 108,
+  "sha256": "ee4766e1acd786de96f3992111ed23ffa28aa8409cd036d43447d979d6f3cb0d",
+  "sha256_original": "7f6efafc160f4816b96cbf1c12188a31051d7e3f001e27505d9edb5f2a0e325c"
+ },
+ {
+  "file": "subset/rsa_pss_3072_sha256_mgf1_32_test.json",
+  "source": "Wycheproof (C2SP) — RSASSA-PSS",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/rsa_pss_3072_sha256_mgf1_32_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 108,
+  "sha256": "26ca6908a6e50646f03955d41a2ea56f0361cac8c9f2dc4e62e8293fcafe67d7",
+  "sha256_original": "cca48433e6d1accb57f65b3396c4f4dd93c776467101c3f0948e74c283fd4749"
+ },
+ {
+  "file": "subset/rsa_pss_4096_sha256_mgf1_32_test.json",
+  "source": "Wycheproof (C2SP) — RSASSA-PSS",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/rsa_pss_4096_sha256_mgf1_32_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 108,
+  "sha256": "697355523effebfc36997d08a1923076f8e326e0788f4b6ddf8413667f9d86b2",
+  "sha256_original": "e627cbf5139a01e0a446c4fe15911f6268224fdd3ef4a1eb714b3942b5686410"
+ },
+ {
+  "file": "subset/rsa_signature_2048_sha256_test.json",
+  "source": "Wycheproof (C2SP) — RSASSA-PKCS1-v1_5",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/rsa_signature_2048_sha256_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 18,
+  "tests_full": 259,
+  "sha256": "b76b5e8ea9cadd2c91ce8c5ed56873eb2087cf0487b8a3a941647533d8d5cf73",
+  "sha256_original": "94a917b01ff50fb874cfc05bf29b4af44868d944a6558201cf18380da93fb393"
+ },
+ {
+  "file": "subset/rsa_signature_3072_sha256_test.json",
+  "source": "Wycheproof (C2SP) — RSASSA-PKCS1-v1_5",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/rsa_signature_3072_sha256_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 25,
+  "tests_full": 259,
+  "sha256": "db140387873f565b06af5495da65a0eb36842d42022944ccc26fa49b7b61b3f2",
+  "sha256_original": "0f5f18cabfaad3e2792e82f7e9882f8999049b456714de924b8a5e202f61ca43"
+ },
+ {
+  "file": "subset/rsa_signature_4096_sha256_test.json",
+  "source": "Wycheproof (C2SP) — RSASSA-PKCS1-v1_5",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/rsa_signature_4096_sha256_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 258,
+  "sha256": "ccebe535f3728fdbb779811c4bbe24cf57a97e36072417f24546d7ec56ff40b6",
+  "sha256_original": "957aca128e30bd02c8982f8ca482d6521d16683f4bbc3f193cdfd4c8f04bc667"
+ },
+ {
+  "file": "subset/x448_test.json",
+  "source": "Wycheproof (C2SP) — XDH",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/x448_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 510,
+  "sha256": "538532464f8e1ca948c22c0a514a06a4f06db4af40ece2206cb75c16f3f1364a",
+  "sha256_original": "0f8f7199dbd47d1805cb9b13dfb29c207406bc786827bfd9ba7b73374b830fe5"
+ },
+ {
+  "file": "subset/aes_cmac_test.json",
+  "source": "Wycheproof (C2SP) — AES-CMAC",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/aes_cmac_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 23,
+  "tests_full": 311,
+  "sha256": "462fdbf8eb0265e62b90c356b2b3e5d89af09e6ac69e51099672ae82b88e0566",
+  "sha256_original": "c1b441008b5355d8070c50e2533f9c1230759015268c3770ea4b0d6d19f8f134"
+ },
+ {
+  "file": "subset/aes_gcm_test.json",
+  "source": "Wycheproof (C2SP) — AES-GCM",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/aes_gcm_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 49,
+  "tests_full": 316,
+  "sha256": "631a9da7f030c7ca2662d200906442e9a59c05c0fa3e0e0d5edc18f3693d4845",
+  "sha256_original": "985e5ecc172e181eaf49e89508b9470dcf478002eb7e8559c707eb42dc97dfe7"
+ },
+ {
+  "file": "subset/aes_wrap_test.json",
+  "source": "Wycheproof (C2SP) — AES-WRAP",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/aes_wrap_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 165,
+  "sha256": "7e2cfd213571eb87e9770a9686a5d9933cafc0bd2bf0acf8a199b3adaee2147b",
+  "sha256_original": "2fdb3661fd8823d1ec50e03886b24066415018975677dff83d83e77f5a51562d"
+ },
+ {
+  "file": "subset/chacha20_poly1305_test.json",
+  "source": "Wycheproof (C2SP) — CHACHA20-POLY1305",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/chacha20_poly1305_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 13,
+  "tests_full": 325,
+  "sha256": "8c5df0071cb8ca2a6c29baac7a0eec623ce5df390f4c4d6ca2075675bd5b6773",
+  "sha256_original": "fe61d25f90e1bde4461d00eafe61049e5f29bd999f36b766df9cda90906ad53d"
+ },
+ {
+  "file": "subset/ecdh_secp384r1_test.json",
+  "source": "Wycheproof (C2SP) — ECDH",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/ecdh_secp384r1_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 1047,
+  "sha256": "adcb7ec33b20974abc4063f6737e1941994918c78f1dbfa5fc2499a407311373",
+  "sha256_original": "25a9c41573dbea97c5b4be2dd00369fa68dc37ac8f41807d8e16226d188ec6a7"
+ },
+ {
+  "file": "subset/ecdsa_secp256r1_sha256_test.json",
+  "source": "Wycheproof (C2SP) — ECDSA",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/ecdsa_secp256r1_sha256_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 484,
+  "sha256": "f5096d43c70385b86bb609b6f7fafab4e774c8cad2e4513f81f989eeee156054",
+  "sha256_original": "182db4f3e230f6f9fa9f800d2a614dede30284b8e8438bbfe1171905402e9332"
+ },
+ {
+  "file": "subset/ed25519_test.json",
+  "source": "Wycheproof (C2SP) — EDDSA",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/ed25519_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 151,
+  "sha256": "bf6411070e7ef9b9247d55e3d046e065245c94a0acdaf027614c3e11d88d3b51",
+  "sha256_original": "752d2ea7d7c6cf4736381b6cbacb61f8182b126ab7cd9b058f00c50084975536"
+ },
+ {
+  "file": "subset/hmac_sha256_test.json",
+  "source": "Wycheproof (C2SP) — HMACSHA256",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/hmac_sha256_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 28,
+  "tests_full": 174,
+  "sha256": "2e8fcb624159a2a5b19831982d5912d946f9d35fbc4bffb00e8e7f6921a6208e",
+  "sha256_original": "2d201cfa61d1bf95e6f5d07d96634b4a348b31e8eaa277ad7c8d09677b7a743f"
+ },
+ {
+  "file": "subset/rsa_oaep_2048_sha256_mgf1sha256_test.json",
+  "source": "Wycheproof (C2SP) — RSAES-OAEP",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/rsa_oaep_2048_sha256_mgf1sha256_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 37,
+  "tests_full": 37,
+  "sha256": "064a962e1d61e7671a71a5be955cc4e7ec8750e1285d487b688ceed1005a1c50",
+  "sha256_original": "83dce701e3d8640ac56e6d7bf37a5a8f9bd6a336e1e932a1e9bfe4ba9c5ea3a9"
+ },
+ {
+  "file": "subset/rsa_oaep_3072_sha256_mgf1sha256_test.json",
+  "source": "Wycheproof (C2SP) — RSAES-OAEP",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/rsa_oaep_3072_sha256_mgf1sha256_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 37,
+  "tests_full": 37,
+  "sha256": "2c4084c002873b2e8a8e8551da2d4437fd2a8bff5e1e2c74c8f3c2f7d4879be7",
+  "sha256_original": "c8122302f522bfd539650c71c4aa966bd1f89acb50c6f4c190030fdb9b2684a4"
+ },
+ {
+  "file": "subset/x25519_test.json",
+  "source": "Wycheproof (C2SP) — XDH",
+  "url": "https://raw.githubusercontent.com/C2SP/wycheproof/main/testvectors_v1/x25519_test.json",
+  "license": "Apache-2.0",
+  "tests_subset": 48,
+  "tests_full": 518,
+  "sha256": "8f0bc374a9fe425e55acfce2d978d19dbdad641ba237540d7c36219fe8f5109f",
+  "sha256_original": "35c3f5231cf25cc640b524d403461deee9e49441d5d915a3a25b2c8ff5adbe7d"
+ },
+ {
+  "file": "misc_kat.json",
+  "source": "Vektor resmi dari dokumen standar (dikutip; dicocokkan ≥ 2 backend di Cryptan.ID)",
+  "url": "-",
+  "license": "kutipan dokumen standar",
+  "sha256": "952190ddac61c3c27e32c49c4d5d917e2d02620e6160135b316ce85835bd7da3"
+ },
+ {
+  "file": "../../core/vectors/aes128.json",
+  "source": "core/vectors (FIPS 197, SP 800-38A, RFC 8439, FIPS 202, PKCS#1, RFC 6979)",
+  "url": "-",
+  "license": "kutipan dokumen standar",
+  "sha256": "a7da7224f7601b6445f56a6c01c743866efcb38f21afc58b8ab6d3d9baea4fe6"
+ },
+ {
+  "file": "../../core/vectors/chacha20.json",
+  "source": "core/vectors (FIPS 197, SP 800-38A, RFC 8439, FIPS 202, PKCS#1, RFC 6979)",
+  "url": "-",
+  "license": "kutipan dokumen standar",
+  "sha256": "e5a342bf06c2f3b41ea4326fd2d97d76643bdf7c94851ab07d2f4d62d0560b37"
+ },
+ {
+  "file": "../../core/vectors/ecdsa_p256.json",
+  "source": "core/vectors (FIPS 197, SP 800-38A, RFC 8439, FIPS 202, PKCS#1, RFC 6979)",
+  "url": "-",
+  "license": "kutipan dokumen standar",
+  "sha256": "ab297a9ea4f6bb7792a9df977780b8862258cc3c55a8ae3d20106b876bb06931"
+ },
+ {
+  "file": "../../core/vectors/rsa_oaep_pkcs1.json",
+  "source": "core/vectors (FIPS 197, SP 800-38A, RFC 8439, FIPS 202, PKCS#1, RFC 6979)",
+  "url": "-",
+  "license": "kutipan dokumen standar",
+  "sha256": "15febf14526173dfcfeba36f1112a3bcdfc65a4c384a9cfb9ba0a8317055f14c"
+ },
+ {
+  "file": "../../core/vectors/sha3_256.json",
+  "source": "core/vectors (FIPS 197, SP 800-38A, RFC 8439, FIPS 202, PKCS#1, RFC 6979)",
+  "url": "-",
+  "license": "kutipan dokumen standar",
+  "sha256": "bc17cea7b6f1eb3f16321394a5effdf2fac8f95fca54ae0a84a687e0c11845af"
+ }
+]

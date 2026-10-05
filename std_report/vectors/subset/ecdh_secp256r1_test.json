@@ -1,0 +1,686 @@
+{
+"algorithm": "ECDH",
+"schema": "ecdh_test_schema_v1.json",
+"numberOfTests": 612,
+"header": [
+"Test vectors of type EcdhTest are intended for",
+"testing an ECDH implementations using X509 encoded",
+"public keys and integers for private keys.",
+"Test vectors of this format are useful for testing",
+"Java providers."
+],
+"notes": {
+"AdditionChain": {
+"bugType": "KNOWN_BUG",
+"description": "The private key has an unusual bit pattern, such as high or low Hamming weight. The goal is to test edge cases for addition chain implementations."
+},
+"CVE-2017-8932": {
+"bugType": "KNOWN_BUG",
+"description": "A bug in the standard library ScalarMult implementation of curve P-256 for amd64 architectures in Go before 1.7.6 and 1.8.x before 1.8.2 causes incorrect results to be generated for specific input points.",
+"effect": "An adaptive attack can be mounted to progressively extract the scalar input to ScalarMult by submitting crafted points and observing failures to the derive correct output.",
+"cves": [
+"CVE-2017-8932"
+]
+},
+"CompressedPoint": {
+"bugType": "UNKNOWN",
+"description": "The point in the public key is compressed. Not every library supports points in compressed format."
+},
+"CompressedPublic": {
+"bugType": "FUNCTIONALITY",
+"description": "The public key in the test vector is compressed. Some implementations do not support compressed points."
+},
+"EdgeCaseDoubling": {
+"bugType": "EDGE_CASE",
+"description": "The test vector contains an EC point that hits an edge case (e.g. a coordinate 0) when doubled. The goal of the test vector is to check for arithmetic errors in these test cases.",
+"effect": "The effect of such arithmetic errors is unclear and requires further analysis."
+},
+"EdgeCaseEphemeralKey": {
+"bugType": "EDGE_CASE",
+"description": "The test vector contains an ephemeral public key that is an edge case."
+},
+"EdgeCaseSharedSecret": {
+"bugType": "EDGE_CASE",
+"description": "The test vector contains a public key and private key such that the shared ECDH secret is a special case. The goal of this test vector is to detect arithmetic errors.",
+"effect": "The seriousness of an arithmetic error is unclear. It requires further analysis to determine if the bug is exploitable."
+},
+"InvalidAsn": {
+"bugType": "UNKNOWN",
+"description": "The public key in this test uses an invalid ASN encoding. Some cases where the ASN parser is not strictly checking the ASN format are benign as long as the ECDH computation still returns the correct shared value."
+},
+"InvalidCompressedPublic": {
+"bugType": "MODIFIED_PARAMETER",
+"description": "The test vector contains a compressed public key that does not exist. I.e., it contains an x-coordinate that does not correspond to any points on the curve. Such keys should be rejected "
+},
+"InvalidCurveAttack": {
+"bugType": "CONFIDENTIALITY",
+"description": "The point of the public key is not on the curve. ",
+"effect": "If an implementation does not check whether a point is on the curve then it is likely that the implementation is susceptible to an invalid curve attack. Many implementations compute the shared ECDH secret over a curve defined by the point on the public key. This curve can be weak and hence leak information about the private key."
+},
+"InvalidEncoding": {
+"bugType": "MODIFIED_PARAMETER",
+"description": "The test vector contains a public key with an invalid encoding."
+},
+"InvalidPublic": {
+"bugType": "CAN_OF_WORMS",
+"description": "The public key has been modified and is invalid. An implementation should always check whether the public key is valid and on the same curve as the private key. The test vector includes the shared secret computed with the original public key if the public point is on the curve of the private key.",
+"effect": "Generating a shared secret other than the one with the original key likely indicates that the bug is exploitable."
+},
+"LargeCofactor": {
+"bugType": "MODIFIED_PARAMETER",
+"description": "The cofactor is larger than the limits specified in FIPS-PUB 186-4 table 1, p.36."
+},
+"ModifiedCofactor": {
+"bugType": "MODIFIED_PARAMETER",
+"description": "The cofactor has been modified. ",
+"effect": "The seriousness of accepting a key with modified cofactor depends on whether the primitive using the key actually uses the cofactor."
+},
+"ModifiedGenerator": {
+"bugType": "MODIFIED_PARAMETER",
+"description": "The generator of the EC group has been modified.",
+"effect": "The seriousness of the modification depends on whether the cryptographic primitive uses the generator. In the worst case such a modification allows an invalid curve attack."
+},
+"ModifiedGroup": {
+"bugType": "MODIFIED_PARAMETER",
+"description": "The EC curve of the public key has been modified. EC curve primitives should always check that the keys are on the expected curve."
+},
+"ModifiedPrime": {
+"bugType": "MODIFIED_PARAMETER",
+"description": "The modulus of the public key has been modified. The public point of the public key has been chosen so that it is both a point on both the curve of the modified public key and the private key."
+},
+"ModifiedPublicPoint": {
+"bugType": "MODIFIED_PARAMETER",
+"description": "The public point of the key has been modified and is not on the curve.",
+"effect": "Not checking that a public point is on the curve may allow an invalid curve attack."
+},
+"NegativeCofactor": {
+"bugType": "MODIFIED_PARAMETER",
+"description": "The cofactor of the curve is negative."
+},
+"Normal": {
+"bugType": "BASIC",
+"description": "The test vector contains a pseudorandomly generated, valid test case. Implementations are expected to pass this test."
+},
+"UnnamedCurve": {
+"bugType": "UNKNOWN",
+"description": "The public key does not use a named curve. RFC 3279 allows to encode such curves by explicitly encoding, the parameters of the curve equation, modulus, generator, order and cofactor. However, many crypto libraries only support named curves. Modifying some of the EC parameters and encoding the corresponding public key as an unnamed curve is a potential attack vector."
+},
+"UnusedParam": {
+"bugType": "MALLEABILITY",
+"description": "A parameter that is typically not used for ECDH has been modified. Sometimes libraries ignore small differences between public and private key. For example, a library might ignore an incorrect cofactor in the public key. We consider ignoring such changes as acceptable as long as these differences do not change the outcome of the ECDH computation, i.e. as long as the computation is done on the curve from the private key."
+},
+"WeakPublicKey": {
+"bugType": "MODIFIED_PARAMETER",
+"description": "The vector contains a weak public key. The curve is not a named curve, the public key point has order 3 and has been chosen to be on the same curve as the private key. This test vector is used to check ECC implementations for missing steps in the verification of the public key."
+},
+"WrongCurve": {
+"bugType": "CONFIDENTIALITY",
+"description": "The public key and private key use distinct curves. Implementations are expected to reject such parameters.",
+"effect": "Computing an ECDH key exchange with public and private keys can in the worst case lead to an invalid curve attack. Hence, it is important that ECDH implementations check the input parameters. The severity of such bugs is typically smaller if an implementation ensures that the point is on the curve and that the ECDH computation is performed on the curve of the private key. Some of the test vectors with modified public key contain shared ECDH secrets, that were computed over the curve of the private key."
+},
+"WrongOrder": {
+"bugType": "MODIFIED_PARAMETER",
+"description": "The order of the public key has been modified.",
+"effect": "If this order is used in a cryptographic primitive instead of the correct order then an invalid curve attack is possible and the private keys may leak. E.g. ECDHC in BC 1.52 suffered from this."
+},
+"NoCofactor": {
+"bugType": "MISSING_PARAMETER",
+"description": "The cofactor field is absent from the ECParameters. RFC 3279 Section 2.3.5 requires the cofactor to be present."
+},
+"ModifiedCurveParameter": {
+"bugType": "MODIFIED_PARAMETER",
+"description": "The parameters a and b of the curve have been modified. The parameters haven been chosen so that public key or generator still are also valid points on the new curve."
+}
+},
+"testGroups": [
+{
+"type": "EcdhTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"curve": "secp256r1",
+"encoding": "asn",
+"tests": [
+{
+"tcId": 1,
+"comment": "normal case",
+"flags": [
+"Normal"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d0301070342000462d5bd3372af75fe85a040715d0f502428e07046868b0bfdfa61d731afe44f26ac333a93a9e70a81cd5a95b5bf8d13990eb741c8c38872b4a07d275a014e30cf",
+"private": "0612465c89a023ab17855b0a6bcebfd3febb53aef84138647b5352e02c10c346",
+"shared": "53020d908b0219328b658b525f26780e3ae12bcd952bb25a93bc0895e1714285",
+"result": "valid"
+},
+{
+"tcId": 3,
+"comment": "shared secret has x-coordinate that satisfies x**2 = 0",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d0301070342000458fd4168a87795603e2b04390285bdca6e57de6027fe211dd9d25e2212d29e62080d36bd224d7405509295eed02a17150e03b314f96da37445b0d1d29377d12c",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "0000000000000000000000000000000000000000000000000000000000000000",
+"result": "valid"
+},
+{
+"tcId": 4,
+"comment": "shared secret has x-coordinate p-3",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004a1ecc24bf0d0053d23f5fd80ddf1735a1925039dc1176c581a7e795163c8b9ba2cb5a4e4d5109f4527575e3137b83d79a9bcb3faeff90d2aca2bed71bb523e7e",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "ffffffff00000001000000000000000000000000fffffffffffffffffffffffc",
+"result": "valid"
+},
+{
+"tcId": 5,
+"comment": "shared secret has x-coordinate 2**16 + 0",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d030107034200041b0e7437c33d379929430d3ec10df59bed7fe2a1d950c5791e1e9ddeef1f4d70fbdb0e3bbce63a27f27838c685207f2ccaf689d25eb622744db1168ac92619e8",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "0000000000000000000000000000000000000000000000000000000000010000",
+"result": "valid"
+},
+{
+"tcId": 6,
+"comment": "shared secret has x-coordinate 2**32 + 0",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d0301070342000408d6148d0244d243b3d0d1777de6375fa7ebeab477f19915d05994db04df219727737d4f8ce0a7f390becce92b2bcd5c054f18ecb58e5dd59baf88b4ed6abea8",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "0000000000000000000000000000000000000000000000000000000100000000",
+"result": "valid"
+},
+{
+"tcId": 7,
+"comment": "shared secret has x-coordinate 2**64 + 0",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d030107034200042424f9d7ba0a89ce3c7c1e8f15dfd83004d86680967a82cbf9bb6b11dae5fd72e05c3687187b1cf28438a17a7469fa3b094b7d6f36cccc3492c0b0a61fab2a38",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "0000000000000000000000000000000000000000000000010000000000000000",
+"result": "valid"
+},
+{
+"tcId": 8,
+"comment": "shared secret has x-coordinate 2**96 + 0",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d030107034200044c9695b7668434fc85769acb10f0edcf87a96b7d5dc347b46bb304b0b1d3267fcf5d993bff2a8c774808231a34f41b33667d8ebeafd00689fa3a9bfa05a40c1c",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "0000000000000000000000000000000000000001000000000000000000000000",
+"result": "valid"
+},
+{
+"tcId": 9,
+"comment": "shared secret has x-coordinate that satisfies x**2 = -3",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004a492fe4b4908b6d675d687551f99c617e4e5c97aa266958953129eb381f0153b111b95c94fa1d1ecd1d41d2785c1db5195875ae98051732a59ba7720f9089af6",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "6522aed9ea48f2623b8eeae3e213b99da32e74c9421835804d374ce28fcca662",
+"result": "valid"
+},
+{
+"tcId": 10,
+"comment": "shared secret has x-coordinate that satisfies x**2 = 2",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004d5c96efd1907fd48de2ad715acf82eae5c6690fe3efe16a78d61c68d3bfd10df03eac816b9e7b776192a3f5075887c0e225617505833ca997cda32fd0f673c5e",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "507442007322aa895340cba4abc2d730bfd0b16c2c79a46815f8780d2c55a2dd",
+"result": "valid"
+},
+{
+"tcId": 11,
+"comment": "shared secret has x-coordinate that satisfies x**2 = 5",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004c74d546f2fcc6dd392f85e5be167e358de908756b0c0bb01cb69d864ca083e1c93f959eece6e10ee11bd3934207d65ae28af68b092585a1509260eceb39b92ef",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "085ec5a4af40176b63189069aeffcb229c96d3e046e0283ed2f9dac21b15ad3c",
+"result": "valid"
+},
+{
+"tcId": 12,
+"comment": "shared secret has x-coordinate that satisfies x**2 = 7",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d0301070342000434fc9f1e7a094cd29598d1841fa9613dbe82313d633a51d63fb6eff074cc9b9a4ecfd9f258c5c4d4210b49751213a24c596982bd1d54e0445443f21ef15492a5",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "190c25f88ad9ae3a098e6cffe6fd0b1bea42114eb0cedd5868a45c5fe277dff3",
+"result": "valid"
+},
+{
+"tcId": 13,
+"comment": "shared secret has x-coordinate that satisfies x**2 = 8",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004f475f503a770df72c45aedfe42c008f59aa57e72b232f26600bdd0353957cb20bdb8f6405b4918050a3549f44c07a8eba820cdce4ece699888c638df66f54f7c",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "5f177bfe19baaaee597e68b6a87a519e805e9d28a70cb72fd40f0fe5a754ba45",
+"result": "valid"
+},
+{
+"tcId": 14,
+"comment": "shared secret has x-coordinate that satisfies x**2 = 2**96 + 2",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004949304889050834006ecf11eba0e73f0dd2a5e77a5ea642a34a3f9989eda2d57384509cd42763c87cf460d1ad75664402986bb8cca0acdfc3685d2c9c7d32933",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "3476a8fa9c7448124aa945a2e1103eb91f95c7b4d91aaa1c35b8965191fc0fe0",
+"result": "valid"
+},
+{
+"tcId": 15,
+"comment": "shared secret has x-coordinate with repeating bit-pattern of size 2",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004e25ead8342888d1fbd2bd211e9db5bc761da9cfa1e805078b53606df9e5444403d3421fa70f940dba104d842034d2efec9332161ccfb654a8e9f2ec42fc1a837",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "5555555555555555555555555555555555555555555555555555555555555554",
+"result": "valid"
+},
+{
+"tcId": 16,
+"comment": "shared secret has x-coordinate with repeating bit-pattern of size 2",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004cb32ab951d7581e7602c89320d91d7043e9dc56a10348d586a08d1870753152bf96bd53e7cfc2434dc61a09f8f4853e4c6dd49e786194ec0a988d0e8d29378b8",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa9",
+"result": "valid"
+},
+{
+"tcId": 17,
+"comment": "shared secret has x-coordinate with repeating bit-pattern of size 4",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d030107034200040b9d56422ed9c2082dd9d46d231fd0141f92e79f5a12da4c77c488c87363f944e6e3c2ec9779615f242bc30d1c28c1f984b8c252243f5f1eaa3d855e1cc2d8a6",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "3333333333333333333333333333333333333333333333333333333333333333",
+"result": "valid"
+},
+{
+"tcId": 18,
+"comment": "shared secret has x-coordinate with repeating bit-pattern of size 4",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d030107034200040507fabb16755f4885ae45b3d497822388f4e6a531de512c200480b4e56b892ab70746c1d8a20637eff17948e557a2b4da2562ba6b62991b426b7b3787a19693",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+"result": "valid"
+},
+{
+"tcId": 19,
+"comment": "shared secret has x-coordinate with repeating bit-pattern of size 8",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d030107034200043b18caef2cd982c3b58f258cb76daa029383f42c8f3f083493f42c915935243a260830b7d25b66378c5d25fb0cf23d32527a2cdb7f7d7e6c89ebea8277738ed8",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f",
+"result": "valid"
+},
+{
+"tcId": 20,
+"comment": "shared secret has x-coordinate with repeating bit-pattern of size 8",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004123b1921231bee315e1ea66cb95318d6392f85695bbec03c334740ce7add768efec9a108770ff0eb448eee9f06367416d74b22a2f38157bb00d8c0be44ebf152",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0",
+"result": "valid"
+},
+{
+"tcId": 21,
+"comment": "shared secret has x-coordinate with repeating bit-pattern of size 16",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004924fb33985c8a687fc04c9dd05e531ca0e0223aa58d58351e922ef482043d30cf504745e769b6dcbefe404da37f717b3109d2af23450fcfe2f075c2dabbe7194",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00f9",
+"result": "valid"
+},
+{
+"tcId": 22,
+"comment": "shared secret has x-coordinate with repeating bit-pattern of size 16",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d0301070342000422495c6884937a1bc05871e9ee1a2c43f8f14db19ee60bd2d89c4293042f5a9452cea27e6fe574a00e5f15fe11aa54f54ebd8bde3aa41c80bf9d5f7b1dc6efec",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00feff",
+"result": "valid"
+},
+{
+"tcId": 23,
+"comment": "shared secret has x-coordinate with repeating bit-pattern of size 30",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004f3cb6754b7e2a86d064dfb9f903185aaa4c92b481c2c1a1ff276303bbc4183e49c318599b0984c3563df339311fe143a7d921ee75b755a52c6f804f897b809f7",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "7fff0001fffc0007fff0001fffc0007fff0001fffc0007fff0001fffc0007fff",
+"result": "valid"
+},
+{
+"tcId": 24,
+"comment": "shared secret has x-coordinate with repeating bit-pattern of size 30",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004a8d93bebbaf25fa9a1f98c44b54dbf28634a5fd08402dba5d9e4873f8123da1db972d91a0eabadb630b271e6551b757d969301beddd11f82decdfbe4f9657f50",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "8000fffe0003fff8000fffe0003fff8000fffe0003fff8000fffe0003fff7ffe",
+"result": "valid"
+},
+{
+"tcId": 25,
+"comment": "shared secret has x-coordinate with repeating bit-pattern of size 32",
+"flags": [
+"EdgeCaseSharedSecret"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d030107034200048d0086e678a0fe7b4ad7bd4f94a38267b9f9f1d2b82452db4cfb335595c26c55f78476a00a0153941da0b0b81c834682edc9fcc8bc21a7b5bacb460dbb566c19",
+"private": "0a0d622a47e48f6bc1038ace438c6f528aa00ad2bd1da5f13ee46bf5f633d71a",
+"shared": "0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000ffff0000fffe",
+"result": "valid"
+},
+{
+"tcId": 2,
+"comment": "compressed public key",
+"flags": [
+"CompressedPublic",
+"CompressedPoint"
+],
+"public": "3039301306072a8648ce3d020106082a8648ce3d0301070322000362d5bd3372af75fe85a040715d0f502428e07046868b0bfdfa61d731afe44f26",
+"private": "0612465c89a023ab17855b0a6bcebfd3febb53aef84138647b5352e02c10c346",
+"shared": "53020d908b0219328b658b525f26780e3ae12bcd952bb25a93bc0895e1714285",
+"result": "acceptable"
+},
+{
+"tcId": 332,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d0301070342000400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 333,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d0301070342000400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 334,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d030107034200040000000000000000000000000000000000000000000000000000000000000000ffffffff00000001000000000000000000000000fffffffffffffffffffffffe",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 335,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d030107034200040000000000000000000000000000000000000000000000000000000000000000ffffffff00000001000000000000000000000000ffffffffffffffffffffffff",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 336,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d0301070342000400000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 337,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d0301070342000400000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 338,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d030107034200040000000000000000000000000000000000000000000000000000000000000001ffffffff00000001000000000000000000000000fffffffffffffffffffffffe",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 339,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d030107034200040000000000000000000000000000000000000000000000000000000000000001ffffffff00000001000000000000000000000000ffffffffffffffffffffffff",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 340,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004ffffffff00000001000000000000000000000000fffffffffffffffffffffffe0000000000000000000000000000000000000000000000000000000000000000",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 341,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004ffffffff00000001000000000000000000000000fffffffffffffffffffffffe0000000000000000000000000000000000000000000000000000000000000001",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 342,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004ffffffff00000001000000000000000000000000fffffffffffffffffffffffeffffffff00000001000000000000000000000000fffffffffffffffffffffffe",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 343,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004ffffffff00000001000000000000000000000000fffffffffffffffffffffffeffffffff00000001000000000000000000000000ffffffffffffffffffffffff",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 344,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004ffffffff00000001000000000000000000000000ffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000000000000000",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 345,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004ffffffff00000001000000000000000000000000ffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000000000000001",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 346,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004ffffffff00000001000000000000000000000000ffffffffffffffffffffffffffffffff00000001000000000000000000000000fffffffffffffffffffffffe",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 347,
+"comment": "point is not on curve",
+"flags": [
+"InvalidCurveAttack"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d03010703420004ffffffff00000001000000000000000000000000ffffffffffffffffffffffffffffffff00000001000000000000000000000000ffffffffffffffffffffffff",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 348,
+"comment": "",
+"flags": [
+"InvalidEncoding"
+],
+"public": "3018301306072a8648ce3d020106082a8648ce3d030107030100",
+"private": "7e4aa54f714bf01df85c50269bea3a86721f84afe74f7b41ea58abcf3474e88d",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 349,
+"comment": "public key has invalid point of order 2 on secp256k1. The point of the public key is a valid on secp256r1.",
+"flags": [
+"WrongCurve"
+],
+"public": "3056301006072a8648ce3d020106052b8104000a03420004fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f3d9df6defaca30298506113d7501978507d339fe0547962cac4cd6dfc56c9769",
+"private": "00fdba54b3c22de358d937431b148b4a52a314426afdac550caa8c0c04cf0baaf4",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 350,
+"comment": "public point not on curve",
+"flags": [
+"ModifiedPublicPoint",
+"InvalidPublic"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d030107034200041510264c189c3d523ff9916abd7069efa6968d8dc7ddb6457d7869b53ea60cdcfafb7ed4786da15d29ee59256f536da3575a4888c1bb0a95b256f4a7e9fd764c",
+"private": "4f3414d1589b49f7172d439cbbe78e5b5350dc85dea40cd2d6274740c6e0239c",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 351,
+"comment": "public point = (0,0)",
+"flags": [
+"ModifiedPublicPoint",
+"InvalidPublic"
+],
+"public": "3059301306072a8648ce3d020106082a8648ce3d0301070342000400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+"private": "4f3414d1589b49f7172d439cbbe78e5b5350dc85dea40cd2d6274740c6e0239c",
+"shared": "",
+"result": "invalid"
+},
+{
+"tcId": 352,
+"comment": "order = -115792089210356248762697446949407573529996955224135760342422259061068512044369",
+"flags": [
+"WrongOrder",
+"InvalidPublic",
+"UnnamedCurve"
+],
+"public": "308201333081ec06072a8648ce3d02013081e0020101302c06072a8648ce3d0101022100ffffffff00000001000000000000000000000000ffffffffffffffffffffffff30440420ffffffff00000001000000000000000000000000fffffffffffffffffffffffc04205ac635d8aa3a93e7b3ebbd55769886bc651d06b0cc53b0f63bce3c3e27d2604b0441046b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c2964fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f50221ff00000000ffffffff00000000000000004319055258e8617b0c46353d039cdaaf020101034200041510264c189c3d523ff9916abd7069efa6968d8dc7ddb6457d7869b53ea60cdcfafb7ed4786da15d29ee59256f536da3575a4888c1bb0a95b256f4a7e9fd764a",
+"private": "4f3414d1589b49f7172d439cbbe78e5b5350dc85dea40cd2d6274740c6e0239c",
+"shared": "d003f5cc83852584061f7a8a28bcb5671ecbda096e16e7accfa8f8d311a3db7a",
+"result": "invalid"
+},
+{
+"tcId": 353,
+"comment": "order = 0",
+"flags": [
+"WrongOrder",
+"InvalidPublic",
+"UnnamedCurve"
+],
+"public": "308201133081cc06072a8648ce3d02013081c0020101302c06072a8648ce3d0101022100ffffffff00000001000000000000000000000000ffffffffffffffffffffffff30440420ffffffff00000001000000000000000000000000fffffffffffffffffffffffc04205ac635d8aa3a93e7b3ebbd55769886bc651d06b0cc53b0f63bce3c3e27d2604b0441046b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c2964fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5020100020101034200041510264c189c3d523ff9916abd7069efa6968d8dc7ddb6457d7869b53ea60cdcfafb7ed4786da15d29ee59256f536da3575a4888c1bb0a95b256f4a7e9fd764a",
+"private": "4f3414d1589b49f7172d439cbbe78e5b5350dc85dea40cd2d6274740c6e0239c",
+"shared": "d003f5cc83852584061f7a8a28bcb5671ecbda096e16e7accfa8f8d311a3db7a",
+"result": "invalid"
+},
+{
+"tcId": 354,
+"comment": "order = 1",
+"flags": [
+"WrongOrder",
+"UnusedParam",
+"UnnamedCurve"
+],
+"public": "308201133081cc06072a8648ce3d02013081c0020101302c06072a8648ce3d0101022100ffffffff00000001000000000000000000000000ffffffffffffffffffffffff30440420ffffffff00000001000000000000000000000000fffffffffffffffffffffffc04205ac635d8aa3a93e7b3ebbd55769886bc651d06b0cc53b0f63bce3c3e27d2604b0441046b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c2964fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5020101020101034200041510264c189c3d523ff9916abd7069efa6968d8dc7ddb6457d7869b53ea60cdcfafb7ed4786da15d29ee59256f536da3575a4888c1bb0a95b256f4a7e9fd764a",
+"private": "4f3414d1589b49f7172d439cbbe78e5b5350dc85dea40cd2d6274740c6e0239c",
+"shared": "d003f5cc83852584061f7a8a28bcb5671ecbda096e16e7accfa8f8d311a3db7a",
+"result": "acceptable"
+}
+]
+}
+],
+"subsetOf": 612
+}

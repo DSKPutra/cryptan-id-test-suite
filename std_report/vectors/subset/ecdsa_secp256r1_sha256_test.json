@@ -1,0 +1,1504 @@
+{
+"algorithm": "ECDSA",
+"schema": "ecdsa_verify_schema_v1.json",
+"numberOfTests": 484,
+"header": [
+"Test vectors of type EcdsaVerify are meant for the verification",
+"of ASN encoded ECDSA signatures."
+],
+"notes": {
+"ArithmeticError": {
+"bugType": "EDGE_CASE",
+"description": "Some implementations of ECDSA have arithmetic errors that occur when intermediate results have extreme values. This test vector has been constructed to test such occurrences.",
+"cves": [
+"CVE-2017-18146"
+]
+},
+"BerEncodedSignature": {
+"bugType": "BER_ENCODING",
+"description": "ECDSA signatures are usually DER encoded. This signature contains valid values for r and s, but it uses alternative BER encoding.",
+"effect": "Accepting alternative BER encodings may be benign in some cases, or be an issue if protocol requires signature malleability.",
+"cves": [
+"CVE-2020-14966",
+"CVE-2020-13822",
+"CVE-2019-14859",
+"CVE-2016-1000342"
+]
+},
+"EdgeCasePublicKey": {
+"bugType": "EDGE_CASE",
+"description": "The test vector uses a special case public key. "
+},
+"EdgeCaseShamirMultiplication": {
+"bugType": "EDGE_CASE",
+"description": "Shamir proposed a fast method for computing the sum of two scalar multiplications efficiently. This test vector has been constructed so that an intermediate result is the point at infinity if Shamir's method is used."
+},
+"IntegerOverflow": {
+"bugType": "CAN_OF_WORMS",
+"description": "The test vector contains an r and s that has been modified, so that the original value is restored if the implementation ignores the most significant bits.",
+"effect": "Without further analysis it is unclear if the modification can be used to forge signatures."
+},
+"InvalidEncoding": {
+"bugType": "CAN_OF_WORMS",
+"description": "ECDSA signatures are encoded using ASN.1. This test vector contains an incorrectly encoded signature. The test vector itself was generated from a valid signature by modifying its encoding.",
+"effect": "Without further analysis it is unclear if the modification can be used to forge signatures."
+},
+"InvalidSignature": {
+"bugType": "AUTH_BYPASS",
+"description": "The signature contains special case values such as r=0 and s=0. Buggy implementations may accept such values, if the implementation does not check boundaries and computes s^(-1) == 0.",
+"effect": "Accepting such signatures can have the effect that an adversary can forge signatures without even knowing the message to sign.",
+"cves": [
+"CVE-2022-21449",
+"CVE-2021-43572",
+"CVE-2022-24884"
+]
+},
+"InvalidTypesInSignature": {
+"bugType": "AUTH_BYPASS",
+"description": "The signature contains invalid types. Dynamic typed languages sometime coerce such values of different types into integers. If an implementation is careless and has additional bugs, such as not checking integer boundaries then it may be possible that such signatures are accepted.",
+"effect": "Accepting such signatures can have the effect that an adversary can forge signatures without even knowing the message to sign.",
+"cves": [
+"CVE-2022-21449"
+]
+},
+"MissingZero": {
+"bugType": "LEGACY",
+"description": "Some implementations of ECDSA and DSA incorrectly encode r and s by not including leading zeros in the ASN encoding of integers when necessary. Hence, some implementations (e.g. jdk) allow signatures with incorrect ASN encodings assuming that the signature is otherwise valid.",
+"effect": "While signatures are more malleable if such signatures are accepted, this typically leads to no vulnerability, since a badly encoded signature can be reencoded correctly."
+},
+"ModifiedInteger": {
+"bugType": "CAN_OF_WORMS",
+"description": "The test vector contains an r and s that has been modified. The goal is to check for arithmetic errors.",
+"effect": "Without further analysis it is unclear if the modification can be used to forge signatures."
+},
+"ModifiedSignature": {
+"bugType": "CAN_OF_WORMS",
+"description": "The test vector contains an invalid signature that was generated from a valid signature by modifying it.",
+"effect": "Without further analysis it is unclear if the modification can be used to forge signatures."
+},
+"ModularInverse": {
+"bugType": "EDGE_CASE",
+"description": "The test vectors contains a signature where computing the modular inverse of s hits an edge case.",
+"effect": "While the signature in this test vector is constructed and similar cases are unlikely to occur, it is important to determine if the underlying arithmetic error can be used to forge signatures.",
+"cves": [
+"CVE-2019-0865"
+]
+},
+"PointDuplication": {
+"bugType": "EDGE_CASE",
+"description": "Some implementations of ECDSA do not handle duplication and points at infinity correctly. This is a test vector that has been specially crafted to check for such an omission.",
+"cves": [
+"2020-12607",
+"CVE-2015-2730"
+]
+},
+"RangeCheck": {
+"bugType": "CAN_OF_WORMS",
+"description": "The test vector contains an r and s that has been modified. By adding or subtracting the order of the group (or other values) the test vector checks whether signature verification verifies the range of r and s.",
+"effect": "Without further analysis it is unclear if the modification can be used to forge signatures."
+},
+"SmallRandS": {
+"bugType": "EDGE_CASE",
+"description": "The test vectors contains a signature where both r and s are small integers. Some libraries cannot verify such signatures.",
+"effect": "While the signature in this test vector is constructed and similar cases are unlikely to occur, it is important to determine if the underlying arithmetic error can be used to forge signatures.",
+"cves": [
+"2020-13895"
+]
+},
+"SpecialCaseHash": {
+"bugType": "EDGE_CASE",
+"description": "The test vector contains a signature where the hash of the message is a special case, e.g., contains a long run of 0 or 1 bits."
+},
+"ValidSignature": {
+"bugType": "BASIC",
+"description": "The test vector contains a valid signature that was generated pseudorandomly. Such signatures should not fail to verify unless some of the parameters (e.g. curve or hash function) are not supported."
+}
+},
+"testGroups": [
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "0404aaec73635726f213fb8a9e64da3b8632e41495a944d0045b522eba7240fad587d9315798aaa3a5ba01775787ced05eaaf7b4e09fc81d6d1aa546e8365d525d",
+"wx": "04aaec73635726f213fb8a9e64da3b8632e41495a944d0045b522eba7240fad5",
+"wy": "0087d9315798aaa3a5ba01775787ced05eaaf7b4e09fc81d6d1aa546e8365d525d"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d0301070342000404aaec73635726f213fb8a9e64da3b8632e41495a944d0045b522eba7240fad587d9315798aaa3a5ba01775787ced05eaaf7b4e09fc81d6d1aa546e8365d525d",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEBKrsc2NXJvIT+4qeZNo7hjLkFJWp\nRNAEW1IuunJA+tWH2TFXmKqjpboBd1eHztBeqve04J/IHW0apUboNl1SXQ==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 1,
+"comment": "pseudorandom signature",
+"flags": [
+"ValidSignature"
+],
+"msg": "",
+"sig": "3045022100b292a619339f6e567a305c951c0dcbcc42d16e47f219f9e98e76e09d8770b34a02200177e60492c5a8242f76f07bfe3661bde59ec2a17ce5bd2dab2abebdf89a62e2",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "042927b10512bae3eddcfe467828128bad2903269919f7086069c8c4df6c732838c7787964eaac00e5921fb1498a60f4606766b3d9685001558d1a974e7341513e",
+"wx": "2927b10512bae3eddcfe467828128bad2903269919f7086069c8c4df6c732838",
+"wy": "00c7787964eaac00e5921fb1498a60f4606766b3d9685001558d1a974e7341513e"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d030107034200042927b10512bae3eddcfe467828128bad2903269919f7086069c8c4df6c732838c7787964eaac00e5921fb1498a60f4606766b3d9685001558d1a974e7341513e",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEKSexBRK64+3c/kZ4KBKLrSkDJpkZ\n9whgacjE32xzKDjHeHlk6qwA5ZIfsUmKYPRgZ2az2WhQAVWNGpdOc0FRPg==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 5,
+"comment": "signature malleability",
+"flags": [
+"ValidSignature"
+],
+"msg": "313233343030",
+"sig": "304402202ba3a8be6b94d5ec80a6d9d1190a436effe50d85a1eee859b8cc6af9bd5c2e1802204cd60b855d442f5b3c7b11eb6c4e0ae7525fe710fab9aa7c77a67f79e6fadd76",
+"result": "valid"
+},
+{
+"tcId": 6,
+"comment": "Legacy: ASN encoding of s misses leading 0",
+"flags": [
+"MissingZero"
+],
+"msg": "313233343030",
+"sig": "304402202ba3a8be6b94d5ec80a6d9d1190a436effe50d85a1eee859b8cc6af9bd5c2e180220b329f479a2bbd0a5c384ee1493b1f5186a87139cac5df4087c134b49156847db",
+"result": "invalid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "040ad99500288d466940031d72a9f5445a4d43784640855bf0a69874d2de5fe103c5011e6ef2c42dcd50d5d3d29f99ae6eba2c80c9244f4c5422f0979ff0c3ba5e",
+"wx": "0ad99500288d466940031d72a9f5445a4d43784640855bf0a69874d2de5fe103",
+"wy": "00c5011e6ef2c42dcd50d5d3d29f99ae6eba2c80c9244f4c5422f0979ff0c3ba5e"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d030107034200040ad99500288d466940031d72a9f5445a4d43784640855bf0a69874d2de5fe103c5011e6ef2c42dcd50d5d3d29f99ae6eba2c80c9244f4c5422f0979ff0c3ba5e",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAECtmVACiNRmlAAx1yqfVEWk1DeEZA\nhVvwpph00t5f4QPFAR5u8sQtzVDV09Kfma5uuiyAySRPTFQi8Jef8MO6Xg==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 350,
+"comment": "k*G has a large x-coordinate",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "303502104319055358e8617b0c46353d039cdaab022100ffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc63254e",
+"result": "valid"
+},
+{
+"tcId": 351,
+"comment": "r too large",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3046022100ffffffff00000001000000000000000000000000fffffffffffffffffffffffc022100ffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc63254e",
+"result": "invalid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04ab05fd9d0de26b9ce6f4819652d9fc69193d0aa398f0fba8013e09c58220455419235271228c786759095d12b75af0692dd4103f19f6a8c32f49435a1e9b8d45",
+"wx": "00ab05fd9d0de26b9ce6f4819652d9fc69193d0aa398f0fba8013e09c582204554",
+"wy": "19235271228c786759095d12b75af0692dd4103f19f6a8c32f49435a1e9b8d45"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004ab05fd9d0de26b9ce6f4819652d9fc69193d0aa398f0fba8013e09c58220455419235271228c786759095d12b75af0692dd4103f19f6a8c32f49435a1e9b8d45",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEqwX9nQ3ia5zm9IGWUtn8aRk9CqOY\n8PuoAT4JxYIgRVQZI1JxIox4Z1kJXRK3WvBpLdQQPxn2qMMvSUNaHpuNRQ==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 352,
+"comment": "r,s are large",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3046022100ffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc63254f022100ffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc63254e",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "0480984f39a1ff38a86a68aa4201b6be5dfbfecf876219710b07badf6fdd4c6c5611feb97390d9826e7a06dfb41871c940d74415ed3cac2089f1445019bb55ed95",
+"wx": "0080984f39a1ff38a86a68aa4201b6be5dfbfecf876219710b07badf6fdd4c6c56",
+"wy": "11feb97390d9826e7a06dfb41871c940d74415ed3cac2089f1445019bb55ed95"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d0301070342000480984f39a1ff38a86a68aa4201b6be5dfbfecf876219710b07badf6fdd4c6c5611feb97390d9826e7a06dfb41871c940d74415ed3cac2089f1445019bb55ed95",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEgJhPOaH/OKhqaKpCAba+Xfv+z4di\nGXELB7rfb91MbFYR/rlzkNmCbnoG37QYcclA10QV7TysIInxRFAZu1XtlQ==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 353,
+"comment": "r and s^-1 have a large Hamming weight",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "304502207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffd022100909135bdb6799286170f5ead2de4f6511453fe50914f3df2de54a36383df8dd4",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "044201b4272944201c3294f5baa9a3232b6dd687495fcc19a70a95bc602b4f7c0595c37eba9ee8171c1bb5ac6feaf753bc36f463e3aef16629572c0c0a8fb0800e",
+"wx": "4201b4272944201c3294f5baa9a3232b6dd687495fcc19a70a95bc602b4f7c05",
+"wy": "0095c37eba9ee8171c1bb5ac6feaf753bc36f463e3aef16629572c0c0a8fb0800e"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d030107034200044201b4272944201c3294f5baa9a3232b6dd687495fcc19a70a95bc602b4f7c0595c37eba9ee8171c1bb5ac6feaf753bc36f463e3aef16629572c0c0a8fb0800e",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEQgG0JylEIBwylPW6qaMjK23Wh0lf\nzBmnCpW8YCtPfAWVw366nugXHBu1rG/q91O8NvRj467xZilXLAwKj7CADg==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 354,
+"comment": "r and s^-1 have a large Hamming weight",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "304402207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffd022027b4577ca009376f71303fd5dd227dcef5deb773ad5f5a84360644669ca249a5",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04a71af64de5126a4a4e02b7922d66ce9415ce88a4c9d25514d91082c8725ac9575d47723c8fbe580bb369fec9c2665d8e30a435b9932645482e7c9f11e872296b",
+"wx": "00a71af64de5126a4a4e02b7922d66ce9415ce88a4c9d25514d91082c8725ac957",
+"wy": "5d47723c8fbe580bb369fec9c2665d8e30a435b9932645482e7c9f11e872296b"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004a71af64de5126a4a4e02b7922d66ce9415ce88a4c9d25514d91082c8725ac9575d47723c8fbe580bb369fec9c2665d8e30a435b9932645482e7c9f11e872296b",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEpxr2TeUSakpOAreSLWbOlBXOiKTJ\n0lUU2RCCyHJayVddR3I8j75YC7Np/snCZl2OMKQ1uZMmRUgufJ8R6HIpaw==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 355,
+"comment": "small r and s",
+"flags": [
+"SmallRandS",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3006020105020101",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "046627cec4f0731ea23fc2931f90ebe5b7572f597d20df08fc2b31ee8ef16b15726170ed77d8d0a14fc5c9c3c4c9be7f0d3ee18f709bb275eaf2073e258fe694a5",
+"wx": "6627cec4f0731ea23fc2931f90ebe5b7572f597d20df08fc2b31ee8ef16b1572",
+"wy": "6170ed77d8d0a14fc5c9c3c4c9be7f0d3ee18f709bb275eaf2073e258fe694a5"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d030107034200046627cec4f0731ea23fc2931f90ebe5b7572f597d20df08fc2b31ee8ef16b15726170ed77d8d0a14fc5c9c3c4c9be7f0d3ee18f709bb275eaf2073e258fe694a5",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEZifOxPBzHqI/wpMfkOvlt1cvWX0g\n3wj8KzHujvFrFXJhcO132NChT8XJw8TJvn8NPuGPcJuyderyBz4lj+aUpQ==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 356,
+"comment": "small r and s",
+"flags": [
+"SmallRandS",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3006020105020103",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "045a7c8825e85691cce1f5e7544c54e73f14afc010cb731343262ca7ec5a77f5bfef6edf62a4497c1bd7b147fb6c3d22af3c39bfce95f30e13a16d3d7b2812f813",
+"wx": "5a7c8825e85691cce1f5e7544c54e73f14afc010cb731343262ca7ec5a77f5bf",
+"wy": "00ef6edf62a4497c1bd7b147fb6c3d22af3c39bfce95f30e13a16d3d7b2812f813"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d030107034200045a7c8825e85691cce1f5e7544c54e73f14afc010cb731343262ca7ec5a77f5bfef6edf62a4497c1bd7b147fb6c3d22af3c39bfce95f30e13a16d3d7b2812f813",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEWnyIJehWkczh9edUTFTnPxSvwBDL\ncxNDJiyn7Fp39b/vbt9ipEl8G9exR/tsPSKvPDm/zpXzDhOhbT17KBL4Ew==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 357,
+"comment": "small r and s",
+"flags": [
+"SmallRandS",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3006020105020105",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04cbe0c29132cd738364fedd603152990c048e5e2fff996d883fa6caca7978c73770af6a8ce44cb41224b2603606f4c04d188e80bff7cc31ad5189d4ab0d70e8c1",
+"wx": "00cbe0c29132cd738364fedd603152990c048e5e2fff996d883fa6caca7978c737",
+"wy": "70af6a8ce44cb41224b2603606f4c04d188e80bff7cc31ad5189d4ab0d70e8c1"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004cbe0c29132cd738364fedd603152990c048e5e2fff996d883fa6caca7978c73770af6a8ce44cb41224b2603606f4c04d188e80bff7cc31ad5189d4ab0d70e8c1",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEy+DCkTLNc4Nk/t1gMVKZDASOXi//\nmW2IP6bKynl4xzdwr2qM5Ey0EiSyYDYG9MBNGI6Av/fMMa1RidSrDXDowQ==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 358,
+"comment": "small r and s",
+"flags": [
+"SmallRandS",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3006020105020106",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "042ef747671c97d9c7f9cb2f6a30d678c3d84757ba241ef7183d51a29f52d87c2ea8fb2ea635b761baefc1c4ded2099281b844e13e044c328553bbbafa337d8a76",
+"wx": "2ef747671c97d9c7f9cb2f6a30d678c3d84757ba241ef7183d51a29f52d87c2e",
+"wy": "00a8fb2ea635b761baefc1c4ded2099281b844e13e044c328553bbbafa337d8a76"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d030107034200042ef747671c97d9c7f9cb2f6a30d678c3d84757ba241ef7183d51a29f52d87c2ea8fb2ea635b761baefc1c4ded2099281b844e13e044c328553bbbafa337d8a76",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAELvdHZxyX2cf5yy9qMNZ4w9hHV7ok\nHvcYPVGin1LYfC6o+y6mNbdhuu/BxN7SCZKBuEThPgRMMoVTu7r6M32Kdg==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 359,
+"comment": "small r and s",
+"flags": [
+"SmallRandS",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3006020106020101",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04931cc49cda4d87d25b1601c56c3b83b4f45e44971998f2d3e7d3c55152214edf058dc140abbba42fc1ddbf30dab8eb9b46ee7338b3f7ee96242bf45e1df5e995",
+"wx": "00931cc49cda4d87d25b1601c56c3b83b4f45e44971998f2d3e7d3c55152214edf",
+"wy": "058dc140abbba42fc1ddbf30dab8eb9b46ee7338b3f7ee96242bf45e1df5e995"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004931cc49cda4d87d25b1601c56c3b83b4f45e44971998f2d3e7d3c55152214edf058dc140abbba42fc1ddbf30dab8eb9b46ee7338b3f7ee96242bf45e1df5e995",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEkxzEnNpNh9JbFgHFbDuDtPReRJcZ\nmPLT59PFUVIhTt8FjcFAq7ukL8HdvzDauOubRu5zOLP37pYkK/ReHfXplQ==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 360,
+"comment": "small r and s",
+"flags": [
+"SmallRandS",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3006020106020103",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04899a4af61867e3f3c190dbb48f8bc9fc74b70a467a4a1f06477b3af2f39ab8ed47ac000f9ea8a3034939bf48ad5d061a69fc8495ae4df2dbec7effa03a0062b3",
+"wx": "00899a4af61867e3f3c190dbb48f8bc9fc74b70a467a4a1f06477b3af2f39ab8ed",
+"wy": "47ac000f9ea8a3034939bf48ad5d061a69fc8495ae4df2dbec7effa03a0062b3"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004899a4af61867e3f3c190dbb48f8bc9fc74b70a467a4a1f06477b3af2f39ab8ed47ac000f9ea8a3034939bf48ad5d061a69fc8495ae4df2dbec7effa03a0062b3",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEiZpK9hhn4/PBkNu0j4vJ/HS3CkZ6\nSh8GR3s68vOauO1HrAAPnqijA0k5v0itXQYaafyEla5N8tvsfv+gOgBisw==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 361,
+"comment": "small r and s",
+"flags": [
+"SmallRandS",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3006020106020106",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04d03eb09913cc20c6a8d0070f0d8d2a7f63527fafa44117fce6bd1ef2aa4ae3c46d5df3f45ac58fa334c6d102381b3120b7a2455600dcaff3d1a845514f12bf46",
+"wx": "00d03eb09913cc20c6a8d0070f0d8d2a7f63527fafa44117fce6bd1ef2aa4ae3c4",
+"wy": "6d5df3f45ac58fa334c6d102381b3120b7a2455600dcaff3d1a845514f12bf46"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004d03eb09913cc20c6a8d0070f0d8d2a7f63527fafa44117fce6bd1ef2aa4ae3c46d5df3f45ac58fa334c6d102381b3120b7a2455600dcaff3d1a845514f12bf46",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE0D6wmRPMIMao0AcPDY0qf2NSf6+k\nQRf85r0e8qpK48RtXfP0WsWPozTG0QI4GzEgt6JFVgDcr/PRqEVRTxK/Rg==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 362,
+"comment": "small r and s",
+"flags": [
+"SmallRandS",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3006020106020107",
+"result": "valid"
+},
+{
+"tcId": 363,
+"comment": "r is larger than n",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3026022100ffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc632557020107",
+"result": "invalid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "043a72476291571193b4d109b2c37b59f2807e8fe9cffd804eacded903e77ca0da592dbc74fee0ca7508cc7bc282b0c51a143286ff53c60131668e7a0929e4ed04",
+"wx": "3a72476291571193b4d109b2c37b59f2807e8fe9cffd804eacded903e77ca0da",
+"wy": "592dbc74fee0ca7508cc7bc282b0c51a143286ff53c60131668e7a0929e4ed04"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d030107034200043a72476291571193b4d109b2c37b59f2807e8fe9cffd804eacded903e77ca0da592dbc74fee0ca7508cc7bc282b0c51a143286ff53c60131668e7a0929e4ed04",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEOnJHYpFXEZO00Qmyw3tZ8oB+j+nP\n/YBOrN7ZA+d8oNpZLbx0/uDKdQjMe8KCsMUaFDKG/1PGATFmjnoJKeTtBA==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 364,
+"comment": "s is larger than n",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3026020106022100ffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc75fbd8",
+"result": "invalid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04d0f73792203716afd4be4329faa48d269f15313ebbba379d7783c97bf3e890d9971f4a3206605bec21782bf5e275c714417e8f566549e6bc68690d2363c89cc1",
+"wx": "00d0f73792203716afd4be4329faa48d269f15313ebbba379d7783c97bf3e890d9",
+"wy": "00971f4a3206605bec21782bf5e275c714417e8f566549e6bc68690d2363c89cc1"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004d0f73792203716afd4be4329faa48d269f15313ebbba379d7783c97bf3e890d9971f4a3206605bec21782bf5e275c714417e8f566549e6bc68690d2363c89cc1",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE0Pc3kiA3Fq/UvkMp+qSNJp8VMT67\nujedd4PJe/PokNmXH0oyBmBb7CF4K/XidccUQX6PVmVJ5rxoaQ0jY8icwQ==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 365,
+"comment": "small r and s^-1",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3027020201000221008f1e3c7862c58b16bb76eddbb76eddbb516af4f63f2d74d76e0d28c9bb75ea88",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "044838b2be35a6276a80ef9e228140f9d9b96ce83b7a254f71ccdebbb8054ce05ffa9cbc123c919b19e00238198d04069043bd660a828814051fcb8aac738a6c6b",
+"wx": "4838b2be35a6276a80ef9e228140f9d9b96ce83b7a254f71ccdebbb8054ce05f",
+"wy": "00fa9cbc123c919b19e00238198d04069043bd660a828814051fcb8aac738a6c6b"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d030107034200044838b2be35a6276a80ef9e228140f9d9b96ce83b7a254f71ccdebbb8054ce05ffa9cbc123c919b19e00238198d04069043bd660a828814051fcb8aac738a6c6b",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAESDiyvjWmJ2qA754igUD52bls6Dt6\nJU9xzN67uAVM4F/6nLwSPJGbGeACOBmNBAaQQ71mCoKIFAUfy4qsc4psaw==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 366,
+"comment": "smallish r and s^-1",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "302c02072d9b4d347952d6022100ef3043e7329581dbb3974497710ab11505ee1c87ff907beebadd195a0ffe6d7a",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "047393983ca30a520bbc4783dc9960746aab444ef520c0a8e771119aa4e74b0f64e9d7be1ab01a0bf626e709863e6a486dbaf32793afccf774e2c6cd27b1857526",
+"wx": "7393983ca30a520bbc4783dc9960746aab444ef520c0a8e771119aa4e74b0f64",
+"wy": "00e9d7be1ab01a0bf626e709863e6a486dbaf32793afccf774e2c6cd27b1857526"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d030107034200047393983ca30a520bbc4783dc9960746aab444ef520c0a8e771119aa4e74b0f64e9d7be1ab01a0bf626e709863e6a486dbaf32793afccf774e2c6cd27b1857526",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEc5OYPKMKUgu8R4PcmWB0aqtETvUg\nwKjncRGapOdLD2Tp174asBoL9ibnCYY+akhtuvMnk6/M93Tixs0nsYV1Jg==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 367,
+"comment": "100-bit r and small s^-1",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3032020d1033e67e37b32b445580bf4eff0221008b748b74000000008b748b748b748b7466e769ad4a16d3dcd87129b8e91d1b4d",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "045ac331a1103fe966697379f356a937f350588a05477e308851b8a502d5dfcdc5fe9993df4b57939b2b8da095bf6d794265204cfe03be995a02e65d408c871c0b",
+"wx": "5ac331a1103fe966697379f356a937f350588a05477e308851b8a502d5dfcdc5",
+"wy": "00fe9993df4b57939b2b8da095bf6d794265204cfe03be995a02e65d408c871c0b"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d030107034200045ac331a1103fe966697379f356a937f350588a05477e308851b8a502d5dfcdc5fe9993df4b57939b2b8da095bf6d794265204cfe03be995a02e65d408c871c0b",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEWsMxoRA/6WZpc3nzVqk381BYigVH\nfjCIUbilAtXfzcX+mZPfS1eTmyuNoJW/bXlCZSBM/gO+mVoC5l1AjIccCw==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 368,
+"comment": "small r and 100 bit s^-1",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "302702020100022100ef9f6ba4d97c09d03178fa20b4aaad83be3cf9cb824a879fec3270fc4b81ef5b",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "041d209be8de2de877095a399d3904c74cc458d926e27bb8e58e5eae5767c41509dd59e04c214f7b18dce351fc2a549893a6860e80163f38cc60a4f2c9d040d8c9",
+"wx": "1d209be8de2de877095a399d3904c74cc458d926e27bb8e58e5eae5767c41509",
+"wy": "00dd59e04c214f7b18dce351fc2a549893a6860e80163f38cc60a4f2c9d040d8c9"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d030107034200041d209be8de2de877095a399d3904c74cc458d926e27bb8e58e5eae5767c41509dd59e04c214f7b18dce351fc2a549893a6860e80163f38cc60a4f2c9d040d8c9",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHSCb6N4t6HcJWjmdOQTHTMRY2Sbi\ne7jljl6uV2fEFQndWeBMIU97GNzjUfwqVJiTpoYOgBY/OMxgpPLJ0EDYyQ==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 369,
+"comment": "100-bit r and s^-1",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3032020d062522bbd3ecbe7c39e93e7c25022100ef9f6ba4d97c09d03178fa20b4aaad83be3cf9cb824a879fec3270fc4b81ef5b",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04083539fbee44625e3acaafa2fcb41349392cef0633a1b8fabecee0c133b10e99915c1ebe7bf00df8535196770a58047ae2a402f26326bb7d41d4d7616337911e",
+"wx": "083539fbee44625e3acaafa2fcb41349392cef0633a1b8fabecee0c133b10e99",
+"wy": "00915c1ebe7bf00df8535196770a58047ae2a402f26326bb7d41d4d7616337911e"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004083539fbee44625e3acaafa2fcb41349392cef0633a1b8fabecee0c133b10e99915c1ebe7bf00df8535196770a58047ae2a402f26326bb7d41d4d7616337911e",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAECDU5++5EYl46yq+i/LQTSTks7wYz\nobj6vs7gwTOxDpmRXB6+e/AN+FNRlncKWAR64qQC8mMmu31B1NdhYzeRHg==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 370,
+"comment": "r and s^-1 are close to n",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "3045022100ffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc6324d50220555555550000000055555555555555553ef7a8e48d07df81a693439654210c70",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04e075effd9607d08d5f34e3652f64cfa3bd6d20c58d0a232f058491260ab212a4cc61760ac8b0680c1b644c03cc628ba9dc4a3c0561368489c692bd40f43aa3ca",
+"wx": "00e075effd9607d08d5f34e3652f64cfa3bd6d20c58d0a232f058491260ab212a4",
+"wy": "00cc61760ac8b0680c1b644c03cc628ba9dc4a3c0561368489c692bd40f43aa3ca"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004e075effd9607d08d5f34e3652f64cfa3bd6d20c58d0a232f058491260ab212a4cc61760ac8b0680c1b644c03cc628ba9dc4a3c0561368489c692bd40f43aa3ca",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE4HXv/ZYH0I1fNONlL2TPo71tIMWN\nCiMvBYSRJgqyEqTMYXYKyLBoDBtkTAPMYoup3Eo8BWE2hInGkr1A9Dqjyg==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 371,
+"comment": "r and s are 64-bit integer",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30160209009c44febf31c3594f020900839ed28247c2b06b",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04cffb758c3073ea3c08efd9f7f17a85b6ae385c5a140c146ad5f1f5a826718bc8dfdc6bebc894144c6d418ac5d97339726ad2ae925df868426e5628e9f4e62342",
+"wx": "00cffb758c3073ea3c08efd9f7f17a85b6ae385c5a140c146ad5f1f5a826718bc8",
+"wy": "00dfdc6bebc894144c6d418ac5d97339726ad2ae925df868426e5628e9f4e62342"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004cffb758c3073ea3c08efd9f7f17a85b6ae385c5a140c146ad5f1f5a826718bc8dfdc6bebc894144c6d418ac5d97339726ad2ae925df868426e5628e9f4e62342",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEz/t1jDBz6jwI79n38XqFtq44XFoU\nDBRq1fH1qCZxi8jf3GvryJQUTG1BisXZczlyatKukl34aEJuVijp9OYjQg==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 372,
+"comment": "r and s are 100-bit integer",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "301e020d09df8b682430beef6f5fd7c7cd020d0fd0a62e13778f4222a0d61c8a",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04b98740e69e61a325d5f772e3b5c4f67fb7150b16a9afeca9ddc4afcbb6fa0549c446e814138e4ebc82dbf86a390056d4595dcf45e381fef217a4597d7bd51498",
+"wx": "00b98740e69e61a325d5f772e3b5c4f67fb7150b16a9afeca9ddc4afcbb6fa0549",
+"wy": "00c446e814138e4ebc82dbf86a390056d4595dcf45e381fef217a4597d7bd51498"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004b98740e69e61a325d5f772e3b5c4f67fb7150b16a9afeca9ddc4afcbb6fa0549c446e814138e4ebc82dbf86a390056d4595dcf45e381fef217a4597d7bd51498",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEuYdA5p5hoyXV93LjtcT2f7cVCxap\nr+yp3cSvy7b6BUnERugUE45OvILb+Go5AFbUWV3PReOB/vIXpFl9e9UUmA==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 373,
+"comment": "r and s are 128-bit integer",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30260211008a598e563a89f526c32ebec8de26367c02110084f633e2042630e99dd0f1e16f7a04bf",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "0484536a270c3932bb2084732adf2c768efc6d3977e5220229ea9a44888b8f9d7b1766398cdac2fc8000017b29a7ba15a58f196037f35f7008ed4286ddff00fd46",
+"wx": "0084536a270c3932bb2084732adf2c768efc6d3977e5220229ea9a44888b8f9d7b",
+"wy": "1766398cdac2fc8000017b29a7ba15a58f196037f35f7008ed4286ddff00fd46"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d0301070342000484536a270c3932bb2084732adf2c768efc6d3977e5220229ea9a44888b8f9d7b1766398cdac2fc8000017b29a7ba15a58f196037f35f7008ed4286ddff00fd46",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEhFNqJww5MrsghHMq3yx2jvxtOXfl\nIgIp6ppEiIuPnXsXZjmM2sL8gAABeymnuhWljxlgN/NfcAjtQobd/wD9Rg==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 374,
+"comment": "r and s are 160-bit integer",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "302e021500aa6eeb5823f7fa31b466bb473797f0d0314c0bdf021500e2977c479e6d25703cebbc6bd561938cc9d1bfb9",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "048aeb368a7027a4d64abdea37390c0c1d6a26f399e2d9734de1eb3d0e1937387405bd13834715e1dbae9b875cf07bd55e1b6691c7f7536aef3b19bf7a4adf576d",
+"wx": "008aeb368a7027a4d64abdea37390c0c1d6a26f399e2d9734de1eb3d0e19373874",
+"wy": "05bd13834715e1dbae9b875cf07bd55e1b6691c7f7536aef3b19bf7a4adf576d"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d030107034200048aeb368a7027a4d64abdea37390c0c1d6a26f399e2d9734de1eb3d0e1937387405bd13834715e1dbae9b875cf07bd55e1b6691c7f7536aef3b19bf7a4adf576d",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEius2inAnpNZKveo3OQwMHWom85ni\n2XNN4es9Dhk3OHQFvRODRxXh266bh1zwe9VeG2aRx/dTau87Gb96St9XbQ==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 375,
+"comment": "s == 1",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30250220555555550000000055555555555555553ef7a8e48d07df81a693439654210c70020101",
+"result": "valid"
+},
+{
+"tcId": 376,
+"comment": "s == 0",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30250220555555550000000055555555555555553ef7a8e48d07df81a693439654210c70020100",
+"result": "invalid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "0461722eaba731c697c7a9ba4d0afdbb5713d8aa12b0eab601bb33dbaf792c5adc272cd993b2b663aba5b3a26c101182ff178684945e83879e71598b95fe647dfc",
+"wx": "61722eaba731c697c7a9ba4d0afdbb5713d8aa12b0eab601bb33dbaf792c5adc",
+"wy": "272cd993b2b663aba5b3a26c101182ff178684945e83879e71598b95fe647dfc"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d0301070342000461722eaba731c697c7a9ba4d0afdbb5713d8aa12b0eab601bb33dbaf792c5adc272cd993b2b663aba5b3a26c101182ff178684945e83879e71598b95fe647dfc",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEYXIuq6cxxpfHqbpNCv27VxPYqhKw\n6rYBuzPbr3ksWtwnLNmTsrZjq6WzomwQEYL/F4aElF6Dh55xWYuV/mR9/A==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 377,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c70022002f676969f451a8ccafa4c4f09791810e6d632dbd60b1d5540f3284fbe1889b0",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04c4c91981e720e20d7e478ff19d09b95a98f58c0f469b72801a8ce844a347316594afcd4188182e7779889b3258d0368ece1e66797fe7c648c6f0b9e26bd71871",
+"wx": "00c4c91981e720e20d7e478ff19d09b95a98f58c0f469b72801a8ce844a3473165",
+"wy": "0094afcd4188182e7779889b3258d0368ece1e66797fe7c648c6f0b9e26bd71871"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004c4c91981e720e20d7e478ff19d09b95a98f58c0f469b72801a8ce844a347316594afcd4188182e7779889b3258d0368ece1e66797fe7c648c6f0b9e26bd71871",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAExMkZgecg4g1+R4/xnQm5Wpj1jA9G\nm3KAGozoRKNHMWWUr81BiBgud3mImzJY0DaOzh5meX/nxkjG8Lnia9cYcQ==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 378,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c7002204e260962e33362ef0046126d2d5a4edc6947ab20e19b8ec19cf79e5908b6e628",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04d58d47bf49bc8f416641f6f760fcbca80aa52a814e56a5fa40bab44fd6f6317216deaa84d45d8e0e29cc9ecf5653f8ee6444750813becae8deb42b04ba07a634",
+"wx": "00d58d47bf49bc8f416641f6f760fcbca80aa52a814e56a5fa40bab44fd6f63172",
+"wy": "16deaa84d45d8e0e29cc9ecf5653f8ee6444750813becae8deb42b04ba07a634"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004d58d47bf49bc8f416641f6f760fcbca80aa52a814e56a5fa40bab44fd6f6317216deaa84d45d8e0e29cc9ecf5653f8ee6444750813becae8deb42b04ba07a634",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE1Y1Hv0m8j0FmQfb3YPy8qAqlKoFO\nVqX6QLq0T9b2MXIW3qqE1F2ODinMns9WU/juZER1CBO+yujetCsEugemNA==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 379,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c700220077ed0d8f20f697d8fc591ac64dd5219c7932122b4f9b9ec6441e44a0092cf21",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "0491e305822e5e44f3fdb616e2ef42cd98f241b86e9f68815bc4dba6a945e4eefb3c5937e2ac1d9466f6d65e49b35fc8d75ffc22e1fe2f32af42f5fa3c26f9b4b0",
+"wx": "0091e305822e5e44f3fdb616e2ef42cd98f241b86e9f68815bc4dba6a945e4eefb",
+"wy": "3c5937e2ac1d9466f6d65e49b35fc8d75ffc22e1fe2f32af42f5fa3c26f9b4b0"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d0301070342000491e305822e5e44f3fdb616e2ef42cd98f241b86e9f68815bc4dba6a945e4eefb3c5937e2ac1d9466f6d65e49b35fc8d75ffc22e1fe2f32af42f5fa3c26f9b4b0",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEkeMFgi5eRPP9thbi70LNmPJBuG6f\naIFbxNumqUXk7vs8WTfirB2UZvbWXkmzX8jXX/wi4f4vMq9C9fo8Jvm0sA==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 380,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c7002203e0292a67e181c6c0105ee35e956e78e9bdd033c6e71ae57884039a245e4175f",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "0424a0bc4d16dbbd40d2fd81a7c3f8d8ec741607d5bb406a0611cc60d0e683bd46b575cad039c15f7f3dffcfc007b4b0f743c871ecc76a504a32672fd84526d861",
+"wx": "24a0bc4d16dbbd40d2fd81a7c3f8d8ec741607d5bb406a0611cc60d0e683bd46",
+"wy": "00b575cad039c15f7f3dffcfc007b4b0f743c871ecc76a504a32672fd84526d861"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d0301070342000424a0bc4d16dbbd40d2fd81a7c3f8d8ec741607d5bb406a0611cc60d0e683bd46b575cad039c15f7f3dffcfc007b4b0f743c871ecc76a504a32672fd84526d861",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEJKC8TRbbvUDS/YGnw/jY7HQWB9W7\nQGoGEcxg0OaDvUa1dcrQOcFffz3/z8AHtLD3Q8hx7MdqUEoyZy/YRSbYYQ==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 381,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c70022013d22b06d6b8f5d97e0c64962b4a3bae30f668ca6217ef5b35d799f159e23ebe",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04d24dd06745cafb39186d22a92aa0e58169a79ab69488628a9da5ed3ef747269b7e9209d98faeb95355948adae61d5291c6015d3ee9513486d886fb05cbd25c6a",
+"wx": "00d24dd06745cafb39186d22a92aa0e58169a79ab69488628a9da5ed3ef747269b",
+"wy": "7e9209d98faeb95355948adae61d5291c6015d3ee9513486d886fb05cbd25c6a"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004d24dd06745cafb39186d22a92aa0e58169a79ab69488628a9da5ed3ef747269b7e9209d98faeb95355948adae61d5291c6015d3ee9513486d886fb05cbd25c6a",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE0k3QZ0XK+zkYbSKpKqDlgWmnmraU\niGKKnaXtPvdHJpt+kgnZj665U1WUitrmHVKRxgFdPulRNIbYhvsFy9Jcag==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 382,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c7002204523ce342e4994bb8968bf6613f60c06c86111f15a3a389309e72cd447d5dd99",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "048200f148e7eab1581bcd1e23946f8a9b8191d9641f9560341721f9d3fec3d63ece795669e0481e035de8623d716a6984d0a4809d6c65519443ee55260f7f3dcb",
+"wx": "008200f148e7eab1581bcd1e23946f8a9b8191d9641f9560341721f9d3fec3d63e",
+"wy": "00ce795669e0481e035de8623d716a6984d0a4809d6c65519443ee55260f7f3dcb"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d030107034200048200f148e7eab1581bcd1e23946f8a9b8191d9641f9560341721f9d3fec3d63ece795669e0481e035de8623d716a6984d0a4809d6c65519443ee55260f7f3dcb",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEggDxSOfqsVgbzR4jlG+Km4GR2WQf\nlWA0FyH50/7D1j7OeVZp4EgeA13oYj1xammE0KSAnWxlUZRD7lUmD389yw==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 383,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c70022037d765be3c9c78189ad30edb5097a4db670de11686d01420e37039d4677f4809",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04a8a69c5ed33b150ce8d37ac197070ed894c05d47258a80c9041d92486622024de85997c9666b60a393568efede8f4ca0167c1e10f626e62fc1b8c8e9c6ba6ed7",
+"wx": "00a8a69c5ed33b150ce8d37ac197070ed894c05d47258a80c9041d92486622024d",
+"wy": "00e85997c9666b60a393568efede8f4ca0167c1e10f626e62fc1b8c8e9c6ba6ed7"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004a8a69c5ed33b150ce8d37ac197070ed894c05d47258a80c9041d92486622024de85997c9666b60a393568efede8f4ca0167c1e10f626e62fc1b8c8e9c6ba6ed7",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEqKacXtM7FQzo03rBlwcO2JTAXUcl\nioDJBB2SSGYiAk3oWZfJZmtgo5NWjv7ej0ygFnweEPYm5i/BuMjpxrpu1w==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 384,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c70022044237823b54e0c74c2bf5f759d9ac5f8cb897d537ffa92effd4f0bb6c9acd860",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04ed0587e75b3b9a1dd0794f41d1729fcd432b2436cbf51c230d8bc7273273181735a57f09c7873d3964aa8102c9e25fa53070cd924cb7e3a459174740b8b71c34",
+"wx": "00ed0587e75b3b9a1dd0794f41d1729fcd432b2436cbf51c230d8bc72732731817",
+"wy": "35a57f09c7873d3964aa8102c9e25fa53070cd924cb7e3a459174740b8b71c34"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004ed0587e75b3b9a1dd0794f41d1729fcd432b2436cbf51c230d8bc7273273181735a57f09c7873d3964aa8102c9e25fa53070cd924cb7e3a459174740b8b71c34",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE7QWH51s7mh3QeU9B0XKfzUMrJDbL\n9RwjDYvHJzJzGBc1pX8Jx4c9OWSqgQLJ4l+lMHDNkky346RZF0dAuLccNA==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 385,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c700220266d30a485385906054ca86d46f5f2b17e7f4646a3092092ad92877126538111",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04077091d99004a99ee08224e59a46a70495e6fba4eff681c3ce42127e588681ef4f1c16c77dfa440dde18245c9de76243d8f2fd9dea3f2782d6c04974d02f25dc",
+"wx": "077091d99004a99ee08224e59a46a70495e6fba4eff681c3ce42127e588681ef",
+"wy": "4f1c16c77dfa440dde18245c9de76243d8f2fd9dea3f2782d6c04974d02f25dc"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004077091d99004a99ee08224e59a46a70495e6fba4eff681c3ce42127e588681ef4f1c16c77dfa440dde18245c9de76243d8f2fd9dea3f2782d6c04974d02f25dc",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEB3CR2ZAEqZ7ggiTlmkanBJXm+6Tv\n9oHDzkISfliGge9PHBbHffpEDd4YJFyd52JD2PL9neo/J4LWwEl00C8l3A==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 386,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c700220538c7b3798e84d0ce90340165806348971ed44db8f0c674f5f215968390f92ee",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04616a8b8e57d82c11678f5827911024cd23a16cb52a65f230fb554a7b110c35a5bb466660be5cab3e4b587c12b45bd998bd56c7d66c2f94d03a1a6d2028d8a154",
+"wx": "616a8b8e57d82c11678f5827911024cd23a16cb52a65f230fb554a7b110c35a5",
+"wy": "00bb466660be5cab3e4b587c12b45bd998bd56c7d66c2f94d03a1a6d2028d8a154"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004616a8b8e57d82c11678f5827911024cd23a16cb52a65f230fb554a7b110c35a5bb466660be5cab3e4b587c12b45bd998bd56c7d66c2f94d03a1a6d2028d8a154",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEYWqLjlfYLBFnj1gnkRAkzSOhbLUq\nZfIw+1VKexEMNaW7RmZgvlyrPktYfBK0W9mYvVbH1mwvlNA6Gm0gKNihVA==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 387,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c7002206fef0ef15d1688e15e704c4e6bb8bb7f40d52d3af5c661bb78c4ed9b408699b3",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "0471dc92b2b1baa7612c4a53427a0d2dfe548fa9cf829bb6b248f736a5eb30b513f91c7dff1144cb36057c2b859f35bd666a7961833b06de0f45159fbae208e326",
+"wx": "71dc92b2b1baa7612c4a53427a0d2dfe548fa9cf829bb6b248f736a5eb30b513",
+"wy": "00f91c7dff1144cb36057c2b859f35bd666a7961833b06de0f45159fbae208e326"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d0301070342000471dc92b2b1baa7612c4a53427a0d2dfe548fa9cf829bb6b248f736a5eb30b513f91c7dff1144cb36057c2b859f35bd666a7961833b06de0f45159fbae208e326",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEcdySsrG6p2EsSlNCeg0t/lSPqc+C\nm7aySPc2peswtRP5HH3/EUTLNgV8K4WfNb1manlhgzsG3g9FFZ+64gjjJg==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 388,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c7002206f44275e9aeb1331efcb8d58f35c0252791427e403ad84daad51d247cc2a64c6",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04662f43ae614bd9c90ff3fcded25cf0ef186b6967a47aa6aa7ae7f396594df931f5f94a525edd50d3738f7a28d03d7a2a70095c8f89de9bb2c645fea8d8bac9e0",
+"wx": "662f43ae614bd9c90ff3fcded25cf0ef186b6967a47aa6aa7ae7f396594df931",
+"wy": "00f5f94a525edd50d3738f7a28d03d7a2a70095c8f89de9bb2c645fea8d8bac9e0"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004662f43ae614bd9c90ff3fcded25cf0ef186b6967a47aa6aa7ae7f396594df931f5f94a525edd50d3738f7a28d03d7a2a70095c8f89de9bb2c645fea8d8bac9e0",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEZi9DrmFL2ckP8/ze0lzw7xhraWek\neqaqeufzlllN+TH1+UpSXt1Q03OPeijQPXoqcAlcj4nem7LGRf6o2LrJ4A==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 389,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c70022021323755b103d2f9da6ab83eccab9ad8598bcf625652f10e7a3eeee3c3945fb3",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04dff107959bd2f7386497a5624430a0ab35e552c1a4e4dc9c298caeb96353170dcb5065d7947a676c76287ca8e430324f8a534b0ba6f21200e033c4b88852a3cc",
+"wx": "00dff107959bd2f7386497a5624430a0ab35e552c1a4e4dc9c298caeb96353170d",
+"wy": "00cb5065d7947a676c76287ca8e430324f8a534b0ba6f21200e033c4b88852a3cc"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004dff107959bd2f7386497a5624430a0ab35e552c1a4e4dc9c298caeb96353170dcb5065d7947a676c76287ca8e430324f8a534b0ba6f21200e033c4b88852a3cc",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE3/EHlZvS9zhkl6ViRDCgqzXlUsGk\n5NycKYyuuWNTFw3LUGXXlHpnbHYofKjkMDJPilNLC6byEgDgM8S4iFKjzA==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 390,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c7002206c50acfe76de1289e7a5edb240f1c2a7879db6873d5d931f3c6ac467a6eac171",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04bd0862b0bfba85036922e06f5458754aafc3075b603a814b3ac75659bf24d7528258a607ffca2cfe05a300cb4c3c4e1963bbb1bc54d320e16969f85aad243385",
+"wx": "00bd0862b0bfba85036922e06f5458754aafc3075b603a814b3ac75659bf24d752",
+"wy": "008258a607ffca2cfe05a300cb4c3c4e1963bbb1bc54d320e16969f85aad243385"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004bd0862b0bfba85036922e06f5458754aafc3075b603a814b3ac75659bf24d7528258a607ffca2cfe05a300cb4c3c4e1963bbb1bc54d320e16969f85aad243385",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEvQhisL+6hQNpIuBvVFh1Sq/DB1tg\nOoFLOsdWWb8k11KCWKYH/8os/gWjAMtMPE4ZY7uxvFTTIOFpafharSQzhQ==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 391,
+"comment": "edge case modular inverse",
+"flags": [
+"ModularInverse",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "30440220555555550000000055555555555555553ef7a8e48d07df81a693439654210c700220755b7fffb0b17ad57dca50fcefb7fe297b029df25e5ccb5069e8e70c2742c2a6",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04b533d4695dd5b8c5e07757e55e6e516f7e2c88fa0239e23f60e8ec07dd70f2871b134ee58cc583278456863f33c3a85d881f7d4a39850143e29d4eaf009afe47",
+"wx": "00b533d4695dd5b8c5e07757e55e6e516f7e2c88fa0239e23f60e8ec07dd70f287",
+"wy": "1b134ee58cc583278456863f33c3a85d881f7d4a39850143e29d4eaf009afe47"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004b533d4695dd5b8c5e07757e55e6e516f7e2c88fa0239e23f60e8ec07dd70f2871b134ee58cc583278456863f33c3a85d881f7d4a39850143e29d4eaf009afe47",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEtTPUaV3VuMXgd1flXm5Rb34siPoC\nOeI/YOjsB91w8ocbE07ljMWDJ4RWhj8zw6hdiB99SjmFAUPinU6vAJr+Rw==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 392,
+"comment": "point at infinity during verify",
+"flags": [
+"PointDuplication",
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "304402207fffffff800000007fffffffffffffffde737d56d38bcf4279dce5617e3192a80220555555550000000055555555555555553ef7a8e48d07df81a693439654210c70",
+"result": "invalid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "04f50d371b91bfb1d7d14e1323523bc3aa8cbf2c57f9e284de628c8b4536787b86f94ad887ac94d527247cd2e7d0c8b1291c553c9730405380b14cbb209f5fa2dd",
+"wx": "00f50d371b91bfb1d7d14e1323523bc3aa8cbf2c57f9e284de628c8b4536787b86",
+"wy": "00f94ad887ac94d527247cd2e7d0c8b1291c553c9730405380b14cbb209f5fa2dd"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d03010703420004f50d371b91bfb1d7d14e1323523bc3aa8cbf2c57f9e284de628c8b4536787b86f94ad887ac94d527247cd2e7d0c8b1291c553c9730405380b14cbb209f5fa2dd",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE9Q03G5G/sdfRThMjUjvDqoy/LFf5\n4oTeYoyLRTZ4e4b5StiHrJTVJyR80ufQyLEpHFU8lzBAU4CxTLsgn1+i3Q==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 393,
+"comment": "edge case for signature malleability",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "304402207fffffff800000007fffffffffffffffde737d56d38bcf4279dce5617e3192a902207fffffff800000007fffffffffffffffde737d56d38bcf4279dce5617e3192a8",
+"result": "valid"
+}
+]
+},
+{
+"type": "EcdsaVerify",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9rc5"
+},
+"publicKey": {
+"type": "EcPublicKey",
+"curve": "secp256r1",
+"keySize": 256,
+"uncompressed": "0468ec6e298eafe16539156ce57a14b04a7047c221bafc3a582eaeb0d857c4d94697bed1af17850117fdb39b2324f220a5698ed16c426a27335bb385ac8ca6fb30",
+"wx": "68ec6e298eafe16539156ce57a14b04a7047c221bafc3a582eaeb0d857c4d946",
+"wy": "0097bed1af17850117fdb39b2324f220a5698ed16c426a27335bb385ac8ca6fb30"
+},
+"publicKeyDer": "3059301306072a8648ce3d020106082a8648ce3d0301070342000468ec6e298eafe16539156ce57a14b04a7047c221bafc3a582eaeb0d857c4d94697bed1af17850117fdb39b2324f220a5698ed16c426a27335bb385ac8ca6fb30",
+"publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEaOxuKY6v4WU5FWzlehSwSnBHwiG6\n/DpYLq6w2FfE2UaXvtGvF4UBF/2zmyMk8iClaY7RbEJqJzNbs4WsjKb7MA==\n-----END PUBLIC KEY-----\n",
+"sha": "SHA-256",
+"tests": [
+{
+"tcId": 394,
+"comment": "edge case for signature malleability",
+"flags": [
+"ArithmeticError"
+],
+"msg": "313233343030",
+"sig": "304402207fffffff800000007fffffffffffffffde737d56d38bcf4279dce5617e3192a902207fffffff800000007fffffffffffffffde737d56d38bcf4279dce5617e3192a9",
+"result": "valid"
+}
+]
+}
+],
+"subsetOf": 484
+}

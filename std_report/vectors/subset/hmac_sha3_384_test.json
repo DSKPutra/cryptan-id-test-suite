@@ -1,0 +1,396 @@
+{
+"algorithm": "HMACSHA3-384",
+"schema": "mac_test_schema_v1.json",
+"numberOfTests": 174,
+"header": [
+"Test vectors of type MacTest are intended for testing the",
+"generation and verification of MACs."
+],
+"notes": {
+"ModifiedTag": {
+"bugType": "AUTH_BYPASS",
+"description": "The test vector contains a modified MAC. The purpose of the test is to check whether the verification fully checks the tag."
+},
+"Pseudorandom": {
+"bugType": "FUNCTIONALITY",
+"description": "The test vector contains pseudorandomly generated inputs. The goal of the test vector is to check the correctness of the implementation for various sizes of the input parameters."
+}
+},
+"testGroups": [
+{
+"type": "MacTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"tagSize": 384,
+"tests": [
+{
+"tcId": 1,
+"comment": "empty message",
+"flags": [
+"Pseudorandom"
+],
+"key": "ee8df067857df2300fa71a10c30997178bb3796127b5ece5f2ccc170932be0e78ea9b0a5936c09157e671ce7ec9fc510",
+"msg": "",
+"tag": "7c87e3bf2a63428c2005a82c1ef0e0152537ce7a6f49344f3a85274724e075f9c833b6b2e6dd257e60222e7126312426",
+"result": "valid"
+},
+{
+"tcId": 2,
+"comment": "short message",
+"flags": [
+"Pseudorandom"
+],
+"key": "976696c0dc97182ca771975c3928ff9168ef89cd740cd2292858fd916068a702bc1df7c6cd8ee1f0d25e61d4c514cc5d",
+"msg": "2b",
+"tag": "b9c77f78d4e7928219105b1fa64d24a98a81816ca0c714d5424d0882ce7bb7be04b5bb4ac2a0092b4f5ce06f04c8654a",
+"result": "valid"
+},
+{
+"tcId": 3,
+"comment": "short message",
+"flags": [
+"Pseudorandom"
+],
+"key": "c55ea4c64a0a63e2d14ad42559ba7c816b8824d263c2cc6a015761b53f681e514369f0dfba5cde165320ee10a96eb1fc",
+"msg": "5abd",
+"tag": "d26883d233ad5a26257f5ebb088ede5a9155894fd331a79f89d331fe07d2baabd2f3735b959ad48ad290d38664d0f8eb",
+"result": "valid"
+},
+{
+"tcId": 4,
+"comment": "short message",
+"flags": [
+"Pseudorandom"
+],
+"key": "2928d465d92fa40072ca9d67761be66e491755e43499003c1057d3bec870f255126c3658d0d8a0c7d207df8710037ca7",
+"msg": "c405ae",
+"tag": "1c990f90e90e65bfee62549857bb10455200f425a21ba3f4b12636647c391d56b47e63e0c111b078eda90324799deb3a",
+"result": "valid"
+},
+{
+"tcId": 28,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f",
+"msg": "",
+"tag": "d10ce89d5235b22aaf49dae078c0c8c29fc3ab699d89837e1d1a9b443a70c9a86cfde0a690cd4377be0d91acf03fc86e",
+"result": "invalid"
+},
+{
+"tcId": 29,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f",
+"msg": "000102030405060708090a0b0c0d0e0f",
+"tag": "6654fe44542b3f1cd0b14728e69bbf6083f02cafd8ccc416525fe4013f7c7a51a8384d47afefa1fdd528d3fb6258bbd4",
+"result": "invalid"
+},
+{
+"tcId": 30,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f",
+"msg": "",
+"tag": "d20ce89d5235b22aaf49dae078c0c8c29fc3ab699d89837e1d1a9b443a70c9a86cfde0a690cd4377be0d91acf03fc86e",
+"result": "invalid"
+},
+{
+"tcId": 31,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f",
+"msg": "000102030405060708090a0b0c0d0e0f",
+"tag": "6554fe44542b3f1cd0b14728e69bbf6083f02cafd8ccc416525fe4013f7c7a51a8384d47afefa1fdd528d3fb6258bbd4",
+"result": "invalid"
+}
+]
+},
+{
+"type": "MacTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"tagSize": 192,
+"tests": [
+{
+"tcId": 82,
+"comment": "empty message",
+"flags": [
+"Pseudorandom"
+],
+"key": "1c678267be13acb464939c2896c9e9ce1deb5b30833bdd9ca00370889b84410782ad52afe25dc10ab7ec5cf5f34793b7",
+"msg": "",
+"tag": "b1bbb62a3d2e33ab8cdc0da03091bb83efbbe2c484b9ee8b",
+"result": "valid"
+},
+{
+"tcId": 83,
+"comment": "short message",
+"flags": [
+"Pseudorandom"
+],
+"key": "00b184c2c0a491d764a26f8b2e56a965222b36213bdd106ae782305c50f89269902476e5df3fa58e0ecfae82a9607c8e",
+"msg": "9f",
+"tag": "424d7ad3fb7addd09488de8b5e5951853ed915a66209ce02",
+"result": "valid"
+},
+{
+"tcId": 84,
+"comment": "short message",
+"flags": [
+"Pseudorandom"
+],
+"key": "055b67edb659e29c10e3e9cd25aa1cd5abf0880e2026ed8436e39b064b7315760cd7a9294ee23d4750969cc8b5dbaed7",
+"msg": "4047",
+"tag": "deb3604abe3406493230f871adbb10945371c725d77ff001",
+"result": "valid"
+},
+{
+"tcId": 85,
+"comment": "short message",
+"flags": [
+"Pseudorandom"
+],
+"key": "9e3c198e93930f076b035c5fa8f10d9a65e98c66cfb36633e3cb33279cdf57688f10b7472d1fc9d962ce6954519bfbf6",
+"msg": "88cfab",
+"tag": "8952c88be29d5a7ad5c252197a67d3af7512af0f320d5efb",
+"result": "valid"
+},
+{
+"tcId": 109,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f",
+"msg": "",
+"tag": "d10ce89d5235b22aaf49dae078c0c8c29fc3ab699d89837e",
+"result": "invalid"
+},
+{
+"tcId": 110,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f",
+"msg": "000102030405060708090a0b0c0d0e0f",
+"tag": "6654fe44542b3f1cd0b14728e69bbf6083f02cafd8ccc416",
+"result": "invalid"
+},
+{
+"tcId": 111,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f",
+"msg": "",
+"tag": "d20ce89d5235b22aaf49dae078c0c8c29fc3ab699d89837e",
+"result": "invalid"
+},
+{
+"tcId": 112,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f",
+"msg": "000102030405060708090a0b0c0d0e0f",
+"tag": "6554fe44542b3f1cd0b14728e69bbf6083f02cafd8ccc416",
+"result": "invalid"
+}
+]
+},
+{
+"type": "MacTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 192,
+"tagSize": 384,
+"tests": [
+{
+"tcId": 163,
+"comment": "short key",
+"flags": [
+"Pseudorandom"
+],
+"key": "08476e9d49499c5f52e37f80ece6f5a45459948806b48241",
+"msg": "",
+"tag": "fc5143709d60f6655e009acfea7016386350593622e590560c47e846a3fae8f6edc3e4331b8305834cae249dba9e269f",
+"result": "valid"
+},
+{
+"tcId": 164,
+"comment": "short key",
+"flags": [
+"Pseudorandom"
+],
+"key": "213b44d8e1fabaff837ef30ee2542f9ab82ed70411dae78f",
+"msg": "ee0bf48585c186ff991b4d8607817c9c",
+"tag": "b9255a1f98c06ff6048760a1b22d63c0e8a7479c5d453664a60028512d64e13d79f7e39e8cb5399d859f1c8be4761172",
+"result": "valid"
+},
+{
+"tcId": 165,
+"comment": "short key",
+"flags": [
+"Pseudorandom"
+],
+"key": "b4afa9daaa8c944d73a3881f3221e42b34ef4e35f184e878",
+"msg": "cf607f6a0eb44ecbca81b6d1fdb595cee35f2353da02e82e28e133b9decd8fbb",
+"tag": "b56641a9d6514b118c70f30a61c08e7e7a650ae2cfb9d73d633c3cc402a0b9ff75c9224a94610861322225ba31d9f3ad",
+"result": "valid"
+}
+]
+},
+{
+"type": "MacTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 192,
+"tagSize": 192,
+"tests": [
+{
+"tcId": 166,
+"comment": "short key",
+"flags": [
+"Pseudorandom"
+],
+"key": "89e46b66209548c80b0c830662223b49b0e3b895eb30e2fc",
+"msg": "",
+"tag": "eeebe1823fb042cc7c56b31748af6a134458eab62fa2e0a7",
+"result": "valid"
+},
+{
+"tcId": 167,
+"comment": "short key",
+"flags": [
+"Pseudorandom"
+],
+"key": "f2c10ce8cb1cf3b363354473b027c1e53deccef03233be0c",
+"msg": "e1fa10b8e301e0348405770bc3fafcb1",
+"tag": "9f0e9d9be70c82525f8add7dd15d925b9398d7fdbe1f2110",
+"result": "valid"
+},
+{
+"tcId": 168,
+"comment": "short key",
+"flags": [
+"Pseudorandom"
+],
+"key": "92e074442cc4c59e72260808d80d8e7b85c6335068917b83",
+"msg": "34eae27425ace17771e164cbb634306f352edc9c37bf608be8a755fb94148183",
+"tag": "b789a4371f0aa2f667a7ade1c53c98b53a39ff65dfbe7d28",
+"result": "valid"
+}
+]
+},
+{
+"type": "MacTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 520,
+"tagSize": 384,
+"tests": [
+{
+"tcId": 169,
+"comment": "long key",
+"flags": [
+"Pseudorandom"
+],
+"key": "db6f9956c3f4ca6e41f1f7f14629d44c79e0353edbf3e310e6858bbc45a7cd57778a9053ba22a141bf58bfd434ad08648c7041a224b97a0d17e0edf94fd40b410a",
+"msg": "",
+"tag": "2553a0441bda89fe78a8fef9d334f92224c3fd47b7eb8f18bd6ba3e7c2ddc383ab9264f50eed7d09f5e40a10e5cf5271",
+"result": "valid"
+},
+{
+"tcId": 170,
+"comment": "long key",
+"flags": [
+"Pseudorandom"
+],
+"key": "f03404bdb3e08f530d4c3a5f165d236012a4c45cd063e3e4483da088ec0afdb24e9639fccabb91f98a49dc2972e2981426573ecfe69c00c43a2d99a3107cef3a70",
+"msg": "73ed9fa2acf49d6c98bfc7d6c5ad9c56",
+"tag": "c345a72ff4dc5a62c8fef912c51f7d95814a3b59291df3f38da214a46423af89a40f8e37047403c9499768b3171a55c2",
+"result": "valid"
+},
+{
+"tcId": 171,
+"comment": "long key",
+"flags": [
+"Pseudorandom"
+],
+"key": "ee799e25edb1b18452e5ed174bc6b2185a6754417d6cc05d736d2ba9efc8367e4b05ba0a2ee525ceeab74f9804a8479130c328d671e34070cf174a003a1dfb5994",
+"msg": "ac3e7da7e578b9b4dc2424030446c7f6aebcc471445a9e0e6e65099caeec5b2f",
+"tag": "956d33ddc96bacdcb4e0058c161ae812d79d81d9f0f597e203aa6dae0daab27ad93c5171f564525fb91926dfcfbaa09d",
+"result": "valid"
+}
+]
+},
+{
+"type": "MacTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 520,
+"tagSize": 192,
+"tests": [
+{
+"tcId": 172,
+"comment": "long key",
+"flags": [
+"Pseudorandom"
+],
+"key": "063d6e12e670098adabe68192023b637bb6d8d713fc8436188c4ec06fdd084ce6d193f26c86a9560e1abc27d813fce2b3eac0170fd1cb72e1930a2776bc84d6c11",
+"msg": "",
+"tag": "24a9852f76ffa1ba3a6043cd348f17be036755162131259a",
+"result": "valid"
+},
+{
+"tcId": 173,
+"comment": "long key",
+"flags": [
+"Pseudorandom"
+],
+"key": "359318e6c6279ba9ebcb1675f5a98195bbf5d895da9c17b8329038be857dc395b12ae91a55598876593c1c20bc0172cf15126b7a6bf0a238eda3325d6dd60600ef",
+"msg": "7ad0c9098ea10e615bb672b52c96542d",
+"tag": "b3de2addd5fce93122f0f2f320c607fafac23b280898068e",
+"result": "valid"
+},
+{
+"tcId": 174,
+"comment": "long key",
+"flags": [
+"Pseudorandom"
+],
+"key": "d01cd898089d8a1eeb0035b0d332da80fbd3571b9192db10fa6f55f665ab192d7050cab643996e99254d9573e0cf4eeaa63afccdefd81614fe7b83dfe30e3ba19f",
+"msg": "d67c77cdd0af5d10e8cae887e5a609bb76a9e5597653773c303b82b918fdc59f",
+"tag": "f692da39c59268288b0f081a7b60de6111cef724a14f893a",
+"result": "valid"
+}
+]
+}
+],
+"subsetOf": 174
+}

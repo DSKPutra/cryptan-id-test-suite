@@ -1,0 +1,445 @@
+{
+"algorithm": "HKDF-SHA-384",
+"schema": "hkdf_test_schema_v1.json",
+"numberOfTests": 83,
+"header": [
+"Test vector of type HkdfTest are intended for the verification of HKDF."
+],
+"notes": {
+"EmptySalt": {
+"bugType": "FUNCTIONALITY",
+"description": "An empty salt is a valid input for HKDF. It is equivalent to a salt with n zero bytes, where n is the size of the underlying hash function."
+},
+"MaximalOutputSize": {
+"bugType": "EDGE_CASE",
+"description": "The test vector contains an output with maximal output size."
+},
+"Normal": {
+"bugType": "BASIC",
+"description": "The test vector contains a pseudorandomly generated, valid test case. Implementations are expected to pass this test."
+},
+"OutputCollision": {
+"bugType": "FUNCTIONALITY",
+"description": "HKDF can generate identical output for distinct inputs. This happens because the underlying HMAC extends or hashes some inputs. This test vector contains some HKDF inputs that gives the same output as some other test vector.",
+"effect": "HKDF should not be used with variable length user defined salt."
+},
+"SizeTooLarge": {
+"bugType": "MISSING_STEP",
+"description": "The output size of HKDF is limited to 255*size of the hash digest.",
+"effect": "Computing outputs with a size larger than the limit allows to find colliding outputs."
+}
+},
+"testGroups": [
+{
+"type": "HkdfTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 128,
+"tests": [
+{
+"tcId": 1,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "24aeff2645e3e0f5494a9a102778c43a",
+"salt": "",
+"info": "",
+"size": 20,
+"okm": "4b7045423d9156424b0b85d95a7d602fba3924b1",
+"result": "valid"
+},
+{
+"tcId": 2,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "a23632e18ec76b59b1c87008da3f8a7e",
+"salt": "",
+"info": "",
+"size": 42,
+"okm": "46cddd93b528a7b2df07a3d21e809d8980e1bf8faebfa48199779626ddbe925781ce9fc8de6b27eaeec7",
+"result": "valid"
+},
+{
+"tcId": 3,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "a4748031a14d3e6aafe42aa20c568f5f",
+"salt": "",
+"info": "",
+"size": 64,
+"okm": "61c0d2797276f1b789397e5a4be75c961a77bdbad4cca2bd9a4160cb85fafb1b32f95d610c58766f29769d0c68b0bcfb15916d49b72e52ad2f3e7315618175d3",
+"result": "valid"
+},
+{
+"tcId": 4,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "06eb26f8ccf28580c8f28d5b4dc47a49",
+"salt": "",
+"info": "d5f081e81e8cf9ded199f3ae43c80a2dfe3d9cf2",
+"size": 20,
+"okm": "ac2b3c7b3a3538d5a471a03849208437e0c2201a",
+"result": "valid"
+},
+{
+"tcId": 5,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "c181696a19ab1a32eb6e81b2925d8990",
+"salt": "",
+"info": "d8c8de92fe5422c9825996354db1821ba43a81ac",
+"size": 42,
+"okm": "bd5a9b85598010069c28028bd26949d44dd8312d0fe6cb3c49b2ab968de7aef4776c492e6c502056b419",
+"result": "valid"
+},
+{
+"tcId": 6,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "55fb6dcc7802354e55a45a6e41858c05",
+"salt": "",
+"info": "dcd590e418b259c64fb9e139b3a1280d5de8400b",
+"size": 64,
+"okm": "aeedc066b0ff9bd6fc13cba752a2fe8d2ffb9f013236d737e8e0031c4a5f287c67c6e7f0005d7766a2d7a4965c8c6c1e83c00f873f61002711969c709a4a0d66",
+"result": "valid"
+},
+{
+"tcId": 22,
+"comment": "invalid output size",
+"flags": [
+"SizeTooLarge"
+],
+"ikm": "2ea7f38feeb05b81dcae938af2f8e5ab",
+"salt": "519ba8ec8bbccca06a7dbb54ea2dd6fc7074a7caa700101092272ec85113d0fff39a32d960d4ccc4990a3467ec935bd8",
+"info": "7bd521a6fc9c4e24",
+"size": 12241,
+"okm": "",
+"result": "invalid"
+}
+]
+},
+{
+"type": "HkdfTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 160,
+"tests": [
+{
+"tcId": 24,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "fa4f94e9cdbf725c1ee98decddbe42ec06196116",
+"salt": "",
+"info": "",
+"size": 20,
+"okm": "3d55651a2b2a92331a51a43eabc1c2b4f4375c2b",
+"result": "valid"
+},
+{
+"tcId": 25,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "094db4e2eaae8fc9dca0d9bc14b29387fd476921",
+"salt": "",
+"info": "",
+"size": 42,
+"okm": "c43885bce028d5894c5ce3cb40928a46d18a50fe76a6e6484699fd99e41f2fbd26c7ea7799365debf1eb",
+"result": "valid"
+},
+{
+"tcId": 26,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "bfbe4f1edace02b2a3afcaada5f319103996dec9",
+"salt": "",
+"info": "",
+"size": 64,
+"okm": "2b6f393657b405215b34367f4667aa9bd1421d439cad19e2bc508e1aef33f03457c63fe59e7a5df84816429654576306abe211e187f61b07f61e5ec230d7ba19",
+"result": "valid"
+},
+{
+"tcId": 27,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "71220f185f4f2d436fa88b61f7ddf4a10948385e",
+"salt": "",
+"info": "f392a656590cdd585a06ad4892d2381ad0616a99",
+"size": 20,
+"okm": "38cc1c69cd4e9d16ec97af264125582f31a5e2b1",
+"result": "valid"
+},
+{
+"tcId": 28,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "3a0c2c84ea46c152104d794261413412bad2e846",
+"salt": "",
+"info": "1cf4f37e0cab71a252100a2925a8703231292a7e",
+"size": 42,
+"okm": "31fd735c271631560e953e006f119b97c2ae2281bb6a9e17f6469fc8064e7e8cab07cbab82639198d86a",
+"result": "valid"
+},
+{
+"tcId": 29,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "59b7fce05176a56f9b086b2e9e526b4491d05d27",
+"salt": "",
+"info": "d0e410792d888f355baaae8e17288e982032c231",
+"size": 64,
+"okm": "17516a7b9510cd14968b6e03688dbef48c4a3b44592d169d88bb56208d1918768933865b5e36eeee04a49f2226b9e39f772a04e39e1ddec0ed004d02eef9677a",
+"result": "valid"
+},
+{
+"tcId": 45,
+"comment": "invalid output size",
+"flags": [
+"SizeTooLarge"
+],
+"ikm": "66683e47d2c3961c3000dc31c5a91dacd6fe40b4",
+"salt": "d9d493c21b80bdbb684b78b28baf39121416f8ca40c51f03039e700156a49e43e50f8f2b186b479bcc353ff2405f4b70",
+"info": "ce8a7506d996c474",
+"size": 12241,
+"okm": "",
+"result": "invalid"
+}
+]
+},
+{
+"type": "HkdfTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"tests": [
+{
+"tcId": 47,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "7ef7d4f8c11d940471cf9a3048d66b3b3a3d9db9fed5f81419fe75dd50116f4e",
+"salt": "",
+"info": "",
+"size": 20,
+"okm": "fb6126cee3fa170356a81f125daf02b301bcdcce",
+"result": "valid"
+},
+{
+"tcId": 48,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "1b6c7d5da045bf8bd4ac3083e8de2b90904bc7f7830bef876e355b74466cef91",
+"salt": "",
+"info": "",
+"size": 42,
+"okm": "45ae2dbba580d79cf83528cf90e609c286bae7c46dbb13768938d88956db38d502e41951158012c150d1",
+"result": "valid"
+},
+{
+"tcId": 49,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "b9da242c02bfe79364aedd7a323692191092edb2094f112675c2609a387c3b21",
+"salt": "",
+"info": "",
+"size": 64,
+"okm": "a2f34d22e31e16dfe065ec1c1ad23451f4d35fb5884769272b7d3e6b794c6cbba1d822a1c4133987710fe8527a7fbafaa2f62a996053dd8674d215239f3c394d",
+"result": "valid"
+},
+{
+"tcId": 50,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "23624191960916aad7039c8e9dc2ec4e04ac61a233a02ec6045021598123f0cd",
+"salt": "",
+"info": "60dd0d1381a014491b34f0af15e4bebb8f64cbd5",
+"size": 20,
+"okm": "ef67a78012a4e48aefaf42dbd11ef3ca94fb81a7",
+"result": "valid"
+},
+{
+"tcId": 51,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "ad75f83c7fef898ab33a429af351c10caaf39ef27b161a6806d34f1f4f8be229",
+"salt": "",
+"info": "69546d578a213b7f2af101c8ef532339324d43ea",
+"size": 42,
+"okm": "3d7f8c5a3b0250b5a60f035e9bab29b6ac3ee9b01aca3e3a649b177a66afb609847369853a578f7e0f63",
+"result": "valid"
+},
+{
+"tcId": 52,
+"comment": "",
+"flags": [
+"Normal",
+"EmptySalt"
+],
+"ikm": "cb55dbea8b91ae1ce0a07b23b1508c2a930560b8fe7255fcc3e37835803661fe",
+"salt": "",
+"info": "b57d6aaedf30bd8e25867059761a02c5d0478f2e",
+"size": 64,
+"okm": "bfd4c64ee5906c0006c4c83fd8a4b748a6e25331d204a0a812838f473f397d13c387dd0d0ca1d3642d81e32aab5ae85fc96dcbbb2cd2caaf72eb4450494d1757",
+"result": "valid"
+},
+{
+"tcId": 68,
+"comment": "invalid output size",
+"flags": [
+"SizeTooLarge"
+],
+"ikm": "1af5bad5973f44912d10a573d3f49e682f850453121e71d4d63bdc990951fcff",
+"salt": "c1ad98d3e98fc97d906d738b215ffc82c3c921b87d7bf0af200b9eb97ff29f5831f4f8355589b4a1c8285a9980e743c3",
+"info": "68bc905009adcbbe",
+"size": 12241,
+"okm": "",
+"result": "invalid"
+}
+]
+},
+{
+"type": "HkdfTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"tests": [
+{
+"tcId": 70,
+"comment": "",
+"flags": [
+"Normal"
+],
+"ikm": "85ba55d5efee8d65e66197a87baea00f10d589670aa73e923cf71c8424bf2149c88366e5b4967586c198e8e540c85940",
+"salt": "329975ce0abab183674171fe82098db2b5b5e594160e7f5e94c9c69fcf9a16ff7193a45f572fe7a08eaf2122012abe40",
+"info": "ff957fdd4c71518f",
+"size": 48,
+"okm": "ae4b400a00bedbbafce33fc4e56a57146ed8c64ae9723d355799232b15d9be71728546d215d8b0e7378a1740a9ef9f3c",
+"result": "valid"
+},
+{
+"tcId": 71,
+"comment": "",
+"flags": [
+"Normal"
+],
+"ikm": "66c33e63e4260280ac52898eff61a515465cb005a4b80ec2a62e3d430b9e9e9381f6e6d9fbb1a2a633e8b75dce8c2929",
+"salt": "718c78be3e85766bc454f19becd469bc2eb1d58e606894091700420d9f97bcb03db02c43e742808fc2e2ba88185fdba9",
+"info": "ad03d32ef7b7aaf2",
+"size": 88,
+"okm": "73991ecc3e8334b0ace9f9cd82d95bb14dc9e060a764015a735fd4439e15b905d6067e797a3c3761f898158168fbfc219395fc90182968ac6362e805100b07a968308c261ef3d3cc1045a246dcf079d903074e24b8802e9c",
+"result": "valid"
+},
+{
+"tcId": 72,
+"comment": "",
+"flags": [
+"Normal"
+],
+"ikm": "76e9c1f541dfa15faf8409d291e47418a8639829ddc7d4ee500f885e8e1404c152fc28ceb59b7d0bff276b552dbdde36",
+"salt": "fb2e11af97a64cf620d727ca79d64afbcde3d145456c1b1f4f67d7ef3eeab059f67c8ecf56e1082f1e2122826ae23d70",
+"info": "80337d09f9acd738",
+"size": 192,
+"okm": "b060f9351e478bf07029b817a2b6ab4602638dd264dcd1c56a5b7067a345792d11d1448f69f379c2dd5d5dd33c6f2eb5a585bd8ca78a9274121c604da936e16ba815c31a6205d2035d699381e928337afbe3f78339904ab42d8eaa5f382d33c02e5ac924307a76be29b736a37a5aa359ce09fa61c13b409558e4584c507626418031808b49d21d989d0c0755adbac6259b155b06ce3b8d9ffd0d7babf161a116d1ff4b5bcb934454e197c27574e31365b39cfca600f93aa8c66642b3f3f26145",
+"result": "valid"
+},
+{
+"tcId": 73,
+"comment": "output collision for different salts",
+"flags": [
+"OutputCollision",
+"EmptySalt"
+],
+"ikm": "b77c1b4a865339d78c8e3ed7454ac6823b678d81126ce613c9e82ffab9e38ea88328d9eab8e88b409c1cedba7a74e8d7",
+"salt": "",
+"info": "6a5253cb802bf83c3b3941aabc08d524beedf003",
+"size": 32,
+"okm": "e376973755ee66c610613b236f3e1f999ed724d5651c79fdbd0389180be39cda",
+"result": "valid"
+},
+{
+"tcId": 74,
+"comment": "output collision for different salts",
+"flags": [
+"OutputCollision"
+],
+"ikm": "b77c1b4a865339d78c8e3ed7454ac6823b678d81126ce613c9e82ffab9e38ea88328d9eab8e88b409c1cedba7a74e8d7",
+"salt": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+"info": "6a5253cb802bf83c3b3941aabc08d524beedf003",
+"size": 32,
+"okm": "e376973755ee66c610613b236f3e1f999ed724d5651c79fdbd0389180be39cda",
+"result": "valid"
+},
+{
+"tcId": 75,
+"comment": "a salt longer than the block size of the hash is equivalent to the hash of the salt",
+"flags": [
+"OutputCollision"
+],
+"ikm": "b77c1b4a865339d78c8e3ed7454ac6823b678d81126ce613c9e82ffab9e38ea88328d9eab8e88b409c1cedba7a74e8d7",
+"salt": "1ce459b88ed2529c24ade0334476e89f869de08e7814604027a9aa1cbbed99b5691898ea46c8ca8f51ab970d6bffb6983a8158b0b82bdbcb98e3014e41d6e625c7",
+"info": "6a5253cb802bf83c3b3941aabc08d524beedf003",
+"size": 32,
+"okm": "7d3f1a70a9190cd64613f5eb9d18b6f050b4113cba21a99b68c0af395dd7601e",
+"result": "valid"
+}
+]
+}
+],
+"subsetOf": 83
+}

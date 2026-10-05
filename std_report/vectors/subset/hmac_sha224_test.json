@@ -1,0 +1,396 @@
+{
+"algorithm": "HMACSHA224",
+"schema": "mac_test_schema_v1.json",
+"numberOfTests": 172,
+"header": [
+"Test vectors of type MacTest are intended for testing the",
+"generation and verification of MACs."
+],
+"notes": {
+"ModifiedTag": {
+"bugType": "AUTH_BYPASS",
+"description": "The test vector contains a modified MAC. The purpose of the test is to check whether the verification fully checks the tag."
+},
+"Pseudorandom": {
+"bugType": "FUNCTIONALITY",
+"description": "The test vector contains pseudorandomly generated inputs. The goal of the test vector is to check the correctness of the implementation for various sizes of the input parameters."
+}
+},
+"testGroups": [
+{
+"type": "MacTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 224,
+"tagSize": 224,
+"tests": [
+{
+"tcId": 1,
+"comment": "empty message",
+"flags": [
+"Pseudorandom"
+],
+"key": "7eef1e40253350eb9307cc6bd8ab8df434bc2faf7095e45b50ffdd64",
+"msg": "",
+"tag": "45b466021214d19245506900532f5272f44b5ad9b3d829f0f5c2108c",
+"result": "valid"
+},
+{
+"tcId": 2,
+"comment": "short message",
+"flags": [
+"Pseudorandom"
+],
+"key": "8648ee936c6ebc5ae4bb48c1139a54e3ac5d897beec492dc4d740752",
+"msg": "2e",
+"tag": "5b72e3208679e63f929e6ee19a257d0555f21484c7caac7c9861be43",
+"result": "valid"
+},
+{
+"tcId": 3,
+"comment": "short message",
+"flags": [
+"Pseudorandom"
+],
+"key": "2297d78cc45faf9b885b36ac80205cc08e1b730f264f23f4edbbb406",
+"msg": "329f",
+"tag": "2e7a81c4e29a435d91e95f37fb0a62fbe9a69e061f416c1ad17a7fca",
+"result": "valid"
+},
+{
+"tcId": 4,
+"comment": "short message",
+"flags": [
+"Pseudorandom"
+],
+"key": "0361a904f7cbd107a617614ab69d11208ee6d423b3ae90e2bb6d7e54",
+"msg": "e6e765",
+"tag": "bbfa7ff960931e2f5ed8c925cd74272990e755f31422e5c858995b73",
+"result": "valid"
+},
+{
+"tcId": 28,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b",
+"msg": "",
+"tag": "6f99e862e532e8936d78b5f02909b130ab09806b2af02f7cb9d39d12",
+"result": "invalid"
+},
+{
+"tcId": 29,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b",
+"msg": "000102030405060708090a0b0c0d0e0f",
+"tag": "0c216faedf3053cd51fcaf417222c8f144abd5f2f7fa00ab4667d88a",
+"result": "invalid"
+},
+{
+"tcId": 30,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b",
+"msg": "",
+"tag": "6c99e862e532e8936d78b5f02909b130ab09806b2af02f7cb9d39d12",
+"result": "invalid"
+},
+{
+"tcId": 31,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b",
+"msg": "000102030405060708090a0b0c0d0e0f",
+"tag": "0f216faedf3053cd51fcaf417222c8f144abd5f2f7fa00ab4667d88a",
+"result": "invalid"
+}
+]
+},
+{
+"type": "MacTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 224,
+"tagSize": 112,
+"tests": [
+{
+"tcId": 82,
+"comment": "empty message",
+"flags": [
+"Pseudorandom"
+],
+"key": "26f314170b054daef5349804da18f969c94174baca2beeb009d47a23",
+"msg": "",
+"tag": "816d7af2475e94713f2dc3aa3069",
+"result": "valid"
+},
+{
+"tcId": 83,
+"comment": "short message",
+"flags": [
+"Pseudorandom"
+],
+"key": "17429a622dc18d38715b31f8f2b963108e952a6708f3e52d5b25848a",
+"msg": "da",
+"tag": "26630777d85f777187630bb94674",
+"result": "valid"
+},
+{
+"tcId": 84,
+"comment": "short message",
+"flags": [
+"Pseudorandom"
+],
+"key": "0acfe12d89acd7d9ca49bae6318f35b2fbbfc84e5d2c9d4954beded7",
+"msg": "03a8",
+"tag": "aa4c4bb63cad66ac675150f718b2",
+"result": "valid"
+},
+{
+"tcId": 85,
+"comment": "short message",
+"flags": [
+"Pseudorandom"
+],
+"key": "5a0680f112354bd467865b19ae956b2719e21ecee1a913bdca294339",
+"msg": "a0fb73",
+"tag": "36c7cd3f290d1d7d332b951aa471",
+"result": "valid"
+},
+{
+"tcId": 109,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b",
+"msg": "",
+"tag": "6f99e862e532e8936d78b5f02909",
+"result": "invalid"
+},
+{
+"tcId": 110,
+"comment": "Flipped bit 0 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b",
+"msg": "000102030405060708090a0b0c0d0e0f",
+"tag": "0c216faedf3053cd51fcaf417222",
+"result": "invalid"
+},
+{
+"tcId": 111,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b",
+"msg": "",
+"tag": "6c99e862e532e8936d78b5f02909",
+"result": "invalid"
+},
+{
+"tcId": 112,
+"comment": "Flipped bit 1 in tag",
+"flags": [
+"ModifiedTag"
+],
+"key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b",
+"msg": "000102030405060708090a0b0c0d0e0f",
+"tag": "0f216faedf3053cd51fcaf417222",
+"result": "invalid"
+}
+]
+},
+{
+"type": "MacTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 112,
+"tagSize": 224,
+"tests": [
+{
+"tcId": 161,
+"comment": "short key",
+"flags": [
+"Pseudorandom"
+],
+"key": "77b0de54e893642caeac34bfd1ab",
+"msg": "",
+"tag": "2014a9f272378fa1c9f6744d4db4861b52e61a19eb28320ebee2d174",
+"result": "valid"
+},
+{
+"tcId": 162,
+"comment": "short key",
+"flags": [
+"Pseudorandom"
+],
+"key": "7346c7e4b118b24e51f4512f906a",
+"msg": "506d4faf624f92965aa6b5c01e0c80a8",
+"tag": "c4e0ad2f62279898a7ede0f709a1ccb8c1004941f3c5074392e79533",
+"result": "valid"
+},
+{
+"tcId": 163,
+"comment": "short key",
+"flags": [
+"Pseudorandom"
+],
+"key": "caa864179f66e826a0ef3b5edbe3",
+"msg": "73f64253706ce6b5094c24ee012ece9ac2495283dcd8c7f1114e81e4587d8ea4",
+"tag": "a1220745bb03d982763bfa7ce352b8bc87576a0ad5d46a0da08ff2d6",
+"result": "valid"
+}
+]
+},
+{
+"type": "MacTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 112,
+"tagSize": 112,
+"tests": [
+{
+"tcId": 164,
+"comment": "short key",
+"flags": [
+"Pseudorandom"
+],
+"key": "663a97d6b5493dbfa60c8dd087ed",
+"msg": "",
+"tag": "0c6e21a85e3cd2cd413f36507d6e",
+"result": "valid"
+},
+{
+"tcId": 165,
+"comment": "short key",
+"flags": [
+"Pseudorandom"
+],
+"key": "b08c345a7c7166fdd33ce768c1dc",
+"msg": "9964d80ee2338cffe28483aa446a6f76",
+"tag": "aa003015309f2ed6fd7752e49c31",
+"result": "valid"
+},
+{
+"tcId": 166,
+"comment": "short key",
+"flags": [
+"Pseudorandom"
+],
+"key": "fc9d2883c67534fefbd6ed4a9798",
+"msg": "a49820c194a43deef11f3a0f4eaa80425439fca9d9f1d7c8e665d6b130e4e908",
+"tag": "1c2b96623c91ca9c5027f8f81ede",
+"result": "valid"
+}
+]
+},
+{
+"type": "MacTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 520,
+"tagSize": 224,
+"tests": [
+{
+"tcId": 167,
+"comment": "long key",
+"flags": [
+"Pseudorandom"
+],
+"key": "cfa639656cd49f8d70f0b1a5a056ab4fc0aeeebc91338d067f36c47b6012dc8d856b8abcc4e1abffc910aeaee21b4d366e907488ffd0ca55b36a621aee0b2e9f0c",
+"msg": "",
+"tag": "0ef4fedaeaab4ad52c843657047b19788a9fa91061b7a14adda8c490",
+"result": "valid"
+},
+{
+"tcId": 168,
+"comment": "long key",
+"flags": [
+"Pseudorandom"
+],
+"key": "b36d3d47a4585b401fc64c98eff56243d4da78863063d814e88f370b92576406d447fcf3d129a1ede57ddc56ea3a0a1f100105a95e83138cdf45ecf2a5992acf90",
+"msg": "15c75a64b04d097af2371af380079eb8",
+"tag": "4ecb2daa5fb08dbd836e92a51e200bb230f54ac2c9778f5226b3abc9",
+"result": "valid"
+},
+{
+"tcId": 169,
+"comment": "long key",
+"flags": [
+"Pseudorandom"
+],
+"key": "cf78b991382db5e8666ccb2333fb672179b10a75cf9e5a7699ae640005e19772ef6499a3bc97f12e58e835bb0017bb3b2e64c6ab44a0d619dfa0363484d1c991e2",
+"msg": "f661e598f180f25dc6dd76db8a9e0e4c9c272b9665a6b1756560c723b8e08595",
+"tag": "cd55cdb0c4f02b9f6148392993b18b4ff00a5e73b6f3fbf83a854aeb",
+"result": "valid"
+}
+]
+},
+{
+"type": "MacTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 520,
+"tagSize": 112,
+"tests": [
+{
+"tcId": 170,
+"comment": "long key",
+"flags": [
+"Pseudorandom"
+],
+"key": "3772ff6bb4e5b2811cfd4d6a3d34dc74bca3dbf89a5817b79d8472a1383b8c9afb27b3006196ce9966829eae6a313c2d724d995f4def17117c09edcfc8c0cbbc93",
+"msg": "",
+"tag": "40beb1d3aaab25a403224e577770",
+"result": "valid"
+},
+{
+"tcId": 171,
+"comment": "long key",
+"flags": [
+"Pseudorandom"
+],
+"key": "2ba910bc0bca90644cb21e96063e2cd85f5dd02fda75d353c9b51eaf45eee94c165ca6592d6cfdd987bfdc1cba66363d535a14b2f7ead841b17c4d76a5049105f9",
+"msg": "7ba461040de9ea3cefd4809124f78b39",
+"tag": "4d28a926df1b188e85d092bacf11",
+"result": "valid"
+},
+{
+"tcId": 172,
+"comment": "long key",
+"flags": [
+"Pseudorandom"
+],
+"key": "7fcf3cb1b1c5b537492aede4689284b5881935e3537bb7307198d6518e7a6aabf70b50b44e4a8dfee35e9f5cbada7447e511a37209390fcd171c62075c6a8bf1eb",
+"msg": "83d29c1c4d059ddb0d2aca787e5b701bac3953fb9bc72dc87b1ef92a582e9748",
+"tag": "392ce38f7838b2f87163eea00b86",
+"result": "valid"
+}
+]
+}
+],
+"subsetOf": 172
+}

@@ -1,0 +1,1122 @@
+{
+"algorithm": "AES-XTS",
+"schema": "ind_cpa_test_schema_v1.json",
+"numberOfTests": 123,
+"header": [
+"Test vectors of type IndCpaTest are intended for tests that verify",
+"encryption and decryption of symmetric ciphers without authentication."
+],
+"notes": {
+"Pseudorandom": {
+"bugType": "FUNCTIONALITY",
+"description": "The test vector contains pseudorandomly generated inputs. The goal of the test vector is to check the correctness of the implementation for various sizes of the input parameters. Of course a main goal is to check the the correctness of the ciphertext stealing."
+}
+},
+"testGroups": [
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 64,
+"tests": [
+{
+"tcId": 1,
+"comment": "message size = 16",
+"flags": [
+"Pseudorandom"
+],
+"key": "6e9841dd6f35b53c48084f9558deabdebe8a712fd6343046a0f92bfdcfe16e07",
+"iv": "6e08e4314925b6cf",
+"msg": "7252a0545fcaa07fc468c636203de219",
+"ct": "d107e084fbaed19c5be05ac4f48b7732",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 64,
+"tests": [
+{
+"tcId": 27,
+"comment": "message size = 16",
+"flags": [
+"Pseudorandom"
+],
+"key": "78889001e21046c8ae56a9625212fd4a6e7471d1e9bb25249ba10a1c50925da67d8e9b16b23b1777e30a3ab42f4b0bdf",
+"iv": "f0de263134ac1827",
+"msg": "e3b57a2f3a59801b3b23df95170cccac",
+"ct": "8f08bf57a2e866e74a04a116069d9a46",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 64,
+"tests": [
+{
+"tcId": 53,
+"comment": "message size = 16",
+"flags": [
+"Pseudorandom"
+],
+"key": "13d69212ec8bb00ed412f66b9c9faccf84449a6e59b0ab1a8f82ec4684b16d67556a5a0271666c957024192c1d35a9c09727bf4beb78b05a013bf8b7e932c15e",
+"iv": "595f2e870659f228",
+"msg": "438fb4c4c0c5a0f48bb8566d1fd28b0c",
+"ct": "5e349fc677214491c57b86a1dd9b534d",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 8,
+"tests": [
+{
+"tcId": 79,
+"comment": "iv size = 1 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "ce4cf76100b7e3ca9f7e48c7a155c3c8fc68ccf1de59f9a0d2d8d8002e84740f",
+"iv": "99",
+"msg": "e25c905635d9da00d4407de3c20a05a830787fc763d5ef07d3429067cccc84f4",
+"ct": "d693a3354770193046b94eeedfce211d35e9eab3b72f7e478362661f1e3b5b7b",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 8,
+"tests": [
+{
+"tcId": 80,
+"comment": "iv size = 1 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "9e683bb92dccd61dae1abed7c2d2276cf6fc43daa33b191f9fdfe6674c661c258fcaaa2caaf9b6b332a1db4b97bcb88c",
+"iv": "01",
+"msg": "37ecff7d979a7946bc05508f01b73b9947c4627aad510a111db41388bc3db324",
+"ct": "6eb708c538f34ea46886fd7faebbd22a56f57285d233aa8e8eba639ac2a44f1a",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 8,
+"tests": [
+{
+"tcId": 81,
+"comment": "iv size = 1 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "2e4d2841119294393cef443d71f23145773db1b88a64df570f108dee90b93d0a8a1cb2de9bf99f365cc8c94626222ead56e343fcf533b5c042ac18a72bc26db7",
+"iv": "e9",
+"msg": "6ef5c535eb6001917252976870bfce3575e097b181dda62fefabd82a1653beaf",
+"ct": "0387327e3c8bb348e43e682cbb17c05f397c23e8cda3a16aca4aa997bbaeb877",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 16,
+"tests": [
+{
+"tcId": 82,
+"comment": "iv size = 2 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "171121c274c15ba3d78be9c74c3edfeab944bd2bbd4983300e7f457f6e646b00",
+"iv": "9c97",
+"msg": "652c5b48db3a708f64cd929bdd186f7cd5c81b14ebf5b1cabcd6abd0d62e979c",
+"ct": "f61f5990e0f0e814937e9e3f2138398cd188b01936fac21d44ba17daec58c994",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 16,
+"tests": [
+{
+"tcId": 83,
+"comment": "iv size = 2 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "cbb743a07da2583a94d44117b446c513ff4ba6d06dbd82cb4c5bc17a0beab3e59c7f475e747b8a3bdb444e9e59409a03",
+"iv": "13b3",
+"msg": "504de878d3d2a409308cd65d24eca2205ed2605cef6b5e2e6988a6b615185803",
+"ct": "e422205362bf670ebae8a1cf9e8e6014ce250d6f6cf998be38fd3bb9e226cb86",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 16,
+"tests": [
+{
+"tcId": 84,
+"comment": "iv size = 2 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "c53b75afde18bc541f6a4fa5e1f0edb79ed8a516acdb49abc285b5ddf7aba68e0f35f2ae01f74b82ef560e4487af89c03f10cc74ff3484878caae6ad151201f0",
+"iv": "e073",
+"msg": "f83256d6fa6f36da6f58da35817d1877563049a28a07ae5d14faf480ccff59df",
+"ct": "862034d4d6fd07be86dfff18dbcf809425e0608f474f238437068c7f29bb5dfa",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 24,
+"tests": [
+{
+"tcId": 85,
+"comment": "iv size = 3 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "d59d34e52e242229d3901de6cd94e7972cde5c9c7f4294e4ea379c014c861623",
+"iv": "92c9cd",
+"msg": "52f5762d553fd44b2f596cb6dd37fc56467df538b36aed404d729f3bd14fb0cf",
+"ct": "1aa05fa2f13f68569a910531cd335ded2c9beaa2c815bdbf4fa0217fd848fca3",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 24,
+"tests": [
+{
+"tcId": 86,
+"comment": "iv size = 3 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "45edfeca50b36e6142a482ff94e3ca0f574d21753ba3424504a25b10be888a5f8ecc90f7e9fd81070deb4ad27c4ce91d",
+"iv": "4ab68a",
+"msg": "e2c7eb239774a8c12066e85ab46db308f98a9089b0573c7104cd5ba2120c773e",
+"ct": "30a86215c01d9263a7e3df5e5e94c9d51262b714a03736c23d82140d6ae21921",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 24,
+"tests": [
+{
+"tcId": 87,
+"comment": "iv size = 3 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "665da1fb3f742631400eab60c6bb2cc6e1f6b7a849841023beb80c3d38664eb4257762bf8520d6cfd14db0fa4fcaf7cbd220beedbf38400bd8e57f6a95e323a7",
+"iv": "b5766e",
+"msg": "646d34f935229de5a24c18700b0eaa4cd968eb8f65aceb60fe8cc8e7ec0604c9",
+"ct": "528f90e9289ffb6476a5a2eac7568adbb8030693be6b0ce4c38432995c6e5cfa",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 32,
+"tests": [
+{
+"tcId": 88,
+"comment": "iv size = 4 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "7439f8b4cb368cb38ac3203e1d042a2c9ca279279a544d659a7bff5b350df66a",
+"iv": "95725c8d",
+"msg": "55a3676b33572dbf4309a8cf5c4f175b16c02f26af7969ce92c314a80d988585",
+"ct": "9fab7c71be33beec5b9a09ac616fb5eb8f76edd6034a57aa850c1a43b2ca6a8b",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 32,
+"tests": [
+{
+"tcId": 89,
+"comment": "iv size = 4 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "0645faf34561c11df027593121e78f75cea4fd2fbeb3be4a8dd8f97ca5629325e1f24a574e162fe76251781c7aeb3930",
+"iv": "bec40d6b",
+"msg": "69bfba096b216d791e9f36d180d6ed23a0c10dc10d281cb862a4e0bf60a4906e",
+"ct": "626b8321ae8f36677df48056cd9109738bf19a4b9b46eaf40afd04b9043a452c",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 32,
+"tests": [
+{
+"tcId": 90,
+"comment": "iv size = 4 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "2e01176dd925fcff0c5d1f9a611bc9022ed5d5a025269b3889cb7deaa073264f57f48915dea0b7fd83b9026302cfcc5b9d37699923345d9923b135f72e1f290b",
+"iv": "a3d4d548",
+"msg": "69ef8c19fe3e05d9d44fe7090d61f530583af2092826498d99ec830af9cc6cbe",
+"ct": "0f9eb1090112ec2a521e9787dc68dd3d308670903acccea9cfa8a2daefba3c7a",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 40,
+"tests": [
+{
+"tcId": 91,
+"comment": "iv size = 5 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "79fff7b98ee271f28487af1e8cc9fe2cb3db280c5d867dabb6de1c6a75765c21",
+"iv": "614611d015",
+"msg": "1bf250b6ebd784ee0dc442d868ede766e83d39ee58c364cd759ba43dcf84d51f",
+"ct": "7c63f70375a847b4e0640e446448e45c0f90cf2b79af222d877b7f747698e87d",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 40,
+"tests": [
+{
+"tcId": 92,
+"comment": "iv size = 5 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "9f67a23ae5e7534f2f80537d3866ac444ce75e0b8d163422fc289643aaf8854bda042966bb05e71d60a6c7f584693203",
+"iv": "68b1917362",
+"msg": "3624c378e4ea77ad29929774275a7298cbc7294692f760acef9efb63b6403e81",
+"ct": "a65951fdeace6ef1e623d2acf3e0132244ee03c60b6cf080688767f660ef6342",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 40,
+"tests": [
+{
+"tcId": 93,
+"comment": "iv size = 5 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "e8ab47d76039e8e954c520048e6763968050675742a74f5da26f9ef0c83eddd666026b5c255e6f0263b8b5104642f866e952f9721ae503676009f3678fa2c17d",
+"iv": "a7ca879b3a",
+"msg": "8404734c2da1518a3e618063b7c49a4e180c312dda0b3c534b94d45725d493a8",
+"ct": "820596c607ae3662336dfd041cace986655fd90c85f030d2879c9b6905d42ca8",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 48,
+"tests": [
+{
+"tcId": 94,
+"comment": "iv size = 6 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "d4c308209b4ab85fa8f532682f033e5d515280b4272aa5175d4be2acb3ec692a",
+"iv": "8a5640e3d499",
+"msg": "a64a3a04aa5f216ea87632b82a4173a377175b13d64ab8abdd0a7825074ff6d5",
+"ct": "f5ccae5d9f2df720494fb1d59e83f4104d92b5acf2730b5acb2e49bf4cacd4b5",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 48,
+"tests": [
+{
+"tcId": 95,
+"comment": "iv size = 6 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "1a53cad004e9abc97c3db71120e85eaebb5e1ea9fe83b99f49dc157b75b129ff6b10f04c3686af578c9659364712d792",
+"iv": "770fc1f578c8",
+"msg": "f1df1d9037bb5ccad3db96436a70846815b2f158cd405efb242e6bf8f7f28490",
+"ct": "72516799df4efa9d315c3863f8e1578ae6cc043771b220d2c7e842d1c96cf70f",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 48,
+"tests": [
+{
+"tcId": 96,
+"comment": "iv size = 6 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "af95287f93d83edbc11cd3a2cae3cbba681aebab79c7891baa9f1cc7788480555216a6b9cdee6494db82846bf5d42259bcc8ea099f212b47af608fa8b852afba",
+"iv": "e0c6cfd27df5",
+"msg": "d883197dc79e3005f1d74d81207af406918d5e6d80f41e08120a0756721da872",
+"ct": "dca05ad1c522c9d80cbbf734f5477d2b118b8c5ecfd55e26693b08e9a1198c68",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 56,
+"tests": [
+{
+"tcId": 97,
+"comment": "iv size = 7 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "ebadcc2bf2b03d9434350a480189e1e5a4e1b1310a9ee274b3f3c9f66edb9027",
+"iv": "c73c9caf527450",
+"msg": "95a1a34061017a6a460bc6c87bb60c712e74259254e0adabc0d0fd2033c387d2",
+"ct": "cfb9aebfaaf510ec051c7161f34ada36ecc3dca3c36ec116670f1904448bb4d4",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 56,
+"tests": [
+{
+"tcId": 98,
+"comment": "iv size = 7 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "ddad6de8713dbd09ece4317e605a177d6060040dbd52752fc9eca4ad4801179985e312c64ef893b3883af867840525fd",
+"iv": "772e13f2b2e31d",
+"msg": "17b7ab482c71b6e7d05cec61558a1c7e907c6f14e3a1493cea6b20b4bceb7626",
+"ct": "c7fc8c99a4d8ca9bb54eec7739909cc66bccebb439f69b8288090b5e89361142",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 56,
+"tests": [
+{
+"tcId": 99,
+"comment": "iv size = 7 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "848036c879c79c10012811d13d90b24d912e672bc73c8b710fb7ce6d73b6b8721bf1dc35f60a953e3389f7cae864982622f8c73d62c60bbf697e3393dcdabedb",
+"iv": "9250402efc5c4f",
+"msg": "1fc8a7185df65ef7e05645fc1eaad19062d54ac6786ddb909530e4acc75887a9",
+"ct": "f301f6a3b3e7ee42e2da470d19f49d77dc706df140f13eecdcc355f80ddb0fd6",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 72,
+"tests": [
+{
+"tcId": 100,
+"comment": "iv size = 9 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "81ce968370fc0a45679886a739abf32126951234608894d168ff0b80c84b893e",
+"iv": "17208c5d99730bcda5",
+"msg": "07dcdca8bfd07839f9f5170b5e20a7323e1be7cf271d3444074d738d7bc05f50",
+"ct": "97b70d6d340825dbc2767f65dcf04a6dab601a5edb79335b4c5c39e298234745",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 72,
+"tests": [
+{
+"tcId": 101,
+"comment": "iv size = 9 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "54dc51a285c355b9f901dc21764193b3bc853c3bde8d2112a243e75e7b546df3e7db2fa57c71c7dfe4741f0339079f94",
+"iv": "38d85a4b47f0050248",
+"msg": "89b713edd96adf43ac4df9d1b1447d7f7df1d57c596a5751a67a398a08313f89",
+"ct": "ea12b5b6856a6bb9fb6df10aaa6cb08b88f5830fb9709e092d7310442aeef3f1",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 72,
+"tests": [
+{
+"tcId": 102,
+"comment": "iv size = 9 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "22b2b2b73deebed5466cc7fd03b3192609e72cd9ad383daf1c6a148150774699e5efcab4bc758f3865c73569b3dfc90e4c20a10b4551ce1d077eb3fdfe252c1c",
+"iv": "be937123a20aeddf04",
+"msg": "2bfe4f70f11b368b8b48b4f874bc9c27857a9ac5506477408cb996f46fc820d1",
+"ct": "c47aa1cebcf2dfd1ab85375c5c7d11a5a31cd44cefd4a00292e3d21b3a38d623",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 80,
+"tests": [
+{
+"tcId": 103,
+"comment": "iv size = 10 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "32e268b75d31daf780fc3d2450893982a8daaec75fd3d7219dc03c7066fda5a7",
+"iv": "920f84182f5a739e60f2",
+"msg": "7e44eebddb4e390ce0653a91e16b55d7fccf47d95e4d8a1f690fc1f5fa6c082d",
+"ct": "9a5efbf2b599c4547b7c594b6ae375accfdeb3fec9a42c08837482122da2d9e7",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 80,
+"tests": [
+{
+"tcId": 104,
+"comment": "iv size = 10 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "7f86e4789294fe6b9f180a6d477e6a2216f88a890a14bc1446bef991818fbf39dc9e34a5972ecbd1cdb1df91964bd97e",
+"iv": "48a5342758f0011f32b3",
+"msg": "cd546f292f3150beb9ccebcbff0ffef938011e79f5547f2732140d771b1c212b",
+"ct": "4547f46c574d9e910c41c59f5b1a747a547c69e7d24b8aaa1af7dd8e938267fb",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 80,
+"tests": [
+{
+"tcId": 105,
+"comment": "iv size = 10 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "b905a7aeb76fee9832d40199886de2c99730c30732be3d478a404f85939584b99ee1cf9d4834808693639d8ed11bfb58faf73e91af0605af1b9c224a23c5e59f",
+"iv": "5b7c716b932f2e2d1e82",
+"msg": "1d2185315e0e7b34f72e7c1272c7d911fc292cb24406f85ca7d4db98fb86b0e3",
+"ct": "c9b7fa565234a3eda6ed6d1373e802803565fe2f224109cff33d9b4526270c7f",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 88,
+"tests": [
+{
+"tcId": 106,
+"comment": "iv size = 11 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "5c17a6a3ac673bf61fca6fb4062643fb4f446ec98f869662b3ffa64f9cf9d360",
+"iv": "4d039dd3d2a8798b0384ce",
+"msg": "8a311ef2e336842531aef3e5cc5b89fb90a7da871e722d7bc6293ed2cdd5bc92",
+"ct": "71d536269667ce00b64e8be2b6f3349a14f1558273490dc3c1a3f59605eb271c",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 88,
+"tests": [
+{
+"tcId": 107,
+"comment": "iv size = 11 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "3f4c5ce9eb3ad5e4c21bc477503082ccdf6517bec8f08a2ae66e0f6c8fd80118eec5da2adec81107560745985d25404b",
+"iv": "3f2aa42a86c4dac0576c19",
+"msg": "e724f7ab107821ef2ad90b34217d8e7855cf43c1bdd7d0993caf5f7b75b01145",
+"ct": "b474dfab11b9ef8623c38bdbba2af34518e22dd93541f2d38b8f94f48e9d9f74",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 88,
+"tests": [
+{
+"tcId": 108,
+"comment": "iv size = 11 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "9575d6c51621a477dd9509ad5c91a479167c685b1a9e7b593d360bbc752865788a4bbb19d3131a4e2dd07ecefbb9dccbf68b1fb9f7119b5e80473edf4ee06998",
+"iv": "68ffaf1f96575939b7829e",
+"msg": "160386bd2884be2cc89955ee608fe60c18fd3390f04de185fe8edfdb235741b3",
+"ct": "5e5eaf6df403cb00280dc336f7801bf005e4587fa1dfc8257dd384f7fb6935f1",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 96,
+"tests": [
+{
+"tcId": 109,
+"comment": "iv size = 12 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "305695c10bf0b62ce46cb8ec9137689e8bf05e554105508946636feffa55cee0",
+"iv": "698715f84613ccc31cdac4b4",
+"msg": "e7d186341672e4e4dc8ce0c663e6628bb9371deec1d3c9be0d4c80436ff93f7f",
+"ct": "239394b18aca00253a19dfc1c2c03f39916d1084c005a1b6a9b1f1568dbc0d19",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 96,
+"tests": [
+{
+"tcId": 110,
+"comment": "iv size = 12 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "16630006fb2671c615595cb2e4ad48b1d4ca0dba10605aac6dde95f576af333b097e92d063cba9ea971b4b2a9479199d",
+"iv": "60312ec189e877f42fead4de",
+"msg": "5c71641d6597b84c022dfe160cabb35a36974f3250925e6575828930305ab2c6",
+"ct": "bc5b5c071c0a0ea37f5369d7a1df0390ce04fe3505ac2cc94c858473d9e0db77",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 96,
+"tests": [
+{
+"tcId": 111,
+"comment": "iv size = 12 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "794a43a31c533d3099ee45b60e518b084d2facb5c5b5fd19cc2ad4b03a374c637491d94ae151400d325d8cf730d4ab345f3ebefa115be9eeb3a960b53d92b805",
+"iv": "29d7e3372f3f6ddd08bafd05",
+"msg": "010ff533a4f1a69899e2171e5e8d210674b77482cf9fb892ce8975f3e75baf69",
+"ct": "da34cf321102ed60744402d16f5548f36e40e181af7b0a921eb7861f33c9b297",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 104,
+"tests": [
+{
+"tcId": 112,
+"comment": "iv size = 13 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "44bf219b13e21cd87fda0dda4fe27de963fc6161a0d7641350a0cadbc26d4526",
+"iv": "d9a6fd25cdfe5618ed36395dc8",
+"msg": "a6895a15b95479448f3b039652f7cd0cfa15634ce084544004b05ea42d2bcd93",
+"ct": "5d521546cc705ddbd0c16d6be8062e5a12d3d9f704fd0222ffcc8ed0d887efbd",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 104,
+"tests": [
+{
+"tcId": 113,
+"comment": "iv size = 13 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "764b0d0ce4e3f56bd3a30bf2dbf34cd71b094d9f60b41bf3a962b688870102bcabadc88ada93580d52338f75e9f81a7f",
+"iv": "f0c4c5ba8e0f6bd583f27c63d2",
+"msg": "90b94d5f0c21084f484b9f19b05faad0832e2d278237d3c4223d57d0c3ede6ef",
+"ct": "08fab075e31d42f360c37f97e4ac3dd337bfcf9f7eaea462306c7616debfcde1",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 104,
+"tests": [
+{
+"tcId": 114,
+"comment": "iv size = 13 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "5d0f0d71f38a46b3e899a379f41e69ece37ae69ea32889a6d37f2efc0aab2d726f0e52cc82f935e8db27b41c18750e6b8f5e73b16705b91fcf5354c017797c7b",
+"iv": "4a449d268767fb8e8f3cf71749",
+"msg": "382f65912f106cab02da1af61cd9279e17cb8c5ba49f56ba52da1315495b2dd5",
+"ct": "054ba090833aa3515711c2303170811f3724a5b4420fc8bb8ca2339a7bce72fb",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 112,
+"tests": [
+{
+"tcId": 115,
+"comment": "iv size = 14 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "dae5cc77b08c775f584c5921bd53d0d8f6b47dde7f07ef96ff47d2954e638dba",
+"iv": "b1cbe7bddd2359d06c13586f0535",
+"msg": "a0354eb6aba291c6450a76b37b5731eaad7fa7a4a54b997ab4ceabe4067d8dad",
+"ct": "db87199daf514ea0e3fa6a04a4a77b7cb8070b2dd8203db2cb26cc866ac799c8",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 112,
+"tests": [
+{
+"tcId": 116,
+"comment": "iv size = 14 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "00622a72ef51df24f691f24b7af0938dd4675f14a6878bd81511d8cbd45cf92a38c97aaa2aa9565d5c2a26f945e02c9e",
+"iv": "be210f57a8401ed66715f0c8bb57",
+"msg": "d13463b451ff1e862ad82a911ab9c2472de41643cce97511f6b00d1ec658a285",
+"ct": "8aabfb0c61fa78e95fe405aa05d541a4ebe23d098328f22ef194ae737db86b51",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 112,
+"tests": [
+{
+"tcId": 117,
+"comment": "iv size = 14 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "d40be1b80f1fccf0d9f88e600ed40783e6e29e42a63ed07f6eec2cae1c4be29bf20bbbdf9095727488d900cf0b263372571fbce88ab2321e011623c9ccbcc7dd",
+"iv": "b0df8f87983df207cdddaf2bd111",
+"msg": "6831e7edba955552004a15b93a906ccde144a834f19114cec0639477434e7d02",
+"ct": "b22c764cd11bd0a8c279bdb2cee221153cbb2b91352984ee19bc5d722a415f5e",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 120,
+"tests": [
+{
+"tcId": 118,
+"comment": "iv size = 15 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "a55aaf3d980619f68d891151be94f5a196a160a05fe5dbd92392f297d15135a2",
+"iv": "3965c4ef2f76589c43aea017d960eb",
+"msg": "0a3fdd751a23bcbe511fcb92aed4bbadf24fb3e083d5656b7440bbfda0e27922",
+"ct": "21a4963a2df784846db48b64113f6d03f271dd240eff1fae3b4fa13c58c4dd65",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 120,
+"tests": [
+{
+"tcId": 119,
+"comment": "iv size = 15 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "d99437aad0a26d48db42c30ab043640c225b96fd58ce1c6bc7182ce80be041ce96a1756853bcbf9b51c2b82fc4806ad9",
+"iv": "839f8cccf08f6191a6316bd7b52458",
+"msg": "91b88c35c8d1b677574e446d645ab44f5ac4f6ab6589d9ed33c99712ba6b4420",
+"ct": "170512eb887a7e27dedc326d51a3ae0fd06604fa47ee2480b8f703fdf41a520d",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 120,
+"tests": [
+{
+"tcId": 120,
+"comment": "iv size = 15 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "42f82641cd8bc47764c6535b60caa457e0d8314a6960f18bd66e84e44f593b024c4919ebf04a1afe6a0429637a1e9a1f631261ae6030833c516c09bc30adee33",
+"iv": "3759ff27b06e6ebedc656e2bfc9de7",
+"msg": "b8d820de46cab4ca62215b44577fc3cb626e09ec2c4eec73ee7563874e876fa9",
+"ct": "dccee1212943d7c92995cde6dc9fca622ad336f3f0ff38b46ed1f369d7246a33",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 256,
+"ivSize": 128,
+"tests": [
+{
+"tcId": 121,
+"comment": "iv size = 16 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "96e1e4896fb2cd05f133a6a100bc5609a7ac3ca6d81721e922dadd69ad07a892",
+"iv": "e70d83a77a2ce722ac214c00837acedf",
+"msg": "91a17e4dfcc3166a1add26ff0e7c12056e8a654f28a6de24f4ba739ceb5b5b18",
+"ct": "993a00edbab95941dc103cef8c14744818a3c76186a0d1756b9c87580583e827",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 384,
+"ivSize": 128,
+"tests": [
+{
+"tcId": 122,
+"comment": "iv size = 16 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "c4bb58d73a61eeef0ec23490dc3c3a3e140244c9be88209658cc5654a996db2372c2212ffdc260bbdb92a520c86f96d8",
+"iv": "a273a3a255babcc6fa6cedbb7ee61290",
+"msg": "d0535403fed2c1dec9f858eebd688afe4d0010b2823275d1bacfd564c074415f",
+"ct": "2a4f1155c178198d6997e37bee7cab804cb33c839b7543b0d7558f2b4bdb96d0",
+"result": "valid"
+}
+]
+},
+{
+"type": "IndCpaTest",
+"source": {
+"name": "google-wycheproof",
+"version": "0.9"
+},
+"keySize": 512,
+"ivSize": 128,
+"tests": [
+{
+"tcId": 123,
+"comment": "iv size = 16 bytes",
+"flags": [
+"Pseudorandom"
+],
+"key": "27faf97fb303aa4f2f364edd23997f4c77b8e51ebb8293c59dfb1d24f0fb629f6c820fc2d91bf48f0035eeec347e37ec4fb0cb36102bcdc5a248c47a2f97eab9",
+"iv": "db8b2586214516c2fc656a3736f29e3b",
+"msg": "6b1db0f5a43376885002dc98bd556f1dac9b66b66213a9fa6069df995a123384",
+"ct": "330dbac070c68d68ed49e8ed1827fad7d89eaae55468db5edf488f9647dbcbc9",
+"result": "valid"
+}
+]
+}
+],
+"subsetOf": 123
+}
