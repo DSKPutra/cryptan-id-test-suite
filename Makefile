@@ -53,3 +53,14 @@ uk2-samples:        ## UK-2 pada 3 profil sampel materi (ECDSA token, TLS 1.3, H
 
 uk2-templates:      ## ekstrak ulang templat dari materi PPTX lokal (docs/materi/)
 	$(PY) scripts/extract_uk2_templates.py
+
+.PHONY: std-report std-report-full std-report-gui
+PENYUSUN ?= Dea Saka Kurnia Putra
+std-report:         ## daftar algoritme standar + semua uji (mode ringan) + PDF/HTML/XLSX
+	$(PY) -m std_report all --pdf --html --xlsx --penyusun "$(PENYUSUN)"
+
+std-report-full:    ## mode full (100 × 10⁶ bit, 10.000 sampel avalanche) — lama
+	$(PY) -m std_report run --mode full && $(PY) -m std_report report --pdf --penyusun "$(PENYUSUN)"
+
+std-report-gui:     ## GUI Streamlit dengan Export to PDF
+	$(PY) -m streamlit run std_report/app.py

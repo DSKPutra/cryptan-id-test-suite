@@ -76,6 +76,10 @@ cryptan-id-test-suite/
 │   ├── traceability.py           # Matriks keterlacakan
 │   ├── report.py                 # JSON + Markdown + DOCX + CSV
 │   └── pipeline.py / __main__.py # orkestrasi & CLI
+├── std_report/                   # Daftar algoritme standar + 11 uji + laporan PDF/HTML/XLSX (lihat bagian khusus)
+│   ├── catalog.py runner.py kat.py sp80022.py tests/{k,s,i}.py schema/ vectors/
+│   └── report/{theme.yaml,template.py,builder.py,model.py,export.py} · app.py (Streamlit) · __main__.py (CLI)
+├── core/adapters/                # pyca · pycryptodome · stdlib · core · liboqs (opsional) — akses implementasi untuk std_report
 ├── outputs/uk1/<algoritma>/      # contoh keluaran hasil eksekusi (lihat di bawah)
 ├── web/ + scripts/build_site.py  # dashboard statis (Vercel / Netlify)
 └── tests/                        # pytest: core KAT, sifat komponen, EK 1, EK 2, EK 3, E2E
@@ -291,6 +295,62 @@ Vektor Wycheproof: C2SP/wycheproof (Apache-2.0), lisensi di `uk2_skenario/data/v
 - Catat hasil per nilai parameter, lalu petakan ke `outcome_map` (Memenuhi / Memenuhi dengan Catatan / Tidak Memenuhi / Inkonklusif).
 - Aksi `manual` menghasilkan checklist bukti.
 - Antarmuka adapter yang disarankan: `encrypt/decrypt/sign/verify/keygen/hash(target, inputs) → output | error_code`.
+
+## 📑 Modul `std_report/` — Daftar Algoritme Standar + Hasil Semua Uji + Export PDF
+
+Daftar lengkap algoritme dari **FIPS**, **NIST SP 800**, dan **ISO/IEC** (satu baris = algoritme × varian × panjang kunci),
+lalu **11 uji** (lapis K kesesuaian, S keamanan, I implementasi) dijalankan lewat `core/adapters/`
+(pyca/cryptography, pycryptodome, hashlib, `core/` referensi, liboqs opsional). Semua hasil masuk ke **satu berkas**
+`outputs/std_report/results.json` (divalidasi JSON Schema), dan laporan PDF/HTML/XLSX dibuat **hanya** dari berkas itu.
+
+```bash
+python -m std_report list   --source iso-iec --primitive hash   # daftar algoritme
+python -m std_report run    [--mode ringan|full] [--only AES,SHA3]  # semua uji → results.json (ringan ≈ 1,5–4 menit)
+python -m std_report report --pdf --html --xlsx [--ringkas] [--only-tested] --penyusun "Nama Penyusun"
+python -m std_report all    --pdf --penyusun "Nama Penyusun"     # list + run + report (offline, < 5 menit)
+streamlit run std_report/app.py                                   # GUI: filter, jalankan uji, Export to PDF
+make std-report                                                   # = all --pdf --html --xlsx
+```
+
+| Uji | Isi | Kriteria |
+|---|---|---|
+| K-01 | KAT vektor resmi (Wycheproof/FIPS/SP/RFC), atau **uji silang** dua backend bila vektor tidak ada | 100% cocok |
+| K-02 · K-03 · K-04 | round-trip · MCT / multi-blok / one-shot vs bertahap · uji negatif | 100% · identik · semua ditolak |
+| S-01 · S-02 | avalanche · subset SP 800-22 (6 uji) — **indikatif** di mode ringan | ≈ n/2 · proporsi & P-value_T |
+| S-03 · S-04 | sifat komponen (AES, χ Keccak) · kecukupan parameter (SP 800-57, SP 800-131A, IR 8547 — ACUAN) | nilai acuan · ≥ 112 bit & acceptable |
+| I-01 · I-02 · I-03 | variasi waktu (Welch t, indikatif) · kinerja (DICATAT) · input malformed | \|t\| < 4,5 · — · tanpa crash |
+
+**Hasil mode ringan (seed 20261002):** 219 kombinasi — FIPS 118, NIST SP 800 114, ISO/IEC 142 (satu algoritme bisa
+tercantum di beberapa sumber).
+
+| Primitif | Terdaftar | Diuji | Lulus semua | Lulus sebagian | Ada temuan | Tidak dapat diuji |
+|---|---:|---:|---:|---:|---:|---:|
+| Block cipher | 56 | 48 | 35 | 8 | 5 | 8 |
+| Stream cipher | 7 | 2 | 0 | 0 | 2 | 5 |
+| Fungsi hash / XOF | 34 | 27 | 15 | 0 | 12 | 7 |
+| MAC / AEAD ringan | 31 | 30 | 30 | 0 | 0 | 1 |
+| PKC / KEM / key agreement | 31 | 17 | 11 | 0 | 6 | 14 |
+| Tanda tangan digital | 44 | 25 | 10 | 3 | 12 | 19 |
+| DRBG | 11 | 3 | 0 | 3 | 0 | 8 |
+| KDF | 5 | 5 | 0 | 0 | 5 | 0 |
+| **Total** | **219** | **157** | **101** | **14** | **42** | **62** |
+
+"Ada temuan" mencakup GAGAL/INKONKLUSIF uji langsung **dan** S-04 (parameter < 112 bit, status legacy, atau kekuatan
+`PERLU_VERIFIKASI`). Temuan uji langsung (bukan artefak mesin uji): pycryptodome 3.23 — ECDSA P-224/256/384/521 menerima
+tanda tangan Wycheproof "k·G has a large x-coordinate" (tcId 322/350/382/419), Ed448 menerima R dengan y = 1 dan bit tanda x
+(tcId 87), PBKDF2 & HKDF menerima panjang keluaran negatif (mengembalikan `b""`).
+
+**Laporan PDF** (ReportLab Platypus; `report/theme.yaml` → `template.py` → `builder.py`): sampul, lembar pengesahan & revisi,
+daftar isi/tabel/gambar, Bab 1–7, Lampiran A–D, matriks lanskap, header/footer "Halaman X dari Y", bookmark, header tabel
+berulang. Nama berkas `Laporan_Algoritme_Standar_<YYYYMMDD>_<mode>.pdf`. Penyusun diisi pengguna (`--penyusun` / kolom GUI);
+instansi XyberXecurity; © Cryptan.ID — made by Dea Saka Kurnia Putra.
+
+> **Klasifikasi TERBATAS.** `outputs/std_report/` dan `samples/std_report/*.pdf` di-*gitignore* dan **tidak** dipublikasikan
+> ke dashboard Vercel/Netlify/Lovable. Buat ulang secara lokal dengan perintah di atas.
+
+`algo_catalog/` hanya ditambah dua field (`source_body`, `source_doc`) lewat `scripts/add_source_fields.py`; keanggotaan
+dokumen ISO/IEC yang belum pasti ditandai `(PERLU_VERIFIKASI)` dan dikumpulkan di Lampiran C (132 butir, termasuk 79 entri
+hasil scraping ACVP).
 
 ## 🏷️ Konvensi sumber data
 
