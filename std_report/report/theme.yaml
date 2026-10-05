@@ -1,0 +1,52 @@
+# Templat laporan std_report — gaya dipisah dari data (builder.py hanya membaca results.json).
+title: Laporan Daftar Algoritme Kriptografi Standar dan Hasil Uji
+subtitle: "Sumber standar: FIPS · NIST SP 800 · ISO/IEC"
+short_title: Laporan Algoritme Standar & Hasil Uji
+
+identity:
+  instansi: XyberXecurity
+  klasifikasi: TERBATAS
+  copyright: "© Cryptan.ID — made by Dea Saka Kurnia Putra"
+  penyusun_default: "(penyusun belum diisi)"
+
+page:
+  margin_cm: 2.0
+  header_gap_cm: 0.9          # jarak header/footer dari tepi kertas
+
+colors:
+  accent: "#3D7A74"
+  accent_light: "#E3EFED"
+  zebra: "#F4F7F6"
+  text: "#1F2933"
+  muted: "#6B7280"
+  grid: "#C9D3D1"
+  status:
+    LULUS: "#2E7D32"
+    GAGAL: "#C62828"
+    INKONKLUSIF: "#B26A00"
+    TIDAK_DAPAT_DIUJI: "#6B7280"
+    TIDAK_BERLAKU: "#D9DDE1"
+    DICATAT: "#3D7A74"
+  overall:
+    LULUS_SEMUA: "#2E7D32"
+    LULUS_SEBAGIAN: "#3D7A74"
+    TEMUAN: "#C62828"
+    TIDAK_DAPAT_DIUJI: "#6B7280"
+
+fonts:
+  body: DejaVuSans
+  bold: DejaVuSans-Bold
+  italic: DejaVuSans-Oblique
+  bold_italic: DejaVuSans-BoldOblique
+  mono: DejaVuSansMono
+  mono_bold: DejaVuSansMono-Bold
+
+sizes:
+  body: 10
+  mono: 8.5
+  h1: 16
+  h2: 12
+  h3: 10.5
+  table: 8
+  small: 7.5
+  header: 8
