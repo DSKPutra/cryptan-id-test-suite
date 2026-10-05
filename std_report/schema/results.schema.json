@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/DSKPutra/cryptan-id-test-suite/std_report/schema/results.schema.json",
+  "title": "Cryptan.ID Test Suite — std_report results.json",
+  "type": "object",
+  "required": ["schema", "tool", "generated_at", "mode", "environment", "tests_catalog", "catalog", "algorithms", "summary", "evidence", "vectors", "perlu_verifikasi"],
+  "properties": {
+    "schema": {"const": "cryptan.std_report.results.v1"},
+    "mode": {"enum": ["ringan", "full"]},
+    "environment": {"type": "object", "required": ["os", "python", "libraries", "duration_s"]},
+    "tests_catalog": {"type": "array", "items": {"type": "object", "required": ["id", "name", "layer", "criteria"],
+                                                   "properties": {"id": {"pattern": "^[KSI]-\\d{2}$"}, "layer": {"enum": ["K", "S", "I"]}}}},
+    "catalog": {"type": "object", "required": ["counts_by_body", "doc_coverage", "out_of_scope"]},
+    "algorithms": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "primitive", "family", "variant", "security_strength_bits", "status_nist", "source_body", "source_doc", "backends", "tests", "overall"],
+        "properties": {
+          "source_body": {"type": "array", "minItems": 1, "items": {"enum": ["FIPS", "NIST-SP", "ISO-IEC"]}},
+          "source_doc": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "overall": {"enum": ["LULUS_SEMUA", "LULUS_SEBAGIAN", "TEMUAN", "TIDAK_DAPAT_DIUJI"]},
+          "tests": {
+            "type": "array", "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["test_id", "plugin", "name", "layer", "criteria", "status", "duration_s", "evidence_id"],
+              "properties": {
+                "test_id": {"type": "string", "pattern": "^.+/[KSI]-\\d{2}$"},
+                "status": {"enum": ["LULUS", "GAGAL", "INKONKLUSIF", "TIDAK_DAPAT_DIUJI", "TIDAK_BERLAKU", "DICATAT"]},
+                "duration_s": {"type": "number", "minimum": 0},
+                "evidence_id": {"type": ["string", "null"]}
+              }
+            }
+          }
+        }
+      }
+    },
+    "summary": {"type": "object", "required": ["kpi", "status_counts", "by_primitive"]},
+    "vectors": {"type": "array", "items": {"type": "object", "required": ["file", "source", "sha256"]}},
+    "perlu_verifikasi": {"type": "array", "items": {"type": "object", "required": ["item", "jenis", "detail"]}}
+  }
+}
