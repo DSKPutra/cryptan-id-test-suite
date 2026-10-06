@@ -11,6 +11,8 @@ pycryptodome>=3.20      # std_report: backend independen kedua (uji silang, KAT)
 numpy>=1.26             # std_report: subset SP 800-22
 reportlab>=4.0          # std_report: laporan PDF (Platypus)
 matplotlib>=3.8         # std_report: grafik + font DejaVu
+scipy>=1.11             # UK-3: erfc, igamc, distribusi χ²/t/normal
+pdfplumber>=0.11        # UK-3: membaca materi PDF (opsional, hanya untuk ekstraksi)
 # liboqs-python         # opsional: backend PQC tambahan untuk std_report
 # pengembangan / pengujian
 pytest>=8.0

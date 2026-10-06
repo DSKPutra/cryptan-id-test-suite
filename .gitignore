@@ -15,3 +15,6 @@ docs/materi/*.pdf
 outputs/std_report/
 samples/std_report/*.pdf
 std_report/vectors/wycheproof/
+
+# UK-3: berkas produk latihan asli dari materi (tidak dipublikasikan); replika ada di products/replika/
+products/latihan/*.py
