@@ -1,0 +1,20 @@
+# Ruang lingkup, batasan & izin tertulis pengujian UK-3 (dokumen KUK 1.1)
+versi: "1.0"
+pemilik_produk: "Tim Pengajar Pelatihan CA Angkatan 1 (produk latihan)"
+penguji: "Kelompok 1 — Dea Saka Kurnia Putra"
+izin:
+  disetujui: true
+  oleh: "Pengajar UK-3 (produk latihan)"
+  tanggal: "2026-10-06"
+  nomor: "IZIN-UK3-LAT-01"
+jadwal:
+  disetujui: true
+  mulai: "2026-10-06"
+  selesai: "2026-10-09"
+produk_dalam_lingkup: [securefile, pustaka, securelib]
+batasan:
+  - "Hanya produk latihan & pustaka acuan di lingkungan lab (VM/laptop terisolasi)."
+  - "Tidak memakai data atau kunci produksi; semua data uji ilustratif."
+  - "Tidak ada uji kanal samping fisik (hanya timing tingkat proses, indikatif)."
+  - "Bukti disimpan dengan SHA-256 (evidence_manifest.json); data uji dimusnahkan setelah pelatihan."
+kerahasiaan: "Hasil uji hanya untuk keperluan pelatihan dan asesmen."

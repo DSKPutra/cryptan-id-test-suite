@@ -1,0 +1,87 @@
+# Skenario uji pustaka acuan (pyca/cryptography): pustaka TC bawaan materi T3 (slide 20–24) + latihan Lab 1 (A1, A5, E2–E4).
+# Expected value dari vektor resmi (FIPS 197, RFC 8439, RFC 4231, GCM TC 13) — diverifikasi silang, bukan dari produk.
+schema: cryptan.uk3.skenario.v1
+produk: pustaka
+versi: "1.0"
+status: final
+disusun_oleh: "Kelompok 1 — Dea Saka Kurnia Putra"
+acuan: "Materi UK-3 slide 18–24 & 47"
+kebijakan:
+  low_s_wajib: false          # TC-DS-02: protokol latihan TIDAK mewajibkan low-s → (r, n − s) diharapkan diterima
+sasaran:
+  P1: "Kesesuaian algoritma terhadap vektor resmi (KAT)"
+  P2: "Penolakan masukan tidak sah (AEAD, kunci publik, tanda tangan)"
+  P3: "Kesesuaian antarimplementasi & sifat matematis (diferensial, properti)"
+  P4: "Keluaran keystream & sifat avalanche (statistik)"
+  P5: "Variasi waktu (TVLA, indikatif)"
+test_cases:
+  - {id: PL-SMOKE, skenario: SK-P0, judul: "Smoke test: pustaka termuat, versi tercatat, satu round-trip AES-GCM & satu KAT SHA-256",
+     tahap: 1, jenis: smoke, executor: lib_smoke, sasaran: P1, wajib: true, depends_on: [], data_uji: "AES-GCM 128 bit, SHA-256(abc)",
+     expected: {kriteria: "termuat; round-trip benar; SHA-256(abc) = ba7816bf…", sumber: "FIPS 180-4"}}
+  - {id: TC-BC-01, skenario: SK-P1, judul: "KAT AES-128 FIPS 197 C.1 (Lab 1 A1)", tahap: 2, jenis: kat, executor: kat_aes, sasaran: P1,
+     wajib: true, depends_on: [PL-SMOKE], parameter: {kunci: "000102030405060708090a0b0c0d0e0f"},
+     data_uji: "P = 00112233445566778899aabbccddeeff", expected: {nilai: "69c4e0d86a7b0430d8cdb78070b4c55a", sumber: "FIPS 197 Lampiran C.1"}}
+  - {id: TC-BC-02, skenario: SK-P1, judul: "KAT AES-192 FIPS 197 C.2 (Lab 1 A1)", tahap: 2, jenis: kat, executor: kat_aes, sasaran: P1,
+     wajib: true, depends_on: [PL-SMOKE], parameter: {kunci: "000102030405060708090a0b0c0d0e0f1011121314151617"},
+     data_uji: "P = 00112233445566778899aabbccddeeff", expected: {nilai: "dda97ca4864cdfe06eaf70a0ec0d7191", sumber: "FIPS 197 Lampiran C.2"}}
+  - {id: TC-BC-03, skenario: SK-P1, judul: "KAT AES-256 FIPS 197 C.3 (Lab 1 A1)", tahap: 2, jenis: kat, executor: kat_aes, sasaran: P1,
+     wajib: true, depends_on: [PL-SMOKE], parameter: {kunci: "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f"},
+     data_uji: "P = 00112233445566778899aabbccddeeff", expected: {nilai: "8ea2b7ca516745bfeafc49904b496089", sumber: "FIPS 197 Lampiran C.3"}}
+  - {id: TC-AE-03, skenario: SK-P1, judul: "KAT AES-256-GCM Test Case 13 (tag)", tahap: 2, jenis: kat, executor: kat_gcm13, sasaran: P1,
+     wajib: true, depends_on: [PL-SMOKE], data_uji: "K = 0^256, IV = 0^96, P = kosong",
+     expected: {nilai: "530f8afbc74536b9a963b4f1c4cb738b", sumber: "McGrew–Viega GCM Test Case 13"}}
+  - {id: TC-SC-01, skenario: SK-P1, judul: "KAT ChaCha20 fungsi blok RFC 8439 §2.3.2", tahap: 2, jenis: kat, executor: kat_chacha20,
+     sasaran: P1, wajib: true, depends_on: [PL-SMOKE], data_uji: "K = 00..1f, nonce = 000000090000004a00000000, counter = 1",
+     expected: {nilai: "10f1e7e4d13b5915500fdd1fa32071c4c7d1f4c733c068030422aa9ac3d46c4ed2826446079faa0914c2d705d98b02a2b5129cd1de164eb9cbd083e8a2503c4e",
+                sumber: "RFC 8439 §2.3.2"}}
+  - {id: TC-H-01a, skenario: SK-P1, judul: 'KAT SHA-256("abc")', tahap: 2, jenis: kat, executor: kat_sha256, sasaran: P1, wajib: true,
+     depends_on: [PL-SMOKE], data_uji: '"abc"', expected: {nilai: "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad", sumber: "FIPS 180-4 / NIST CSRC contoh"}}
+  - {id: TC-H-01b, skenario: SK-P1, judul: "KAT HMAC-SHA256 RFC 4231 Test Case 1", tahap: 2, jenis: kat, executor: kat_hmac, sasaran: P1,
+     wajib: true, depends_on: [PL-SMOKE], data_uji: 'key = 0x0b × 20, data = "Hi There"',
+     expected: {nilai: "b0344c61d8db38535ca8afceaf0bf12b881dc200c9833da726e9376c2e32cff7", sumber: "RFC 4231 §4.2"}}
+  - {id: TC-PK-01, skenario: SK-P2, judul: "RSA-OAEP: enkripsi pesan sama dua kali → ciphertext berbeda; dekripsi = pesan (KAT via dekripsi)",
+     tahap: 3, jenis: positif, executor: pk_oaep, sasaran: P3, wajib: true, depends_on: [TC-H-01a], data_uji: "RSA-2048, OAEP-SHA256, pesan 'data uji'",
+     expected: {kriteria: "c1 ≠ c2 dan decrypt(c1) = decrypt(c2) = pesan", sumber: "RFC 8017 §7.1"}}
+  - {id: TC-PK-02, skenario: SK-P2, judul: "X25519: ECDH(A, B) = ECDH(B, A)", tahap: 3, jenis: properti, executor: pk_x25519_agree,
+     sasaran: P3, wajib: true, depends_on: [PL-SMOKE], data_uji: "dua pasang kunci X25519 baru",
+     expected: {kriteria: "kedua shared secret identik", sumber: "RFC 7748 §6.1"}}
+  - {id: TC-H-02, skenario: SK-P2, judul: "Uji properti: SHA-256 bertahap = sekaligus (1.000 pesan acak)", tahap: 3, jenis: properti,
+     executor: prop_hash_incremental, sasaran: P3, wajib: true, depends_on: [TC-H-01a], parameter: {jumlah: 1000, seed: 2026},
+     data_uji: "1.000 pesan acak 0–300 byte, dipotong di titik acak (seed 2026)", expected: {kriteria: "1000/1000 identik", sumber: "FIPS 180-4 (definisi)"}}
+  - {id: TC-DF-02, skenario: SK-P2, judul: "Uji diferensial: AES-GCM pyca vs pycryptodome pada 1.000 masukan acak", tahap: 3,
+     jenis: diferensial, executor: diff_gcm, sasaran: P3, wajib: true, depends_on: [TC-AE-03], parameter: {jumlah: 1000, seed: 2026},
+     data_uji: "kunci/nonce/AAD/plaintext acak (seed 2026)", expected: {kriteria: "1000/1000 ciphertext ‖ tag identik", sumber: "implementasi independen"}}
+  - {id: TC-AE-01, skenario: SK-P3, judul: "AES-GCM: 1 bit ciphertext diubah → InvalidTag", tahap: 4, jenis: negatif, executor: neg_gcm_ct,
+     sasaran: P2, wajib: true, depends_on: [TC-AE-03], data_uji: "c[0] ^= 1", expected: {kriteria: "InvalidTag, tanpa plaintext", sumber: "SP 800-38D"}}
+  - {id: TC-AE-02, skenario: SK-P3, judul: "AES-GCM: 1 bit AAD diubah → InvalidTag (Lab 1 A5)", tahap: 4, jenis: negatif, executor: neg_gcm_aad,
+     sasaran: P2, wajib: true, depends_on: [TC-AE-03], data_uji: "aad[0] ^= 1", expected: {kriteria: "InvalidTag, tanpa plaintext", sumber: "SP 800-38D"}}
+  - {id: TC-PK-03, skenario: SK-P3, judul: "X25519 dengan kunci publik lawan 32 byte nol ditolak", tahap: 4, jenis: negatif, executor: neg_x25519_zero,
+     sasaran: P2, wajib: true, depends_on: [TC-PK-02], data_uji: "public = 00 × 32", expected: {kriteria: "ValueError (shared secret nol ditolak)", sumber: "RFC 7748 §6.1"}}
+  - {id: TC-PK-04, skenario: SK-P3, judul: "Muat kunci publik P-256 dengan titik di luar kurva ditolak", tahap: 4, jenis: negatif,
+     executor: neg_p256_offcurve, sasaran: P2, wajib: true, depends_on: [PL-SMOKE], data_uji: "titik (G.x, G.y + 1) dalam encoding SEC1 tak terkompresi",
+     expected: {kriteria: "ValueError (Invalid EC key)", sumber: "SEC 1 §3.2.2; SP 800-56A §5.6.2.3"}}
+  - {id: TC-DS-01, skenario: SK-P3, judul: "ECDSA P-256: verifikasi pesan diubah 1 byte → InvalidSignature", tahap: 4, jenis: negatif,
+     executor: neg_ecdsa_msg, sasaran: P2, wajib: true, depends_on: [PL-SMOKE], data_uji: "m[0] ^= 1", expected: {kriteria: "InvalidSignature", sumber: "FIPS 186-5"}}
+  - {id: TC-DS-02, skenario: SK-P3, judul: "ECDSA P-256: tanda tangan (r, n − s) — perilaku sesuai kebijakan low-s skenario", tahap: 4,
+     jenis: negatif, executor: ecdsa_high_s, sasaran: P2, wajib: true, depends_on: [PL-SMOKE], data_uji: "(r, s) sah → (r, n − s)",
+     expected: {kriteria: "diterima (kebijakan skenario: low_s_wajib = false); bila low_s_wajib = true harus ditolak", sumber: "kebijakan skenario UK-2 / FIPS 186-5"}}
+  - {id: E2, skenario: SK-P3, judul: "Mutasi pesan: 100 tanda tangan Ed25519 sah, 1 bit tiap pesan diubah (Lab 1 E2)", tahap: 4,
+     jenis: negatif, executor: ed25519_mut_msg, sasaran: P2, wajib: true, depends_on: [PL-SMOKE], parameter: {jumlah: 100, seed: 2026},
+     data_uji: "100 pesan acak (seed 2026)", expected: {kriteria: "rejection rate 100/100", sumber: "RFC 8032"}}
+  - {id: E3, skenario: SK-P3, judul: "Mutasi tanda tangan: 1 bit tiap tanda tangan Ed25519 diubah (Lab 1 E3)", tahap: 4, jenis: negatif,
+     executor: ed25519_mut_sig, sasaran: P2, wajib: true, depends_on: [PL-SMOKE], parameter: {jumlah: 100, seed: 2026},
+     data_uji: "100 tanda tangan (seed 2026)", expected: {kriteria: "rejection rate 100/100", sumber: "RFC 8032"}}
+  - {id: E4, skenario: SK-P3, judul: "Kunci publik lain: verifikasi dengan kunci publik pasangan lain (Lab 1 E4)", tahap: 4, jenis: negatif,
+     executor: ed25519_other_key, sasaran: P2, wajib: true, depends_on: [PL-SMOKE], parameter: {jumlah: 100, seed: 2026},
+     data_uji: "100 tanda tangan, 100 kunci publik lain", expected: {kriteria: "rejection rate 100/100", sumber: "RFC 8032"}}
+  - {id: TC-ST-02, skenario: SK-P4, judul: "Keacakan keystream AES-128-CTR: SP 800-22 monobit, block frequency, runs (m × n bit)",
+     tahap: 5, jenis: statistik, executor: stat_ctr_keystream, sasaran: P4, wajib: true, depends_on: [TC-BC-01],
+     parameter_statistik: {m: 100, n: 100000, seed: 2026}, data_uji: "kunci & nonce per barisan dari seed 2026",
+     expected: {kriteria: "proporsi ≥ 0,99 − 3√(0,0099/m) dan P-value_T ≥ 0,0001 untuk tiap uji", sumber: "SP 800-22 §4.2"}}
+  - {id: TC-AV-01, skenario: SK-P4, judul: "Avalanche SHA-256: 1 bit pesan 64 byte diubah, rerata jarak Hamming", tahap: 5, jenis: statistik,
+     executor: stat_avalanche_sha256, sasaran: P4, wajib: false, depends_on: [TC-H-01a], parameter_statistik: {N: 10000, seed: 2026},
+     data_uji: "10.000 pesan acak 64 byte (seed 2026)", expected: {kriteria: "|z| ≤ 3, z = (rerata − 128)/(8/√N)", sumber: "materi slide 38"}}
+  - {id: TC-WT-01, skenario: SK-P5, judul: "TVLA indikatif: AES-GCM enkripsi fixed-vs-random plaintext, uji t Welch, 2 sesi", tahap: 6,
+     jenis: timing, executor: timing_gcm, sasaran: P5, wajib: false, depends_on: [TC-AE-03], parameter_statistik: {N: 3000, sesi: 2, seed: 2026},
+     data_uji: "plaintext tetap vs acak 64 byte, urutan kelas diacak", expected: {kriteria: "|t| ≤ 4,5 pada setiap sesi", sumber: "TVLA (materi slide 36)"},
+     batasan_bila_lulus: "Pengukuran perf_counter_ns dari proses Python — indikatif, bukan pengganti dudect/TVLA di lab"}

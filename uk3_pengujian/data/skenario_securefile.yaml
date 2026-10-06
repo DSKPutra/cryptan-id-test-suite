@@ -1,0 +1,176 @@
+# Skenario uji SecureFile (gaya UK-2) — test case, expected value, ketergantungan, sasaran uji.
+# TC-01 s.d. TC-08 mengikuti run_tests.py / run_log.py materi UK-3; expected value dari vektor resmi atau spesifikasi,
+# BUKAN dari produk yang diuji.
+schema: cryptan.uk3.skenario.v1
+produk: securefile
+versi: "1.0"
+status: final
+disusun_oleh: "Kelompok 1 — Dea Saka Kurnia Putra"
+acuan: "Materi UK-3 slide 47–53 (Lab 1–2); spesifikasi SecureFile (uk3_pengujian/data/products.yaml)"
+sasaran:
+  S1: "Kesesuaian primitif yang dipakai produk (PBKDF2-HMAC-SHA256, AES-256-GCM)"
+  S2: "Fungsi enkripsi–dekripsi berkas berjalan benar"
+  S3: "Masukan tidak sah ditolak dengan aman dan galat seragam"
+  S4: "Salt dan nonce unik per berkas (syarat SP 800-38D & SP 800-132)"
+  S5: "Kinerja dekripsi memenuhi target"
+test_cases:
+  - id: SF-SMOKE
+    skenario: SK-00
+    judul: "Smoke test: modul termuat, API ada, satu round-trip berkas kecil"
+    tahap: 1
+    jenis: smoke
+    executor: sf_smoke
+    sasaran: S2
+    wajib: true
+    depends_on: []
+    data_uji: 'encrypt(b"smoke", b"halo")'
+    expected: {kriteria: "modul termuat, encrypt/decrypt tersedia, decrypt(encrypt(m)) = m", sumber: "spesifikasi API"}
+  - id: TC-01
+    skenario: SK-01
+    judul: "KAT PBKDF2-HMAC-SHA256 (primitif KDF produk)"
+    tahap: 2
+    jenis: kat
+    executor: kat_pbkdf2
+    sasaran: S1
+    wajib: true
+    depends_on: [SF-SMOKE]
+    data_uji: 'P = "passwd", S = "salt", c = 1, dkLen = 64'
+    expected:
+      nilai: "55ac046e56e3089fec1691c22544b605f94185216dde0465e68b9d57c20dacbc49ca9cccf179b645991664b39d77ef317c71b845b1e30bd509112041d3a19783"
+      sumber: "RFC 7914 §11 (vektor PBKDF2-HMAC-SHA256)"
+  - id: TC-02
+    skenario: SK-01
+    judul: "KAT AES-256-GCM (primitif AEAD produk)"
+    tahap: 2
+    jenis: kat
+    executor: kat_gcm13
+    sasaran: S1
+    wajib: true
+    depends_on: [SF-SMOKE]
+    data_uji: "K = 0^256, IV = 0^96, P = kosong, AAD = kosong"
+    expected: {nilai: "530f8afbc74536b9a963b4f1c4cb738b", sumber: "McGrew–Viega GCM Test Case 13 (tag)"}
+  - id: TC-03
+    skenario: SK-02
+    judul: "Round-trip: dekripsi dengan password benar menghasilkan plaintext identik"
+    tahap: 3
+    jenis: positif
+    executor: sf_roundtrip
+    sasaran: S2
+    wajib: true
+    depends_on: [SF-SMOKE, TC-01, TC-02]
+    data_uji: 'encrypt(b"rahasia", b"dokumen uji")'
+    expected: {kriteria: 'decrypt = b"dokumen uji"', sumber: "spesifikasi"}
+  - id: TC-PR-01
+    skenario: SK-02
+    judul: "Uji properti: round-trip ukuran 0, 1, 15, 16, 17 byte dan |blob| = |pt| + 48"
+    tahap: 3
+    jenis: properti
+    executor: sf_property
+    sasaran: S2
+    wajib: true
+    depends_on: [SF-SMOKE, TC-01, TC-02]
+    parameter: {ukuran: [0, 1, 15, 16, 17]}
+    data_uji: "plaintext acak ber-seed 2026"
+    expected: {kriteria: "decrypt(encrypt(m)) = m dan panjang blob = 4 + 16 + 12 + |m| + 16 untuk semua ukuran", sumber: "spesifikasi format"}
+  - id: TC-DF-01
+    skenario: SK-02
+    judul: "Uji diferensial: blob produk didekripsi implementasi independen (hashlib + pycryptodome)"
+    tahap: 3
+    jenis: diferensial
+    executor: sf_differential
+    sasaran: S2
+    wajib: true
+    depends_on: [SF-SMOKE, TC-01, TC-02]
+    parameter: {jumlah: 3, seed: 2026}
+    data_uji: "3 plaintext acak (seed 2026), password ilustratif"
+    expected: {kriteria: "3/3 plaintext identik ketika didekripsi oracle independen", sumber: "implementasi acuan independen"}
+  - id: TC-04
+    skenario: SK-03
+    judul: "Uji negatif: password salah ditolak"
+    tahap: 4
+    jenis: negatif
+    executor: sf_wrong_password
+    sasaran: S3
+    wajib: true
+    depends_on: [TC-03]
+    data_uji: 'decrypt(b"salah", blob)'
+    expected: {kriteria: "InvalidTag, tidak ada plaintext keluar", sumber: "SP 800-38D (autentikasi tag)"}
+  - id: TC-05
+    skenario: SK-03
+    judul: "Uji negatif: 1 bit ciphertext dibalik ditolak"
+    tahap: 4
+    jenis: negatif
+    executor: sf_bitflip
+    sasaran: S3
+    wajib: true
+    depends_on: [TC-03]
+    parameter: {posisi_byte: 40}
+    data_uji: "blob[40] ^= 1"
+    expected: {kriteria: "InvalidTag, tidak ada plaintext keluar", sumber: "SP 800-38D"}
+  - id: TC-09
+    skenario: SK-03
+    judul: "Uji negatif: 1 bit tag diubah ditolak"
+    tahap: 4
+    jenis: negatif
+    executor: sf_tagflip
+    sasaran: S3
+    wajib: true
+    depends_on: [TC-03]
+    data_uji: "blob[-1] ^= 1"
+    expected: {kriteria: "InvalidTag, tidak ada plaintext keluar", sumber: "SP 800-38D"}
+  - id: TC-07
+    skenario: SK-03
+    judul: "Uji negatif: berkas terpotong ditolak dengan pesan format"
+    tahap: 4
+    jenis: negatif
+    executor: sf_truncated
+    sasaran: S3
+    wajib: true
+    depends_on: [TC-03]
+    data_uji: "blob[:40]"
+    expected: {kriteria: 'ValueError("format tidak valid")', sumber: "spesifikasi API"}
+  - id: TC-08
+    skenario: SK-03
+    judul: "Uji negatif: MAGIC diubah ditolak dengan pesan format"
+    tahap: 4
+    jenis: negatif
+    executor: sf_bad_magic
+    sasaran: S3
+    wajib: true
+    depends_on: [TC-03]
+    data_uji: 'b"XF01" + blob[4:]'
+    expected: {kriteria: 'ValueError("format tidak valid")', sumber: "spesifikasi API"}
+  - id: TC-06
+    skenario: SK-04
+    judul: "Salt & nonce tidak berulang (20 enkripsi, password & data sama)"
+    tahap: 5
+    jenis: statistik
+    executor: sf_uniqueness
+    sasaran: S4
+    wajib: true
+    depends_on: [TC-03]
+    parameter_statistik: {N: 20}
+    data_uji: '20 × encrypt(b"p", b"x")'
+    expected: {kriteria: "salt unik 20/20 dan nonce unik 20/20 (0 duplikat)", sumber: "SP 800-38D §8 (nonce unik per kunci); SP 800-132 (salt acak)"}
+    batasan_bila_lulus: "N = 20 hanya menyingkirkan pengulangan kasar; keunikan pada volume produksi tidak dibuktikan"
+    temuan:
+      id: F-01
+      judul: "Nonce GCM berulang"
+      dampak: "Keystream sama untuk berkas dengan password sama → C1 ⊕ C2 = P1 ⊕ P2; plaintext dapat dipulihkan bila salah satu diketahui; tag GCM dapat dipalsukan"
+      acuan: "NIST SP 800-38D §8: nonce tidak boleh berulang untuk kunci yang sama"
+      cvss: "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+      rekomendasi: "Kembalikan salt & nonce acak per berkas (os.urandom) seperti v1.0"
+  - id: TC-KN-01
+    skenario: SK-05
+    judul: "Kinerja: dekripsi berkas 1 MiB (10 ulangan setelah 1 putaran pemanasan)"
+    tahap: 6
+    jenis: kinerja
+    executor: sf_performance
+    sasaran: S5
+    wajib: false
+    depends_on: [TC-03]
+    parameter_statistik: {ulangan: 10, pemanasan: 1, ukuran_byte: 1048576}
+    parameter: {target_detik: 1.0}
+    data_uji: "berkas 1 MiB acak (seed 2026)"
+    expected: {kriteria: "batas atas selang kepercayaan 95% ≤ 1,0 s", sumber: "target latihan (PERLU_VERIFIKASI terhadap spesifikasi produk)"}
+    batasan_bila_lulus: "Target 1,0 s adalah asumsi skenario latihan, bukan persyaratan tertulis pemilik produk"

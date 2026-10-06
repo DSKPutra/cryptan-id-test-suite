@@ -1,0 +1,33 @@
+# Registri produk uji UK-3. Spesifikasi desain = dokumen KUK 1.1 ("spesifikasi desain produk dan versinya").
+securefile:
+  nama: SecureFile
+  jenis: "Produk latihan — enkripsi berkas berbasis password"
+  pemilik: "Tim Pengajar Pelatihan CA Angkatan 1"
+  spesifikasi:
+    format: 'MAGIC "SF01" (4 byte) | salt (16) | nonce (12) | ciphertext + tag (16)'
+    kdf: "PBKDF2-HMAC-SHA256, 600.000 iterasi, kunci 32 byte"
+    aead: "AES-256-GCM, AAD = MAGIC"
+    salt_nonce: "salt acak 16 byte dan nonce acak 12 byte per berkas (v1.0)"
+    api: "encrypt(password: bytes, data: bytes) -> bytes; decrypt(password, blob) -> bytes; galat format: ValueError('format tidak valid')"
+  versi:
+    "1.0": {modul: securefile, catatan: "rilis acuan"}
+    "1.1": {modul: securefile_v11, catatan: "perubahan: salt tetap, nonce = SHA-256(password)[:12]"}
+  skenario: skenario_securefile.yaml
+pustaka:
+  nama: "Pustaka cryptography (pyca/OpenSSL)"
+  jenis: "Pustaka acuan — KAT & uji negatif per algoritma (materi T3, Lab 1 A1–E4)"
+  pemilik: "Proyek pyca/cryptography"
+  spesifikasi:
+    algoritma: "AES-128/192/256 (FIPS 197), AES-GCM (SP 800-38D), ChaCha20 (RFC 8439), SHA-256 (FIPS 180-4), HMAC (RFC 4231), RSA-OAEP, X25519, ECDSA P-256, Ed25519"
+  versi:
+    auto: {pustaka: cryptography}
+  skenario: skenario_pustaka.yaml
+securelib:
+  nama: "SecureLib (produk UK-1/UK-2)"
+  jenis: "Pustaka kriptografi produk (C, Linux x86-64) — skenario dari UK-2"
+  pemilik: "Pemilik produk (config/product_profile.yaml)"
+  spesifikasi:
+    sumber: "config/product_profile.yaml + outputs/uk2/uk2_skenario.json"
+  versi:
+    "UK-2": {tersedia: false, alasan: "Biner/adapter produk SecureLib tidak tersedia di lingkungan uji"}
+  skenario: uk2
