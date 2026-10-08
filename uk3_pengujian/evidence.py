@@ -39,3 +39,27 @@ def verify(run_dir) -> dict:
     ok = not changed and not missing
     return {"ok": ok, "diperiksa": len(man["berkas"]), "berubah": changed, "hilang": missing, "baru": extra,
             "kesimpulan": "Semua bukti cocok dengan manifest" if ok else "KETIDAKCOCOKAN: bukti berubah/hilang setelah dicatat"}
+
+
+class EvidenceMismatch(RuntimeError):
+    """Bukti yang sudah tercatat berubah — artefak baru tidak boleh ditambahkan."""
+
+
+def append(run_dir, paths) -> dict:
+    """Tambahkan artefak baru (analisis, kesimpulan, laporan) ke manifest SETELAH memverifikasi bukti lama tidak berubah."""
+    run_dir = Path(run_dir)
+    replacing = {str(Path(p).relative_to(run_dir)) for p in paths}
+    v = verify(run_dir)
+    bad = [c for c in v["berubah"] if c["path"] not in replacing] + [h for h in v["hilang"] if h not in replacing]
+    if bad:                                              # artefak turunan boleh dibuat ulang; bukti mentah tidak boleh berubah
+        raise EvidenceMismatch(f"KETIDAKCOCOKAN: bukti berubah/hilang setelah dicatat: {bad}")
+    man = json.loads((run_dir / MANIFEST).read_text(encoding="utf-8"))
+    known = {f["path"]: f for f in man["berkas"]}
+    for p in paths:
+        p = Path(p)
+        r = str(p.relative_to(run_dir))
+        known[r] = {"path": r, "bytes": p.stat().st_size, "sha256": _sha(p),
+                    "ditambahkan": dt.datetime.now().astimezone().isoformat(timespec="seconds")}
+    man["berkas"] = sorted(known.values(), key=lambda f: f["path"])
+    (run_dir / MANIFEST).write_text(json.dumps(man, indent=1, ensure_ascii=False), encoding="utf-8")
+    return man
