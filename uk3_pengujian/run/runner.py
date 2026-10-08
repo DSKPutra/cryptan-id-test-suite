@@ -189,7 +189,7 @@ def _lembar(d, pl, results):
     """Lembar hasil berdampingan (templat KUK 1.1): TC × versi."""
     vers = list(results)
     with open(d / "lembar_hasil.csv", "w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f, delimiter=";")
+        w = csv.writer(f, delimiter=";", lineterminator="\n")
         w.writerow(["TC", "Skenario", "Judul", "Tahap", "Jenis uji", "Expected"] + [f"v{v}" for v in vers] + ["Catatan"])
         for i, tc in enumerate(pl["tc"]):
             st = [results[v]["tc"][i]["status"] for v in vers]

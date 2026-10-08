@@ -1,0 +1,3 @@
+# Bukti UK-3: simpan byte-per-byte agar SHA-256 di evidence_manifest.json tetap cocok
+outputs/** -text
+web/data/uk3/** -text
