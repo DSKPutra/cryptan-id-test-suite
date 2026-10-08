@@ -1,0 +1,41 @@
+{
+ "tc": "TC-DF-01",
+ "versi": "1.1",
+ "status": "LULUS",
+ "actual": "3/3 identik (oracle: hashlib + pycryptodome)",
+ "expected": {
+  "kriteria": "3/3 plaintext identik ketika didekripsi oracle independen",
+  "sumber": "implementasi acuan independen"
+ },
+ "data": {
+  "rows": [
+   {
+    "i": 0,
+    "panjang": 10,
+    "identik": true,
+    "galat_oracle": null
+   },
+   {
+    "i": 1,
+    "panjang": 47,
+    "identik": true,
+    "galat_oracle": null
+   },
+   {
+    "i": 2,
+    "panjang": 84,
+    "identik": true,
+    "galat_oracle": null
+   }
+  ]
+ },
+ "analisis": {
+  "metode": "Uji diferensial",
+  "identik": 3,
+  "total": 3,
+  "seed": 2026,
+  "ok": true,
+  "teks": "3/3 identik"
+ },
+ "seed": 2026
+}

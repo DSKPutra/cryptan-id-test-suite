@@ -1,0 +1,24 @@
+{
+ "tc": "TC-SC-01",
+ "versi": "50.0.1",
+ "status": "LULUS",
+ "actual": "10f1e7e4d13b5915500fdd1fa32071c4c7d1f4c733c068030422aa9ac3d46c4ed2826446079faa0914c2d705d98b02a2b5129cd1de164eb9cbd083e8a2503c4e",
+ "expected": {
+  "nilai": "10f1e7e4d13b5915500fdd1fa32071c4c7d1f4c733c068030422aa9ac3d46c4ed2826446079faa0914c2d705d98b02a2b5129cd1de164eb9cbd083e8a2503c4e",
+  "sumber": "RFC 8439 §2.3.2"
+ },
+ "data": {
+  "actual": "10f1e7e4d13b5915500fdd1fa32071c4c7d1f4c733c068030422aa9ac3d46c4ed2826446079faa0914c2d705d98b02a2b5129cd1de164eb9cbd083e8a2503c4e",
+  "expected": "10f1e7e4d13b5915500fdd1fa32071c4c7d1f4c733c068030422aa9ac3d46c4ed2826446079faa0914c2d705d98b02a2b5129cd1de164eb9cbd083e8a2503c4e",
+  "sumber": "RFC 8439 §2.3.2"
+ },
+ "analisis": {
+  "metode": "KAT",
+  "identik": true,
+  "panjang_aktual": 64,
+  "panjang_expected": 64,
+  "byte_beda_pertama": null,
+  "aturan": "identik byte demi byte → LULUS"
+ },
+ "seed": null
+}

@@ -1,0 +1,13 @@
+{
+ "tc": "TC-PK-01",
+ "versi": "50.0.1",
+ "status": "LULUS",
+ "actual": "c1 ≠ c2; dekripsi = pesan",
+ "expected": {
+  "kriteria": "c1 ≠ c2 dan decrypt(c1) = decrypt(c2) = pesan",
+  "sumber": "RFC 8017 §7.1"
+ },
+ "data": null,
+ "analisis": null,
+ "seed": null
+}

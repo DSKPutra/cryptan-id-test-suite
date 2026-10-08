@@ -1,0 +1,15 @@
+{
+ "tc": "SF-SMOKE",
+ "versi": "1.0",
+ "status": "LULUS",
+ "actual": "modul termuat; round-trip benar",
+ "expected": {
+  "kriteria": "modul termuat, encrypt/decrypt tersedia, decrypt(encrypt(m)) = m",
+  "sumber": "spesifikasi API"
+ },
+ "data": {
+  "blob_len": 52
+ },
+ "analisis": null,
+ "seed": null
+}

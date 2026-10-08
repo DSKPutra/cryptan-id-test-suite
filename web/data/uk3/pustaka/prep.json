@@ -1,0 +1,290 @@
+{
+ "produk": "pustaka",
+ "nama_produk": "Pustaka cryptography (pyca/OpenSSL)",
+ "waktu": "2026-10-08T16:15:00+07:00",
+ "dokumen": [
+  {
+   "jenis": "Skenario, test case, expected value",
+   "nama": "Skenario uji Pustaka cryptography (pyca/OpenSSL)",
+   "berkas": "uk3_pengujian/data/skenario_pustaka.yaml",
+   "asal": "UK-2 gaya skenario untuk produk latihan (Cryptan.ID)",
+   "dipakai_untuk": "urutan uji dan pembanding hasil",
+   "versi": "1.0",
+   "ada": true,
+   "sha256": "afbff132190410f817f73f177514f7ce8dfb318b55d01bdb4e62397a534ffdc1"
+  },
+  {
+   "jenis": "Skenario UK-2 produk (SecureLib)",
+   "nama": "uk2_skenario.json",
+   "berkas": "outputs/uk2/uk2_skenario.json",
+   "asal": "UK-2",
+   "dipakai_untuk": "test case lintas produk",
+   "versi": null,
+   "ada": true,
+   "sha256": "e18dee60fd22e61f8697c5e0f03ae658992d1c6a7cd6a017efd412fa5a60e4da"
+  },
+  {
+   "jenis": "Metode & parameter uji",
+   "nama": "Keluaran UK-1 (metode, parameter)",
+   "berkas": "outputs/uk1",
+   "asal": "UK-1",
+   "dipakai_untuk": "cara olah data & kriteria lulus",
+   "versi": null,
+   "ada": true,
+   "sha256": "102a51acb967f674dedf7edb6961b3711b97a571e12b29fd3721227fb3580881"
+  },
+  {
+   "jenis": "Spesifikasi desain produk & versinya",
+   "nama": "Registri produk: pustaka",
+   "berkas": "uk3_pengujian/data/products.yaml",
+   "asal": "pemilik produk",
+   "dipakai_untuk": "memahami fungsi yang diuji",
+   "versi": "1.0",
+   "ada": true,
+   "sha256": "a2b8257f16697ad3483bbbe536f13cb39528a9b0f6ea935347e50c326e617036"
+  },
+  {
+   "jenis": "Ruang lingkup, batasan, izin tertulis",
+   "nama": "ruang_lingkup.yaml",
+   "berkas": "products/ruang_lingkup.yaml",
+   "asal": "pemilik produk",
+   "dipakai_untuk": "batas apa yang boleh diuji",
+   "versi": "1.0",
+   "ada": true,
+   "sha256": "e1523e81c2868552e101020fdfd38bdd3ba234414d7a1cc01347a38b286d64f8"
+  },
+  {
+   "jenis": "Templat lembar hasil uji (belum diisi)",
+   "nama": "templat_lembar_hasil.csv",
+   "berkas": "uk3_pengujian/data/templat_lembar_hasil.csv",
+   "asal": "penguji",
+   "dipakai_untuk": "mencatat hasil tiap test case",
+   "versi": "1.0",
+   "ada": true,
+   "sha256": "8a6e06cbc599503ecab4bd07771d19be9d62afe82b8f1b64f2bd788247acea71"
+  },
+  {
+   "jenis": "Produk uji",
+   "nama": "Pustaka cryptography (pyca/OpenSSL) v50.0.1 — PUSTAKA TERPASANG",
+   "berkas": "cryptography 50.0.1 (paket terpasang)",
+   "asal": "Proyek pyca/cryptography",
+   "dipakai_untuk": "objek uji",
+   "versi": "50.0.1",
+   "ada": true,
+   "sha256": "9ad86e52b4dde0544e0a9518ad322a863cfab3a4fd763019ad5ee7675a0c9b6a"
+  }
+ ],
+ "inventaris": {
+  "perangkat": [
+   {
+    "perangkat": "Sistem operasi",
+    "versi": "Darwin 25.6.0 (arm64)",
+    "wajib": true,
+    "dipakai_untuk": "lingkungan uji",
+    "status": "tersedia"
+   },
+   {
+    "perangkat": "Python",
+    "versi": "3.11.1",
+    "wajib": true,
+    "dipakai_untuk": "skrip uji, KAT, uji negatif",
+    "status": "tersedia"
+   },
+   {
+    "perangkat": "cryptography (pyca)",
+    "versi": "50.0.1",
+    "wajib": true,
+    "dipakai_untuk": "KAT, oracle, AES-GCM",
+    "status": "tersedia"
+   },
+   {
+    "perangkat": "OpenSSL (backend cryptography)",
+    "versi": "OpenSSL 4.0.2 25 Aug 2026",
+    "wajib": true,
+    "dipakai_untuk": "pembanding independen hash & enkripsi",
+    "status": "tersedia"
+   },
+   {
+    "perangkat": "OpenSSL (ssl Python)",
+    "versi": "OpenSSL 1.1.1q  5 Jul 2022",
+    "wajib": false,
+    "dipakai_untuk": "hashlib",
+    "status": "tersedia"
+   },
+   {
+    "perangkat": "OpenSSL CLI",
+    "versi": "LibreSSL 3.3.6",
+    "wajib": false,
+    "dipakai_untuk": "pemeriksaan silang SHA-256 baris perintah",
+    "status": "tersedia"
+   },
+   {
+    "perangkat": "NumPy",
+    "versi": "2.4.6",
+    "wajib": true,
+    "dipakai_untuk": "olah data statistik",
+    "status": "tersedia"
+   },
+   {
+    "perangkat": "SciPy",
+    "versi": "1.17.1",
+    "wajib": true,
+    "dipakai_untuk": "erfc, igamc, distribusi χ²/t",
+    "status": "tersedia"
+   },
+   {
+    "perangkat": "pycryptodome",
+    "versi": "3.23.0",
+    "wajib": false,
+    "dipakai_untuk": "implementasi independen (uji diferensial)",
+    "status": "tersedia"
+   },
+   {
+    "perangkat": "NIST STS 2.1.2",
+    "versi": null,
+    "wajib": false,
+    "dipakai_untuk": "15 uji SP 800-22 resmi (pembaca laporan tersedia di Lab Keacakan)",
+    "status": "tidak ada (opsional)"
+   },
+   {
+    "perangkat": "SageMath",
+    "versi": null,
+    "wajib": false,
+    "dipakai_untuk": "memeriksa parameter kunci publik",
+    "status": "tidak ada (opsional)"
+   },
+   {
+    "perangkat": "testssl.sh",
+    "versi": null,
+    "wajib": false,
+    "dipakai_untuk": "hanya bila produk memakai TLS",
+    "status": "tidak ada (opsional)"
+   }
+  ],
+  "verifikasi": [
+   {
+    "alat": "hashlib (OpenSSL)",
+    "uji": "SHA-256(\"abc\")",
+    "expected": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+    "actual": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+    "lulus": true,
+    "acuan": "FIPS 180-4 / materi slide 18"
+   },
+   {
+    "alat": "cryptography",
+    "uji": "AES-128 FIPS 197 C.1",
+    "expected": "69c4e0d86a7b0430d8cdb78070b4c55a",
+    "actual": "69c4e0d86a7b0430d8cdb78070b4c55a",
+    "lulus": true,
+    "acuan": "FIPS 197 Lampiran C.1"
+   },
+   {
+    "alat": "uk3 SP 800-22",
+    "uji": "monobit ε = 1011010101",
+    "expected": "0.527",
+    "actual": "0.527",
+    "lulus": true,
+    "acuan": "SP 800-22 §2.1.4 / materi slide 29"
+   },
+   {
+    "alat": "uk3 SP 800-22",
+    "uji": "runs ε = 1001101011",
+    "expected": "0.147",
+    "actual": "0.147",
+    "lulus": true,
+    "acuan": "SP 800-22 §2.3.4 / materi slide 30"
+   },
+   {
+    "alat": "uk3 SP 800-22",
+    "uji": "block frequency ε = 0110011010, M = 3",
+    "expected": "0.801",
+    "actual": "0.801",
+    "lulus": true,
+    "acuan": "SP 800-22 §2.2.4 / materi slide 31"
+   },
+   {
+    "alat": "OpenSSL CLI",
+    "uji": "openssl dgst -sha256 \"abc\"",
+    "expected": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+    "actual": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+    "lulus": true,
+    "acuan": "FIPS 180-4"
+   }
+  ],
+  "lengkap": true,
+  "kurang": [],
+  "terverifikasi": true,
+  "catatan_lingkungan": "# 2026-10-08T16:15:00+07:00 | Darwin 25.6.0 (arm64) | Python 3.11.1 | cryptography 50.0.1 | OpenSSL 4.0.2 25 Aug 2026 | NumPy 2.4.6 | SciPy 1.17.1 | alat terverifikasi 6/6"
+ },
+ "checklist": {
+  "items": [
+   {
+    "butir": "skenario_final",
+    "uraian": "Dokumen skenario & test case versi final",
+    "status": "Ya",
+    "kekurangan": null,
+    "penanggung_jawab": null,
+    "tanggal_ulang": null
+   },
+   {
+    "butir": "spesifikasi",
+    "uraian": "Spesifikasi desain produk",
+    "status": "Ya",
+    "kekurangan": null,
+    "penanggung_jawab": null,
+    "tanggal_ulang": null
+   },
+   {
+    "butir": "produk_diterima",
+    "uraian": "Produk uji diterima + hash tercatat",
+    "status": "Ya",
+    "kekurangan": null,
+    "penanggung_jawab": null,
+    "tanggal_ulang": null
+   },
+   {
+    "butir": "perangkat",
+    "uraian": "Perangkat uji terpasang & terverifikasi",
+    "status": "Ya",
+    "kekurangan": null,
+    "penanggung_jawab": null,
+    "tanggal_ulang": null
+   },
+   {
+    "butir": "data_uji",
+    "uraian": "Data uji tersedia",
+    "status": "Ya",
+    "kekurangan": null,
+    "penanggung_jawab": null,
+    "tanggal_ulang": null
+   },
+   {
+    "butir": "izin_jadwal",
+    "uraian": "Izin & jadwal disetujui",
+    "status": "Ya",
+    "kekurangan": null,
+    "penanggung_jawab": null,
+    "tanggal_ulang": null
+   }
+  ],
+  "siap": true,
+  "keputusan": "Pengujian boleh dimulai",
+  "kriteria_keluar": "Semua TC dijalankan atau alasan tidak dijalankannya tercatat"
+ },
+ "parameter_terkunci": {
+  "TC-ST-02": {
+   "m": 100,
+   "n": 100000,
+   "seed": 2026
+  },
+  "TC-AV-01": {
+   "N": 10000,
+   "seed": 2026
+  },
+  "TC-WT-01": {
+   "N": 3000,
+   "sesi": 2,
+   "seed": 2026
+  }
+ }
+}

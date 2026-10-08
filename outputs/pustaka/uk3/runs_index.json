@@ -1,0 +1,16 @@
+[
+ {
+  "run_id": "20261008-161501-0c7d",
+  "mulai": "2026-10-08T16:15:01+07:00",
+  "alasan": "run pertama",
+  "versi": [
+   "50.0.1"
+  ],
+  "rekap": {
+   "LULUS": 24
+  },
+  "deviasi": 0,
+  "manifest_sha256": "f38937006037a4a4f12734c31380e176d6e6323b5ac3a37ce9c120181ff5a760",
+  "dir": "outputs/pustaka/uk3/runs/20261008-161501-0c7d"
+ }
+]

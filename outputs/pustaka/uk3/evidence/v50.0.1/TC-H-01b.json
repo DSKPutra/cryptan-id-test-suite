@@ -1,0 +1,24 @@
+{
+ "tc": "TC-H-01b",
+ "versi": "50.0.1",
+ "status": "LULUS",
+ "actual": "b0344c61d8db38535ca8afceaf0bf12b881dc200c9833da726e9376c2e32cff7",
+ "expected": {
+  "nilai": "b0344c61d8db38535ca8afceaf0bf12b881dc200c9833da726e9376c2e32cff7",
+  "sumber": "RFC 4231 §4.2"
+ },
+ "data": {
+  "actual": "b0344c61d8db38535ca8afceaf0bf12b881dc200c9833da726e9376c2e32cff7",
+  "expected": "b0344c61d8db38535ca8afceaf0bf12b881dc200c9833da726e9376c2e32cff7",
+  "sumber": "RFC 4231 §4.2"
+ },
+ "analisis": {
+  "metode": "KAT",
+  "identik": true,
+  "panjang_aktual": 32,
+  "panjang_expected": 32,
+  "byte_beda_pertama": null,
+  "aturan": "identik byte demi byte → LULUS"
+ },
+ "seed": null
+}

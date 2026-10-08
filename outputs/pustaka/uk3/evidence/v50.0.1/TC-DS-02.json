@@ -1,0 +1,16 @@
+{
+ "tc": "TC-DS-02",
+ "versi": "50.0.1",
+ "status": "LULUS",
+ "actual": "(r, n − s) diterima",
+ "expected": {
+  "kriteria": "diterima (kebijakan skenario: low_s_wajib = false); bila low_s_wajib = true harus ditolak",
+  "sumber": "kebijakan skenario UK-2 / FIPS 186-5"
+ },
+ "data": {
+  "diterima": true,
+  "low_s_wajib": false
+ },
+ "analisis": null,
+ "seed": null
+}

@@ -1,0 +1,193 @@
+{
+ "schema": "cryptan.uk3.evidence_manifest.v1",
+ "run_dir": "20261008-161445-7a9f",
+ "dibuat": "2026-10-08T16:14:56+07:00",
+ "berkas": [
+  {
+   "path": "Laporan_Hasil_Pengujian.docx",
+   "bytes": 44777,
+   "sha256": "c8848551780d9e983405b94b6f2342f33f9946f9de857e9faec8bddd606c452f",
+   "ditambahkan": "2026-10-08T16:14:59+07:00"
+  },
+  {
+   "path": "Laporan_Hasil_Pengujian.pdf",
+   "bytes": 98239,
+   "sha256": "b1f73950fda85e6ce9e6a4f18d79a9aa88c2d68b793a4f48f66a7a1262bd9121",
+   "ditambahkan": "2026-10-08T16:14:59+07:00"
+  },
+  {
+   "path": "analisis.json",
+   "bytes": 15269,
+   "sha256": "5b06185d16f70d95421c91682901bbca8c3c36d5c2def8605890bce37b2ccfd5",
+   "ditambahkan": "2026-10-08T16:14:58+07:00"
+  },
+  {
+   "path": "evidence/v1.0/SF-SMOKE.json",
+   "bytes": 301,
+   "sha256": "74c330a80860a41a636c7605a28ef82bfa26ebf9c8ee2b8758cae8121efcd811"
+  },
+  {
+   "path": "evidence/v1.0/TC-01.json",
+   "bytes": 975,
+   "sha256": "654856dc0e9419d2f5e9044e23bbf3eaf36b82f31384a368c37d93c151a39838"
+  },
+  {
+   "path": "evidence/v1.0/TC-02.json",
+   "bytes": 583,
+   "sha256": "2b37c6865bd5dcf230c9b46f77451906ab47d2695236b0faf64b2499241115df"
+  },
+  {
+   "path": "evidence/v1.0/TC-03.json",
+   "bytes": 334,
+   "sha256": "b5b106a9ff5fca6c069fea61dfea5c15d5eb005a25b334aec8e4c4724d3fbf7c"
+  },
+  {
+   "path": "evidence/v1.0/TC-04.json",
+   "bytes": 801,
+   "sha256": "bb2330cc9a527a63344b85faf2c8c980aeab2ed5f8281c5b77e48f7d481eec4c"
+  },
+  {
+   "path": "evidence/v1.0/TC-05.json",
+   "bytes": 793,
+   "sha256": "102d553fbb0ec2f34990b6aa0ff2a8e22141d816a29fdeec4cb1040e8a2f42ec"
+  },
+  {
+   "path": "evidence/v1.0/TC-06.json",
+   "bytes": 2163,
+   "sha256": "846b5c36dfb5d3f4604c66d04f65005cbbcc54cf8853468c2c4bd3b2bfb1d7fa"
+  },
+  {
+   "path": "evidence/v1.0/TC-07.json",
+   "bytes": 836,
+   "sha256": "74bd826cd092f42f29d456d67e4b1ee55ade9c4c2a3a34ab47867e81c5916b37"
+  },
+  {
+   "path": "evidence/v1.0/TC-08.json",
+   "bytes": 832,
+   "sha256": "488b90eda846924e16955a3a344bb3a023890da43c208f2a5c9851849438656d"
+  },
+  {
+   "path": "evidence/v1.0/TC-09.json",
+   "bytes": 785,
+   "sha256": "6c1f274273942b3206046be4f660e6969eccf924e27ecfb290dde8b5feb7dfd4"
+  },
+  {
+   "path": "evidence/v1.0/TC-DF-01.json",
+   "bytes": 698,
+   "sha256": "0b03c0ed337d59e86d69ccc66169055f1c848a1866568d49a43ca6afa7866dc9"
+  },
+  {
+   "path": "evidence/v1.0/TC-KN-01.json",
+   "bytes": 1063,
+   "sha256": "b407c5c125d387f1647476b1d77008317746f483a2c7d717a6b284f0e37a6824"
+  },
+  {
+   "path": "evidence/v1.0/TC-PR-01.json",
+   "bytes": 837,
+   "sha256": "0d50acd618264afb99dabe649aed6411a2ff7070d411e98d73a2c27700ee5d0b"
+  },
+  {
+   "path": "evidence/v1.1/SF-SMOKE.json",
+   "bytes": 301,
+   "sha256": "3989d38d3f751dcce7586af3d2950c910ff7e74811b5aa16f7f725230631d12b"
+  },
+  {
+   "path": "evidence/v1.1/TC-01.json",
+   "bytes": 975,
+   "sha256": "f0c5a1d91a955626c482ba48a19c78dc9603be533c81303563c607ecbe377195"
+  },
+  {
+   "path": "evidence/v1.1/TC-02.json",
+   "bytes": 583,
+   "sha256": "0d808d04fe6f66f8c5bb1ba76e4fa512c4877be85b2ffa6124a78a2ac45d993e"
+  },
+  {
+   "path": "evidence/v1.1/TC-03.json",
+   "bytes": 334,
+   "sha256": "c80c5122bc4dd75b16c353cd7de5c4b1c576b3b10970f459a458152698548a08"
+  },
+  {
+   "path": "evidence/v1.1/TC-04.json",
+   "bytes": 801,
+   "sha256": "1cd97bb754f56248c90a42e4654498876b1d7155d9580a2122691aa210fc6dd3"
+  },
+  {
+   "path": "evidence/v1.1/TC-05.json",
+   "bytes": 793,
+   "sha256": "427048e4ac8a86cc04755dd83b2ea8fceb51ff8d0322e4266c1ac1bffbb3c4f4"
+  },
+  {
+   "path": "evidence/v1.1/TC-06.json",
+   "bytes": 2161,
+   "sha256": "4f854df61b68557c8e0d3e1b4a31bd9840fef59863588541937403d4820d2750"
+  },
+  {
+   "path": "evidence/v1.1/TC-07.json",
+   "bytes": 836,
+   "sha256": "76a965a4b89ceffcc869dc784cef0761936f4da17e5433378e2c3a4ade8ea0ae"
+  },
+  {
+   "path": "evidence/v1.1/TC-08.json",
+   "bytes": 832,
+   "sha256": "bc343249484f68536d7d48283ecb0a8f78d6023a84c71f9410a5d471d72c1410"
+  },
+  {
+   "path": "evidence/v1.1/TC-09.json",
+   "bytes": 785,
+   "sha256": "fefc204819d3084b3646a45c05b8396c2c65bcb13b10dcdabd1f82e2b4004c46"
+  },
+  {
+   "path": "evidence/v1.1/TC-DF-01.json",
+   "bytes": 698,
+   "sha256": "137b014fa9aaa049c3207184029e5274b7c40a7c4cf7cd7088be3f84421acd44"
+  },
+  {
+   "path": "evidence/v1.1/TC-KN-01.json",
+   "bytes": 1068,
+   "sha256": "0b926d30c3e3d2d2a0e68e9f83d06df65f6edbb21fe07d0e6b08fe5bfde57911"
+  },
+  {
+   "path": "evidence/v1.1/TC-PR-01.json",
+   "bytes": 837,
+   "sha256": "f8b49b5b4bfccf4ba70f1681dc7e2146391a5fc712298ec567f636a8a5352307"
+  },
+  {
+   "path": "evidence/v1.1/demo_F-01.json",
+   "bytes": 331,
+   "sha256": "46234206345575a05530d9dc8edb2345f322e82a498575886f98b31d84734b7b",
+   "ditambahkan": "2026-10-08T16:14:58+07:00"
+  },
+  {
+   "path": "kesimpulan.json",
+   "bytes": 6541,
+   "sha256": "90889190fe041aaea51eb00b9474e172e89a4f4b266b36ff09171b84013bcc2a",
+   "ditambahkan": "2026-10-08T16:14:58+07:00"
+  },
+  {
+   "path": "lembar_hasil.csv",
+   "bytes": 1966,
+   "sha256": "a0b0c8be6b829db862f63ca9b6ed5922bfb124c5ef47c40423eafb9d9032882b"
+  },
+  {
+   "path": "log_securefile_v1.0.txt",
+   "bytes": 3900,
+   "sha256": "b6435828013b7e0699eee6c420ee65cb2f31d38d9539c44ff63076decee52c99"
+  },
+  {
+   "path": "log_securefile_v1.1.txt",
+   "bytes": 3954,
+   "sha256": "05064e6d5247f7b7f902203a38da1f14a5dbf685a8201e97c966ba264085bb79"
+  },
+  {
+   "path": "run.json",
+   "bytes": 30702,
+   "sha256": "29e195634b77a5668f26121a5e1bbc805e9eeeae0281476fba94ce51f33bf7ad"
+  },
+  {
+   "path": "uk3_hasil_uji.json",
+   "bytes": 11337,
+   "sha256": "8a3fe9bf4643885fb50398e7b2eedfbdbc69912fc802fd4a86b48b8098b317b7",
+   "ditambahkan": "2026-10-08T16:14:59+07:00"
+  }
+ ]
+}

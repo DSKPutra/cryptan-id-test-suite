@@ -1,0 +1,13 @@
+{
+ "tc": "TC-PK-02",
+ "versi": "50.0.1",
+ "status": "LULUS",
+ "actual": "ECDH(A,B) = ECDH(B,A)",
+ "expected": {
+  "kriteria": "kedua shared secret identik",
+  "sumber": "RFC 7748 §6.1"
+ },
+ "data": null,
+ "analisis": null,
+ "seed": null
+}

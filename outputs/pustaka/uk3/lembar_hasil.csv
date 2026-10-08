@@ -1,0 +1,25 @@
+TC;Skenario;Judul;Tahap;Jenis uji;Expected;v50.0.1;Catatan
+PL-SMOKE;SK-P0;Smoke test: pustaka termuat, versi tercatat, satu round-trip AES-GCM & satu KAT SHA-256;1;smoke;"termuat; round-trip benar; SHA-256(abc) = ba7816bf…";LULUS;
+TC-BC-01;SK-P1;KAT AES-128 FIPS 197 C.1 (Lab 1 A1);2;kat;69c4e0d86a7b0430d8cdb78070b4c55a;LULUS;
+TC-BC-02;SK-P1;KAT AES-192 FIPS 197 C.2 (Lab 1 A1);2;kat;dda97ca4864cdfe06eaf70a0ec0d7191;LULUS;
+TC-BC-03;SK-P1;KAT AES-256 FIPS 197 C.3 (Lab 1 A1);2;kat;8ea2b7ca516745bfeafc49904b496089;LULUS;
+TC-AE-03;SK-P1;KAT AES-256-GCM Test Case 13 (tag);2;kat;530f8afbc74536b9a963b4f1c4cb738b;LULUS;
+TC-SC-01;SK-P1;KAT ChaCha20 fungsi blok RFC 8439 §2.3.2;2;kat;10f1e7e4d13b5915500fdd1fa32071c4c7d1f4c733c068030422aa9ac3d46c4ed2826…;LULUS;
+TC-H-01a;SK-P1;"KAT SHA-256(""abc"")";2;kat;ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad;LULUS;
+TC-H-01b;SK-P1;KAT HMAC-SHA256 RFC 4231 Test Case 1;2;kat;b0344c61d8db38535ca8afceaf0bf12b881dc200c9833da726e9376c2e32cff7;LULUS;
+TC-PK-01;SK-P2;"RSA-OAEP: enkripsi pesan sama dua kali → ciphertext berbeda; dekripsi = pesan (KAT via dekripsi)";3;positif;c1 ≠ c2 dan decrypt(c1) = decrypt(c2) = pesan;LULUS;
+TC-PK-02;SK-P2;X25519: ECDH(A, B) = ECDH(B, A);3;properti;kedua shared secret identik;LULUS;
+TC-H-02;SK-P2;Uji properti: SHA-256 bertahap = sekaligus (1.000 pesan acak);3;properti;1000/1000 identik;LULUS;
+TC-DF-02;SK-P2;Uji diferensial: AES-GCM pyca vs pycryptodome pada 1.000 masukan acak;3;diferensial;1000/1000 ciphertext ‖ tag identik;LULUS;
+TC-AE-01;SK-P3;AES-GCM: 1 bit ciphertext diubah → InvalidTag;4;negatif;InvalidTag, tanpa plaintext;LULUS;
+TC-AE-02;SK-P3;AES-GCM: 1 bit AAD diubah → InvalidTag (Lab 1 A5);4;negatif;InvalidTag, tanpa plaintext;LULUS;
+TC-PK-03;SK-P3;X25519 dengan kunci publik lawan 32 byte nol ditolak;4;negatif;ValueError (shared secret nol ditolak);LULUS;
+TC-PK-04;SK-P3;Muat kunci publik P-256 dengan titik di luar kurva ditolak;4;negatif;ValueError (Invalid EC key);LULUS;
+TC-DS-01;SK-P3;ECDSA P-256: verifikasi pesan diubah 1 byte → InvalidSignature;4;negatif;InvalidSignature;LULUS;
+TC-DS-02;SK-P3;ECDSA P-256: tanda tangan (r, n − s) — perilaku sesuai kebijakan low-s skenario;4;negatif;"diterima (kebijakan skenario: low_s_wajib = false); bila low_s_wajib …";LULUS;
+E2;SK-P3;Mutasi pesan: 100 tanda tangan Ed25519 sah, 1 bit tiap pesan diubah (Lab 1 E2);4;negatif;rejection rate 100/100;LULUS;
+E3;SK-P3;Mutasi tanda tangan: 1 bit tiap tanda tangan Ed25519 diubah (Lab 1 E3);4;negatif;rejection rate 100/100;LULUS;
+E4;SK-P3;Kunci publik lain: verifikasi dengan kunci publik pasangan lain (Lab 1 E4);4;negatif;rejection rate 100/100;LULUS;
+TC-ST-02;SK-P4;Keacakan keystream AES-128-CTR: SP 800-22 monobit, block frequency, runs (m × n bit);5;statistik;proporsi ≥ 0,99 − 3√(0,0099/m) dan P-value_T ≥ 0,0001 untuk tiap uji;LULUS;
+TC-AV-01;SK-P4;Avalanche SHA-256: 1 bit pesan 64 byte diubah, rerata jarak Hamming;5;statistik;|z| ≤ 3, z = (rerata − 128)/(8/√N);LULUS;
+TC-WT-01;SK-P5;TVLA indikatif: AES-GCM enkripsi fixed-vs-random plaintext, uji t Welch, 2 sesi;6;timing;|t| ≤ 4,5 pada setiap sesi;LULUS;

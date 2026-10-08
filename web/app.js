@@ -2,7 +2,7 @@
 (() => {
   const MODULES = [
     { id: "UK-1", title: "Menentukan Metode Pengujian", ready: true },
-    { id: "UK-2", title: "Menyusun Skenario Pengujian", href: "uk2.html" }, { id: "UK-3" }, { id: "UK-4" },
+    { id: "UK-2", title: "Menyusun Skenario Pengujian", href: "uk2.html" }, { id: "UK-3", title: "Melakukan Pengujian", href: "uk3.html" }, { id: "UK-4" },
     { id: "UK-5" }, { id: "UK-6" }, { id: "UK-7" }, { id: "UK-8" },
   ];
   const $ = (s, el = document) => el.querySelector(s);

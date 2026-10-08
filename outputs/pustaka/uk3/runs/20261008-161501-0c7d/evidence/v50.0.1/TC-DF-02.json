@@ -1,0 +1,24 @@
+{
+ "tc": "TC-DF-02",
+ "versi": "50.0.1",
+ "status": "LULUS",
+ "actual": "1000/1000 identik (pyca vs pycryptodome)",
+ "expected": {
+  "kriteria": "1000/1000 ciphertext ‖ tag identik",
+  "sumber": "implementasi independen"
+ },
+ "data": {
+  "identik": 1000,
+  "total": 1000,
+  "beda_pertama": null
+ },
+ "analisis": {
+  "metode": "Uji diferensial",
+  "identik": 1000,
+  "total": 1000,
+  "seed": 2026,
+  "ok": true,
+  "teks": "1000/1000 identik"
+ },
+ "seed": 2026
+}

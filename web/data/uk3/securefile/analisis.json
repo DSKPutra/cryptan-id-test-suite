@@ -1,0 +1,648 @@
+{
+ "schema": "cryptan.uk3.analysis.v1",
+ "run_id": "20261008-161445-7a9f",
+ "produk": "securefile",
+ "metode": [
+  {
+   "metode": "Smoke",
+   "aturan": "Produk termuat dan round-trip dasar berhasil",
+   "baris": [
+    {
+     "versi": "1.0",
+     "tc": "SF-SMOKE",
+     "status": "LULUS",
+     "ringkas": "modul termuat; round-trip benar",
+     "olah": "modul termuat; round-trip benar",
+     "analisis": null
+    },
+    {
+     "versi": "1.1",
+     "tc": "SF-SMOKE",
+     "status": "LULUS",
+     "ringkas": "modul termuat; round-trip benar",
+     "olah": "modul termuat; round-trip benar",
+     "analisis": null
+    }
+   ]
+  },
+  {
+   "metode": "KAT",
+   "aturan": "Identik byte demi byte → LULUS",
+   "baris": [
+    {
+     "versi": "1.0",
+     "tc": "TC-01",
+     "status": "LULUS",
+     "ringkas": "55ac046e56e3089fec1691c22544b605f94185216dde0465e68b9d57c20dacbc49ca9cccf179b645991664b39d77ef317c71b845b1e30bd509112041d3a19783",
+     "olah": "64 byte; identik",
+     "analisis": {
+      "metode": "KAT",
+      "identik": true,
+      "panjang_aktual": 64,
+      "panjang_expected": 64,
+      "byte_beda_pertama": null,
+      "aturan": "identik byte demi byte → LULUS"
+     }
+    },
+    {
+     "versi": "1.0",
+     "tc": "TC-02",
+     "status": "LULUS",
+     "ringkas": "530f8afbc74536b9a963b4f1c4cb738b",
+     "olah": "16 byte; identik",
+     "analisis": {
+      "metode": "KAT",
+      "identik": true,
+      "panjang_aktual": 16,
+      "panjang_expected": 16,
+      "byte_beda_pertama": null,
+      "aturan": "identik byte demi byte → LULUS"
+     }
+    },
+    {
+     "versi": "1.1",
+     "tc": "TC-01",
+     "status": "LULUS",
+     "ringkas": "55ac046e56e3089fec1691c22544b605f94185216dde0465e68b9d57c20dacbc49ca9cccf179b645991664b39d77ef317c71b845b1e30bd509112041d3a19783",
+     "olah": "64 byte; identik",
+     "analisis": {
+      "metode": "KAT",
+      "identik": true,
+      "panjang_aktual": 64,
+      "panjang_expected": 64,
+      "byte_beda_pertama": null,
+      "aturan": "identik byte demi byte → LULUS"
+     }
+    },
+    {
+     "versi": "1.1",
+     "tc": "TC-02",
+     "status": "LULUS",
+     "ringkas": "530f8afbc74536b9a963b4f1c4cb738b",
+     "olah": "16 byte; identik",
+     "analisis": {
+      "metode": "KAT",
+      "identik": true,
+      "panjang_aktual": 16,
+      "panjang_expected": 16,
+      "byte_beda_pertama": null,
+      "aturan": "identik byte demi byte → LULUS"
+     }
+    }
+   ]
+  },
+  {
+   "metode": "Uji positif",
+   "aturan": "Hasil sesuai spesifikasi",
+   "baris": [
+    {
+     "versi": "1.0",
+     "tc": "TC-03",
+     "status": "LULUS",
+     "ringkas": "decrypt = b'dokumen uji'",
+     "olah": "decrypt = b'dokumen uji'",
+     "analisis": null
+    },
+    {
+     "versi": "1.1",
+     "tc": "TC-03",
+     "status": "LULUS",
+     "ringkas": "decrypt = b'dokumen uji'",
+     "olah": "decrypt = b'dokumen uji'",
+     "analisis": null
+    }
+   ]
+  },
+  {
+   "metode": "Uji negatif",
+   "aturan": "Semua masukan rusak ditolak dengan galat seragam → LULUS",
+   "baris": [
+    {
+     "versi": "1.0",
+     "tc": "TC-04",
+     "status": "LULUS",
+     "ringkas": "InvalidTag:  — 1/1 ditolak",
+     "olah": "1/1 ditolak; kelas galat {'autentikasi': ['InvalidTag']}",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "autentikasi": [
+        "InvalidTag"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     }
+    },
+    {
+     "versi": "1.0",
+     "tc": "TC-05",
+     "status": "LULUS",
+     "ringkas": "InvalidTag:  — 1/1 ditolak",
+     "olah": "1/1 ditolak; kelas galat {'autentikasi': ['InvalidTag']}",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "autentikasi": [
+        "InvalidTag"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     }
+    },
+    {
+     "versi": "1.0",
+     "tc": "TC-09",
+     "status": "LULUS",
+     "ringkas": "InvalidTag:  — 1/1 ditolak",
+     "olah": "1/1 ditolak; kelas galat {'autentikasi': ['InvalidTag']}",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "autentikasi": [
+        "InvalidTag"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     }
+    },
+    {
+     "versi": "1.0",
+     "tc": "TC-07",
+     "status": "LULUS",
+     "ringkas": "ValueError: format tidak valid — 1/1 ditolak",
+     "olah": "1/1 ditolak; kelas galat {'format': ['ValueError']}",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "format": [
+        "ValueError"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     }
+    },
+    {
+     "versi": "1.0",
+     "tc": "TC-08",
+     "status": "LULUS",
+     "ringkas": "ValueError: format tidak valid — 1/1 ditolak",
+     "olah": "1/1 ditolak; kelas galat {'format': ['ValueError']}",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "format": [
+        "ValueError"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     }
+    },
+    {
+     "versi": "1.1",
+     "tc": "TC-04",
+     "status": "LULUS",
+     "ringkas": "InvalidTag:  — 1/1 ditolak",
+     "olah": "1/1 ditolak; kelas galat {'autentikasi': ['InvalidTag']}",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "autentikasi": [
+        "InvalidTag"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     }
+    },
+    {
+     "versi": "1.1",
+     "tc": "TC-05",
+     "status": "LULUS",
+     "ringkas": "InvalidTag:  — 1/1 ditolak",
+     "olah": "1/1 ditolak; kelas galat {'autentikasi': ['InvalidTag']}",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "autentikasi": [
+        "InvalidTag"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     }
+    },
+    {
+     "versi": "1.1",
+     "tc": "TC-09",
+     "status": "LULUS",
+     "ringkas": "InvalidTag:  — 1/1 ditolak",
+     "olah": "1/1 ditolak; kelas galat {'autentikasi': ['InvalidTag']}",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "autentikasi": [
+        "InvalidTag"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     }
+    },
+    {
+     "versi": "1.1",
+     "tc": "TC-07",
+     "status": "LULUS",
+     "ringkas": "ValueError: format tidak valid — 1/1 ditolak",
+     "olah": "1/1 ditolak; kelas galat {'format': ['ValueError']}",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "format": [
+        "ValueError"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     }
+    },
+    {
+     "versi": "1.1",
+     "tc": "TC-08",
+     "status": "LULUS",
+     "ringkas": "ValueError: format tidak valid — 1/1 ditolak",
+     "olah": "1/1 ditolak; kelas galat {'format': ['ValueError']}",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "format": [
+        "ValueError"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     }
+    }
+   ]
+  },
+  {
+   "metode": "Uji diferensial",
+   "aturan": "Semua keluaran identik dengan implementasi independen",
+   "baris": [
+    {
+     "versi": "1.0",
+     "tc": "TC-DF-01",
+     "status": "LULUS",
+     "ringkas": "3/3 identik (oracle: hashlib + pycryptodome)",
+     "olah": "3/3 identik (oracle: hashlib + pycryptodome)",
+     "analisis": {
+      "metode": "Uji diferensial",
+      "identik": 3,
+      "total": 3,
+      "seed": 2026,
+      "ok": true,
+      "teks": "3/3 identik"
+     }
+    },
+    {
+     "versi": "1.1",
+     "tc": "TC-DF-01",
+     "status": "LULUS",
+     "ringkas": "3/3 identik (oracle: hashlib + pycryptodome)",
+     "olah": "3/3 identik (oracle: hashlib + pycryptodome)",
+     "analisis": {
+      "metode": "Uji diferensial",
+      "identik": 3,
+      "total": 3,
+      "seed": 2026,
+      "ok": true,
+      "teks": "3/3 identik"
+     }
+    }
+   ]
+  },
+  {
+   "metode": "Uji properti",
+   "aturan": "Invarian berlaku untuk semua masukan",
+   "baris": [
+    {
+     "versi": "1.0",
+     "tc": "TC-PR-01",
+     "status": "LULUS",
+     "ringkas": "5/5 ukuran memenuhi invarian",
+     "olah": "5/5 ukuran memenuhi invarian",
+     "analisis": null
+    },
+    {
+     "versi": "1.1",
+     "tc": "TC-PR-01",
+     "status": "LULUS",
+     "ringkas": "5/5 ukuran memenuhi invarian",
+     "olah": "5/5 ukuran memenuhi invarian",
+     "analisis": null
+    }
+   ]
+  },
+  {
+   "metode": "Keunikan nonce/salt",
+   "aturan": "0 duplikat → LULUS",
+   "baris": [
+    {
+     "versi": "1.0",
+     "tc": "TC-06",
+     "status": "LULUS",
+     "ringkas": "salt unik 20/20, nonce unik 20/20; harapan 20/20",
+     "olah": "salt unik 20/20 (0 duplikat); nonce unik 20/20 (0 duplikat)",
+     "analisis": {
+      "salt": {
+       "metode": "Keunikan nonce/salt",
+       "label": "salt",
+       "N": 20,
+       "unik": 20,
+       "duplikat": 0,
+       "ok": true,
+       "teks": "salt unik 20/20",
+       "aturan": "0 duplikat → LULUS"
+      },
+      "nonce": {
+       "metode": "Keunikan nonce/salt",
+       "label": "nonce",
+       "N": 20,
+       "unik": 20,
+       "duplikat": 0,
+       "ok": true,
+       "teks": "nonce unik 20/20",
+       "aturan": "0 duplikat → LULUS"
+      }
+     }
+    },
+    {
+     "versi": "1.1",
+     "tc": "TC-06",
+     "status": "GAGAL",
+     "ringkas": "salt unik 1/20, nonce unik 1/20; harapan 20/20",
+     "olah": "salt unik 1/20 (19 duplikat); nonce unik 1/20 (19 duplikat)",
+     "analisis": {
+      "salt": {
+       "metode": "Keunikan nonce/salt",
+       "label": "salt",
+       "N": 20,
+       "unik": 1,
+       "duplikat": 19,
+       "ok": false,
+       "teks": "salt unik 1/20",
+       "aturan": "0 duplikat → LULUS"
+      },
+      "nonce": {
+       "metode": "Keunikan nonce/salt",
+       "label": "nonce",
+       "N": 20,
+       "unik": 1,
+       "duplikat": 19,
+       "ok": false,
+       "teks": "nonce unik 1/20",
+       "aturan": "0 duplikat → LULUS"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "metode": "Kinerja",
+   "aturan": "Batas atas selang 95% ≤ target",
+   "baris": [
+    {
+     "versi": "1.0",
+     "tc": "TC-KN-01",
+     "status": "LULUS",
+     "ringkas": "rata-rata 0.144 s ± 0.091 (95%: 0.052–0.235 s), p95 0.352 s",
+     "olah": "n = 10 (pemanasan 1 dibuang), rata-rata 0.1435 s, s = 0.1279, 95%: 0.0521–0.2350 s, p95 0.3515 s",
+     "analisis": {
+      "n": 10,
+      "warmup_dibuang": 1,
+      "mean": 0.14353867919999175,
+      "sd": 0.1278829728111367,
+      "t_quantile": 2.262157162798205,
+      "half_width": 0.09148196775650538,
+      "low": 0.052056711443486364,
+      "high": 0.23502064695649713,
+      "p95": 0.3515378335503552,
+      "min": 0.08972879200155148,
+      "max": 0.5015509590011789,
+      "metode": "Kinerja",
+      "target": 1.0,
+      "ok": true,
+      "aturan": "batas atas selang 95% ≤ target → memenuhi"
+     }
+    },
+    {
+     "versi": "1.1",
+     "tc": "TC-KN-01",
+     "status": "LULUS",
+     "ringkas": "rata-rata 0.093 s ± 0.002 (95%: 0.090–0.095 s), p95 0.099 s",
+     "olah": "n = 10 (pemanasan 1 dibuang), rata-rata 0.0928 s, s = 0.0034, 95%: 0.0904–0.0953 s, p95 0.0986 s",
+     "analisis": {
+      "n": 10,
+      "warmup_dibuang": 1,
+      "mean": 0.09284877490099461,
+      "sd": 0.0034128118304068106,
+      "t_quantile": 2.262157162798205,
+      "half_width": 0.0024413785116598964,
+      "low": 0.0904073963893347,
+      "high": 0.09529015341265451,
+      "p95": 0.09855312485051398,
+      "min": 0.08910529200147721,
+      "max": 0.10134162499889499,
+      "metode": "Kinerja",
+      "target": 1.0,
+      "ok": true,
+      "aturan": "batas atas selang 95% ≤ target → memenuhi"
+     }
+    }
+   ]
+  }
+ ],
+ "galat_seragam": [
+  {
+   "versi": "1.0",
+   "kelompok": {
+    "autentikasi": [
+     "InvalidTag"
+    ],
+    "format": [
+     "ValueError"
+    ]
+   },
+   "seragam": true
+  },
+  {
+   "versi": "1.1",
+   "kelompok": {
+    "autentikasi": [
+     "InvalidTag"
+    ],
+    "format": [
+     "ValueError"
+    ]
+   },
+   "seragam": true
+  }
+ ],
+ "konsistensi_keputusan": [
+  {
+   "versi": "1.0",
+   "tc": "TC-01",
+   "konsisten": true
+  },
+  {
+   "versi": "1.0",
+   "tc": "TC-02",
+   "konsisten": true
+  },
+  {
+   "versi": "1.0",
+   "tc": "TC-04",
+   "konsisten": true
+  },
+  {
+   "versi": "1.0",
+   "tc": "TC-05",
+   "konsisten": true
+  },
+  {
+   "versi": "1.0",
+   "tc": "TC-09",
+   "konsisten": true
+  },
+  {
+   "versi": "1.0",
+   "tc": "TC-07",
+   "konsisten": true
+  },
+  {
+   "versi": "1.0",
+   "tc": "TC-08",
+   "konsisten": true
+  },
+  {
+   "versi": "1.0",
+   "tc": "TC-06",
+   "konsisten": true
+  },
+  {
+   "versi": "1.0",
+   "tc": "TC-KN-01",
+   "konsisten": true
+  },
+  {
+   "versi": "1.1",
+   "tc": "TC-01",
+   "konsisten": true
+  },
+  {
+   "versi": "1.1",
+   "tc": "TC-02",
+   "konsisten": true
+  },
+  {
+   "versi": "1.1",
+   "tc": "TC-04",
+   "konsisten": true
+  },
+  {
+   "versi": "1.1",
+   "tc": "TC-05",
+   "konsisten": true
+  },
+  {
+   "versi": "1.1",
+   "tc": "TC-09",
+   "konsisten": true
+  },
+  {
+   "versi": "1.1",
+   "tc": "TC-07",
+   "konsisten": true
+  },
+  {
+   "versi": "1.1",
+   "tc": "TC-08",
+   "konsisten": true
+  },
+  {
+   "versi": "1.1",
+   "tc": "TC-06",
+   "konsisten": true
+  },
+  {
+   "versi": "1.1",
+   "tc": "TC-KN-01",
+   "konsisten": true
+  }
+ ],
+ "konsisten": true
+}

@@ -1,0 +1,351 @@
+{
+ "schema": "cryptan.uk3.hasil_uji.v1",
+ "app": "Cryptan.ID Test Suite · uk3_pengujian 1.0.0",
+ "unit": "J.61KRP00.014.1",
+ "produk": "securefile",
+ "nama_produk": "SecureFile",
+ "run_id": "20261008-161445-7a9f",
+ "waktu": "2026-10-08T16:14:56+07:00",
+ "versi": {
+  "1.0": {
+   "sha256": "9804eeb75305b0b289bd37cedb1a07097ee5c347850a3dec03dd8029f1139a08",
+   "label": "ASLI (materi)",
+   "rekap": {
+    "LULUS": 13,
+    "GAGAL": 0,
+    "TERBLOKIR": 0,
+    "TIDAK DAPAT DIUJI": 0
+   },
+   "tingkat_lulus": 1.0,
+   "keseluruhan": "Memenuhi dengan Catatan",
+   "sasaran": {
+    "S2": {
+     "nama": "Fungsi enkripsi–dekripsi berkas berjalan benar",
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan"
+    },
+    "S1": {
+     "nama": "Kesesuaian primitif yang dipakai produk (PBKDF2-HMAC-SHA256, AES-256-GCM)",
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan"
+    },
+    "S3": {
+     "nama": "Masukan tidak sah ditolak dengan aman dan galat seragam",
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan"
+    },
+    "S4": {
+     "nama": "Salt dan nonce unik per berkas (syarat SP 800-38D & SP 800-132)",
+     "kategori": "Memenuhi dengan Catatan",
+     "alasan": "TC-06: N = 20 hanya menyingkirkan pengulangan kasar; keunikan pada volume produksi tidak dibuktikan"
+    },
+    "S5": {
+     "nama": "Kinerja dekripsi memenuhi target",
+     "kategori": "Memenuhi dengan Catatan",
+     "alasan": "TC-KN-01: Target 1,0 s adalah asumsi skenario latihan, bukan persyaratan tertulis pemilik produk"
+    }
+   },
+   "tc": [
+    {
+     "id": "SF-SMOKE",
+     "judul": "Smoke test: modul termuat, API ada, satu round-trip berkas kecil",
+     "jenis": "smoke",
+     "tahap": 1,
+     "status": "LULUS",
+     "actual": "modul termuat; round-trip benar",
+     "bukti": "evidence/v1.0/SF-SMOKE.json"
+    },
+    {
+     "id": "TC-01",
+     "judul": "KAT PBKDF2-HMAC-SHA256 (primitif KDF produk)",
+     "jenis": "kat",
+     "tahap": 2,
+     "status": "LULUS",
+     "actual": "55ac046e56e3089fec1691c22544b605f94185216dde0465e68b9d57c20dacbc49ca9cccf179b645991664b39d77ef317c71b845b1e30bd509112041d3a19783",
+     "bukti": "evidence/v1.0/TC-01.json"
+    },
+    {
+     "id": "TC-02",
+     "judul": "KAT AES-256-GCM (primitif AEAD produk)",
+     "jenis": "kat",
+     "tahap": 2,
+     "status": "LULUS",
+     "actual": "530f8afbc74536b9a963b4f1c4cb738b",
+     "bukti": "evidence/v1.0/TC-02.json"
+    },
+    {
+     "id": "TC-03",
+     "judul": "Round-trip: dekripsi dengan password benar menghasilkan plaintext identik",
+     "jenis": "positif",
+     "tahap": 3,
+     "status": "LULUS",
+     "actual": "decrypt = b'dokumen uji'",
+     "bukti": "evidence/v1.0/TC-03.json"
+    },
+    {
+     "id": "TC-PR-01",
+     "judul": "Uji properti: round-trip ukuran 0, 1, 15, 16, 17 byte dan |blob| = |pt| + 48",
+     "jenis": "properti",
+     "tahap": 3,
+     "status": "LULUS",
+     "actual": "5/5 ukuran memenuhi invarian",
+     "bukti": "evidence/v1.0/TC-PR-01.json"
+    },
+    {
+     "id": "TC-DF-01",
+     "judul": "Uji diferensial: blob produk didekripsi implementasi independen (hashlib + pycryptodome)",
+     "jenis": "diferensial",
+     "tahap": 3,
+     "status": "LULUS",
+     "actual": "3/3 identik (oracle: hashlib + pycryptodome)",
+     "bukti": "evidence/v1.0/TC-DF-01.json"
+    },
+    {
+     "id": "TC-04",
+     "judul": "Uji negatif: password salah ditolak",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "InvalidTag:  — 1/1 ditolak",
+     "bukti": "evidence/v1.0/TC-04.json"
+    },
+    {
+     "id": "TC-05",
+     "judul": "Uji negatif: 1 bit ciphertext dibalik ditolak",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "InvalidTag:  — 1/1 ditolak",
+     "bukti": "evidence/v1.0/TC-05.json"
+    },
+    {
+     "id": "TC-09",
+     "judul": "Uji negatif: 1 bit tag diubah ditolak",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "InvalidTag:  — 1/1 ditolak",
+     "bukti": "evidence/v1.0/TC-09.json"
+    },
+    {
+     "id": "TC-07",
+     "judul": "Uji negatif: berkas terpotong ditolak dengan pesan format",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "ValueError: format tidak valid — 1/1 ditolak",
+     "bukti": "evidence/v1.0/TC-07.json"
+    },
+    {
+     "id": "TC-08",
+     "judul": "Uji negatif: MAGIC diubah ditolak dengan pesan format",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "ValueError: format tidak valid — 1/1 ditolak",
+     "bukti": "evidence/v1.0/TC-08.json"
+    },
+    {
+     "id": "TC-06",
+     "judul": "Salt & nonce tidak berulang (20 enkripsi, password & data sama)",
+     "jenis": "statistik",
+     "tahap": 5,
+     "status": "LULUS",
+     "actual": "salt unik 20/20, nonce unik 20/20; harapan 20/20",
+     "bukti": "evidence/v1.0/TC-06.json"
+    },
+    {
+     "id": "TC-KN-01",
+     "judul": "Kinerja: dekripsi berkas 1 MiB (10 ulangan setelah 1 putaran pemanasan)",
+     "jenis": "kinerja",
+     "tahap": 6,
+     "status": "LULUS",
+     "actual": "rata-rata 0.144 s ± 0.091 (95%: 0.052–0.235 s), p95 0.352 s",
+     "bukti": "evidence/v1.0/TC-KN-01.json"
+    }
+   ]
+  },
+  "1.1": {
+   "sha256": "4ba4dd09ba84ad3bb24c47b1f2702bbeed603f252989d796d8b34e880f398d05",
+   "label": "ASLI (materi)",
+   "rekap": {
+    "LULUS": 12,
+    "GAGAL": 1,
+    "TERBLOKIR": 0,
+    "TIDAK DAPAT DIUJI": 0
+   },
+   "tingkat_lulus": 0.9230769230769231,
+   "keseluruhan": "Tidak Memenuhi",
+   "sasaran": {
+    "S2": {
+     "nama": "Fungsi enkripsi–dekripsi berkas berjalan benar",
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan"
+    },
+    "S1": {
+     "nama": "Kesesuaian primitif yang dipakai produk (PBKDF2-HMAC-SHA256, AES-256-GCM)",
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan"
+    },
+    "S3": {
+     "nama": "Masukan tidak sah ditolak dengan aman dan galat seragam",
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan"
+    },
+    "S4": {
+     "nama": "Salt dan nonce unik per berkas (syarat SP 800-38D & SP 800-132)",
+     "kategori": "Tidak Memenuhi",
+     "alasan": "TC wajib GAGAL: TC-06"
+    },
+    "S5": {
+     "nama": "Kinerja dekripsi memenuhi target",
+     "kategori": "Memenuhi dengan Catatan",
+     "alasan": "TC-KN-01: Target 1,0 s adalah asumsi skenario latihan, bukan persyaratan tertulis pemilik produk"
+    }
+   },
+   "tc": [
+    {
+     "id": "SF-SMOKE",
+     "judul": "Smoke test: modul termuat, API ada, satu round-trip berkas kecil",
+     "jenis": "smoke",
+     "tahap": 1,
+     "status": "LULUS",
+     "actual": "modul termuat; round-trip benar",
+     "bukti": "evidence/v1.1/SF-SMOKE.json"
+    },
+    {
+     "id": "TC-01",
+     "judul": "KAT PBKDF2-HMAC-SHA256 (primitif KDF produk)",
+     "jenis": "kat",
+     "tahap": 2,
+     "status": "LULUS",
+     "actual": "55ac046e56e3089fec1691c22544b605f94185216dde0465e68b9d57c20dacbc49ca9cccf179b645991664b39d77ef317c71b845b1e30bd509112041d3a19783",
+     "bukti": "evidence/v1.1/TC-01.json"
+    },
+    {
+     "id": "TC-02",
+     "judul": "KAT AES-256-GCM (primitif AEAD produk)",
+     "jenis": "kat",
+     "tahap": 2,
+     "status": "LULUS",
+     "actual": "530f8afbc74536b9a963b4f1c4cb738b",
+     "bukti": "evidence/v1.1/TC-02.json"
+    },
+    {
+     "id": "TC-03",
+     "judul": "Round-trip: dekripsi dengan password benar menghasilkan plaintext identik",
+     "jenis": "positif",
+     "tahap": 3,
+     "status": "LULUS",
+     "actual": "decrypt = b'dokumen uji'",
+     "bukti": "evidence/v1.1/TC-03.json"
+    },
+    {
+     "id": "TC-PR-01",
+     "judul": "Uji properti: round-trip ukuran 0, 1, 15, 16, 17 byte dan |blob| = |pt| + 48",
+     "jenis": "properti",
+     "tahap": 3,
+     "status": "LULUS",
+     "actual": "5/5 ukuran memenuhi invarian",
+     "bukti": "evidence/v1.1/TC-PR-01.json"
+    },
+    {
+     "id": "TC-DF-01",
+     "judul": "Uji diferensial: blob produk didekripsi implementasi independen (hashlib + pycryptodome)",
+     "jenis": "diferensial",
+     "tahap": 3,
+     "status": "LULUS",
+     "actual": "3/3 identik (oracle: hashlib + pycryptodome)",
+     "bukti": "evidence/v1.1/TC-DF-01.json"
+    },
+    {
+     "id": "TC-04",
+     "judul": "Uji negatif: password salah ditolak",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "InvalidTag:  — 1/1 ditolak",
+     "bukti": "evidence/v1.1/TC-04.json"
+    },
+    {
+     "id": "TC-05",
+     "judul": "Uji negatif: 1 bit ciphertext dibalik ditolak",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "InvalidTag:  — 1/1 ditolak",
+     "bukti": "evidence/v1.1/TC-05.json"
+    },
+    {
+     "id": "TC-09",
+     "judul": "Uji negatif: 1 bit tag diubah ditolak",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "InvalidTag:  — 1/1 ditolak",
+     "bukti": "evidence/v1.1/TC-09.json"
+    },
+    {
+     "id": "TC-07",
+     "judul": "Uji negatif: berkas terpotong ditolak dengan pesan format",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "ValueError: format tidak valid — 1/1 ditolak",
+     "bukti": "evidence/v1.1/TC-07.json"
+    },
+    {
+     "id": "TC-08",
+     "judul": "Uji negatif: MAGIC diubah ditolak dengan pesan format",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "ValueError: format tidak valid — 1/1 ditolak",
+     "bukti": "evidence/v1.1/TC-08.json"
+    },
+    {
+     "id": "TC-06",
+     "judul": "Salt & nonce tidak berulang (20 enkripsi, password & data sama)",
+     "jenis": "statistik",
+     "tahap": 5,
+     "status": "GAGAL",
+     "actual": "salt unik 1/20, nonce unik 1/20; harapan 20/20",
+     "bukti": "evidence/v1.1/TC-06.json"
+    },
+    {
+     "id": "TC-KN-01",
+     "judul": "Kinerja: dekripsi berkas 1 MiB (10 ulangan setelah 1 putaran pemanasan)",
+     "jenis": "kinerja",
+     "tahap": 6,
+     "status": "LULUS",
+     "actual": "rata-rata 0.093 s ± 0.002 (95%: 0.090–0.095 s), p95 0.099 s",
+     "bukti": "evidence/v1.1/TC-KN-01.json"
+    }
+   ]
+  }
+ },
+ "temuan": [
+  {
+   "id": "F-01",
+   "judul": "Nonce GCM berulang",
+   "versi": "1.1",
+   "test_case": "TC-06 GAGAL",
+   "dampak": "Keystream sama untuk berkas dengan password sama → C1 ⊕ C2 = P1 ⊕ P2; plaintext dapat dipulihkan bila salah satu diketahui; tag GCM dapat dipalsukan",
+   "acuan": "NIST SP 800-38D §8: nonce tidak boleh berulang untuk kunci yang sama",
+   "keparahan": "CVSS 3.1 · 6.2 (Medium)",
+   "rekomendasi": "Kembalikan salt & nonce acak per berkas (os.urandom) seperti v1.0",
+   "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "cvss_score": 6.2
+  }
+ ],
+ "pernyataan": [
+  "Pada SecureFile versi 1.0, dengan metode KAT, Keunikan nonce/salt, Kinerja, Smoke, Uji diferensial, Uji negatif, Uji positif, Uji properti, 13 dari 13 TC lulus (0 GAGAL, 0 TERBLOKIR, 0 tidak dapat diuji).",
+  "Pada SecureFile versi 1.1, dengan metode KAT, Keunikan nonce/salt, Kinerja, Smoke, Uji diferensial, Uji negatif, Uji positif, Uji properti, 12 dari 13 TC lulus (1 GAGAL, 0 TERBLOKIR, 0 tidak dapat diuji)."
+ ],
+ "deviasi": [],
+ "evidence_manifest_ok": true,
+ "handoff_uk4": {
+  "note": "Masukan UK-4: setiap temuan → rekomendasi perbaikan & prioritas berdasarkan CVSS",
+  "temuan": 1
+ }
+}

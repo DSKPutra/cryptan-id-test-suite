@@ -1,0 +1,1126 @@
+{
+ "schema": "cryptan.uk3.run.v1",
+ "run_id": "20261008-161445-7a9f",
+ "produk": "securefile",
+ "nama_produk": "SecureFile",
+ "mulai": "2026-10-08T16:14:45+07:00",
+ "selesai": "2026-10-08T16:14:56+07:00",
+ "durasi_s": 11.5,
+ "catatan_lingkungan": "# 2026-10-08T16:14:45+07:00 | Darwin 25.6.0 (arm64) | Python 3.11.1 | cryptography 50.0.1 | OpenSSL 4.0.2 25 Aug 2026 | NumPy 2.4.6 | SciPy 1.17.1 | alat terverifikasi 6/6",
+ "seed": 2026,
+ "alasan_run": "run pertama",
+ "deviasi": [],
+ "parameter_terkunci": {
+  "TC-06": {
+   "N": 20
+  },
+  "TC-KN-01": {
+   "ulangan": 10,
+   "pemanasan": 1,
+   "ukuran_byte": 1048576
+  }
+ },
+ "prep_waktu": "2026-10-08T16:14:44+07:00",
+ "rencana": {
+  "tahapan": [
+   {
+    "tahap": 1,
+    "nama": "Smoke test",
+    "alasan": "Produk dapat dijalankan sama sekali",
+    "tc": [
+     "SF-SMOKE"
+    ]
+   },
+   {
+    "tahap": 2,
+    "nama": "Kesesuaian algoritma (KAT)",
+    "alasan": "Primitif benar sebelum fitur di atasnya diuji",
+    "tc": [
+     "TC-01",
+     "TC-02"
+    ]
+   },
+   {
+    "tahap": 3,
+    "nama": "Fungsional",
+    "alasan": "Alur normal berjalan",
+    "tc": [
+     "TC-03",
+     "TC-PR-01",
+     "TC-DF-01"
+    ]
+   },
+   {
+    "tahap": 4,
+    "nama": "Negatif & penanganan galat",
+    "alasan": "Masukan salah ditolak dengan aman",
+    "tc": [
+     "TC-04",
+     "TC-05",
+     "TC-09",
+     "TC-07",
+     "TC-08"
+    ]
+   },
+   {
+    "tahap": 5,
+    "nama": "Sifat keamanan & statistik",
+    "alasan": "Butuh data banyak atau waktu lama",
+    "tc": [
+     "TC-06"
+    ]
+   },
+   {
+    "tahap": 6,
+    "nama": "Kinerja & implementasi",
+    "alasan": "Butuh pengukuran berulang",
+    "tc": [
+     "TC-KN-01"
+    ]
+   }
+  ],
+  "graf": [
+   [
+    "SF-SMOKE",
+    "TC-01"
+   ],
+   [
+    "SF-SMOKE",
+    "TC-02"
+   ],
+   [
+    "SF-SMOKE",
+    "TC-03"
+   ],
+   [
+    "TC-01",
+    "TC-03"
+   ],
+   [
+    "TC-02",
+    "TC-03"
+   ],
+   [
+    "SF-SMOKE",
+    "TC-PR-01"
+   ],
+   [
+    "TC-01",
+    "TC-PR-01"
+   ],
+   [
+    "TC-02",
+    "TC-PR-01"
+   ],
+   [
+    "SF-SMOKE",
+    "TC-DF-01"
+   ],
+   [
+    "TC-01",
+    "TC-DF-01"
+   ],
+   [
+    "TC-02",
+    "TC-DF-01"
+   ],
+   [
+    "TC-03",
+    "TC-04"
+   ],
+   [
+    "TC-03",
+    "TC-05"
+   ],
+   [
+    "TC-03",
+    "TC-09"
+   ],
+   [
+    "TC-03",
+    "TC-07"
+   ],
+   [
+    "TC-03",
+    "TC-08"
+   ],
+   [
+    "TC-03",
+    "TC-06"
+   ],
+   [
+    "TC-03",
+    "TC-KN-01"
+   ]
+  ],
+  "jumlah": 13,
+  "negatif": 5,
+  "peringatan": [],
+  "tidak_dipilih": []
+ },
+ "versi": {
+  "1.0": {
+   "versi": "1.0",
+   "label": "ASLI (materi)",
+   "berkas": "products/latihan/securefile.py",
+   "sha256": "9804eeb75305b0b289bd37cedb1a07097ee5c347850a3dec03dd8029f1139a08",
+   "sidik_jari": "securefile 9804eeb75305b0b2",
+   "log": "log_securefile_v1.0.txt",
+   "tc": [
+    {
+     "id": "SF-SMOKE",
+     "skenario": "SK-00",
+     "judul": "Smoke test: modul termuat, API ada, satu round-trip berkas kecil",
+     "tahap": 1,
+     "jenis": "smoke",
+     "sasaran": "S2",
+     "wajib": true,
+     "negatif": false,
+     "expected": {
+      "kriteria": "modul termuat, encrypt/decrypt tersedia, decrypt(encrypt(m)) = m",
+      "sumber": "spesifikasi API"
+     },
+     "data_uji": "encrypt(b\"smoke\", b\"halo\")",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Smoke",
+     "analisis": null,
+     "status": "LULUS",
+     "actual": "modul termuat; round-trip benar",
+     "mulai": "2026-10-08 16:14:45",
+     "selesai": "2026-10-08 16:14:45",
+     "durasi_s": 0.178,
+     "bukti": "evidence/v1.0/SF-SMOKE.json"
+    },
+    {
+     "id": "TC-01",
+     "skenario": "SK-01",
+     "judul": "KAT PBKDF2-HMAC-SHA256 (primitif KDF produk)",
+     "tahap": 2,
+     "jenis": "kat",
+     "sasaran": "S1",
+     "wajib": true,
+     "negatif": false,
+     "expected": {
+      "nilai": "55ac046e56e3089fec1691c22544b605f94185216dde0465e68b9d57c20dacbc49ca9cccf179b645991664b39d77ef317c71b845b1e30bd509112041d3a19783",
+      "sumber": "RFC 7914 §11 (vektor PBKDF2-HMAC-SHA256)"
+     },
+     "data_uji": "P = \"passwd\", S = \"salt\", c = 1, dkLen = 64",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "KAT",
+     "analisis": {
+      "metode": "KAT",
+      "identik": true,
+      "panjang_aktual": 64,
+      "panjang_expected": 64,
+      "byte_beda_pertama": null,
+      "aturan": "identik byte demi byte → LULUS"
+     },
+     "status": "LULUS",
+     "actual": "55ac046e56e3089fec1691c22544b605f94185216dde0465e68b9d57c20dacbc49ca9cccf179b645991664b39d77ef317c71b845b1e30bd509112041d3a19783",
+     "mulai": "2026-10-08 16:14:45",
+     "selesai": "2026-10-08 16:14:45",
+     "durasi_s": 0.0,
+     "bukti": "evidence/v1.0/TC-01.json"
+    },
+    {
+     "id": "TC-02",
+     "skenario": "SK-01",
+     "judul": "KAT AES-256-GCM (primitif AEAD produk)",
+     "tahap": 2,
+     "jenis": "kat",
+     "sasaran": "S1",
+     "wajib": true,
+     "negatif": false,
+     "expected": {
+      "nilai": "530f8afbc74536b9a963b4f1c4cb738b",
+      "sumber": "McGrew–Viega GCM Test Case 13 (tag)"
+     },
+     "data_uji": "K = 0^256, IV = 0^96, P = kosong, AAD = kosong",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "KAT",
+     "analisis": {
+      "metode": "KAT",
+      "identik": true,
+      "panjang_aktual": 16,
+      "panjang_expected": 16,
+      "byte_beda_pertama": null,
+      "aturan": "identik byte demi byte → LULUS"
+     },
+     "status": "LULUS",
+     "actual": "530f8afbc74536b9a963b4f1c4cb738b",
+     "mulai": "2026-10-08 16:14:45",
+     "selesai": "2026-10-08 16:14:45",
+     "durasi_s": 0.0,
+     "bukti": "evidence/v1.0/TC-02.json"
+    },
+    {
+     "id": "TC-03",
+     "skenario": "SK-02",
+     "judul": "Round-trip: dekripsi dengan password benar menghasilkan plaintext identik",
+     "tahap": 3,
+     "jenis": "positif",
+     "sasaran": "S2",
+     "wajib": true,
+     "negatif": false,
+     "expected": {
+      "kriteria": "decrypt = b\"dokumen uji\"",
+      "sumber": "spesifikasi"
+     },
+     "data_uji": "encrypt(b\"rahasia\", b\"dokumen uji\")",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji positif",
+     "analisis": null,
+     "status": "LULUS",
+     "actual": "decrypt = b'dokumen uji'",
+     "mulai": "2026-10-08 16:14:45",
+     "selesai": "2026-10-08 16:14:45",
+     "durasi_s": 0.177,
+     "bukti": "evidence/v1.0/TC-03.json"
+    },
+    {
+     "id": "TC-PR-01",
+     "skenario": "SK-02",
+     "judul": "Uji properti: round-trip ukuran 0, 1, 15, 16, 17 byte dan |blob| = |pt| + 48",
+     "tahap": 3,
+     "jenis": "properti",
+     "sasaran": "S2",
+     "wajib": true,
+     "negatif": false,
+     "expected": {
+      "kriteria": "decrypt(encrypt(m)) = m dan panjang blob = 4 + 16 + 12 + |m| + 16 untuk semua ukuran",
+      "sumber": "spesifikasi format"
+     },
+     "data_uji": "plaintext acak ber-seed 2026",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji properti",
+     "analisis": null,
+     "status": "LULUS",
+     "actual": "5/5 ukuran memenuhi invarian",
+     "mulai": "2026-10-08 16:14:45",
+     "selesai": "2026-10-08 16:14:46",
+     "durasi_s": 0.889,
+     "bukti": "evidence/v1.0/TC-PR-01.json"
+    },
+    {
+     "id": "TC-DF-01",
+     "skenario": "SK-02",
+     "judul": "Uji diferensial: blob produk didekripsi implementasi independen (hashlib + pycryptodome)",
+     "tahap": 3,
+     "jenis": "diferensial",
+     "sasaran": "S2",
+     "wajib": true,
+     "negatif": false,
+     "expected": {
+      "kriteria": "3/3 plaintext identik ketika didekripsi oracle independen",
+      "sumber": "implementasi acuan independen"
+     },
+     "data_uji": "3 plaintext acak (seed 2026), password ilustratif",
+     "seed": 2026,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji diferensial",
+     "analisis": {
+      "metode": "Uji diferensial",
+      "identik": 3,
+      "total": 3,
+      "seed": 2026,
+      "ok": true,
+      "teks": "3/3 identik"
+     },
+     "status": "LULUS",
+     "actual": "3/3 identik (oracle: hashlib + pycryptodome)",
+     "mulai": "2026-10-08 16:14:46",
+     "selesai": "2026-10-08 16:14:47",
+     "durasi_s": 0.583,
+     "bukti": "evidence/v1.0/TC-DF-01.json"
+    },
+    {
+     "id": "TC-04",
+     "skenario": "SK-03",
+     "judul": "Uji negatif: password salah ditolak",
+     "tahap": 4,
+     "jenis": "negatif",
+     "sasaran": "S3",
+     "wajib": true,
+     "negatif": true,
+     "expected": {
+      "kriteria": "InvalidTag, tidak ada plaintext keluar",
+      "sumber": "SP 800-38D (autentikasi tag)"
+     },
+     "data_uji": "decrypt(b\"salah\", blob)",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji negatif",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "autentikasi": [
+        "InvalidTag"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     },
+     "status": "LULUS",
+     "actual": "InvalidTag:  — 1/1 ditolak",
+     "mulai": "2026-10-08 16:14:47",
+     "selesai": "2026-10-08 16:14:47",
+     "durasi_s": 0.089,
+     "bukti": "evidence/v1.0/TC-04.json"
+    },
+    {
+     "id": "TC-05",
+     "skenario": "SK-03",
+     "judul": "Uji negatif: 1 bit ciphertext dibalik ditolak",
+     "tahap": 4,
+     "jenis": "negatif",
+     "sasaran": "S3",
+     "wajib": true,
+     "negatif": true,
+     "expected": {
+      "kriteria": "InvalidTag, tidak ada plaintext keluar",
+      "sumber": "SP 800-38D"
+     },
+     "data_uji": "blob[40] ^= 1",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji negatif",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "autentikasi": [
+        "InvalidTag"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     },
+     "status": "LULUS",
+     "actual": "InvalidTag:  — 1/1 ditolak",
+     "mulai": "2026-10-08 16:14:47",
+     "selesai": "2026-10-08 16:14:47",
+     "durasi_s": 0.091,
+     "bukti": "evidence/v1.0/TC-05.json"
+    },
+    {
+     "id": "TC-09",
+     "skenario": "SK-03",
+     "judul": "Uji negatif: 1 bit tag diubah ditolak",
+     "tahap": 4,
+     "jenis": "negatif",
+     "sasaran": "S3",
+     "wajib": true,
+     "negatif": true,
+     "expected": {
+      "kriteria": "InvalidTag, tidak ada plaintext keluar",
+      "sumber": "SP 800-38D"
+     },
+     "data_uji": "blob[-1] ^= 1",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji negatif",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "autentikasi": [
+        "InvalidTag"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     },
+     "status": "LULUS",
+     "actual": "InvalidTag:  — 1/1 ditolak",
+     "mulai": "2026-10-08 16:14:47",
+     "selesai": "2026-10-08 16:14:47",
+     "durasi_s": 0.09,
+     "bukti": "evidence/v1.0/TC-09.json"
+    },
+    {
+     "id": "TC-07",
+     "skenario": "SK-03",
+     "judul": "Uji negatif: berkas terpotong ditolak dengan pesan format",
+     "tahap": 4,
+     "jenis": "negatif",
+     "sasaran": "S3",
+     "wajib": true,
+     "negatif": true,
+     "expected": {
+      "kriteria": "ValueError(\"format tidak valid\")",
+      "sumber": "spesifikasi API"
+     },
+     "data_uji": "blob[:40]",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji negatif",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "format": [
+        "ValueError"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     },
+     "status": "LULUS",
+     "actual": "ValueError: format tidak valid — 1/1 ditolak",
+     "mulai": "2026-10-08 16:14:47",
+     "selesai": "2026-10-08 16:14:47",
+     "durasi_s": 0.0,
+     "bukti": "evidence/v1.0/TC-07.json"
+    },
+    {
+     "id": "TC-08",
+     "skenario": "SK-03",
+     "judul": "Uji negatif: MAGIC diubah ditolak dengan pesan format",
+     "tahap": 4,
+     "jenis": "negatif",
+     "sasaran": "S3",
+     "wajib": true,
+     "negatif": true,
+     "expected": {
+      "kriteria": "ValueError(\"format tidak valid\")",
+      "sumber": "spesifikasi API"
+     },
+     "data_uji": "b\"XF01\" + blob[4:]",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji negatif",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "format": [
+        "ValueError"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     },
+     "status": "LULUS",
+     "actual": "ValueError: format tidak valid — 1/1 ditolak",
+     "mulai": "2026-10-08 16:14:47",
+     "selesai": "2026-10-08 16:14:47",
+     "durasi_s": 0.0,
+     "bukti": "evidence/v1.0/TC-08.json"
+    },
+    {
+     "id": "TC-06",
+     "skenario": "SK-04",
+     "judul": "Salt & nonce tidak berulang (20 enkripsi, password & data sama)",
+     "tahap": 5,
+     "jenis": "statistik",
+     "sasaran": "S4",
+     "wajib": true,
+     "negatif": false,
+     "expected": {
+      "kriteria": "salt unik 20/20 dan nonce unik 20/20 (0 duplikat)",
+      "sumber": "SP 800-38D §8 (nonce unik per kunci); SP 800-132 (salt acak)"
+     },
+     "data_uji": "20 × encrypt(b\"p\", b\"x\")",
+     "seed": null,
+     "batasan": "N = 20 hanya menyingkirkan pengulangan kasar; keunikan pada volume produksi tidak dibuktikan",
+     "inconclusive": null,
+     "metode": "Keunikan nonce/salt",
+     "analisis": {
+      "salt": {
+       "metode": "Keunikan nonce/salt",
+       "label": "salt",
+       "N": 20,
+       "unik": 20,
+       "duplikat": 0,
+       "ok": true,
+       "teks": "salt unik 20/20",
+       "aturan": "0 duplikat → LULUS"
+      },
+      "nonce": {
+       "metode": "Keunikan nonce/salt",
+       "label": "nonce",
+       "N": 20,
+       "unik": 20,
+       "duplikat": 0,
+       "ok": true,
+       "teks": "nonce unik 20/20",
+       "aturan": "0 duplikat → LULUS"
+      }
+     },
+     "status": "LULUS",
+     "actual": "salt unik 20/20, nonce unik 20/20; harapan 20/20",
+     "mulai": "2026-10-08 16:14:47",
+     "selesai": "2026-10-08 16:14:49",
+     "durasi_s": 1.861,
+     "bukti": "evidence/v1.0/TC-06.json"
+    },
+    {
+     "id": "TC-KN-01",
+     "skenario": "SK-05",
+     "judul": "Kinerja: dekripsi berkas 1 MiB (10 ulangan setelah 1 putaran pemanasan)",
+     "tahap": 6,
+     "jenis": "kinerja",
+     "sasaran": "S5",
+     "wajib": false,
+     "negatif": false,
+     "expected": {
+      "kriteria": "batas atas selang kepercayaan 95% ≤ 1,0 s",
+      "sumber": "target latihan (PERLU_VERIFIKASI terhadap spesifikasi produk)"
+     },
+     "data_uji": "berkas 1 MiB acak (seed 2026)",
+     "seed": null,
+     "batasan": "Target 1,0 s adalah asumsi skenario latihan, bukan persyaratan tertulis pemilik produk",
+     "inconclusive": null,
+     "metode": "Kinerja",
+     "analisis": {
+      "n": 10,
+      "warmup_dibuang": 1,
+      "mean": 0.14353867919999175,
+      "sd": 0.1278829728111367,
+      "t_quantile": 2.262157162798205,
+      "half_width": 0.09148196775650538,
+      "low": 0.052056711443486364,
+      "high": 0.23502064695649713,
+      "p95": 0.3515378335503552,
+      "min": 0.08972879200155148,
+      "max": 0.5015509590011789,
+      "metode": "Kinerja",
+      "target": 1.0,
+      "ok": true,
+      "aturan": "batas atas selang 95% ≤ target → memenuhi"
+     },
+     "status": "LULUS",
+     "actual": "rata-rata 0.144 s ± 0.091 (95%: 0.052–0.235 s), p95 0.352 s",
+     "mulai": "2026-10-08 16:14:49",
+     "selesai": "2026-10-08 16:14:51",
+     "durasi_s": 2.009,
+     "bukti": "evidence/v1.0/TC-KN-01.json"
+    }
+   ]
+  },
+  "1.1": {
+   "versi": "1.1",
+   "label": "ASLI (materi)",
+   "berkas": "products/latihan/securefile_v11.py",
+   "sha256": "4ba4dd09ba84ad3bb24c47b1f2702bbeed603f252989d796d8b34e880f398d05",
+   "sidik_jari": "securefile_v11 4ba4dd09ba84ad3b",
+   "log": "log_securefile_v1.1.txt",
+   "tc": [
+    {
+     "id": "SF-SMOKE",
+     "skenario": "SK-00",
+     "judul": "Smoke test: modul termuat, API ada, satu round-trip berkas kecil",
+     "tahap": 1,
+     "jenis": "smoke",
+     "sasaran": "S2",
+     "wajib": true,
+     "negatif": false,
+     "expected": {
+      "kriteria": "modul termuat, encrypt/decrypt tersedia, decrypt(encrypt(m)) = m",
+      "sumber": "spesifikasi API"
+     },
+     "data_uji": "encrypt(b\"smoke\", b\"halo\")",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Smoke",
+     "analisis": null,
+     "status": "LULUS",
+     "actual": "modul termuat; round-trip benar",
+     "mulai": "2026-10-08 16:14:51",
+     "selesai": "2026-10-08 16:14:51",
+     "durasi_s": 0.196,
+     "bukti": "evidence/v1.1/SF-SMOKE.json"
+    },
+    {
+     "id": "TC-01",
+     "skenario": "SK-01",
+     "judul": "KAT PBKDF2-HMAC-SHA256 (primitif KDF produk)",
+     "tahap": 2,
+     "jenis": "kat",
+     "sasaran": "S1",
+     "wajib": true,
+     "negatif": false,
+     "expected": {
+      "nilai": "55ac046e56e3089fec1691c22544b605f94185216dde0465e68b9d57c20dacbc49ca9cccf179b645991664b39d77ef317c71b845b1e30bd509112041d3a19783",
+      "sumber": "RFC 7914 §11 (vektor PBKDF2-HMAC-SHA256)"
+     },
+     "data_uji": "P = \"passwd\", S = \"salt\", c = 1, dkLen = 64",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "KAT",
+     "analisis": {
+      "metode": "KAT",
+      "identik": true,
+      "panjang_aktual": 64,
+      "panjang_expected": 64,
+      "byte_beda_pertama": null,
+      "aturan": "identik byte demi byte → LULUS"
+     },
+     "status": "LULUS",
+     "actual": "55ac046e56e3089fec1691c22544b605f94185216dde0465e68b9d57c20dacbc49ca9cccf179b645991664b39d77ef317c71b845b1e30bd509112041d3a19783",
+     "mulai": "2026-10-08 16:14:51",
+     "selesai": "2026-10-08 16:14:51",
+     "durasi_s": 0.0,
+     "bukti": "evidence/v1.1/TC-01.json"
+    },
+    {
+     "id": "TC-02",
+     "skenario": "SK-01",
+     "judul": "KAT AES-256-GCM (primitif AEAD produk)",
+     "tahap": 2,
+     "jenis": "kat",
+     "sasaran": "S1",
+     "wajib": true,
+     "negatif": false,
+     "expected": {
+      "nilai": "530f8afbc74536b9a963b4f1c4cb738b",
+      "sumber": "McGrew–Viega GCM Test Case 13 (tag)"
+     },
+     "data_uji": "K = 0^256, IV = 0^96, P = kosong, AAD = kosong",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "KAT",
+     "analisis": {
+      "metode": "KAT",
+      "identik": true,
+      "panjang_aktual": 16,
+      "panjang_expected": 16,
+      "byte_beda_pertama": null,
+      "aturan": "identik byte demi byte → LULUS"
+     },
+     "status": "LULUS",
+     "actual": "530f8afbc74536b9a963b4f1c4cb738b",
+     "mulai": "2026-10-08 16:14:51",
+     "selesai": "2026-10-08 16:14:51",
+     "durasi_s": 0.0,
+     "bukti": "evidence/v1.1/TC-02.json"
+    },
+    {
+     "id": "TC-03",
+     "skenario": "SK-02",
+     "judul": "Round-trip: dekripsi dengan password benar menghasilkan plaintext identik",
+     "tahap": 3,
+     "jenis": "positif",
+     "sasaran": "S2",
+     "wajib": true,
+     "negatif": false,
+     "expected": {
+      "kriteria": "decrypt = b\"dokumen uji\"",
+      "sumber": "spesifikasi"
+     },
+     "data_uji": "encrypt(b\"rahasia\", b\"dokumen uji\")",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji positif",
+     "analisis": null,
+     "status": "LULUS",
+     "actual": "decrypt = b'dokumen uji'",
+     "mulai": "2026-10-08 16:14:51",
+     "selesai": "2026-10-08 16:14:51",
+     "durasi_s": 0.22,
+     "bukti": "evidence/v1.1/TC-03.json"
+    },
+    {
+     "id": "TC-PR-01",
+     "skenario": "SK-02",
+     "judul": "Uji properti: round-trip ukuran 0, 1, 15, 16, 17 byte dan |blob| = |pt| + 48",
+     "tahap": 3,
+     "jenis": "properti",
+     "sasaran": "S2",
+     "wajib": true,
+     "negatif": false,
+     "expected": {
+      "kriteria": "decrypt(encrypt(m)) = m dan panjang blob = 4 + 16 + 12 + |m| + 16 untuk semua ukuran",
+      "sumber": "spesifikasi format"
+     },
+     "data_uji": "plaintext acak ber-seed 2026",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji properti",
+     "analisis": null,
+     "status": "LULUS",
+     "actual": "5/5 ukuran memenuhi invarian",
+     "mulai": "2026-10-08 16:14:51",
+     "selesai": "2026-10-08 16:14:52",
+     "durasi_s": 0.918,
+     "bukti": "evidence/v1.1/TC-PR-01.json"
+    },
+    {
+     "id": "TC-DF-01",
+     "skenario": "SK-02",
+     "judul": "Uji diferensial: blob produk didekripsi implementasi independen (hashlib + pycryptodome)",
+     "tahap": 3,
+     "jenis": "diferensial",
+     "sasaran": "S2",
+     "wajib": true,
+     "negatif": false,
+     "expected": {
+      "kriteria": "3/3 plaintext identik ketika didekripsi oracle independen",
+      "sumber": "implementasi acuan independen"
+     },
+     "data_uji": "3 plaintext acak (seed 2026), password ilustratif",
+     "seed": 2026,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji diferensial",
+     "analisis": {
+      "metode": "Uji diferensial",
+      "identik": 3,
+      "total": 3,
+      "seed": 2026,
+      "ok": true,
+      "teks": "3/3 identik"
+     },
+     "status": "LULUS",
+     "actual": "3/3 identik (oracle: hashlib + pycryptodome)",
+     "mulai": "2026-10-08 16:14:52",
+     "selesai": "2026-10-08 16:14:53",
+     "durasi_s": 0.562,
+     "bukti": "evidence/v1.1/TC-DF-01.json"
+    },
+    {
+     "id": "TC-04",
+     "skenario": "SK-03",
+     "judul": "Uji negatif: password salah ditolak",
+     "tahap": 4,
+     "jenis": "negatif",
+     "sasaran": "S3",
+     "wajib": true,
+     "negatif": true,
+     "expected": {
+      "kriteria": "InvalidTag, tidak ada plaintext keluar",
+      "sumber": "SP 800-38D (autentikasi tag)"
+     },
+     "data_uji": "decrypt(b\"salah\", blob)",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji negatif",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "autentikasi": [
+        "InvalidTag"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     },
+     "status": "LULUS",
+     "actual": "InvalidTag:  — 1/1 ditolak",
+     "mulai": "2026-10-08 16:14:53",
+     "selesai": "2026-10-08 16:14:53",
+     "durasi_s": 0.096,
+     "bukti": "evidence/v1.1/TC-04.json"
+    },
+    {
+     "id": "TC-05",
+     "skenario": "SK-03",
+     "judul": "Uji negatif: 1 bit ciphertext dibalik ditolak",
+     "tahap": 4,
+     "jenis": "negatif",
+     "sasaran": "S3",
+     "wajib": true,
+     "negatif": true,
+     "expected": {
+      "kriteria": "InvalidTag, tidak ada plaintext keluar",
+      "sumber": "SP 800-38D"
+     },
+     "data_uji": "blob[40] ^= 1",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji negatif",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "autentikasi": [
+        "InvalidTag"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     },
+     "status": "LULUS",
+     "actual": "InvalidTag:  — 1/1 ditolak",
+     "mulai": "2026-10-08 16:14:53",
+     "selesai": "2026-10-08 16:14:53",
+     "durasi_s": 0.092,
+     "bukti": "evidence/v1.1/TC-05.json"
+    },
+    {
+     "id": "TC-09",
+     "skenario": "SK-03",
+     "judul": "Uji negatif: 1 bit tag diubah ditolak",
+     "tahap": 4,
+     "jenis": "negatif",
+     "sasaran": "S3",
+     "wajib": true,
+     "negatif": true,
+     "expected": {
+      "kriteria": "InvalidTag, tidak ada plaintext keluar",
+      "sumber": "SP 800-38D"
+     },
+     "data_uji": "blob[-1] ^= 1",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji negatif",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "autentikasi": [
+        "InvalidTag"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     },
+     "status": "LULUS",
+     "actual": "InvalidTag:  — 1/1 ditolak",
+     "mulai": "2026-10-08 16:14:53",
+     "selesai": "2026-10-08 16:14:53",
+     "durasi_s": 0.092,
+     "bukti": "evidence/v1.1/TC-09.json"
+    },
+    {
+     "id": "TC-07",
+     "skenario": "SK-03",
+     "judul": "Uji negatif: berkas terpotong ditolak dengan pesan format",
+     "tahap": 4,
+     "jenis": "negatif",
+     "sasaran": "S3",
+     "wajib": true,
+     "negatif": true,
+     "expected": {
+      "kriteria": "ValueError(\"format tidak valid\")",
+      "sumber": "spesifikasi API"
+     },
+     "data_uji": "blob[:40]",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji negatif",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "format": [
+        "ValueError"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     },
+     "status": "LULUS",
+     "actual": "ValueError: format tidak valid — 1/1 ditolak",
+     "mulai": "2026-10-08 16:14:53",
+     "selesai": "2026-10-08 16:14:53",
+     "durasi_s": 0.0,
+     "bukti": "evidence/v1.1/TC-07.json"
+    },
+    {
+     "id": "TC-08",
+     "skenario": "SK-03",
+     "judul": "Uji negatif: MAGIC diubah ditolak dengan pesan format",
+     "tahap": 4,
+     "jenis": "negatif",
+     "sasaran": "S3",
+     "wajib": true,
+     "negatif": true,
+     "expected": {
+      "kriteria": "ValueError(\"format tidak valid\")",
+      "sumber": "spesifikasi API"
+     },
+     "data_uji": "b\"XF01\" + blob[4:]",
+     "seed": null,
+     "batasan": null,
+     "inconclusive": null,
+     "metode": "Uji negatif",
+     "analisis": {
+      "metode": "Uji negatif",
+      "ditolak": 1,
+      "total": 1,
+      "rejection_rate": 1.0,
+      "semua_ditolak": true,
+      "plaintext_bocor": [],
+      "kelas_galat": {
+       "format": [
+        "ValueError"
+       ]
+      },
+      "galat_seragam": true,
+      "tidak_seragam": {},
+      "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+     },
+     "status": "LULUS",
+     "actual": "ValueError: format tidak valid — 1/1 ditolak",
+     "mulai": "2026-10-08 16:14:53",
+     "selesai": "2026-10-08 16:14:53",
+     "durasi_s": 0.0,
+     "bukti": "evidence/v1.1/TC-08.json"
+    },
+    {
+     "id": "TC-06",
+     "skenario": "SK-04",
+     "judul": "Salt & nonce tidak berulang (20 enkripsi, password & data sama)",
+     "tahap": 5,
+     "jenis": "statistik",
+     "sasaran": "S4",
+     "wajib": true,
+     "negatif": false,
+     "expected": {
+      "kriteria": "salt unik 20/20 dan nonce unik 20/20 (0 duplikat)",
+      "sumber": "SP 800-38D §8 (nonce unik per kunci); SP 800-132 (salt acak)"
+     },
+     "data_uji": "20 × encrypt(b\"p\", b\"x\")",
+     "seed": null,
+     "batasan": "N = 20 hanya menyingkirkan pengulangan kasar; keunikan pada volume produksi tidak dibuktikan",
+     "inconclusive": null,
+     "metode": "Keunikan nonce/salt",
+     "analisis": {
+      "salt": {
+       "metode": "Keunikan nonce/salt",
+       "label": "salt",
+       "N": 20,
+       "unik": 1,
+       "duplikat": 19,
+       "ok": false,
+       "teks": "salt unik 1/20",
+       "aturan": "0 duplikat → LULUS"
+      },
+      "nonce": {
+       "metode": "Keunikan nonce/salt",
+       "label": "nonce",
+       "N": 20,
+       "unik": 1,
+       "duplikat": 19,
+       "ok": false,
+       "teks": "nonce unik 1/20",
+       "aturan": "0 duplikat → LULUS"
+      }
+     },
+     "status": "GAGAL",
+     "actual": "salt unik 1/20, nonce unik 1/20; harapan 20/20",
+     "mulai": "2026-10-08 16:14:53",
+     "selesai": "2026-10-08 16:14:55",
+     "durasi_s": 1.824,
+     "bukti": "evidence/v1.1/TC-06.json"
+    },
+    {
+     "id": "TC-KN-01",
+     "skenario": "SK-05",
+     "judul": "Kinerja: dekripsi berkas 1 MiB (10 ulangan setelah 1 putaran pemanasan)",
+     "tahap": 6,
+     "jenis": "kinerja",
+     "sasaran": "S5",
+     "wajib": false,
+     "negatif": false,
+     "expected": {
+      "kriteria": "batas atas selang kepercayaan 95% ≤ 1,0 s",
+      "sumber": "target latihan (PERLU_VERIFIKASI terhadap spesifikasi produk)"
+     },
+     "data_uji": "berkas 1 MiB acak (seed 2026)",
+     "seed": null,
+     "batasan": "Target 1,0 s adalah asumsi skenario latihan, bukan persyaratan tertulis pemilik produk",
+     "inconclusive": null,
+     "metode": "Kinerja",
+     "analisis": {
+      "n": 10,
+      "warmup_dibuang": 1,
+      "mean": 0.09284877490099461,
+      "sd": 0.0034128118304068106,
+      "t_quantile": 2.262157162798205,
+      "half_width": 0.0024413785116598964,
+      "low": 0.0904073963893347,
+      "high": 0.09529015341265451,
+      "p95": 0.09855312485051398,
+      "min": 0.08910529200147721,
+      "max": 0.10134162499889499,
+      "metode": "Kinerja",
+      "target": 1.0,
+      "ok": true,
+      "aturan": "batas atas selang 95% ≤ target → memenuhi"
+     },
+     "status": "LULUS",
+     "actual": "rata-rata 0.093 s ± 0.002 (95%: 0.090–0.095 s), p95 0.099 s",
+     "mulai": "2026-10-08 16:14:55",
+     "selesai": "2026-10-08 16:14:56",
+     "durasi_s": 1.503,
+     "bukti": "evidence/v1.1/TC-KN-01.json"
+    }
+   ]
+  }
+ },
+ "skenario_sha256": "dc1fa313f8667db7d1f7cc852f3ebdc54113fac9088ce60997e20f3784d086af"
+}

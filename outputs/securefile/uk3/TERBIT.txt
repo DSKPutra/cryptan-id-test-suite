@@ -1,0 +1,2 @@
+Salinan terbitan dari run 20261008-161445-7a9f (outputs/securefile/uk3/runs/20261008-161445-7a9f).
+Verifikasi: python -m uk3_pengujian verify-evidence --product securefile --run 20261008-161445-7a9f

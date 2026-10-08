@@ -1,0 +1,10 @@
+{
+ "nonce_sama": true,
+ "c1_xor_c2_sama_dengan_p1_xor_p2": true,
+ "p2_diketahui": "RAPAT PUKUL 09.00 WIB!",
+ "p1_dipulihkan": "GAJI DIREKTUR: 90 JUTA",
+ "berhasil": true,
+ "nonce_hex": "ea77981b0978341bff64f28b",
+ "c1_hex": "56d79782f0f9d9e269e114662474fac315fdf2765222",
+ "c2_hex": "43d78d8a849dc0e567ff0c134677f4ca15fdef6a4442"
+}

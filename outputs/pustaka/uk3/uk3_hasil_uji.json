@@ -1,0 +1,279 @@
+{
+ "schema": "cryptan.uk3.hasil_uji.v1",
+ "app": "Cryptan.ID Test Suite · uk3_pengujian 1.0.0",
+ "unit": "J.61KRP00.014.1",
+ "produk": "pustaka",
+ "nama_produk": "Pustaka cryptography (pyca/OpenSSL)",
+ "run_id": "20261008-161501-0c7d",
+ "waktu": "2026-10-08T16:15:01+07:00",
+ "versi": {
+  "50.0.1": {
+   "sha256": "9ad86e52b4dde0544e0a9518ad322a863cfab3a4fd763019ad5ee7675a0c9b6a",
+   "label": "PUSTAKA TERPASANG",
+   "rekap": {
+    "LULUS": 24,
+    "GAGAL": 0,
+    "TERBLOKIR": 0,
+    "TIDAK DAPAT DIUJI": 0
+   },
+   "tingkat_lulus": 1.0,
+   "keseluruhan": "Memenuhi dengan Catatan",
+   "sasaran": {
+    "P1": {
+     "nama": "Kesesuaian algoritma terhadap vektor resmi (KAT)",
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan"
+    },
+    "P3": {
+     "nama": "Kesesuaian antarimplementasi & sifat matematis (diferensial, properti)",
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan"
+    },
+    "P2": {
+     "nama": "Penolakan masukan tidak sah (AEAD, kunci publik, tanda tangan)",
+     "kategori": "Memenuhi dengan Catatan",
+     "alasan": "TC-DS-02: Malleability (r, n − s) diterima: sah hanya bila keunikan tanda tangan tidak diandalkan"
+    },
+    "P4": {
+     "nama": "Keluaran keystream & sifat avalanche (statistik)",
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan"
+    },
+    "P5": {
+     "nama": "Variasi waktu (TVLA, indikatif)",
+     "kategori": "Memenuhi dengan Catatan",
+     "alasan": "TC-WT-01: Pengukuran perf_counter_ns dari proses Python — indikatif, bukan pengganti dudect/TVLA di lab"
+    }
+   },
+   "tc": [
+    {
+     "id": "PL-SMOKE",
+     "judul": "Smoke test: pustaka termuat, versi tercatat, satu round-trip AES-GCM & satu KAT SHA-256",
+     "jenis": "smoke",
+     "tahap": 1,
+     "status": "LULUS",
+     "actual": "cryptography 50.0.1 termuat; round-trip AES-GCM benar; SHA-256(abc) sesuai",
+     "bukti": "evidence/v50.0.1/PL-SMOKE.json"
+    },
+    {
+     "id": "TC-BC-01",
+     "judul": "KAT AES-128 FIPS 197 C.1 (Lab 1 A1)",
+     "jenis": "kat",
+     "tahap": 2,
+     "status": "LULUS",
+     "actual": "69c4e0d86a7b0430d8cdb78070b4c55a",
+     "bukti": "evidence/v50.0.1/TC-BC-01.json"
+    },
+    {
+     "id": "TC-BC-02",
+     "judul": "KAT AES-192 FIPS 197 C.2 (Lab 1 A1)",
+     "jenis": "kat",
+     "tahap": 2,
+     "status": "LULUS",
+     "actual": "dda97ca4864cdfe06eaf70a0ec0d7191",
+     "bukti": "evidence/v50.0.1/TC-BC-02.json"
+    },
+    {
+     "id": "TC-BC-03",
+     "judul": "KAT AES-256 FIPS 197 C.3 (Lab 1 A1)",
+     "jenis": "kat",
+     "tahap": 2,
+     "status": "LULUS",
+     "actual": "8ea2b7ca516745bfeafc49904b496089",
+     "bukti": "evidence/v50.0.1/TC-BC-03.json"
+    },
+    {
+     "id": "TC-AE-03",
+     "judul": "KAT AES-256-GCM Test Case 13 (tag)",
+     "jenis": "kat",
+     "tahap": 2,
+     "status": "LULUS",
+     "actual": "530f8afbc74536b9a963b4f1c4cb738b",
+     "bukti": "evidence/v50.0.1/TC-AE-03.json"
+    },
+    {
+     "id": "TC-SC-01",
+     "judul": "KAT ChaCha20 fungsi blok RFC 8439 §2.3.2",
+     "jenis": "kat",
+     "tahap": 2,
+     "status": "LULUS",
+     "actual": "10f1e7e4d13b5915500fdd1fa32071c4c7d1f4c733c068030422aa9ac3d46c4ed2826446079faa0914c2d705d98b02a2b5129cd1de164eb9cbd083e8a2503c4e",
+     "bukti": "evidence/v50.0.1/TC-SC-01.json"
+    },
+    {
+     "id": "TC-H-01a",
+     "judul": "KAT SHA-256(\"abc\")",
+     "jenis": "kat",
+     "tahap": 2,
+     "status": "LULUS",
+     "actual": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+     "bukti": "evidence/v50.0.1/TC-H-01a.json"
+    },
+    {
+     "id": "TC-H-01b",
+     "judul": "KAT HMAC-SHA256 RFC 4231 Test Case 1",
+     "jenis": "kat",
+     "tahap": 2,
+     "status": "LULUS",
+     "actual": "b0344c61d8db38535ca8afceaf0bf12b881dc200c9833da726e9376c2e32cff7",
+     "bukti": "evidence/v50.0.1/TC-H-01b.json"
+    },
+    {
+     "id": "TC-PK-01",
+     "judul": "RSA-OAEP: enkripsi pesan sama dua kali → ciphertext berbeda; dekripsi = pesan (KAT via dekripsi)",
+     "jenis": "positif",
+     "tahap": 3,
+     "status": "LULUS",
+     "actual": "c1 ≠ c2; dekripsi = pesan",
+     "bukti": "evidence/v50.0.1/TC-PK-01.json"
+    },
+    {
+     "id": "TC-PK-02",
+     "judul": "X25519: ECDH(A, B) = ECDH(B, A)",
+     "jenis": "properti",
+     "tahap": 3,
+     "status": "LULUS",
+     "actual": "ECDH(A,B) = ECDH(B,A)",
+     "bukti": "evidence/v50.0.1/TC-PK-02.json"
+    },
+    {
+     "id": "TC-H-02",
+     "judul": "Uji properti: SHA-256 bertahap = sekaligus (1.000 pesan acak)",
+     "jenis": "properti",
+     "tahap": 3,
+     "status": "LULUS",
+     "actual": "1000/1000 identik",
+     "bukti": "evidence/v50.0.1/TC-H-02.json"
+    },
+    {
+     "id": "TC-DF-02",
+     "judul": "Uji diferensial: AES-GCM pyca vs pycryptodome pada 1.000 masukan acak",
+     "jenis": "diferensial",
+     "tahap": 3,
+     "status": "LULUS",
+     "actual": "1000/1000 identik (pyca vs pycryptodome)",
+     "bukti": "evidence/v50.0.1/TC-DF-02.json"
+    },
+    {
+     "id": "TC-AE-01",
+     "judul": "AES-GCM: 1 bit ciphertext diubah → InvalidTag",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "InvalidTag:  — 1/1 ditolak",
+     "bukti": "evidence/v50.0.1/TC-AE-01.json"
+    },
+    {
+     "id": "TC-AE-02",
+     "judul": "AES-GCM: 1 bit AAD diubah → InvalidTag (Lab 1 A5)",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "InvalidTag:  — 1/1 ditolak",
+     "bukti": "evidence/v50.0.1/TC-AE-02.json"
+    },
+    {
+     "id": "TC-PK-03",
+     "judul": "X25519 dengan kunci publik lawan 32 byte nol ditolak",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "ValueError: Error computing shared key. — 1/1 ditolak",
+     "bukti": "evidence/v50.0.1/TC-PK-03.json"
+    },
+    {
+     "id": "TC-PK-04",
+     "judul": "Muat kunci publik P-256 dengan titik di luar kurva ditolak",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "ValueError: Invalid EC key. — 1/1 ditolak",
+     "bukti": "evidence/v50.0.1/TC-PK-04.json"
+    },
+    {
+     "id": "TC-DS-01",
+     "judul": "ECDSA P-256: verifikasi pesan diubah 1 byte → InvalidSignature",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "InvalidSignature:  — 1/1 ditolak",
+     "bukti": "evidence/v50.0.1/TC-DS-01.json"
+    },
+    {
+     "id": "TC-DS-02",
+     "judul": "ECDSA P-256: tanda tangan (r, n − s) — perilaku sesuai kebijakan low-s skenario",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "(r, n − s) diterima",
+     "bukti": "evidence/v50.0.1/TC-DS-02.json"
+    },
+    {
+     "id": "E2",
+     "judul": "Mutasi pesan: 100 tanda tangan Ed25519 sah, 1 bit tiap pesan diubah (Lab 1 E2)",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "rejection rate 100/100",
+     "bukti": "evidence/v50.0.1/E2.json"
+    },
+    {
+     "id": "E3",
+     "judul": "Mutasi tanda tangan: 1 bit tiap tanda tangan Ed25519 diubah (Lab 1 E3)",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "rejection rate 100/100",
+     "bukti": "evidence/v50.0.1/E3.json"
+    },
+    {
+     "id": "E4",
+     "judul": "Kunci publik lain: verifikasi dengan kunci publik pasangan lain (Lab 1 E4)",
+     "jenis": "negatif",
+     "tahap": 4,
+     "status": "LULUS",
+     "actual": "rejection rate 100/100",
+     "bukti": "evidence/v50.0.1/E4.json"
+    },
+    {
+     "id": "TC-ST-02",
+     "judul": "Keacakan keystream AES-128-CTR: SP 800-22 monobit, block frequency, runs (m × n bit)",
+     "jenis": "statistik",
+     "tahap": 5,
+     "status": "LULUS",
+     "actual": "monobit: 99/100 (batas 0.9602), P-value_T = 0.1025; block_frequency: 98/100 (batas 0.9602), P-value_T = 0.8978; runs: 99/100 (batas 0.9602), P-value_T = 0.0145",
+     "bukti": "evidence/v50.0.1/TC-ST-02.json"
+    },
+    {
+     "id": "TC-AV-01",
+     "judul": "Avalanche SHA-256: 1 bit pesan 64 byte diubah, rerata jarak Hamming",
+     "jenis": "statistik",
+     "tahap": 5,
+     "status": "LULUS",
+     "actual": "rerata HD 128.09 (sd 8.07), harapan 128 (sd 8); z = 1.14",
+     "bukti": "evidence/v50.0.1/TC-AV-01.json"
+    },
+    {
+     "id": "TC-WT-01",
+     "judul": "TVLA indikatif: AES-GCM enkripsi fixed-vs-random plaintext, uji t Welch, 2 sesi",
+     "jenis": "timing",
+     "tahap": 6,
+     "status": "LULUS",
+     "actual": "sesi 1: |t| = 0.48; sesi 2: |t| = 0.92",
+     "bukti": "evidence/v50.0.1/TC-WT-01.json"
+    }
+   ]
+  }
+ },
+ "temuan": [],
+ "pernyataan": [
+  "Pada Pustaka cryptography (pyca/OpenSSL) versi 50.0.1, dengan metode Avalanche, KAT, NIST SP 800-22, Smoke, Timing (Welch t), Uji diferensial, Uji negatif, Uji positif, Uji properti, 24 dari 24 TC lulus (0 GAGAL, 0 TERBLOKIR, 0 tidak dapat diuji).",
+  "Versi 50.0.1: tidak ditemukan bukti ketidakacakan pada uji SP 800-22 yang dijalankan."
+ ],
+ "deviasi": [],
+ "evidence_manifest_ok": true,
+ "handoff_uk4": {
+  "note": "Masukan UK-4: setiap temuan → rekomendasi perbaikan & prioritas berdasarkan CVSS",
+  "temuan": 0
+ }
+}

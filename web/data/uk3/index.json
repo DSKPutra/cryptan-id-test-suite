@@ -1,0 +1,19 @@
+{
+ "produk": [
+  {
+   "id": "securefile",
+   "run_id": "20261008-161445-7a9f",
+   "logs": [
+    "log_securefile_v1.0.txt",
+    "log_securefile_v1.1.txt"
+   ]
+  },
+  {
+   "id": "pustaka",
+   "run_id": "20261008-161501-0c7d",
+   "logs": [
+    "log_pustaka_v50.0.1.txt"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,756 @@
+{
+ "barisan_100": "1100000000101001001110110111110111011010011111110100010011101000111011101001000110100000010110001011",
+ "basic5_100": {
+  "alpha": 0.01,
+  "tests": [
+   {
+    "test": "frekuensi",
+    "statistic_name": "X₁",
+    "statistic": 0.04,
+    "df": 1,
+    "critical": 6.634896601021215,
+    "p_value": 0.841480581121794,
+    "decision": "Terima H₀",
+    "n0": 49,
+    "n1": 51,
+    "formula": "X₁ = (n₀ − n₁)²/n"
+   },
+   {
+    "test": "serial",
+    "statistic_name": "X₂",
+    "statistic": 0.07111111111110802,
+    "df": 2,
+    "critical": 9.21034037197618,
+    "p_value": 0.9650691177896819,
+    "decision": "Terima H₀",
+    "n00": 25,
+    "n01": 24,
+    "n10": 24,
+    "n11": 26,
+    "formula": "X₂ = 4/(n−1)·Σnᵢⱼ² − 2/n·(n₀² + n₁²) + 1"
+   },
+   {
+    "test": "poker",
+    "statistic_name": "X₃",
+    "statistic": 0.3999999999999986,
+    "df": 3,
+    "critical": 11.34486673014437,
+    "p_value": 0.9402424948393611,
+    "decision": "Terima H₀",
+    "m": 2,
+    "k": 50,
+    "counts": {
+     "00": 12,
+     "01": 11,
+     "10": 14,
+     "11": 13
+    },
+    "formula": "X₃ = (2ᵐ/k)·Σnᵢ² − k"
+   },
+   {
+    "test": "runs",
+    "statistic_name": "X₄",
+    "statistic": 0.33738594447680065,
+    "df": 2,
+    "critical": 9.21034037197618,
+    "p_value": 0.8447682308726236,
+    "decision": "Terima H₀",
+    "k": 2,
+    "table": [
+     {
+      "i": 1,
+      "B": 12,
+      "G": 13,
+      "e": 12.75
+     },
+     {
+      "i": 2,
+      "B": 6,
+      "G": 5,
+      "e": 6.3125
+     }
+    ],
+    "formula": "X₄ = Σ(Bᵢ − eᵢ)²/eᵢ + Σ(Gᵢ − eᵢ)²/eᵢ, eᵢ = (n − i + 3)/2^(i+2)"
+   },
+   {
+    "test": "autokorelasi",
+    "statistic_name": "X₅",
+    "statistic": 0.41702882811414954,
+    "critical": 2.5758293035489004,
+    "p_value": 0.6766573217164245,
+    "decision": "Terima H₀",
+    "d": 8,
+    "A": 48,
+    "formula": "X₅ = 2(A(d) − (n−d)/2)/√(n−d)"
+   }
+  ],
+  "rejected": [],
+  "summary": "Tidak ada bukti statistik untuk menolak keacakan barisan.",
+  "note": "Five basic tests hanya untuk studi kasus; hasil resmi memakai NIST STS lengkap."
+ },
+ "basic5_1100": {
+  "alpha": 0.01,
+  "tests": [
+   {
+    "test": "frekuensi",
+    "statistic_name": "X₁",
+    "statistic": 0.0,
+    "df": 1,
+    "critical": 6.634896601021215,
+    "p_value": 1.0,
+    "decision": "Terima H₀",
+    "n0": 50,
+    "n1": 50,
+    "formula": "X₁ = (n₀ − n₁)²/n"
+   },
+   {
+    "test": "serial",
+    "statistic_name": "X₂",
+    "statistic": 0.030303030303045375,
+    "df": 2,
+    "critical": 9.21034037197618,
+    "p_value": 0.984962691525225,
+    "decision": "Terima H₀",
+    "n00": 25,
+    "n01": 24,
+    "n10": 25,
+    "n11": 25,
+    "formula": "X₂ = 4/(n−1)·Σnᵢⱼ² − 2/n·(n₀² + n₁²) + 1"
+   },
+   {
+    "test": "poker",
+    "statistic_name": "X₃",
+    "statistic": 50.0,
+    "df": 3,
+    "critical": 11.34486673014437,
+    "p_value": 7.989179244951495e-11,
+    "decision": "Tolak H₀",
+    "m": 2,
+    "k": 50,
+    "counts": {
+     "00": 25,
+     "01": 0,
+     "10": 0,
+     "11": 25
+    },
+    "formula": "X₃ = (2ᵐ/k)·Σnᵢ² − k"
+   },
+   {
+    "test": "runs",
+    "statistic_name": "X₄",
+    "statistic": 136.14480198019803,
+    "df": 2,
+    "critical": 9.21034037197618,
+    "p_value": 2.7323220070689225e-30,
+    "decision": "Tolak H₀",
+    "k": 2,
+    "table": [
+     {
+      "i": 1,
+      "B": 0,
+      "G": 0,
+      "e": 12.75
+     },
+     {
+      "i": 2,
+      "B": 25,
+      "G": 25,
+      "e": 6.3125
+     }
+    ],
+    "formula": "X₄ = Σ(Bᵢ − eᵢ)²/eᵢ + Σ(Gᵢ − eᵢ)²/eᵢ, eᵢ = (n − i + 3)/2^(i+2)"
+   },
+   {
+    "test": "autokorelasi",
+    "statistic_name": "X₅",
+    "statistic": -9.59166304662544,
+    "critical": 2.5758293035489004,
+    "p_value": 8.667648148235394e-22,
+    "decision": "Tolak H₀",
+    "d": 8,
+    "A": 0,
+    "formula": "X₅ = 2(A(d) − (n−d)/2)/√(n−d)"
+   }
+  ],
+  "rejected": [
+   "poker",
+   "runs",
+   "autokorelasi"
+  ],
+  "summary": "H₀ ditolak oleh uji: poker, runs, autokorelasi.",
+  "note": "Five basic tests hanya untuk studi kasus; hasil resmi memakai NIST STS lengkap."
+ },
+ "golomb_100": {
+  "n": 100,
+  "G1": {
+   "n0": 49,
+   "n1": 51,
+   "diff": 2,
+   "ok": false
+  },
+  "G2": {
+   "runs": 48,
+   "blocks": 24,
+   "gaps": 24,
+   "table": [
+    {
+     "length": 1,
+     "observed": 25,
+     "blocks": 12,
+     "gaps": 13,
+     "ideal": 24.0
+    },
+    {
+     "length": 2,
+     "observed": 9,
+     "blocks": 4,
+     "gaps": 5,
+     "ideal": 12.0
+    },
+    {
+     "length": 3,
+     "observed": 9,
+     "blocks": 5,
+     "gaps": 4,
+     "ideal": 6.0
+    },
+    {
+     "length": 4,
+     "observed": 1,
+     "blocks": 1,
+     "gaps": 0,
+     "ideal": 3.0
+    },
+    {
+     "length": 5,
+     "observed": 1,
+     "blocks": 1,
+     "gaps": 0,
+     "ideal": 1.5
+    },
+    {
+     "length": 6,
+     "observed": 1,
+     "blocks": 0,
+     "gaps": 1,
+     "ideal": 0.75
+    },
+    {
+     "length": 7,
+     "observed": 1,
+     "blocks": 1,
+     "gaps": 0,
+     "ideal": 0.375
+    },
+    {
+     "length": 8,
+     "observed": 1,
+     "blocks": 0,
+     "gaps": 1,
+     "ideal": 0.1875
+    }
+   ],
+   "ok": false
+  },
+  "G3": {
+   "C": {
+    "1": 0.04,
+    "2": 0.08,
+    "3": 0.12,
+    "4": 0.04,
+    "5": -0.08,
+    "6": -0.16,
+    "7": 0.08,
+    "8": -0.04,
+    "9": 0.08,
+    "10": 0.16
+   },
+   "ok": false,
+   "min": -0.16,
+   "max": 0.16
+  },
+  "all_ok": false,
+  "conclusion": "Postulat Golomb tidak terpenuhi secara ketat: bukan barisan PN"
+ },
+ "msequence": {
+  "bits": "000100110101111",
+  "golomb": {
+   "n": 15,
+   "G1": {
+    "n0": 7,
+    "n1": 8,
+    "diff": 1,
+    "ok": true
+   },
+   "G2": {
+    "runs": 8,
+    "blocks": 4,
+    "gaps": 4,
+    "table": [
+     {
+      "length": 1,
+      "observed": 4,
+      "blocks": 2,
+      "gaps": 2,
+      "ideal": 4.0
+     },
+     {
+      "length": 2,
+      "observed": 2,
+      "blocks": 1,
+      "gaps": 1,
+      "ideal": 2.0
+     },
+     {
+      "length": 3,
+      "observed": 1,
+      "blocks": 0,
+      "gaps": 1,
+      "ideal": 1.0
+     },
+     {
+      "length": 4,
+      "observed": 1,
+      "blocks": 1,
+      "gaps": 0,
+      "ideal": 0.5
+     }
+    ],
+    "ok": true
+   },
+   "G3": {
+    "C": {
+     "1": -0.06666666666666667,
+     "2": -0.06666666666666667,
+     "3": -0.06666666666666667,
+     "4": -0.06666666666666667,
+     "5": -0.06666666666666667,
+     "6": -0.06666666666666667,
+     "7": -0.06666666666666667,
+     "8": -0.06666666666666667,
+     "9": -0.06666666666666667,
+     "10": -0.06666666666666667,
+     "11": -0.06666666666666667,
+     "12": -0.06666666666666667,
+     "13": -0.06666666666666667,
+     "14": -0.06666666666666667
+    },
+    "ok": true,
+    "min": -0.06666666666666667,
+    "max": -0.06666666666666667
+   },
+   "all_ok": true,
+   "conclusion": "G1, G2, G3 terpenuhi (sifat barisan PN)"
+  },
+  "bm": {
+   "L": 4,
+   "connection": [
+    1,
+    0,
+    0,
+    1,
+    1
+   ],
+   "polynomial": "1 + x^3 + x^4",
+   "characteristic": "x^4 + x + 1",
+   "bits_needed": 8
+  }
+ },
+ "lfsr5": {
+  "bits": "0011011101010000100101100111110",
+  "golomb": {
+   "n": 31,
+   "G1": {
+    "n0": 15,
+    "n1": 16,
+    "diff": 1,
+    "ok": true
+   },
+   "G2": {
+    "runs": 16,
+    "blocks": 8,
+    "gaps": 8,
+    "table": [
+     {
+      "length": 1,
+      "observed": 8,
+      "blocks": 4,
+      "gaps": 4,
+      "ideal": 8.0
+     },
+     {
+      "length": 2,
+      "observed": 4,
+      "blocks": 2,
+      "gaps": 2,
+      "ideal": 4.0
+     },
+     {
+      "length": 3,
+      "observed": 2,
+      "blocks": 1,
+      "gaps": 1,
+      "ideal": 2.0
+     },
+     {
+      "length": 4,
+      "observed": 1,
+      "blocks": 0,
+      "gaps": 1,
+      "ideal": 1.0
+     },
+     {
+      "length": 5,
+      "observed": 1,
+      "blocks": 1,
+      "gaps": 0,
+      "ideal": 0.5
+     }
+    ],
+    "ok": true
+   },
+   "G3": {
+    "C": {
+     "1": -0.03225806451612903,
+     "2": -0.03225806451612903,
+     "3": -0.03225806451612903,
+     "4": -0.03225806451612903,
+     "5": -0.03225806451612903,
+     "6": -0.03225806451612903,
+     "7": -0.03225806451612903,
+     "8": -0.03225806451612903,
+     "9": -0.03225806451612903,
+     "10": -0.03225806451612903,
+     "11": -0.03225806451612903,
+     "12": -0.03225806451612903,
+     "13": -0.03225806451612903,
+     "14": -0.03225806451612903,
+     "15": -0.03225806451612903,
+     "16": -0.03225806451612903,
+     "17": -0.03225806451612903,
+     "18": -0.03225806451612903,
+     "19": -0.03225806451612903,
+     "20": -0.03225806451612903,
+     "21": -0.03225806451612903,
+     "22": -0.03225806451612903,
+     "23": -0.03225806451612903,
+     "24": -0.03225806451612903,
+     "25": -0.03225806451612903,
+     "26": -0.03225806451612903,
+     "27": -0.03225806451612903,
+     "28": -0.03225806451612903,
+     "29": -0.03225806451612903,
+     "30": -0.03225806451612903
+    },
+    "ok": true,
+    "min": -0.03225806451612903,
+    "max": -0.03225806451612903
+   },
+   "all_ok": true,
+   "conclusion": "G1, G2, G3 terpenuhi (sifat barisan PN)"
+  },
+  "bm": {
+   "L": 5,
+   "connection": [
+    1,
+    0,
+    0,
+    1,
+    0,
+    1
+   ],
+   "polynomial": "1 + x^3 + x^5",
+   "characteristic": "x^5 + x^2 + 1",
+   "bits_needed": 10
+  }
+ },
+ "sp80022_contoh": [
+  {
+   "test": "monobit",
+   "name": "Frequency (monobit) §2.1",
+   "n": 10,
+   "n_min": 100,
+   "runnable": false,
+   "alpha": 0.01,
+   "statistic": {
+    "S": 2,
+    "s_obs": 0.6324555320336759
+   },
+   "p_value": 0.5270892568655381,
+   "steps": [
+    [
+     "Ubah bit 1→+1, 0→−1 lalu jumlahkan",
+     "6 bit 1 dan 4 bit 0",
+     "S = 2"
+    ],
+    [
+     "Statistik uji",
+     "s = |S|/√n = 2/√10",
+     "0,632"
+    ],
+    [
+     "p-value",
+     "erfc(0,632/√2)",
+     "0,5271"
+    ],
+    [
+     "Keputusan",
+     "0,5271 ≥ 0,01",
+     "LULUS"
+    ]
+   ],
+   "status": "LULUS",
+   "passed": true,
+   "note": "n = 10 < n minimum 100: hanya untuk mereproduksi contoh dokumen"
+  },
+  {
+   "test": "runs",
+   "name": "Runs §2.3",
+   "n": 10,
+   "n_min": 100,
+   "runnable": false,
+   "alpha": 0.01,
+   "statistic": {
+    "pi": 0.6,
+    "tau": 0.6324555320336759,
+    "V": 7,
+    "prerequisite": true
+   },
+   "p_value": 0.14723225536366566,
+   "steps": [
+    [
+     "Proporsi bit 1",
+     "π = 6/10",
+     "0,600"
+    ],
+    [
+     "Prasyarat |π − 0,5| < τ = 2/√n",
+     "|0,600 − 0,5| = 0,100 vs τ = 0,632",
+     "terpenuhi"
+    ],
+    [
+     "Jumlah run V = 1 + jumlah perubahan bit",
+     "1 · 00 · 11 · 0 · 1 · 0 · 11",
+     "V = 7"
+    ],
+    [
+     "p-value",
+     "erfc(|7 − 4,8| / (2·√20·0,24))",
+     "0,1472"
+    ],
+    [
+     "Keputusan",
+     "0,1472 ≥ 0,01",
+     "LULUS"
+    ]
+   ],
+   "status": "LULUS",
+   "passed": true,
+   "note": "n = 10 < n minimum 100: hanya untuk mereproduksi contoh dokumen"
+  },
+  {
+   "test": "block_frequency",
+   "name": "Frequency within a block §2.2",
+   "n": 10,
+   "n_min": 100,
+   "runnable": false,
+   "alpha": 0.01,
+   "statistic": {
+    "chi2": 0.9999999999999998,
+    "N": 3,
+    "M": 3
+   },
+   "p_value": 0.8012519569012009,
+   "steps": [
+    [
+     "Bagi barisan menjadi N blok berukuran M",
+     "n = 10, M = 3",
+     "N = 3 blok; 1 bit sisa diabaikan"
+    ],
+    [
+     "Proporsi bit 1 per blok",
+     "011 · 001 · 101",
+     "0,667, 0,333, 0,667"
+    ],
+    [
+     "χ² = 4M Σ(π_i − 0,5)²",
+     "4 × 3 × 0,0833",
+     "1,0000"
+    ],
+    [
+     "p-value",
+     "igamc(1,5 ; 0,5000)",
+     "0,8013"
+    ],
+    [
+     "Keputusan",
+     "0,8013 ≥ 0,01",
+     "LULUS"
+    ]
+   ],
+   "status": "LULUS",
+   "passed": true,
+   "note": "n = 10 < n minimum 100: hanya untuk mereproduksi contoh dokumen"
+  }
+ ],
+ "proporsi": [
+  {
+   "m": 100,
+   "p0": 0.99,
+   "half_width": 0.029849623113198616,
+   "low": 0.9601503768868014,
+   "high": 1.0
+  },
+  {
+   "m": 1000,
+   "p0": 0.99,
+   "half_width": 0.009439279633531368,
+   "low": 0.9805607203664686,
+   "high": 0.9994392796335314
+  }
+ ],
+ "keseragaman": {
+  "counts": [
+   12,
+   8,
+   9,
+   11,
+   10,
+   10,
+   9,
+   11,
+   12,
+   8
+  ],
+  "m": 100,
+  "chi2": 2.0,
+  "p_value_T": 0.9914676066288135,
+  "ok": true
+ },
+ "welch": {
+  "t": 8.178304293538913,
+  "abs_t": 8.178304293538913,
+  "leak": true,
+  "mean1": 1200.0,
+  "mean2": 1215.0,
+  "var_n1": 1.6,
+  "var_n2": 1.764,
+  "n1": 1000,
+  "n2": 1000,
+  "threshold": 4.5
+ },
+ "ci": {
+  "n": 10,
+  "warmup_dibuang": 0,
+  "mean": 0.8300000000000001,
+  "sd": 0.01825741858350552,
+  "t_quantile": 2.262157162798205,
+  "half_width": 0.013060570468907825,
+  "low": 0.8169394295310922,
+  "high": 0.8430605704689079,
+  "p95": 0.8554999999999999,
+  "min": 0.8,
+  "max": 0.86
+ },
+ "min_entropy": {
+  "p1": 0.6,
+  "h_min": 0.7369655941662062,
+  "shannon": 0.9709505944546686,
+  "raw_bits_256": 348
+ },
+ "cvss": {
+  "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+  "metrics": {
+   "AV": "L",
+   "AC": "L",
+   "PR": "N",
+   "UI": "N",
+   "S": "U",
+   "C": "H",
+   "I": "N",
+   "A": "N"
+  },
+  "iss": 0.56,
+  "impact": 3.5952,
+  "exploitability": 2.515145325,
+  "base_score": 6.2,
+  "severity": "Medium",
+  "langkah": [
+   [
+    "ISS",
+    "1 − (1 − 0.56)(1 − 0.0)(1 − 0.0)",
+    0.56
+   ],
+   [
+    "Impact (S:U)",
+    "6,42 × 0.56",
+    3.595
+   ],
+   [
+    "Exploitability",
+    "8,22 × 0.55 × 0.77 × 0.85 × 0.85",
+    2.515
+   ],
+   [
+    "Base score",
+    "roundup((Impact + Exploitability)), 1 desimal",
+    "6.2 (Medium)"
+   ]
+  ]
+ },
+ "panjang_barisan": {
+  "m": 100,
+  "seed": 2026,
+  "rows": [
+   {
+    "n": 10000,
+    "generator": "baik",
+    "monobit": 0.98,
+    "runs": 1.0,
+    "batas": 0.9601503768868014,
+    "kesimpulan": "LULUS"
+   },
+   {
+    "n": 10000,
+    "generator": "bias P(1) = 0.51",
+    "monobit": 0.66,
+    "runs": 0.95,
+    "batas": 0.9601503768868014,
+    "kesimpulan": "Terdeteksi (monobit, runs)"
+   },
+   {
+    "n": 100000,
+    "generator": "baik",
+    "monobit": 1.0,
+    "runs": 0.99,
+    "batas": 0.9601503768868014,
+    "kesimpulan": "LULUS"
+   },
+   {
+    "n": 100000,
+    "generator": "bias P(1) = 0.51",
+    "monobit": 0.0,
+    "runs": 0.0,
+    "batas": 0.9601503768868014,
+    "kesimpulan": "Terdeteksi (monobit, runs)"
+   },
+   {
+    "n": 1000000,
+    "generator": "baik",
+    "monobit": 1.0,
+    "runs": 1.0,
+    "batas": 0.9601503768868014,
+    "kesimpulan": "LULUS"
+   },
+   {
+    "n": 1000000,
+    "generator": "bias P(1) = 0.51",
+    "monobit": 0.0,
+    "runs": 0.0,
+    "batas": 0.9601503768868014,
+    "kesimpulan": "Terdeteksi (monobit, runs)"
+   }
+  ],
+  "lesson": "Barisan pendek bisa meloloskan cacat kecil; tetapkan n dan m sebelum uji, jangan diubah setelah melihat hasil."
+ }
+}

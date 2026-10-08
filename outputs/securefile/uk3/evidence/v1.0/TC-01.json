@@ -1,0 +1,24 @@
+{
+ "tc": "TC-01",
+ "versi": "1.0",
+ "status": "LULUS",
+ "actual": "55ac046e56e3089fec1691c22544b605f94185216dde0465e68b9d57c20dacbc49ca9cccf179b645991664b39d77ef317c71b845b1e30bd509112041d3a19783",
+ "expected": {
+  "nilai": "55ac046e56e3089fec1691c22544b605f94185216dde0465e68b9d57c20dacbc49ca9cccf179b645991664b39d77ef317c71b845b1e30bd509112041d3a19783",
+  "sumber": "RFC 7914 §11 (vektor PBKDF2-HMAC-SHA256)"
+ },
+ "data": {
+  "actual": "55ac046e56e3089fec1691c22544b605f94185216dde0465e68b9d57c20dacbc49ca9cccf179b645991664b39d77ef317c71b845b1e30bd509112041d3a19783",
+  "expected": "55ac046e56e3089fec1691c22544b605f94185216dde0465e68b9d57c20dacbc49ca9cccf179b645991664b39d77ef317c71b845b1e30bd509112041d3a19783",
+  "sumber": "RFC 7914 §11 (vektor PBKDF2-HMAC-SHA256)"
+ },
+ "analisis": {
+  "metode": "KAT",
+  "identik": true,
+  "panjang_aktual": 64,
+  "panjang_expected": 64,
+  "byte_beda_pertama": null,
+  "aturan": "identik byte demi byte → LULUS"
+ },
+ "seed": null
+}

@@ -1,0 +1,40 @@
+{
+ "tc": "TC-04",
+ "versi": "1.0",
+ "status": "LULUS",
+ "actual": "InvalidTag:  — 1/1 ditolak",
+ "expected": {
+  "kriteria": "InvalidTag, tidak ada plaintext keluar",
+  "sumber": "SP 800-38D (autentikasi tag)"
+ },
+ "data": {
+  "cases": [
+   {
+    "case": "password salah",
+    "rejected": true,
+    "error_class": "InvalidTag",
+    "message": "",
+    "plaintext_leaked": false,
+    "group": "autentikasi"
+   }
+  ],
+  "expected": "InvalidTag"
+ },
+ "analisis": {
+  "metode": "Uji negatif",
+  "ditolak": 1,
+  "total": 1,
+  "rejection_rate": 1.0,
+  "semua_ditolak": true,
+  "plaintext_bocor": [],
+  "kelas_galat": {
+   "autentikasi": [
+    "InvalidTag"
+   ]
+  },
+  "galat_seragam": true,
+  "tidak_seragam": {},
+  "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+ },
+ "seed": null
+}

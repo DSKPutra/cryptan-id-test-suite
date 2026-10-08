@@ -1,0 +1,24 @@
+{
+ "tc": "TC-BC-03",
+ "versi": "50.0.1",
+ "status": "LULUS",
+ "actual": "8ea2b7ca516745bfeafc49904b496089",
+ "expected": {
+  "nilai": "8ea2b7ca516745bfeafc49904b496089",
+  "sumber": "FIPS 197 Lampiran C.3"
+ },
+ "data": {
+  "actual": "8ea2b7ca516745bfeafc49904b496089",
+  "expected": "8ea2b7ca516745bfeafc49904b496089",
+  "sumber": "FIPS 197 Lampiran C.3"
+ },
+ "analisis": {
+  "metode": "KAT",
+  "identik": true,
+  "panjang_aktual": 16,
+  "panjang_expected": 16,
+  "byte_beda_pertama": null,
+  "aturan": "identik byte demi byte → LULUS"
+ },
+ "seed": null
+}

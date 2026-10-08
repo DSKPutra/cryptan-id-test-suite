@@ -1,0 +1,16 @@
+{
+ "tc": "TC-H-02",
+ "versi": "50.0.1",
+ "status": "LULUS",
+ "actual": "1000/1000 identik",
+ "expected": {
+  "kriteria": "1000/1000 identik",
+  "sumber": "FIPS 180-4 (definisi)"
+ },
+ "data": {
+  "identik": 1000,
+  "total": 1000
+ },
+ "analisis": null,
+ "seed": 2026
+}

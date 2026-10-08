@@ -76,6 +76,8 @@ cryptan-id-test-suite/
 │   ├── traceability.py           # Matriks keterlacakan
 │   ├── report.py                 # JSON + Markdown + DOCX + CSV
 │   └── pipeline.py / __main__.py # orkestrasi & CLI
+├── uk3_pengujian/                # UK-3: prep/ run/ (planner, runner, testtypes/) analysis/ conclude/ report/ rng/ app.py
+├── products/                     # produk uji UK-3: latihan/ (asli, gitignore) · replika/ · ruang_lingkup.yaml
 ├── std_report/                   # Daftar algoritme standar + 11 uji + laporan PDF/HTML/XLSX (lihat bagian khusus)
 │   ├── catalog.py runner.py kat.py sp80022.py tests/{k,s,i}.py schema/ vectors/
 │   └── report/{theme.yaml,template.py,builder.py,model.py,export.py} · app.py (Streamlit) · __main__.py (CLI)
@@ -295,6 +297,60 @@ Vektor Wycheproof: C2SP/wycheproof (Apache-2.0), lisensi di `uk2_skenario/data/v
 - Catat hasil per nilai parameter, lalu petakan ke `outcome_map` (Memenuhi / Memenuhi dengan Catatan / Tidak Memenuhi / Inkonklusif).
 - Aksi `manual` menghasilkan checklist bukti.
 - Antarmuka adapter yang disarankan: `encrypt/decrypt/sign/verify/keygen/hash(target, inputs) → output | error_code`.
+
+## 🔬 Modul `uk3_pengujian/` — UK-3 Melakukan Pengujian Terhadap Produk Kriptografi (J.61KRP00.014.1)
+
+Aplikasi pemandu penguji dari persiapan sampai laporan: **1 Siapkan → 2 Jalankan → 3 Olah data → 4 Simpulkan & laporkan**,
+ditambah **Lab Keacakan**. Tahap berikutnya terkunci sampai tahap sebelumnya selesai; setiap fungsi diberi komentar KUK.
+
+```bash
+python -m uk3_pengujian prep     --product products/latihan/securefile.py   # KUK 1.1–1.2: dokumen, checklist, perangkat
+python -m uk3_pengujian run      --product securefile --tc all              # KUK 2.1–2.2 → run_id
+python -m uk3_pengujian analyze  --product securefile --run <run_id>        # KUK 3.1
+python -m uk3_pengujian conclude --product securefile --run <run_id>        # KUK 3.2 (+ --kesimpulan "teks" diperiksa)
+python -m uk3_pengujian report   --product securefile --run <run_id> --pdf --docx   # KUK 3.3
+python -m uk3_pengujian rng      --input bits.txt --tests golomb,basic5,sp80022,linear
+python -m uk3_pengujian verify-evidence --product securefile --run <run_id>
+streamlit run uk3_pengujian/app.py                                          # GUI (= make uk3-gui)
+make uk3                                                                     # alur lengkap SecureFile + pustaka
+```
+
+| KUK | Halaman GUI | Modul | Test |
+|---|---|---|---|
+| 1.1 Dokumen uji dikumpulkan | 1 Siapkan | `prep/documents.py` (dokumen + SHA-256, checklist 6 butir) | `test_checklist_no_locks_run` |
+| 1.2 Perangkat diinventarisasi | 1 Siapkan | `prep/inventory.py` (verifikasi alat: SHA-256 abc, AES C.1, contoh SP 800-22) | `test_log_first_line_is_environment_and_columns` |
+| 2.1 Tahapan diidentifikasi | 2 Jalankan | `run/planner.py` (6 tahapan, graf ketergantungan, 9 langkah, UK-2) | `test_planner_*` |
+| 2.2 Pengujian diterapkan | 2 Jalankan | `run/runner.py` + `run/testtypes/` (7 jenis uji + kinerja/timing) | `test_securefile_*`, `test_pustaka_run` |
+| 3.1 Data dianalisis | 3 Olah data | `analysis/methods.py`, `analysis/analyze.py` | `test_analysis_consistent`, `test_uk3_stats.py` |
+| 3.2 Kesimpulan ditentukan | 4 Simpulkan | `conclude/decide.py`, `cvss.py`, `wording.py` | `test_conclusion_*`, `test_cvss_*`, `test_wording_*` |
+| 3.3 Laporan didokumentasikan | 4 … & laporkan | `report/build.py` (PDF + DOCX 7 bagian, `uk3_hasil_uji.json` untuk UK-4) | `test_lembar_hasil_side_by_side_and_reports` |
+
+**Hasil uji langsung (seed 2026):**
+
+| Produk | Versi | TC | LULUS | GAGAL | Keseluruhan |
+|---|---|---:|---:|---:|---|
+| SecureFile (asli materi, `9804eeb7…`) | 1.0 | 13 | 13 | 0 | Memenuhi dengan Catatan (N = 20 untuk keunikan; target kinerja asumsi latihan) |
+| SecureFile (asli materi, `4ba4dd09…`) | 1.1 | 13 | 12 | 1 (TC-06) | **Tidak Memenuhi** — temuan F-01 *Nonce GCM berulang*, CVSS 3.1 6,2 (Medium) |
+| pyca/cryptography 50.0.1 | — | 24 | 24 | 0 | Memenuhi dengan Catatan (TC-DS-02: (r, n − s) diterima, low-s tidak diwajibkan) |
+
+Bukti dampak F-01: dua berkas dengan password sama → C1 ⊕ C2 = P1 ⊕ P2; dengan P2 “RAPAT PUKUL 09.00 WIB!” diketahui,
+P1 “GAJI DIREKTUR: 90 JUTA” dipulihkan. Skenario SecureLib dari UK-2 (91 TC) terbaca oleh planner, tetapi run terkunci
+karena produk belum diterima (checklist “Produk uji diterima + hash” = Tidak).
+
+**Prinsip yang ditegakkan kode:** expected value dari skenario/vektor resmi (bukan dari produk); setiap run punya `run_id`
+dan run ulang wajib beralasan; n/m dikunci saat *prep* (perubahan = deviasi tercatat); SHA-256 setiap log & bukti di
+`evidence_manifest.json` (1 byte berubah → terdeteksi); hanya produk di `products/ruang_lingkup.yaml` yang boleh diuji;
+TC yang tidak dapat dijalankan berstatus TIDAK DAPAT DIUJI dan tidak dihitung LULUS.
+
+**Produk latihan:** berkas asli materi diletakkan di `products/latihan/` (di-*gitignore*); bila tidak ada, aplikasi memakai
+**REPLIKA** di `products/replika/` yang dibuat dari spesifikasi (hash berbeda dari slide).
+
+Keluaran `outputs/<produk>/uk3/`: `uk3_hasil_uji.json`, `log_*.txt`, `lembar_hasil.csv`, `evidence/`,
+`evidence_manifest.json`, `Laporan_Hasil_Pengujian.pdf/.docx`; setiap percobaan tersimpan di `runs/<run_id>/` dan
+`runs_index.json`. Dashboard: `uk3.html` (data `web/data/uk3/`, `python -m uk3_pengujian export-web`).
+
+**`PERLU_VERIFIKASI`:** target kinerja TC-KN-01 (1,0 s) adalah asumsi skenario latihan; NIST STS 2.1.2 tidak terpasang
+di lingkungan ini (pembaca `finalAnalysisReport.txt` tersedia, uji resmi 15 SP 800-22 perlu dijalankan di lab).
 
 ## 📑 Modul `std_report/` — Daftar Algoritme Standar + Hasil Semua Uji + Export PDF
 

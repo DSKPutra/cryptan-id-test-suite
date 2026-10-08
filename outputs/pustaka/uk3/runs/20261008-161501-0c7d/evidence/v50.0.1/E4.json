@@ -1,0 +1,33 @@
+{
+ "tc": "E4",
+ "versi": "50.0.1",
+ "status": "LULUS",
+ "actual": "rejection rate 100/100",
+ "expected": {
+  "kriteria": "rejection rate 100/100",
+  "sumber": "RFC 8032"
+ },
+ "data": {
+  "rejected": 100,
+  "total": 100
+ },
+ "analisis": {
+  "metode": "Rejection rate",
+  "ditolak": 100,
+  "total": 100,
+  "rejection_rate": 1.0,
+  "semua_ditolak": true,
+  "plaintext_bocor": [],
+  "kelas_galat": {
+   "verifikasi": [
+    "InvalidSignature"
+   ]
+  },
+  "galat_seragam": true,
+  "tidak_seragam": {},
+  "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS",
+  "ok": true,
+  "teks": "rejection rate 100/100"
+ },
+ "seed": 2026
+}

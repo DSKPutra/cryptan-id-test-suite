@@ -1,0 +1,16 @@
+{
+ "tc": "TC-03",
+ "versi": "1.0",
+ "status": "LULUS",
+ "actual": "decrypt = b'dokumen uji'",
+ "expected": {
+  "kriteria": "decrypt = b\"dokumen uji\"",
+  "sumber": "spesifikasi"
+ },
+ "data": {
+  "blob_sha256": "a4280beeee58123504ef63944f4ba48b801f9f61a5ffb83e7a98627496b67182",
+  "blob_len": 59
+ },
+ "analisis": null,
+ "seed": null
+}

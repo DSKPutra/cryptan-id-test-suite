@@ -1,0 +1,116 @@
+{
+ "schema": "cryptan.uk3.kesimpulan.v1",
+ "run_id": "20261008-161501-0c7d",
+ "produk": "pustaka",
+ "kategori": [
+  "Memenuhi",
+  "Memenuhi dengan Catatan",
+  "Tidak Memenuhi",
+  "Inkonklusif"
+ ],
+ "per_versi": {
+  "50.0.1": {
+   "sasaran": {
+    "P1": {
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan",
+     "tc": [
+      "PL-SMOKE",
+      "TC-BC-01",
+      "TC-BC-02",
+      "TC-BC-03",
+      "TC-AE-03",
+      "TC-SC-01",
+      "TC-H-01a",
+      "TC-H-01b"
+     ],
+     "lulus": 8,
+     "total": 8,
+     "nama": "Kesesuaian algoritma terhadap vektor resmi (KAT)"
+    },
+    "P3": {
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan",
+     "tc": [
+      "TC-PK-01",
+      "TC-PK-02",
+      "TC-H-02",
+      "TC-DF-02"
+     ],
+     "lulus": 4,
+     "total": 4,
+     "nama": "Kesesuaian antarimplementasi & sifat matematis (diferensial, properti)"
+    },
+    "P2": {
+     "kategori": "Memenuhi dengan Catatan",
+     "alasan": "TC-DS-02: Malleability (r, n − s) diterima: sah hanya bila keunikan tanda tangan tidak diandalkan",
+     "tc": [
+      "TC-AE-01",
+      "TC-AE-02",
+      "TC-PK-03",
+      "TC-PK-04",
+      "TC-DS-01",
+      "TC-DS-02",
+      "E2",
+      "E3",
+      "E4"
+     ],
+     "lulus": 9,
+     "total": 9,
+     "nama": "Penolakan masukan tidak sah (AEAD, kunci publik, tanda tangan)"
+    },
+    "P4": {
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan",
+     "tc": [
+      "TC-ST-02",
+      "TC-AV-01"
+     ],
+     "lulus": 2,
+     "total": 2,
+     "nama": "Keluaran keystream & sifat avalanche (statistik)"
+    },
+    "P5": {
+     "kategori": "Memenuhi dengan Catatan",
+     "alasan": "TC-WT-01: Pengukuran perf_counter_ns dari proses Python — indikatif, bukan pengganti dudect/TVLA di lab",
+     "tc": [
+      "TC-WT-01"
+     ],
+     "lulus": 1,
+     "total": 1,
+     "nama": "Variasi waktu (TVLA, indikatif)"
+    }
+   },
+   "keseluruhan": "Memenuhi dengan Catatan",
+   "rekap": {
+    "LULUS": 24,
+    "GAGAL": 0,
+    "TERBLOKIR": 0,
+    "TIDAK DAPAT DIUJI": 0
+   },
+   "total": 24,
+   "tingkat_lulus": 1.0
+  }
+ },
+ "temuan": [],
+ "pernyataan": [
+  "Pada Pustaka cryptography (pyca/OpenSSL) versi 50.0.1, dengan metode Avalanche, KAT, NIST SP 800-22, Smoke, Timing (Welch t), Uji diferensial, Uji negatif, Uji positif, Uji properti, 24 dari 24 TC lulus (0 GAGAL, 0 TERBLOKIR, 0 tidak dapat diuji).",
+  "Versi 50.0.1: tidak ditemukan bukti ketidakacakan pada uji SP 800-22 yang dijalankan."
+ ],
+ "pemeriksaan_rumusan": [
+  {
+   "teks": "Pada Pustaka cryptography (pyca/OpenSSL) versi 50.0.1, dengan metode Avalanche, KAT, NIST SP 800-22, Smoke, Timing (Welch t), Uji diferensial, Uji negatif, Uji positif, Uji properti, 24 dari 24 TC lulus (0 GAGAL, 0 TERBLOKIR, 0 tidak dapat diuji).",
+   "diterima": true,
+   "masalah": [],
+   "saran": []
+  },
+  {
+   "teks": "Versi 50.0.1: tidak ditemukan bukti ketidakacakan pada uji SP 800-22 yang dijalankan.",
+   "diterima": true,
+   "masalah": [],
+   "saran": []
+  }
+ ],
+ "pernyataan_penguji": null,
+ "aturan_agregasi": "TC wajib GAGAL → Tidak Memenuhi; TERBLOKIR/TIDAK DAPAT DIUJI/bukti statistik kurang → tidak boleh Memenuhi; semua LULUS dengan batasan → Memenuhi dengan Catatan"
+}

@@ -1,0 +1,18 @@
+[
+ {
+  "run_id": "20261008-161445-7a9f",
+  "mulai": "2026-10-08T16:14:45+07:00",
+  "alasan": "run pertama",
+  "versi": [
+   "1.0",
+   "1.1"
+  ],
+  "rekap": {
+   "LULUS": 25,
+   "GAGAL": 1
+  },
+  "deviasi": 0,
+  "manifest_sha256": "1e91a49eb2dff3277dbb7ff076c2c5156d0fcc126a5d0511d356fc1ccf600b2b",
+  "dir": "outputs/securefile/uk3/runs/20261008-161445-7a9f"
+ }
+]

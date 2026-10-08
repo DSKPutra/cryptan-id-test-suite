@@ -1,0 +1,47 @@
+{
+ "tc": "TC-WT-01",
+ "versi": "50.0.1",
+ "status": "LULUS",
+ "actual": "sesi 1: |t| = 0.48; sesi 2: |t| = 0.92",
+ "expected": {
+  "kriteria": "|t| ≤ 4,5 pada setiap sesi",
+  "sumber": "TVLA (materi slide 36)"
+ },
+ "data": null,
+ "analisis": {
+  "sesi": [
+   {
+    "t": -0.48137544648357145,
+    "abs_t": 0.48137544648357145,
+    "leak": "False",
+    "mean1": 914.556,
+    "mean2": 895.461,
+    "var_n1": 696.2176508382793,
+    "var_n2": 877.2994115190621,
+    "n1": 3000,
+    "n2": 3000,
+    "threshold": 4.5,
+    "metode": "Timing (Welch t)",
+    "ok": true,
+    "aturan": "|t| ≤ 4,5 → tidak ada indikasi bocor"
+   },
+   {
+    "t": 0.9151127527360878,
+    "abs_t": 0.9151127527360878,
+    "leak": "False",
+    "mean1": 802.255,
+    "mean2": 803.2686666666667,
+    "var_n1": 0.6217959236412139,
+    "var_n2": 0.6051943375199141,
+    "n1": 3000,
+    "n2": 3000,
+    "threshold": 4.5,
+    "metode": "Timing (Welch t)",
+    "ok": true,
+    "aturan": "|t| ≤ 4,5 → tidak ada indikasi bocor"
+   }
+  ],
+  "tidak_konsisten": false
+ },
+ "seed": 2026
+}

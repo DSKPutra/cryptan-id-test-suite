@@ -1,0 +1,13 @@
+{
+ "tc": "PL-SMOKE",
+ "versi": "50.0.1",
+ "status": "LULUS",
+ "actual": "cryptography 50.0.1 termuat; round-trip AES-GCM benar; SHA-256(abc) sesuai",
+ "expected": {
+  "kriteria": "termuat; round-trip benar; SHA-256(abc) = ba7816bf…",
+  "sumber": "FIPS 180-4"
+ },
+ "data": null,
+ "analisis": null,
+ "seed": null
+}

@@ -64,3 +64,15 @@ std-report-full:    ## mode full (100 × 10⁶ bit, 10.000 sampel avalanche) —
 
 std-report-gui:     ## GUI Streamlit dengan Export to PDF
 	$(PY) -m streamlit run std_report/app.py
+
+.PHONY: uk3 uk3-gui
+uk3:                ## UK-3 alur lengkap: prep → run → analyze → conclude → report (SecureFile + pustaka) → data dashboard
+	for p in securefile pustaka; do \
+	  $(PY) -m uk3_pengujian prep --product $$p && \
+	  $(PY) -m uk3_pengujian run --product $$p --alasan "$${ALASAN:-run via make uk3}" && \
+	  $(PY) -m uk3_pengujian analyze --product $$p && $(PY) -m uk3_pengujian conclude --product $$p && \
+	  $(PY) -m uk3_pengujian report --product $$p --pdf --docx || exit 1; done
+	$(PY) -m uk3_pengujian export-web
+
+uk3-gui:            ## GUI Streamlit UK-3
+	$(PY) -m streamlit run uk3_pengujian/app.py

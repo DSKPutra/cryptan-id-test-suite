@@ -1,0 +1,42 @@
+{
+ "tc": "TC-AV-01",
+ "versi": "50.0.1",
+ "status": "LULUS",
+ "actual": "rerata HD 128.09 (sd 8.07), harapan 128 (sd 8); z = 1.14",
+ "expected": {
+  "kriteria": "|z| ≤ 3, z = (rerata − 128)/(8/√N)",
+  "sumber": "materi slide 38"
+ },
+ "data": {
+  "histogram": [
+   1,
+   9,
+   38,
+   170,
+   420,
+   772,
+   1416,
+   1809,
+   2006,
+   1565,
+   1020,
+   504,
+   189,
+   63,
+   13,
+   5
+  ]
+ },
+ "analisis": {
+  "mean_hd": 128.0909,
+  "expected": 128.0,
+  "sd_expected": 8.0,
+  "N": 10000,
+  "z": 1.1362500000000608,
+  "ok": true,
+  "metode": "Avalanche",
+  "sd_teramati": 8.072109580853603,
+  "aturan": "|z| ≤ 3 → tidak ditemukan penyimpangan"
+ },
+ "seed": 2026
+}

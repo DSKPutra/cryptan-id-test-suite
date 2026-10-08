@@ -1,0 +1,79 @@
+{
+ "tc": "TC-06",
+ "versi": "1.0",
+ "status": "LULUS",
+ "actual": "salt unik 20/20, nonce unik 20/20; harapan 20/20",
+ "expected": {
+  "kriteria": "salt unik 20/20 dan nonce unik 20/20 (0 duplikat)",
+  "sumber": "SP 800-38D §8 (nonce unik per kunci); SP 800-132 (salt acak)"
+ },
+ "data": {
+  "salts": [
+   "080fabd32d9ddcdae8e9f9590b993224",
+   "d8b12a520008e6e51cf9f2a24d877a96",
+   "01495715205f9d575ae832275b75d67c",
+   "f11b6b6f6a165ba8204034dacbe97e4c",
+   "6cc2e6a66776670941ce98e19b94b9ef",
+   "430dfd388ec6ce6258a8429d7596813c",
+   "804193131c32da399aa79fd714cba98d",
+   "493713dea591db7ccd0ab003614abe98",
+   "117251d435e3247a3485e4e47839aefb",
+   "a8fab18fbfce36d7713890c63eaeef3b",
+   "26907560805f5751b9e379669bce0ab6",
+   "0a3fa95249ec7e523df77fb846245b8f",
+   "e33b5a13ee3a3dc2bc287a7eac1b2564",
+   "dd378f10b704a79523d020cfd9c69180",
+   "3258b2670b5b899774df5b98ac66a587",
+   "2883a39826165e88368370b51086e820",
+   "1c73328fd0e82f7edbe3e48c04b015e9",
+   "eb4282b21c112ef07af4c558d6c37a20",
+   "c6b4fb9eb7b77e9c48c5bd1caea36c58",
+   "8ee9d75c3088e587e7a8f1c0fcf859ba"
+  ],
+  "nonces": [
+   "22a717890258bcc51307f5ab",
+   "0bd62c2046a967e83466846e",
+   "49d06c5fae0d0d2295929795",
+   "db502125b2c4c888f37548b0",
+   "0ff3367208ca3a6610959f85",
+   "35f87a4e9d858e6953da887e",
+   "f74aeff5a4ccfba0234ebb15",
+   "8faca4c302ca782d1ae0e8ae",
+   "150e582cdd74b21f748f2b43",
+   "c7412bce9c8c753c3f407a2f",
+   "8b639966e8d27d6ad4ff08af",
+   "2c8e4a512750c92d7f7ad9b2",
+   "127babe52d2362e9e1ccd9aa",
+   "92f10662ed27306504bb6fbe",
+   "4648ea1cb379ec9d0bacf54f",
+   "42be750f4c32d09f54d0aa93",
+   "9bc1e799488dfc479d67786c",
+   "8a13ab61394fd34168156a29",
+   "17ff3783732ec04e6a649e64",
+   "338afaa47357af08b4550c54"
+  ]
+ },
+ "analisis": {
+  "salt": {
+   "metode": "Keunikan nonce/salt",
+   "label": "salt",
+   "N": 20,
+   "unik": 20,
+   "duplikat": 0,
+   "ok": true,
+   "teks": "salt unik 20/20",
+   "aturan": "0 duplikat → LULUS"
+  },
+  "nonce": {
+   "metode": "Keunikan nonce/salt",
+   "label": "nonce",
+   "N": 20,
+   "unik": 20,
+   "duplikat": 0,
+   "ok": true,
+   "teks": "nonce unik 20/20",
+   "aturan": "0 duplikat → LULUS"
+  }
+ },
+ "seed": null
+}

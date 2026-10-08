@@ -9,6 +9,7 @@
   python -m uk3_pengujian rng      --input bits.txt --tests golomb,basic5,sp80022,linear
   python -m uk3_pengujian cvss     AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N
   python -m uk3_pengujian verify-evidence --product securefile --run <run_id>
+  python -m uk3_pengujian export-web
   streamlit run uk3_pengujian/app.py
 
 --product menerima path berkas produk (mis. products/latihan/securefile.py) atau ID registri.
@@ -156,6 +157,12 @@ def cmd_verify(a):
     return 0 if r["ok"] else 1
 
 
+def cmd_export_web(a):
+    from .webexport import export
+    print(export(a.out))
+    return 0
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="python -m uk3_pengujian", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -178,6 +185,7 @@ def main(argv=None):
     sp.add_argument("--d", type=int, default=8); sp.add_argument("--tests", default="golomb,basic5,sp80022,linear"); sp.set_defaults(fn=cmd_rng)
     sp = sub.add_parser("cvss"); sp.add_argument("vector"); sp.set_defaults(fn=cmd_cvss)
     sp = sub.add_parser("verify-evidence"); prod(sp, True); sp.set_defaults(fn=cmd_verify)
+    sp = sub.add_parser("export-web", help="data dashboard → web/data/uk3/"); sp.add_argument("--out"); sp.set_defaults(fn=cmd_export_web)
     a = ap.parse_args(argv)
     return a.fn(a)
 

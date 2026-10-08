@@ -1,0 +1,46 @@
+{
+ "tc": "TC-PR-01",
+ "versi": "1.0",
+ "status": "LULUS",
+ "actual": "5/5 ukuran memenuhi invarian",
+ "expected": {
+  "kriteria": "decrypt(encrypt(m)) = m dan panjang blob = 4 + 16 + 12 + |m| + 16 untuk semua ukuran",
+  "sumber": "spesifikasi format"
+ },
+ "data": {
+  "rows": [
+   {
+    "ukuran": 0,
+    "round_trip": true,
+    "panjang_blob": 48,
+    "panjang_sesuai": true
+   },
+   {
+    "ukuran": 1,
+    "round_trip": true,
+    "panjang_blob": 49,
+    "panjang_sesuai": true
+   },
+   {
+    "ukuran": 15,
+    "round_trip": true,
+    "panjang_blob": 63,
+    "panjang_sesuai": true
+   },
+   {
+    "ukuran": 16,
+    "round_trip": true,
+    "panjang_blob": 64,
+    "panjang_sesuai": true
+   },
+   {
+    "ukuran": 17,
+    "round_trip": true,
+    "panjang_blob": 65,
+    "panjang_sesuai": true
+   }
+  ]
+ },
+ "analisis": null,
+ "seed": null
+}

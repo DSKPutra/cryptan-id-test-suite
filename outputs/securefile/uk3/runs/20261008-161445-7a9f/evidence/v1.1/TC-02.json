@@ -1,0 +1,24 @@
+{
+ "tc": "TC-02",
+ "versi": "1.1",
+ "status": "LULUS",
+ "actual": "530f8afbc74536b9a963b4f1c4cb738b",
+ "expected": {
+  "nilai": "530f8afbc74536b9a963b4f1c4cb738b",
+  "sumber": "McGrew–Viega GCM Test Case 13 (tag)"
+ },
+ "data": {
+  "actual": "530f8afbc74536b9a963b4f1c4cb738b",
+  "expected": "530f8afbc74536b9a963b4f1c4cb738b",
+  "sumber": "McGrew–Viega GCM Test Case 13 (tag)"
+ },
+ "analisis": {
+  "metode": "KAT",
+  "identik": true,
+  "panjang_aktual": 16,
+  "panjang_expected": 16,
+  "byte_beda_pertama": null,
+  "aturan": "identik byte demi byte → LULUS"
+ },
+ "seed": null
+}

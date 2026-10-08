@@ -1,0 +1,2 @@
+Salinan terbitan dari run 20261008-161501-0c7d (outputs/pustaka/uk3/runs/20261008-161501-0c7d).
+Verifikasi: python -m uk3_pengujian verify-evidence --product pustaka --run 20261008-161501-0c7d

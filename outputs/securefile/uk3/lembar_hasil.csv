@@ -1,0 +1,14 @@
+TC;Skenario;Judul;Tahap;Jenis uji;Expected;v1.0;v1.1;Catatan
+SF-SMOKE;SK-00;Smoke test: modul termuat, API ada, satu round-trip berkas kecil;1;smoke;modul termuat, encrypt/decrypt tersedia, decrypt(encrypt(m)) = m;LULUS;LULUS;
+TC-01;SK-01;KAT PBKDF2-HMAC-SHA256 (primitif KDF produk);2;kat;55ac046e56e3089fec1691c22544b605f94185216dde0465e68b9d57c20dacbc49ca9…;LULUS;LULUS;
+TC-02;SK-01;KAT AES-256-GCM (primitif AEAD produk);2;kat;530f8afbc74536b9a963b4f1c4cb738b;LULUS;LULUS;
+TC-03;SK-02;Round-trip: dekripsi dengan password benar menghasilkan plaintext identik;3;positif;"decrypt = b""dokumen uji""";LULUS;LULUS;
+TC-PR-01;SK-02;Uji properti: round-trip ukuran 0, 1, 15, 16, 17 byte dan |blob| = |pt| + 48;3;properti;decrypt(encrypt(m)) = m dan panjang blob = 4 + 16 + 12 + |m| + 16 unt…;LULUS;LULUS;
+TC-DF-01;SK-02;Uji diferensial: blob produk didekripsi implementasi independen (hashlib + pycryptodome);3;diferensial;3/3 plaintext identik ketika didekripsi oracle independen;LULUS;LULUS;
+TC-04;SK-03;Uji negatif: password salah ditolak;4;negatif;InvalidTag, tidak ada plaintext keluar;LULUS;LULUS;
+TC-05;SK-03;Uji negatif: 1 bit ciphertext dibalik ditolak;4;negatif;InvalidTag, tidak ada plaintext keluar;LULUS;LULUS;
+TC-09;SK-03;Uji negatif: 1 bit tag diubah ditolak;4;negatif;InvalidTag, tidak ada plaintext keluar;LULUS;LULUS;
+TC-07;SK-03;Uji negatif: berkas terpotong ditolak dengan pesan format;4;negatif;"ValueError(""format tidak valid"")";LULUS;LULUS;
+TC-08;SK-03;Uji negatif: MAGIC diubah ditolak dengan pesan format;4;negatif;"ValueError(""format tidak valid"")";LULUS;LULUS;
+TC-06;SK-04;Salt & nonce tidak berulang (20 enkripsi, password & data sama);5;statistik;salt unik 20/20 dan nonce unik 20/20 (0 duplikat);LULUS;GAGAL;"v1.1: salt unik 1/20, nonce unik 1/20; harapan 20/20"
+TC-KN-01;SK-05;Kinerja: dekripsi berkas 1 MiB (10 ulangan setelah 1 putaran pemanasan);6;kinerja;batas atas selang kepercayaan 95% ≤ 1,0 s;LULUS;LULUS;

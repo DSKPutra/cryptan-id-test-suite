@@ -1,0 +1,238 @@
+{
+ "schema": "cryptan.uk3.kesimpulan.v1",
+ "run_id": "20261008-161445-7a9f",
+ "produk": "securefile",
+ "kategori": [
+  "Memenuhi",
+  "Memenuhi dengan Catatan",
+  "Tidak Memenuhi",
+  "Inkonklusif"
+ ],
+ "per_versi": {
+  "1.0": {
+   "sasaran": {
+    "S2": {
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan",
+     "tc": [
+      "SF-SMOKE",
+      "TC-03",
+      "TC-PR-01",
+      "TC-DF-01"
+     ],
+     "lulus": 4,
+     "total": 4,
+     "nama": "Fungsi enkripsi–dekripsi berkas berjalan benar"
+    },
+    "S1": {
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan",
+     "tc": [
+      "TC-01",
+      "TC-02"
+     ],
+     "lulus": 2,
+     "total": 2,
+     "nama": "Kesesuaian primitif yang dipakai produk (PBKDF2-HMAC-SHA256, AES-256-GCM)"
+    },
+    "S3": {
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan",
+     "tc": [
+      "TC-04",
+      "TC-05",
+      "TC-09",
+      "TC-07",
+      "TC-08"
+     ],
+     "lulus": 5,
+     "total": 5,
+     "nama": "Masukan tidak sah ditolak dengan aman dan galat seragam"
+    },
+    "S4": {
+     "kategori": "Memenuhi dengan Catatan",
+     "alasan": "TC-06: N = 20 hanya menyingkirkan pengulangan kasar; keunikan pada volume produksi tidak dibuktikan",
+     "tc": [
+      "TC-06"
+     ],
+     "lulus": 1,
+     "total": 1,
+     "nama": "Salt dan nonce unik per berkas (syarat SP 800-38D & SP 800-132)"
+    },
+    "S5": {
+     "kategori": "Memenuhi dengan Catatan",
+     "alasan": "TC-KN-01: Target 1,0 s adalah asumsi skenario latihan, bukan persyaratan tertulis pemilik produk",
+     "tc": [
+      "TC-KN-01"
+     ],
+     "lulus": 1,
+     "total": 1,
+     "nama": "Kinerja dekripsi memenuhi target"
+    }
+   },
+   "keseluruhan": "Memenuhi dengan Catatan",
+   "rekap": {
+    "LULUS": 13,
+    "GAGAL": 0,
+    "TERBLOKIR": 0,
+    "TIDAK DAPAT DIUJI": 0
+   },
+   "total": 13,
+   "tingkat_lulus": 1.0
+  },
+  "1.1": {
+   "sasaran": {
+    "S2": {
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan",
+     "tc": [
+      "SF-SMOKE",
+      "TC-03",
+      "TC-PR-01",
+      "TC-DF-01"
+     ],
+     "lulus": 4,
+     "total": 4,
+     "nama": "Fungsi enkripsi–dekripsi berkas berjalan benar"
+    },
+    "S1": {
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan",
+     "tc": [
+      "TC-01",
+      "TC-02"
+     ],
+     "lulus": 2,
+     "total": 2,
+     "nama": "Kesesuaian primitif yang dipakai produk (PBKDF2-HMAC-SHA256, AES-256-GCM)"
+    },
+    "S3": {
+     "kategori": "Memenuhi",
+     "alasan": "semua TC LULUS tanpa batasan",
+     "tc": [
+      "TC-04",
+      "TC-05",
+      "TC-09",
+      "TC-07",
+      "TC-08"
+     ],
+     "lulus": 5,
+     "total": 5,
+     "nama": "Masukan tidak sah ditolak dengan aman dan galat seragam"
+    },
+    "S4": {
+     "kategori": "Tidak Memenuhi",
+     "alasan": "TC wajib GAGAL: TC-06",
+     "tc": [
+      "TC-06"
+     ],
+     "lulus": 0,
+     "total": 1,
+     "nama": "Salt dan nonce unik per berkas (syarat SP 800-38D & SP 800-132)"
+    },
+    "S5": {
+     "kategori": "Memenuhi dengan Catatan",
+     "alasan": "TC-KN-01: Target 1,0 s adalah asumsi skenario latihan, bukan persyaratan tertulis pemilik produk",
+     "tc": [
+      "TC-KN-01"
+     ],
+     "lulus": 1,
+     "total": 1,
+     "nama": "Kinerja dekripsi memenuhi target"
+    }
+   },
+   "keseluruhan": "Tidak Memenuhi",
+   "rekap": {
+    "LULUS": 12,
+    "GAGAL": 1,
+    "TERBLOKIR": 0,
+    "TIDAK DAPAT DIUJI": 0
+   },
+   "total": 13,
+   "tingkat_lulus": 0.9230769230769231
+  }
+ },
+ "temuan": [
+  {
+   "id": "F-01",
+   "judul": "Nonce GCM berulang",
+   "versi": "1.1",
+   "test_case": "TC-06 GAGAL",
+   "bukti": "salt unik 1/20, nonce unik 1/20; harapan 20/20 (berkas evidence/v1.1/TC-06.json, SHA-256 4f854df61b68557c…)",
+   "dampak": "Keystream sama untuk berkas dengan password sama → C1 ⊕ C2 = P1 ⊕ P2; plaintext dapat dipulihkan bila salah satu diketahui; tag GCM dapat dipalsukan",
+   "acuan": "NIST SP 800-38D §8: nonce tidak boleh berulang untuk kunci yang sama",
+   "keparahan": "CVSS 3.1 · 6.2 (Medium)",
+   "cvss": {
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+    "metrics": {
+     "AV": "L",
+     "AC": "L",
+     "PR": "N",
+     "UI": "N",
+     "S": "U",
+     "C": "H",
+     "I": "N",
+     "A": "N"
+    },
+    "iss": 0.56,
+    "impact": 3.5952,
+    "exploitability": 2.515145325,
+    "base_score": 6.2,
+    "severity": "Medium",
+    "langkah": [
+     [
+      "ISS",
+      "1 − (1 − 0.56)(1 − 0.0)(1 − 0.0)",
+      0.56
+     ],
+     [
+      "Impact (S:U)",
+      "6,42 × 0.56",
+      3.595
+     ],
+     [
+      "Exploitability",
+      "8,22 × 0.55 × 0.77 × 0.85 × 0.85",
+      2.515
+     ],
+     [
+      "Base score",
+      "roundup((Impact + Exploitability)), 1 desimal",
+      "6.2 (Medium)"
+     ]
+    ]
+   },
+   "rekomendasi": "Kembalikan salt & nonce acak per berkas (os.urandom) seperti v1.0",
+   "demonstrasi_dampak": {
+    "nonce_sama": true,
+    "c1_xor_c2_sama_dengan_p1_xor_p2": true,
+    "p2_diketahui": "RAPAT PUKUL 09.00 WIB!",
+    "p1_dipulihkan": "GAJI DIREKTUR: 90 JUTA",
+    "berhasil": true,
+    "nonce_hex": "ea77981b0978341bff64f28b",
+    "c1_hex": "56d79782f0f9d9e269e114662474fac315fdf2765222",
+    "c2_hex": "43d78d8a849dc0e567ff0c134677f4ca15fdef6a4442"
+   }
+  }
+ ],
+ "pernyataan": [
+  "Pada SecureFile versi 1.0, dengan metode KAT, Keunikan nonce/salt, Kinerja, Smoke, Uji diferensial, Uji negatif, Uji positif, Uji properti, 13 dari 13 TC lulus (0 GAGAL, 0 TERBLOKIR, 0 tidak dapat diuji).",
+  "Pada SecureFile versi 1.1, dengan metode KAT, Keunikan nonce/salt, Kinerja, Smoke, Uji diferensial, Uji negatif, Uji positif, Uji properti, 12 dari 13 TC lulus (1 GAGAL, 0 TERBLOKIR, 0 tidak dapat diuji)."
+ ],
+ "pemeriksaan_rumusan": [
+  {
+   "teks": "Pada SecureFile versi 1.0, dengan metode KAT, Keunikan nonce/salt, Kinerja, Smoke, Uji diferensial, Uji negatif, Uji positif, Uji properti, 13 dari 13 TC lulus (0 GAGAL, 0 TERBLOKIR, 0 tidak dapat diuji).",
+   "diterima": true,
+   "masalah": [],
+   "saran": []
+  },
+  {
+   "teks": "Pada SecureFile versi 1.1, dengan metode KAT, Keunikan nonce/salt, Kinerja, Smoke, Uji diferensial, Uji negatif, Uji positif, Uji properti, 12 dari 13 TC lulus (1 GAGAL, 0 TERBLOKIR, 0 tidak dapat diuji).",
+   "diterima": true,
+   "masalah": [],
+   "saran": []
+  }
+ ],
+ "pernyataan_penguji": null,
+ "aturan_agregasi": "TC wajib GAGAL → Tidak Memenuhi; TERBLOKIR/TIDAK DAPAT DIUJI/bukti statistik kurang → tidak boleh Memenuhi; semua LULUS dengan batasan → Memenuhi dengan Catatan"
+}

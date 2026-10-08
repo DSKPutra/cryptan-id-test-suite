@@ -1,0 +1,44 @@
+{
+ "tc": "TC-KN-01",
+ "versi": "1.1",
+ "status": "LULUS",
+ "actual": "rata-rata 0.093 s ± 0.002 (95%: 0.090–0.095 s), p95 0.099 s",
+ "expected": {
+  "kriteria": "batas atas selang kepercayaan 95% ≤ 1,0 s",
+  "sumber": "target latihan (PERLU_VERIFIKASI terhadap spesifikasi produk)"
+ },
+ "data": {
+  "times_s": [
+   0.0904944579997391,
+   0.0915167500024836,
+   0.09237833299994236,
+   0.09133825000026263,
+   0.09161745800156496,
+   0.10134162499889499,
+   0.09309633300290443,
+   0.09284883299915236,
+   0.09514495800249279,
+   0.0900999170007708,
+   0.08910529200147721
+  ],
+  "warmup": 1
+ },
+ "analisis": {
+  "n": 10,
+  "warmup_dibuang": 1,
+  "mean": 0.09284877490099461,
+  "sd": 0.0034128118304068106,
+  "t_quantile": 2.262157162798205,
+  "half_width": 0.0024413785116598964,
+  "low": 0.0904073963893347,
+  "high": 0.09529015341265451,
+  "p95": 0.09855312485051398,
+  "min": 0.08910529200147721,
+  "max": 0.10134162499889499,
+  "metode": "Kinerja",
+  "target": 1.0,
+  "ok": true,
+  "aturan": "batas atas selang 95% ≤ target → memenuhi"
+ },
+ "seed": null
+}

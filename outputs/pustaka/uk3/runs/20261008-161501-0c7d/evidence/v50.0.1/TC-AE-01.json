@@ -1,0 +1,40 @@
+{
+ "tc": "TC-AE-01",
+ "versi": "50.0.1",
+ "status": "LULUS",
+ "actual": "InvalidTag:  — 1/1 ditolak",
+ "expected": {
+  "kriteria": "InvalidTag, tanpa plaintext",
+  "sumber": "SP 800-38D"
+ },
+ "data": {
+  "cases": [
+   {
+    "case": "1 bit ciphertext",
+    "rejected": true,
+    "error_class": "InvalidTag",
+    "message": "",
+    "plaintext_leaked": false,
+    "group": "default"
+   }
+  ],
+  "expected": "InvalidTag"
+ },
+ "analisis": {
+  "metode": "Uji negatif",
+  "ditolak": 1,
+  "total": 1,
+  "rejection_rate": 1.0,
+  "semua_ditolak": true,
+  "plaintext_bocor": [],
+  "kelas_galat": {
+   "default": [
+    "InvalidTag"
+   ]
+  },
+  "galat_seragam": true,
+  "tidak_seragam": {},
+  "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+ },
+ "seed": null
+}

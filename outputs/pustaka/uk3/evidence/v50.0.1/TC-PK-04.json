@@ -1,0 +1,40 @@
+{
+ "tc": "TC-PK-04",
+ "versi": "50.0.1",
+ "status": "LULUS",
+ "actual": "ValueError: Invalid EC key. — 1/1 ditolak",
+ "expected": {
+  "kriteria": "ValueError (Invalid EC key)",
+  "sumber": "SEC 1 §3.2.2; SP 800-56A §5.6.2.3"
+ },
+ "data": {
+  "cases": [
+   {
+    "case": "titik di luar kurva",
+    "rejected": true,
+    "error_class": "ValueError",
+    "message": "Invalid EC key.",
+    "plaintext_leaked": false,
+    "group": "default"
+   }
+  ],
+  "expected": "ValueError"
+ },
+ "analisis": {
+  "metode": "Uji negatif",
+  "ditolak": 1,
+  "total": 1,
+  "rejection_rate": 1.0,
+  "semua_ditolak": true,
+  "plaintext_bocor": [],
+  "kelas_galat": {
+   "default": [
+    "ValueError"
+   ]
+  },
+  "galat_seragam": true,
+  "tidak_seragam": {},
+  "aturan": "semua masukan rusak ditolak dengan galat seragam → LULUS"
+ },
+ "seed": null
+}
