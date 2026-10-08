@@ -1,0 +1,13 @@
+# Jangan unggah berkas lokal/terbatas ke Vercel (situs hanya dibangun dari web/ + outputs publik)
+.venv
+.git
+**/__pycache__
+.pytest_cache
+site
+docs/materi/*.pdf
+docs/materi/*.pptx
+products/latihan
+outputs/std_report
+samples/std_report/*.pdf
+std_report/vectors/wycheproof
+outputs/lab_keacakan
