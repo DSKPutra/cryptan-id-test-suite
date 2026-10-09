@@ -38,9 +38,11 @@ def runs(e):
     return math.erfc(abs(v - 2 * n * pi * (1 - pi)) / (2 * math.sqrt(2 * n) * pi * (1 - pi)))
 
 
+# Peluang kelas: M = 8 & 128 nilai eksak (DP kombinatorik, identik dengan konstanta NIST STS 2.1.2);
+# M = 10⁴ memakai tabel SP 800-22/STS (sedikit berbeda dari nilai eksak 0,0866…) agar hasil sebanding dengan STS resmi.
 _LR = {  # (M, K, v-kategori, pi) — SP 800-22 §2.4.4 / §3.4
-    8: (3, [1, 2, 3, 4], [0.2148, 0.3672, 0.2305, 0.1875]),
-    128: (5, [4, 5, 6, 7, 8, 9], [0.1174, 0.2430, 0.2493, 0.1752, 0.1027, 0.1124]),
+    8: (3, [1, 2, 3, 4], [55 / 256, 47 / 128, 59 / 256, 3 / 16]),
+    128: (5, [4, 5, 6, 7, 8, 9], [0.1174035788, 0.2429559593, 0.2493634832, 0.1751770603, 0.1027010713, 0.1123988471]),
     10000: (6, [10, 11, 12, 13, 14, 15, 16], [0.0882, 0.2092, 0.2483, 0.1933, 0.1208, 0.0675, 0.0727]),
 }
 

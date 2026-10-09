@@ -57,7 +57,7 @@ def test_sp80022_reference_examples():
     assert [round(x, 6) for x in sp80022.serial("0011011101", m=3, enforce_min=False)["p_values"]] == [0.808792, 0.670320]
     lr = ("11001100000101010110110001001100111000000000001001001101010100010001001111010110100000001101011111001100"
           "111001101101100010110010")
-    assert sp80022.longest_run(lr)["p_value"] == pytest.approx(0.180609, abs=2e-5)
+    assert round(sp80022.longest_run(lr)["p_value"], 6) == 0.180609
 
 
 def test_proportion_m1000_and_m100():

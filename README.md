@@ -10,7 +10,9 @@ Repositori ini dibangun bertahap per Unit Kompetensi (UK-1 s.d. UK-8); setiap UK
 | **algo_catalog** | Daftar Algoritma yang Diuji — melengkapi UK-1 KUK 1.1 | ✅ selesai (`algo_catalog/`) |
 | **UK-1** | J.61KRP00.012.1 — Menentukan Metode Pengujian yang akan Dilakukan | ✅ selesai (`uk1_metode/`) |
 | **UK-2** | J.61KRP00.013.1 — Menyusun Skenario Pengujian | ✅ selesai (`uk2_skenario/`) |
-| UK-3 … UK-8 | — | ⏳ menyusul |
+| **UK-3** | J.61KRP00.014.1 — Melakukan Pengujian Terhadap Produk Kriptografi | ✅ selesai (`uk3_pengujian/`) |
+| **std_report** | Daftar Algoritme Standar (FIPS · NIST SP 800 · ISO/IEC) + hasil semua uji + PDF (TERBATAS) | ✅ selesai (`std_report/`) |
+| UK-4 … UK-8 | — | ⏳ menyusul |
 
 Objek praktikum mencakup **kelima kelas primitif** (satu profil per kelas):
 
@@ -440,8 +442,17 @@ HNP/Minerva (A-D-03), contoh timing Keyczar (A-L-01), serta tahun terbit SP 800-
 
 ## 🌐 Deploy
 
-Dashboard statis (`web/`) membaca `outputs/uk1/*.json`. `vercel.json` dan `netlify.toml` menjalankan
+Dashboard statis (`web/`: UK-1, Katalog, UK-2, UK-3) membaca `outputs/uk1`, `outputs/algo_catalog`, `outputs/uk2`, dan
+`web/data/uk3` (`python -m uk3_pengujian export-web`). `vercel.json` dan `netlify.toml` menjalankan
 `python3 scripts/build_site.py` dan mempublikasikan folder `site/`.
+
+- GitHub: <https://github.com/DSKPutra/cryptan-id-test-suite>
+- Vercel: <https://cryptan-id-test-suite.vercel.app> (`vercel deploy --prod`; `.vercelignore` mencegah unggahan materi,
+  produk latihan asli, dan keluaran TERBATAS)
+- Netlify: <https://cryptan-id-test-suite.netlify.app> (`netlify deploy --prod --dir site --no-build --site cryptan-id-test-suite`)
+- Lovable: <https://cryptan-id-test-suite.lovable.app> (UK-1, Katalog, UK-2, UK-3; membaca JSON dari Vercel)
+
+Laporan `std_report` berklasifikasi **TERBATAS** tidak pernah dipublikasikan ke situs mana pun.
 
 ---
 Dibuat oleh **Dea Saka Kurnia Putra** — Pelatihan Sertifikasi *Cryptographic Analyst* Angkatan 1.
